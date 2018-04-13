@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var LabelEric: UILabel!
+    @IBOutlet weak var LabelSueanne: UILabel!
+    @IBOutlet weak var LabelJerod: UILabel!
+    @IBOutlet weak var LabelJunyi: UILabel!
+    @IBOutlet weak var LabelGalen: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -18,6 +24,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupView() {
+        self.LabelEric.text =
+            NSLocalizedString("Hello, My name is Eric.", comment: "A greeting string for the main view with Eric as the name")
+        
     }
 
 
