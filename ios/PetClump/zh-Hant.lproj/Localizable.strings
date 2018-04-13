@@ -1,7 +1,3 @@
-/* 
-  Localizable.strings
-  PetClump
+/* A greeting string for the main view. */
+"Hello, My name is Eric." = "你好，我是艾瑞克。";
 
-  Created by YSH on 4/13/18.
-  Copyright © 2018 PetClump. All rights reserved.
-*/
