@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "993418009613",
+    "firebase_url": "https://petclump.firebaseio.com",
+    "project_id": "petclump",
+    "storage_bucket": "petclump.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993418009613:android:d51dc573926a10f9",
+        "android_client_info": {
+          "package_name": "com.petclump.petclump"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993418009613-rn1o7ceq4tmniimmokvjk5qas2cd7spp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.petclump.petclump",
+            "certificate_hash": "bd0ffccdfdf99ba9a7fc15306405b2526daf987b"
+          }
+        },
+        {
+          "client_id": "993418009613-9fo87mdb6rt3hkkci4s5djgtm1v1g4io.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6Bd-XwrQJqQA55BFiryb5O-b7eu1Zh_4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993418009613-9fo87mdb6rt3hkkci4s5djgtm1v1g4io.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
