@@ -108,3 +108,5 @@ fastlane/test_output
 # End of https://www.gitignore.io/api/swift,xcode
 android/.idea/caches/build_file_checksums.ser
 *.ser
+*.ser
+android/.idea/caches/build_file_checksums.ser
