@@ -1,13 +1,26 @@
 package com.petclump.petclump;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
+
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button pickButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pickButton = findViewById(R.id.button_go_upload_photo);
+        pickButton.setOnClickListener(v -> {
+            //Starting a new Intent
+            Intent nextScreen = new Intent(getApplicationContext(), UploadPhotoActivity.class);
+            startActivity(nextScreen);
+        });
     }
 }
