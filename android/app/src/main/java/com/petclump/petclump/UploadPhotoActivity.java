@@ -62,14 +62,18 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method uploads an image to Firebase. Firebase is set to insecure public read/write.
+     */
     private void uploadImage(){
-        // File or Blob
         if (photoPath.equals("")) {
             Toast.makeText(this, "No photo path", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // File or Blob
         Uri file = Uri.fromFile(new File(photoPath));
+
         // Create the file metadata
         StorageMetadata metadata = new StorageMetadata.Builder()
                 .setContentType("image/png")
@@ -107,6 +111,9 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method starts an activity to get image
+     */
     private void pickImage(){
         Intent i = new Intent(
                 Intent.ACTION_PICK,
@@ -114,6 +121,10 @@ public class UploadPhotoActivity extends AppCompatActivity {
         startActivityForResult(i, RESULT_LOAD_IMAGE);
     }
 
+    /**
+     * This method is called when image is successful send from other activity to our app
+     * @param data the Intent object with image data
+     */
     private void loadImageToView(Intent data){
         Uri selectedImage = data.getData();
         String[] filePathColumn = { MediaStore.Images.Media.DATA };
