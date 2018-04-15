@@ -9,9 +9,9 @@ import com.petclump.petclump.R;
 
 
 public enum Specie {
-    DOG, CAT, BIRD, ANT, FERRET,FISH, FROG, GECKO,
+    DOG, CAT, BIRD, ANT, FERRET,FISH, FROG, LIZARD,
     GOAT, HAMSTER, HORSE, PIG, RABBIT, SNAKE, TURTLE,
-    OTHER;
+    OCTOPUS, LLAMA, EAGLE, OTHER;
 
 
     public String getName(Context applicationContext){
