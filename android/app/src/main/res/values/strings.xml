@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">PetClump</string>
     <string name="greeting">Hello World!</string>
+
     <string name="settings">Settings</string>
+
+    <string name="DOG">Dog</string>
+
 </resources>

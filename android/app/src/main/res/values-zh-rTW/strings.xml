@@ -2,5 +2,9 @@
 <resources>
     <string name="app_name">PetClump</string>
     <string name="greeting">哈囉世界!</string>
+
     <string name="settings">設定</string>
+
+    <string name="DOG">犬</string>
+
 </resources>
