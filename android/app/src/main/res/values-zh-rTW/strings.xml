@@ -24,5 +24,12 @@
     <string name="LLAMA">羊駝</string>
     <string name="OTHER">其他</string>
     <string name="EAGLE">鷹</string>
+    <string name="Name">名字</string>
+    <string name="Date_of_birth">出生日期</string>
+    <string name="Location">居住地</string>
+    <string name="Gender">性別</string>
+    <string name="My_pets">我的寵物們</string>
+    <string name="My_schedule">我的行程表</string>
+    <string name="Pet_1">寵物一號</string>
 
 </resources>
