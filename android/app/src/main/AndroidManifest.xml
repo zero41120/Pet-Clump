@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UploadPhotoActivity" />
-        <activity android:name=".UserInfoActivity"></activity>
+        <activity android:name=".UserInfoActivity" />
+        <activity android:name=".PetInfoActivity"></activity>
     </application>
 
 </manifest>
