@@ -96,7 +96,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
      * This method uploads an image to Firebase. Firebase is set to insecure public read/write.
      */
     private void uploadImage(){
-        if (photoPath.equals("")) {
+        if (photoPath == null || photoPath.equals("")) {
             Toast.makeText(this, "No photo path", Toast.LENGTH_SHORT).show();
             return;
         }

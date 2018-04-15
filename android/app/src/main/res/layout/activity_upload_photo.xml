@@ -34,9 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="29dp"
         android:layout_marginStart="29dp"
+        android:layout_marginTop="61dp"
         android:text="Upload"
         app:layout_constraintStart_toEndOf="@+id/button_pick_picture"
-        tools:layout_editor_absoluteY="61dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/downloadView"
