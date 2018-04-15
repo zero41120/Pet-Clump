@@ -7,18 +7,16 @@ import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnPausedListener;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -29,9 +27,14 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
     private static final String TAG = "UploadPhotoActivity";
     private static int RESULT_LOAD_IMAGE = 1;
-    private static String[] permissions = new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE};
-    private String photoPath;
-    FirebaseStorage storage = FirebaseStorage.getInstance();
+    private static String[] permissions = new String[]{
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
+
+    private String      photoPath;
+    private ImageView   downloadView, uploadView;
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
 
     /**
      * This method checks if given permissions are granted. If not, this method will
@@ -49,6 +52,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +60,35 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
         checkPermissions(permissions);
 
-        findViewById(R.id.button_pick_picture).setOnClickListener( v -> pickImage());
+        downloadView                = findViewById(R.id.downloadView);
+        uploadView                  = findViewById(R.id.uploadView);
+        Button buttonPickPicture    = findViewById(R.id.button_pick_picture);
+        Button buttonDownload       = findViewById(R.id.button_download_picture);
+        Button buttonUpload         = findViewById(R.id.button_upload_picture);
 
-        findViewById(R.id.button_upload_picture).setOnClickListener(v -> uploadImage());
+        buttonPickPicture.setOnClickListener( v -> pickImage());
+        buttonDownload.setOnClickListener( v -> downloadImage());
+        buttonUpload.setOnClickListener(v -> uploadImage());
+    }
+
+    /**
+     * This method download this image images/IMG_20180414_213521.jpg from firebase
+     * and save that to a temp file.
+     */
+    private void downloadImage(){
+        String path = "images/IMG_20180414_213521.jpg";
+        try{
+            File localFile = File.createTempFile("images", "jpg");
+
+            StorageReference storageRef = storage.getReference();
+
+            storageRef.child(path).getFile(localFile)
+                .addOnSuccessListener(taskSnapshot -> loadImageToView(downloadView, localFile))
+                .addOnFailureListener(e -> Log.d(TAG, "onFailure: " + e.getMessage()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -84,29 +114,20 @@ public class UploadPhotoActivity extends AppCompatActivity {
         UploadTask uploadTask = storageRef.child("images/" + file.getLastPathSegment()).putFile(file, metadata);
 
         // Listen for state changes, errors, and completion of the upload.
-        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                System.out.println("Upload is " + progress + "% done");
-            }
-        }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
-                System.out.println("Upload is paused");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(Exception exception) {
-                // Handle unsuccessful uploads
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // Handle successful uploads on complete
-                Uri downloadUrl = taskSnapshot.getMetadata().getDownloadUrl();
-            }
-        });
+        uploadTask
+                .addOnProgressListener(taskSnapshot -> {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    System.out.println("Upload is " + progress + "% done");
+                })
+                .addOnPausedListener(taskSnapshot ->
+                    System.out.println("Upload is paused")
+                )
+                .addOnFailureListener(e ->
+                        Log.d(TAG, "uploadImage: " + e.getMessage())
+                )
+                .addOnSuccessListener(taskSnapshot ->
+                    Toast.makeText(UploadPhotoActivity.this, "Uploaded!", Toast.LENGTH_SHORT).show()
+                );
 
 
     }
@@ -125,30 +146,42 @@ public class UploadPhotoActivity extends AppCompatActivity {
      * This method is called when image is successful send from other activity to our app
      * @param data the Intent object with image data
      */
-    private void loadImageToView(Intent data){
-        Uri selectedImage = data.getData();
-        String[] filePathColumn = { MediaStore.Images.Media.DATA };
+    private void loadImageToView(ImageView imageView, Intent data){
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            if (selectedImage == null) {
+                return;
+            }
 
-        Cursor cursor = getContentResolver().query(selectedImage,
-                filePathColumn, null, null, null);
-        cursor.moveToFirst();
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            if (cursor == null){
+                return;
+            }
+            cursor.moveToFirst();
 
-        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-        String picturePath = cursor.getString(columnIndex);
-        cursor.close();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
 
-        this.photoPath = picturePath;
+            this.photoPath = picturePath;
 
-        ImageView imageView = findViewById(R.id.photoView);
-        imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
     }
 
+    /**
+     * This method is called when image is successful send from other activity to our app
+     * @param data the File object with image data
+     */
+    private void loadImageToView(ImageView imageView, File data){
+        imageView.setImageBitmap(BitmapFactory.decodeFile(data.getAbsolutePath()));
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            loadImageToView(data);
+            loadImageToView(uploadView, data);
         }
     }
 }
