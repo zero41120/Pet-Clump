@@ -5,5 +5,24 @@
     <string name="settings">Settings</string>
 
     <string name="DOG">Dog</string>
+    <string name="CAT">Cat</string>
+    <string name="BIRD">Bird</string>
+    <string name="ANT">Ant</string>
+    <string name="FERRET">Ferret</string>
+    <string name="FISH">Fish</string>
+    <string name="FROG">Frog</string>
+    <string name="GOAT">Goat</string>
+    <string name="HAMSTER">Hamster</string>
+    <string name="HORSE">Horse</string>
+    <string name="PIG">Pig</string>
+    <string name="RABBIT">Rabbit</string>
+    <string name="SNAKE">Snake</string>
+    <string name="TURTLE">Turtle</string>
+    <string name="OCTOPUS">Octopus</string>
+    <string name="LLAMA">Llama</string>
+    <string name="OTHER">Other</string>
+    <string name="EAGLE">Eagle</string>
+    <string name="LIZARD">Lizard</string>
+
 
 </resources>

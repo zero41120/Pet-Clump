@@ -2,8 +2,26 @@
 <resources>
     <string name="app_name">PetClump</string>
 
-    <string name="settings">設定</string>
-
     <string name="DOG">狗狗</string>
+    <string name="greeting">哈喽世界！</string>
+    <string name="settings">设定</string>
+    <string name="CAT">猫咪</string>
+    <string name="BIRD">鸟类</string>
+    <string name="ANT">蚂蚁</string>
+    <string name="FERRET">宠物貂</string>
+    <string name="FISH">鱼</string>
+    <string name="FROG">青蛙</string>
+    <string name="LIZARD">蜥蜴</string>
+    <string name="GOAT">山羊</string>
+    <string name="HAMSTER">仓鼠</string>
+    <string name="HORSE">马</string>
+    <string name="PIG">猪</string>
+    <string name="RABBIT">兔子</string>
+    <string name="SNAKE">蛇</string>
+    <string name="TURTLE">乌龟</string>
+    <string name="OCTOPUS">章鱼</string>
+    <string name="LLAMA">羊驼</string>
+    <string name="EAGLE">鹰</string>
+    <string name="OTHER">其他</string>
 
 </resources>
