@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">PetClump</string>
     <string name="greeting">哈囉世界!</string>
+    <string name="Authentication_failed">授權失敗</string>
+    <string name="User_Signed_In">登陸成功</string>
 </resources>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PetClump</string>
+    <string name="greeting">哈喽世界！</string>
+    <string name="User_Signed_In">登录成功</string>
+    <string name="Authentication_failed">授权失败</string>
 </resources>
