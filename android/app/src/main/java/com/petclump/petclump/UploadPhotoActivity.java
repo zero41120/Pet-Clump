@@ -176,6 +176,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
     private void loadImageToView(ImageView imageView, File data){
         imageView.setImageBitmap(BitmapFactory.decodeFile(data.getAbsolutePath()));
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
