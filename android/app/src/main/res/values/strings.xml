@@ -33,6 +33,8 @@
     <string name="Woman">Woman</string>
     <string name="Non_binary">Non-binary</string>
     <string name="Pet_1">Pet 1</string>
+    <string name="Photo_of_me">Photo of me</string>
+    <string name="About_me">About me</string>
 
 
 </resources>

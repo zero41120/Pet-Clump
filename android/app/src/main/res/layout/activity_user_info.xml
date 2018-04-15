@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".UserInfoActivity">
 
+
     <ImageView
         android:id="@+id/user_profile"
         android:layout_width="130dp"
@@ -16,8 +17,8 @@
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091"
-        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
+        app:layout_constraintVertical_bias="0.165"
+        app:srcCompat="@drawable/owner_placeholder" />
 
     <TextView
         android:id="@+id/user_name"
@@ -30,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/user_profile"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintVertical_bias="0.105" />
 
     <TextView
         android:id="@+id/user_gender"
@@ -50,13 +51,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/Date_of_birth"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/user_profile"
         app:layout_constraintTop_toBottomOf="@id/radio_gender"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.006" />
 
     <TextView
         android:id="@+id/user_location"
@@ -66,10 +69,10 @@
         android:text="@string/Location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/user_profile"
         app:layout_constraintTop_toBottomOf="@id/input_user_dob"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
         android:id="@+id/user_schedule"
@@ -78,37 +81,41 @@
         android:text="@string/My_schedule"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.00"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/user_profile"
         app:layout_constraintTop_toBottomOf="@+id/user_profile"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.072" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_add_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="132dp"
-        android:layout_marginRight="132dp"
-        android:text="add pets"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:src="@drawable/button_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/user_pet1"
+        app:layout_constraintHorizontal_bias="0.743"
+        app:layout_constraintStart_toStartOf="@+id/user_pets"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.855" />
+        app:layout_constraintVertical_bias="0.742" />
 
     <EditText
         android:id="@+id/input_user_dob"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:ems="11"
+        android:hint="mm/dd/yyyy "
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/user_dob"
         app:layout_constraintTop_toBottomOf="@+id/user_dob"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <EditText
         android:id="@+id/input_user_name"
@@ -134,8 +141,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/user_location"
-        app:layout_constraintTop_toBottomOf="@id/user_location"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/user_location" />
 
     <TextView
         android:id="@+id/user_pets"
@@ -149,7 +155,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.662" />
+        app:layout_constraintVertical_bias="0.721" />
 
     <RadioGroup
         android:id="@+id/radio_gender"
@@ -162,7 +168,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/user_gender"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.227">
+        app:layout_constraintVertical_bias="0.29">
 
         <RadioButton
             android:id="@+id/radio_man"
@@ -192,25 +198,27 @@
 
     </RadioGroup>
 
-    <ImageButton
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/user_pet1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:src="@drawable/dog_placeholder"
+        app:civ_border_color="#EEEEEE"
+        app:civ_border_width="4dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#0d80e5"
+        app:civ_shadow_radius="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_add_pet"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.91"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        app:layout_constraintVertical_bias="0.939" />
 
     <TextView
         android:id="@+id/name_pet1"
@@ -218,17 +226,33 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Pet_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="@id/user_pet1"
         app:layout_constraintTop_toBottomOf="@id/user_pet1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/text_user_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/About_me"
+        android:textSize="@dimen/font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

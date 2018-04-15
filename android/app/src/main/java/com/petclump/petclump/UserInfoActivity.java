@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class UserInfoActivity extends AppCompatActivity {
     ImageView user_profile;
-    Button button_add_pets;
-    ImageButton pets_profile_view;
+    ImageButton button_add_pets;
+    ImageView pet_1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,8 +27,8 @@ public class UserInfoActivity extends AppCompatActivity {
 
         user_profile = findViewById(R.id.user_profile);
 
-        pets_profile_view = findViewById(R.id.user_pet1);
-        pets_profile_view.setOnClickListener(v -> {
+        pet_1 = findViewById(R.id.user_pet1);
+        pet_1.setOnClickListener(v -> {
             //Starting a new Intent
             Intent nextScreen = new Intent(c, PetInfoActivity.class);
             startActivity(nextScreen);
