@@ -109,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+   /* // Google Sign Out Method
+    private void SignOut(){
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+
+    }*/
 
     @Override
     protected void onStart(){
