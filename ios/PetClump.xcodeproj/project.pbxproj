@@ -7,21 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
 		29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797A207EE97D002971C5 /* AppDelegate.swift */; };
-		29C1797D207EE97D002971C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797C207EE97D002971C5 /* ViewController.swift */; };
+		29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797C207EE97D002971C5 /* EntryPointVC.swift */; };
 		29C17980207EE97D002971C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C1797E207EE97D002971C5 /* Main.storyboard */; };
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
+		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
+		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
 		29C17977207EE97D002971C5 /* PetClump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetClump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C1797A207EE97D002971C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		29C1797C207EE97D002971C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		29C1797C207EE97D002971C5 /* EntryPointVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointVC.swift; sourceTree = "<group>"; };
 		29C1797F207EE97D002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29C17981207EE97F002971C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
+		CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetClump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +36,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0ECC28B514BE4CD702FB4434 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */,
+				1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		29C1796E207EE97D002971C5 = {
 			isa = PBXGroup;
 			children = (
 				29C17979207EE97D002971C5 /* PetClump */,
 				29C17978207EE97D002971C5 /* Products */,
+				0ECC28B514BE4CD702FB4434 /* Pods */,
+				B5B004EA17432DBFD1994CBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +73,24 @@
 		29C17979207EE97D002971C5 /* PetClump */ = {
 			isa = PBXGroup;
 			children = (
+				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
-				29C1797C207EE97D002971C5 /* ViewController.swift */,
+				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
 				29C1797E207EE97D002971C5 /* Main.storyboard */,
 				29C17981207EE97F002971C5 /* Assets.xcassets */,
 				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 				29C17986207EE97F002971C5 /* Info.plist */,
+				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
 			);
 			path = PetClump;
+			sourceTree = "<group>";
+		};
+		B5B004EA17432DBFD1994CBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +100,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29C17989207EE97F002971C5 /* Build configuration list for PBXNativeTarget "PetClump" */;
 			buildPhases = (
+				2F4389FE6FEF3F9583DE4611 /* [CP] Check Pods Manifest.lock */,
 				29C17973207EE97D002971C5 /* Sources */,
 				29C17974207EE97D002971C5 /* Frameworks */,
 				29C17975207EE97D002971C5 /* Resources */,
+				25AC422C5883CAC15925A08A /* [CP] Embed Pods Frameworks */,
+				E0FEA1389E91D4B4D9BFB9EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +128,11 @@
 				TargetAttributes = {
 					29C17976207EE97D002971C5 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -123,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */,
+				2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */,
 				29C17982207EE97F002971C5 /* Assets.xcassets in Resources */,
 				29C17980207EE97D002971C5 /* Main.storyboard in Resources */,
 			);
@@ -130,12 +168,115 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25AC422C5883CAC15925A08A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PetClump/Pods-PetClump-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetClump/Pods-PetClump-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F4389FE6FEF3F9583DE4611 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PetClump-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0FEA1389E91D4B4D9BFB9EF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PetClump/Pods-PetClump-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseTwitterAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetClump/Pods-PetClump-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		29C17973207EE97D002971C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29C1797D207EE97D002971C5 /* ViewController.swift in Sources */,
+				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,10 +419,14 @@
 		};
 		29C1798A207EE97F002971C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PetClump/PetClump.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VAPY9Z8ZT4;
 				INFOPLIST_FILE = PetClump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -289,16 +434,20 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		29C1798B207EE97F002971C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PetClump/PetClump.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VAPY9Z8ZT4;
 				INFOPLIST_FILE = PetClump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,7 +455,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
