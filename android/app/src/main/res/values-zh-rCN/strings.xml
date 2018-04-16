@@ -4,4 +4,5 @@
     <string name="greeting">哈喽世界！</string>
     <string name="User_Signed_In">登录成功</string>
     <string name="Authentication_failed">授权失败</string>
+    <string name="Login_Cancelled">登录取消</string>
 </resources>

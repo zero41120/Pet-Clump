@@ -8,7 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.facebook.CallbackManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -23,9 +29,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    /*** Sign In set-up field ***/
+    /*** Google Sign In set-up field ***/
     // Google Sign In button
     private SignInButton mGoogleBtn;
     // Google Sign In code
@@ -37,14 +44,46 @@ public class MainActivity extends AppCompatActivity {
     // TAG used for Google signIn debug
     private static final String TAG_Google_LogIn = "Google_LogIn";
 
+    /*** Facebook Sign In set-up field ***/
+    // facebook Signin button
+    LoginButton loginButton;
+    // facebook SignIn callbackmanager
+    CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // setup facebook sdk
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_main);
 
+        // setup google SignIn button and mAuth
         mGoogleBtn = (SignInButton) findViewById(R.id.googleBtn);
         mAuth = FirebaseAuth.getInstance();
 
+        // setup facebook SignIn button and callback
+        loginButton = (LoginButton)findViewById(R.id.login_button);
+        callbackManager = CallbackManager.Factory.create();
+
+        // setup facebook callback
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(MainActivity.this, R.string.User_Signed_In, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(MainActivity.this, R.string.Login_Cancelled, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Toast.makeText(MainActivity.this, R.string.Authentication_failed, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -55,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
         // Create Google Sign In Client
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        /*** program entry ***/
         // use the Google signIn button to sign in
         // call signIn()
         mGoogleBtn.setOnClickListener(new View.OnClickListener(){
@@ -71,22 +109,24 @@ public class MainActivity extends AppCompatActivity {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-    /*** if signed-in go to next activity ***/
 
     @Override
     protected void onStart(){
         super.onStart();
 
         if(mAuth.getCurrentUser() != null){
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
+            //finish();
+            //startActivity(new Intent(this, ProfileActivity.class));
         }
     }
     // Google Sign In Result
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // facebook callback
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
 
+        // google result
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);

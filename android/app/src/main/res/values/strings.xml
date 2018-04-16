@@ -5,4 +5,5 @@
     <string name="Authentication_failed">Authentication_failed</string>
     <string name="facebook_app_id">224973144722885</string>
     <string name="fb_login_protocol_scheme">fb224973144722885</string>
+    <string name="Login_Cancelled">Login Cancelled</string>
 </resources>
