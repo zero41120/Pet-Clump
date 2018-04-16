@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".UserInfoActivity">
 
 
@@ -76,16 +77,17 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <Button
-    android:id="@+id/user_schedule"
-    android:layout_width="130dp"
-    android:layout_height="wrap_content"
-    android:text="@string/My_schedule"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="@+id/user_profile"
-    app:layout_constraintTop_toBottomOf="@+id/user_profile"
-    app:layout_constraintVertical_bias="0.174" />
+        android:id="@+id/user_schedule"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="@string/My_schedule"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/user_profile"
+        app:layout_constraintTop_toBottomOf="@+id/user_profile"
+        app:layout_constraintVertical_bias="0.174" />
 
     <ImageButton
         android:id="@+id/button_edit_user_photo"
@@ -120,10 +122,10 @@
 
     <EditText
         android:id="@+id/input_user_dob"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:ems="11"
-        android:hint="mm/dd/yyyy "
+        android:hint="mm/dd/yyyy"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,6 +167,7 @@
         android:gravity="center"
         android:text="@string/My_pets"
         android:textSize="@dimen/font_size"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -255,14 +258,15 @@
         android:id="@+id/text_user_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
+        android:gravity="center"
         android:text="@string/About_me"
         android:textSize="@dimen/font_size"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
