@@ -3,4 +3,6 @@
     <string name="greeting">Hello World!</string>
     <string name="User_Signed_In">User Signed In</string>
     <string name="Authentication_failed">Authentication_failed</string>
+    <string name="facebook_app_id">224973144722885</string>
+    <string name="fb_login_protocol_scheme">fb224973144722885</string>
 </resources>
