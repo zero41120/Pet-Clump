@@ -9,10 +9,11 @@ target 'PetClump' do
   pod 'Firebase/Core'
   pod 'FirebaseUI'
   pod 'FirebaseUI/Auth'
-
+  pod 'GoogleSignIn'
   pod 'FirebaseUI/Google'
   pod 'FirebaseUI/Facebook'
   platform :ios, '11.0'
+  pod 'FBSDKLoginKit'
 
 
 end

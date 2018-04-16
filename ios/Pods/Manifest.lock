@@ -144,11 +144,13 @@ PODS:
     - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
+  - FBSDKLoginKit
   - Firebase/Core
   - FirebaseUI
   - FirebaseUI/Auth
   - FirebaseUI/Facebook
   - FirebaseUI/Google
+  - GoogleSignIn
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -209,6 +211,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: abb0a18a02d503138b3655409ae46d77737a4450
+PODFILE CHECKSUM: 72ab41d103879d9569f336fe2beb7725a0532eeb
 
 COCOAPODS: 1.5.0
