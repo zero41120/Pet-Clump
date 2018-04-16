@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.FacebookCallback;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     /*** Google Sign In set-up field ***/
     // Google Sign In button
     private SignInButton mGoogleBtn;
+    private Button mGoogleSignOutBtn;
     // Google Sign In code
     private static final int RC_SIGN_IN = 1;
     // Google Sign In Client
@@ -58,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_main);
 
-        // setup google SignIn button and mAuth
+        // setup google buttons and mAuth
         mGoogleBtn = (SignInButton) findViewById(R.id.googleBtn);
         mAuth = FirebaseAuth.getInstance();
+        mGoogleSignOutBtn = (Button) findViewById(R.id.mGoogleSignOut);
 
         // setup facebook SignIn button and callback
         loginButton = (LoginButton)findViewById(R.id.login_button);
@@ -100,6 +103,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 signIn();
+            }
+        });
+
+        // Google Sign Out
+        mGoogleSignOutBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if(mAuth.getCurrentUser() != null) {
+                    mAuth.signOut();
+                    if(mAuth.getCurrentUser() == null)
+                        Toast.makeText(MainActivity.this, R.string.User_Signed_Out, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -5,4 +5,5 @@
     <string name="Authentication_failed">授權失敗</string>
     <string name="User_Signed_In">登錄成功</string>
     <string name="Login_Cancelled">登錄取消</string>
+    <string name="User_Signed_Out">用戶登出</string>
 </resources>
