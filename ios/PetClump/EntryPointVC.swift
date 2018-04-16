@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FacebookLogin
 
 
 class EntryPointVC: UIViewController, GIDSignInUIDelegate {
@@ -18,14 +19,11 @@ class EntryPointVC: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var signOutButton: UIButton!
     
     @IBAction func topSignOut(_ sender: Any) {
-        let firebaseAuth = Auth.auth()
-      
         do {
-            var message = ""
+            let firebaseAuth = Auth.auth()
+            var message = "You have already signed out"
             if let user = firebaseAuth.currentUser{
-                message += "You have signed out as " + user.uid
-            } else {
-                message += "You have already signed out"
+                message = "You have signed out as " + user.displayName
             }
             try firebaseAuth.signOut()
             self.makeAlert(message: message)
@@ -39,7 +37,6 @@ class EntryPointVC: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
 
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
