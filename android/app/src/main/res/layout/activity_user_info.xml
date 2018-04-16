@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightYellow"
     tools:context=".UserInfoActivity">
 
 
@@ -12,12 +13,13 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginLeft="8dp"
+        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165"
+        app:layout_constraintVertical_bias="0.215"
         app:srcCompat="@drawable/owner_placeholder" />
 
     <TextView
@@ -75,16 +77,30 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <Button
-        android:id="@+id/user_schedule"
-        android:layout_width="130dp"
+    android:id="@+id/user_schedule"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    android:text="@string/My_schedule"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/user_profile"
+    app:layout_constraintTop_toBottomOf="@+id/user_profile"
+    app:layout_constraintVertical_bias="0.174" />
+
+    <ImageButton
+        android:id="@+id/button_edit_user_photo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/My_schedule"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/user_profile"
-        app:layout_constraintTop_toBottomOf="@+id/user_profile"
-        app:layout_constraintVertical_bias="0.072" />
+        android:background="@null"
+        android:src="@drawable/pencil"
+        app:layout_constraintBottom_toBottomOf="@id/user_profile"
+        app:layout_constraintEnd_toEndOf="@id/user_profile"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <ImageButton
         android:id="@+id/button_add_pet"
@@ -98,8 +114,8 @@
         android:src="@drawable/button_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.743"
-        app:layout_constraintStart_toStartOf="@+id/user_pets"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/user_pets"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.742" />
 
@@ -145,14 +161,13 @@
 
     <TextView
         android:id="@+id/user_pets"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/My_pets"
         android:textSize="@dimen/font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.721" />
@@ -235,7 +250,7 @@
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="@id/user_pet1"
         app:layout_constraintTop_toBottomOf="@id/user_pet1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/text_user_photo"
