@@ -11,10 +11,9 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var LabelEric: UILabel!
-    @IBOutlet weak var LabelSueanne: UILabel!
     @IBOutlet weak var LabelJerod: UILabel!
-    @IBOutlet weak var LabelJunyi: UILabel!
     @IBOutlet weak var LabelGalen: UILabel!
+    @IBOutlet weak var LabelTamir: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
