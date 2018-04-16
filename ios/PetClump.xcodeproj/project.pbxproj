@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
+		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
 		29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797A207EE97D002971C5 /* AppDelegate.swift */; };
 		29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797C207EE97D002971C5 /* EntryPointVC.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
+		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
 		29C17977207EE97D002971C5 /* PetClump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetClump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */,
+				29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */,
 				4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +94,8 @@
 		B5B004EA17432DBFD1994CBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29309A1F20855EB70059E2E4 /* Bolts.framework */,
+				29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */,
 				CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */,
 			);
 			name = Frameworks;
@@ -180,6 +188,10 @@
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -200,6 +212,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -427,10 +443,7 @@
 				DEVELOPMENT_TEAM = VAPY9Z8ZT4;
 				INFOPLIST_FILE = PetClump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -448,10 +461,7 @@
 				DEVELOPMENT_TEAM = VAPY9Z8ZT4;
 				INFOPLIST_FILE = PetClump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
