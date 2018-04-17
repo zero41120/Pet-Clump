@@ -35,5 +35,7 @@
     <string name="Woman">女</string>
     <string name="Photo_of_me">我的照片</string>
     <string name="About_me">關於我</string>
+    <string name="Pet_2">寵物二號</string>
+    <string name="Pet_3">寵物三號</string>
 
 </resources>

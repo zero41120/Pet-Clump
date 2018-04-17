@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_info_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -9,7 +10,7 @@
 
 
     <ImageView
-        android:id="@+id/user_profile"
+        android:id="@+id/profile_user"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginLeft="8dp"
@@ -19,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.215"
+        app:layout_constraintVertical_bias="0.186"
         app:srcCompat="@drawable/owner_placeholder" />
 
     <TextView
@@ -31,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/user_profile"
+        app:layout_constraintStart_toEndOf="@id/profile_user"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.105" />
 
@@ -44,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/user_profile"
+        app:layout_constraintStart_toEndOf="@id/profile_user"
         app:layout_constraintTop_toBottomOf="@id/input_user_name"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -59,7 +60,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/user_profile"
+        app:layout_constraintStart_toEndOf="@id/profile_user"
         app:layout_constraintTop_toBottomOf="@id/radio_gender"
         app:layout_constraintVertical_bias="0.006" />
 
@@ -72,12 +73,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/user_profile"
+        app:layout_constraintStart_toEndOf="@id/profile_user"
         app:layout_constraintTop_toBottomOf="@id/input_user_dob"
         app:layout_constraintVertical_bias="0.022" />
 
     <Button
-        android:id="@+id/user_schedule"
+        android:id="@+id/button_schedule"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="@string/My_schedule"
@@ -85,9 +86,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/user_profile"
-        app:layout_constraintTop_toBottomOf="@+id/user_profile"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintStart_toStartOf="@+id/profile_user"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user"
+        app:layout_constraintVertical_bias="0.075" />
 
     <ImageButton
         android:id="@+id/button_edit_user_photo"
@@ -95,8 +96,8 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:src="@drawable/pencil"
-        app:layout_constraintBottom_toBottomOf="@id/user_profile"
-        app:layout_constraintEnd_toEndOf="@id/user_profile"
+        app:layout_constraintBottom_toBottomOf="@id/profile_user"
+        app:layout_constraintEnd_toEndOf="@id/profile_user"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -107,18 +108,17 @@
         android:id="@+id/button_add_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginRight="204dp"
         android:background="@null"
         android:src="@drawable/button_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/user_pets"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <EditText
         android:id="@+id/input_user_dob"
@@ -164,6 +164,12 @@
         android:id="@+id/user_pets"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/My_pets"
         android:textSize="@dimen/font_size"
@@ -172,7 +178,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        app:layout_constraintVertical_bias="0.715" />
 
     <RadioGroup
         android:id="@+id/radio_gender"
@@ -216,9 +222,9 @@
     </RadioGroup>
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/user_pet1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/profile_pet1"
+        android:layout_width="@dimen/profile_pet_size"
+        android:layout_height="@dimen/profile_pet_size"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -233,9 +239,11 @@
         app:civ_shadow_radius="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profile_pet2"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.956" />
 
     <TextView
         android:id="@+id/name_pet1"
@@ -249,24 +257,109 @@
         android:text="@string/Pet_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.142"
-        app:layout_constraintStart_toStartOf="@id/user_pet1"
-        app:layout_constraintTop_toBottomOf="@id/user_pet1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="@id/profile_pet1"
+        app:layout_constraintTop_toBottomOf="@id/profile_pet1"
+        app:layout_constraintVertical_bias="0.444" />
 
-    <TextView
-        android:id="@+id/text_user_photo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/profile_pet2"
+        android:layout_width="@dimen/profile_pet_size"
+        android:layout_height="@dimen/profile_pet_size"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/dog_placeholder"
+        android:visibility="gone"
+        app:civ_border_color="#EEEEEE"
+        app:civ_border_width="4dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#0d80e5"
+        app:civ_shadow_radius="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/profile_pet3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/profile_pet1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+    <TextView
+        android:id="@+id/name_pet2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Pet_2"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="@id/profile_pet2"
+        app:layout_constraintTop_toBottomOf="@id/profile_pet2"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/profile_pet3"
+        android:layout_width="@dimen/profile_pet_size"
+        android:layout_height="@dimen/profile_pet_size"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/dog_placeholder"
+        android:visibility="gone"
+        app:civ_border_color="#EEEEEE"
+        app:civ_border_width="4dp"
+        app:civ_shadow="true"
+        app:civ_shadow_color="#0d80e5"
+        app:civ_shadow_radius="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/profile_pet2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
+    <TextView
+        android:id="@+id/name_pet3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/Pet_3"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="@id/profile_pet3"
+        app:layout_constraintTop_toBottomOf="@id/profile_pet3"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <TextView
+        android:id="@+id/text_user_info"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="292dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/About_me"
         android:textSize="@dimen/font_size"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/user_pets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
