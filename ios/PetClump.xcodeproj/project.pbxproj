@@ -34,6 +34,9 @@
 		29C17981207EE97F002971C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C96BE0D9208A9832000B2EF5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		C96BE0DA208A9832000B2EF5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C96BE0DB208A9832000B2EF5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,7 @@
 				"zh-Hant",
 				"zh-Hans",
 				he,
+				es,
 			);
 			mainGroup = 29C1796E207EE97D002971C5;
 			productRefGroup = 29C17978207EE97D002971C5 /* Products */;
@@ -169,6 +173,7 @@
 				296A5B802081502D0024BD1F /* zh-Hant */,
 				296A5B81208150300024BD1F /* zh-Hans */,
 				296A5B82208150310024BD1F /* he */,
+				C96BE0DB208A9832000B2EF5 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				296A5B76208149B00024BD1F /* zh-Hant */,
 				296A5B78208149B60024BD1F /* zh-Hans */,
 				296A5B7A208149C00024BD1F /* he */,
+				C96BE0D9208A9832000B2EF5 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 				296A5B77208149B00024BD1F /* zh-Hant */,
 				296A5B79208149B60024BD1F /* zh-Hans */,
 				296A5B7B208149C00024BD1F /* he */,
+				C96BE0DA208A9832000B2EF5 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

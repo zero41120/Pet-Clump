@@ -28,7 +28,8 @@ class ViewController: UIViewController {
     func setupView() {
         self.LabelEric.text =
             NSLocalizedString("Hello, My name is Eric.", comment: "A greeting string for the main view with Eric as the name")
-        
+        self.LabelGalen.text =
+            NSLocalizedString("Hello, My name is Galen.", comment: "A greeting string for the main view with Galen as the name")
     }
 
 
