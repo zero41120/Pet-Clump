@@ -30,6 +30,8 @@ class ViewController: UIViewController {
             NSLocalizedString("Hello, My name is Eric.", comment: "A greeting string for the main view with Eric as the name")
         self.LabelGalen.text =
             NSLocalizedString("Hello, My name is Galen.", comment: "A greeting string for the main view with Galen as the name")
+        self.LabelJerod.text =
+            NSLocalizedString("Hello, My name is Jerod.", comment: "A greeting string for the main view with Jerod as the name")
     }
 
 

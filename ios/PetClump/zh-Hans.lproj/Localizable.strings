@@ -5,3 +5,13 @@
   Created by YSH on 4/13/18.
   Copyright © 2018 PetClump. All rights reserved.
 */
+
+/* A greeting string for the main view with Eric as the name */
+"Hello, My name is Eric." = "你好, 我是艾瑞克.";
+
+/* A greeting string for the main view with Galen as the name */
+"Hello, My name is Galen." = "你好, 我是盖伦.";
+
+/* A greeting string for the main view with Jerod as the name */
+"Hello, My name is Jerod." = "你好, 我是杰罗德.";
+
