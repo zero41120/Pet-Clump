@@ -21,8 +21,11 @@ class FirestoreLearningVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
+    @IBAction func tapUpload(_ sender: Any) {
+    }
     
+    @IBAction func tapFetch(_ sender: Any) {
+    }
 }

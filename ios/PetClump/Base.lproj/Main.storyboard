@@ -118,6 +118,9 @@
                                 <rect key="frame" x="162" y="223" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Upload"/>
+                                <connections>
+                                    <action selector="tapUpload:" destination="ImH-OM-O1W" eventType="touchUpInside" id="Kc5-zk-5B7"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No text from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycX-4j-fdb">
                                 <rect key="frame" x="139" y="286" width="96" height="21"/>
@@ -130,6 +133,9 @@
                                 <rect key="frame" x="168" y="329" width="39" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Fetch"/>
+                                <connections>
+                                    <action selector="tapFetch:" destination="ImH-OM-O1W" eventType="touchUpInside" id="1RG-8p-whA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,6 +144,7 @@
                     <connections>
                         <outlet property="butInput" destination="1pI-bP-937" id="H8c-1L-lt7"/>
                         <outlet property="fetchButton" destination="wuF-4Z-FhY" id="dDl-Ky-NW8"/>
+                        <outlet property="tapFetch" destination="wuF-4Z-FhY" id="eyO-HF-b8f"/>
                         <outlet property="topInput" destination="iLj-Hr-qxC" id="dSG-rp-7ee"/>
                         <outlet property="uploadButton" destination="VmE-wx-xuT" id="bNh-gt-zbb"/>
                     </connections>
