@@ -7,4 +7,5 @@
     <string name="fb_login_protocol_scheme">fb224973144722885</string>
     <string name="Login_Cancelled">Login Cancelled</string>
     <string name="User_Signed_Out">User Signed Out</string>
+    <string name="User_has_logined_in">User has logined in</string>
 </resources>
