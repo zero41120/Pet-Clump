@@ -75,7 +75,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/profile_user"
         app:layout_constraintTop_toBottomOf="@id/input_user_dob"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.022"
+        android:onClick="showDatePickerDialog"/>
 
     <Button
         android:id="@+id/button_schedule"
@@ -94,14 +95,20 @@
         android:id="@+id/button_edit_user_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@null"
         android:src="@drawable/pencil"
-        app:layout_constraintBottom_toBottomOf="@id/profile_user"
-        app:layout_constraintEnd_toEndOf="@id/profile_user"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.974"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.017" />
 
 
     <ImageButton
@@ -122,6 +129,8 @@
 
     <EditText
         android:id="@+id/input_user_dob"
+        android:clickable="true"
+        android:focusable="false"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:ems="11"
@@ -363,7 +372,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 
 
 </android.support.constraint.ConstraintLayout>

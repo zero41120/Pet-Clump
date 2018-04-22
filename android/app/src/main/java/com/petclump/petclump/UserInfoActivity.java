@@ -1,31 +1,44 @@
 package com.petclump.petclump;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.UserInfo;
 import com.mikhaellopez.circularimageview.CircularImageView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+import static java.security.AccessController.getContext;
 
 public class UserInfoActivity extends AppCompatActivity {
     private int number_of_pets = 1;
+    private int day, month, year;
+    Calendar calendar;
     ImageView profile_user;
     ImageButton button_add_pets, button_edit_user_photo;
     CircularImageView profile_pet1, profile_pet2, profile_pet3;
     TextView name_pet1, name_pet2, name_pet3;
+    EditText input_user_dob;
     Context c;
+    DatePicker datePicker;
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet;
+    DatePickerDialog.OnDateSetListener dob;
 
 
     @Override
@@ -41,7 +54,6 @@ public class UserInfoActivity extends AppCompatActivity {
         constraintLayout = findViewById(R.id.user_info_layout);
         constraintSet.clone(constraintLayout);
 
-
         profile_user = findViewById(R.id.profile_user);
         profile_pet1 = findViewById(R.id.profile_pet1);
         profile_pet2 = findViewById(R.id.profile_pet2);
@@ -49,6 +61,15 @@ public class UserInfoActivity extends AppCompatActivity {
         name_pet1 = findViewById(R.id.name_pet1);
         name_pet2 = findViewById(R.id.name_pet2);
         name_pet3 = findViewById(R.id.name_pet3);
+        input_user_dob = findViewById(R.id.input_user_dob);
+
+        /* variables for date picker */
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+
         if (2==number_of_pets){
             profile_pet2.setVisibility(View.VISIBLE);
             name_pet2.setVisibility(View.VISIBLE);
@@ -69,8 +90,25 @@ public class UserInfoActivity extends AppCompatActivity {
 
         button_edit_user_photo = findViewById(R.id.button_edit_user_photo);
         button_edit_user_photo.setOnClickListener(v -> edit_photo());
-    }
+        input_user_dob.setOnClickListener(v -> edit_dob());
 
+
+
+        dob = (view, year, monthOfYear, dayOfMonth) -> {
+            // TODO Auto-generated method stub
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, monthOfYear);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        };
+    };
+
+
+
+    public void edit_dob(View v) {
+        // TODO Auto-generated method stub
+        new DatePickerDialog(UserInfoActivity.this, dob, day, month, year).show();
+    }
     private void add_pets() {
         if (1 == number_of_pets) {
               number_of_pets+=1;
@@ -78,8 +116,10 @@ public class UserInfoActivity extends AppCompatActivity {
               name_pet2.setVisibility(View.VISIBLE);
 //
         }else if (2 == number_of_pets) {
+            number_of_pets+=1;
             profile_pet3.setVisibility(View.VISIBLE);
             name_pet3.setVisibility(View.VISIBLE);
+            number_of_pets+=1;
 
         }else {//if 3==number
             Toast toast = Toast.makeText(c, "you've reached the maximum pet number!", Toast.LENGTH_LONG);
@@ -92,6 +132,13 @@ public class UserInfoActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(c, "edit photo!", Toast.LENGTH_LONG);
         toast.show();
     }
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        input_user_dob.setText(sdf.format(calendar.getTime()));
+    }
+
 //    public void TextViewClicked(View view) {
 //        ViewSwitcher switcher = (ViewSwitcher) findViewById(R.id.my_switcher);
 //        switcher.showNext(); //or switcher.showPrevious();
