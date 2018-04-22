@@ -2,7 +2,7 @@
 *. DS_Store
 
 #ignore ideas
-.idea/*
+android/.idea/*
 
 # Compiled class file
 *.class
@@ -107,4 +107,5 @@ fastlane/test_output
 
 # End of https://www.gitignore.io/api/swift,xcode
 android/.idea/caches/build_file_checksums.ser
+*.ser
 *.ser
