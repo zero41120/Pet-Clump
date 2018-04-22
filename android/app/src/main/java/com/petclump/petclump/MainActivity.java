@@ -102,7 +102,11 @@ public class MainActivity extends AppCompatActivity {
         mGoogleBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                signIn();
+                if(mAuth.getCurrentUser() != null){
+                    Toast.makeText(MainActivity.this, R.string.User_has_logined_in, Toast.LENGTH_SHORT).show();
+                }else {
+                    GoogleSignIn();
+                }
             }
         });
 
@@ -112,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 if(mAuth.getCurrentUser() != null) {
                     mAuth.signOut();
+                    // to enable next loging in to choose user
+                    mGoogleSignInClient.signOut();
                     if(mAuth.getCurrentUser() == null)
                         Toast.makeText(MainActivity.this, R.string.User_Signed_Out, Toast.LENGTH_SHORT).show();
                 }
@@ -120,26 +126,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Google Sign In Method
-    private void signIn() {
+    private void GoogleSignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-   /* // Google Sign Out Method
-    private void SignOut(){
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
 
-    }*/
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-
-        if(mAuth.getCurrentUser() != null){
-            //finish();
-            //startActivity(new Intent(this, ProfileActivity.class));
-        }
-    }
     // Google Sign In Result
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

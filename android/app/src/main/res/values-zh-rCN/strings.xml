@@ -6,4 +6,5 @@
     <string name="Authentication_failed">授权失败</string>
     <string name="Login_Cancelled">登录取消</string>
     <string name="User_Signed_Out">用户登出</string>
+    <string name="User_has_logined_in">用户已登陆</string>
 </resources>
