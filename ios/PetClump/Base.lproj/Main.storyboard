@@ -142,9 +142,9 @@
                         <viewLayoutGuide key="safeArea" id="jpn-Vt-vja"/>
                     </view>
                     <connections>
-                        <outlet property="butInput" destination="1pI-bP-937" id="H8c-1L-lt7"/>
+                        <outlet property="botInput" destination="1pI-bP-937" id="H8c-1L-lt7"/>
+                        <outlet property="displayLabel" destination="ycX-4j-fdb" id="m7m-S5-TYV"/>
                         <outlet property="fetchButton" destination="wuF-4Z-FhY" id="dDl-Ky-NW8"/>
-                        <outlet property="tapFetch" destination="wuF-4Z-FhY" id="eyO-HF-b8f"/>
                         <outlet property="topInput" destination="iLj-Hr-qxC" id="dSG-rp-7ee"/>
                         <outlet property="uploadButton" destination="VmE-wx-xuT" id="bNh-gt-zbb"/>
                     </connections>
