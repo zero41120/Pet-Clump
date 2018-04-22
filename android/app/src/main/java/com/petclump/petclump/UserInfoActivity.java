@@ -1,7 +1,6 @@
 package com.petclump.petclump;
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -10,35 +9,39 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+import java.util.Arrays;
 
-import static java.security.AccessController.getContext;
-
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private int number_of_pets = 1;
-    private int day, month, year;
-    Calendar calendar;
+    private int day_array[], year_array[];
+    String day_array_string[];
+    String year_array_string[];
+    private int year;
     ImageView profile_user;
     ImageButton button_add_pets, button_edit_user_photo;
     CircularImageView profile_pet1, profile_pet2, profile_pet3;
     TextView name_pet1, name_pet2, name_pet3;
-    EditText input_user_dob;
+    Spinner user_dob_day, user_dob_month, user_dob_year;
     Context c;
-    DatePicker datePicker;
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet;
     DatePickerDialog.OnDateSetListener dob;
+
+    public UserInfoActivity() {
+    }
 
 
     @Override
@@ -61,19 +64,28 @@ public class UserInfoActivity extends AppCompatActivity {
         name_pet1 = findViewById(R.id.name_pet1);
         name_pet2 = findViewById(R.id.name_pet2);
         name_pet3 = findViewById(R.id.name_pet3);
-        input_user_dob = findViewById(R.id.input_user_dob);
+        user_dob_day = findViewById(R.id.user_dob_day);
+        user_dob_day.setOnItemSelectedListener(this);
+        user_dob_month = findViewById(R.id.user_dob_month);
+        user_dob_day.setOnItemSelectedListener(this);
+        user_dob_year = findViewById(R.id.user_dob_year);
+        user_dob_day.setOnItemSelectedListener(this);
+        year = 1928;
+        day_array_string = new String[31];
+        year_array_string = new String[90];
+        for (int i=0; i<31; i++){
+            day_array_string[i] = String.valueOf(i+1);
+        }
 
-        /* variables for date picker */
-        calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
+        for (int i=0; i<75; i++){
+            year_array_string[i] = String.valueOf(year);
+            year+=1;
+        }
 
-
-        if (2==number_of_pets){
+        if (2 == number_of_pets) {
             profile_pet2.setVisibility(View.VISIBLE);
             name_pet2.setVisibility(View.VISIBLE);
-        }else if (3==number_of_pets){
+        } else if (3 == number_of_pets) {
             profile_pet3.setVisibility(View.VISIBLE);
             profile_pet3.setVisibility(View.VISIBLE);
             name_pet2.setVisibility(View.VISIBLE);
@@ -90,24 +102,22 @@ public class UserInfoActivity extends AppCompatActivity {
 
         button_edit_user_photo = findViewById(R.id.button_edit_user_photo);
         button_edit_user_photo.setOnClickListener(v -> edit_photo());
-        input_user_dob.setOnClickListener(v -> edit_dob());
 
-
-
-        dob = (view, year, monthOfYear, dayOfMonth) -> {
-            // TODO Auto-generated method stub
-            calendar.set(Calendar.YEAR, year);
-            calendar.set(Calendar.MONTH, monthOfYear);
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-        };
-    };
-
-
-
-    public void edit_dob(View v) {
-        // TODO Auto-generated method stub
-        new DatePickerDialog(UserInfoActivity.this, dob, day, month, year).show();
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter_month = ArrayAdapter.createFromResource(this,
+                R.array.month_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter_day = new ArrayAdapter<>(this,
+               android.R.layout.simple_spinner_item, day_array_string);
+        ArrayAdapter<String> adapter_year = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, year_array_string);
+        // Specify the layout to use when the list of choices appears
+        adapter_month.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_year.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        user_dob_month.setAdapter(adapter_month);
+        user_dob_day.setAdapter(adapter_day);
+        user_dob_year.setAdapter(adapter_year);
     }
     private void add_pets() {
         if (1 == number_of_pets) {
@@ -127,17 +137,23 @@ public class UserInfoActivity extends AppCompatActivity {
         }
 
     }
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        parent.getItemAtPosition(pos);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        // Another interface callback
+        Toast toast = Toast.makeText(c, "please select!", Toast.LENGTH_LONG);
+        toast.show();
+    }
 
     private void edit_photo() {
         Toast toast = Toast.makeText(c, "edit photo!", Toast.LENGTH_LONG);
         toast.show();
     }
-    private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        input_user_dob.setText(sdf.format(calendar.getTime()));
-    }
 
 //    public void TextViewClicked(View view) {
 //        ViewSwitcher switcher = (ViewSwitcher) findViewById(R.id.my_switcher);

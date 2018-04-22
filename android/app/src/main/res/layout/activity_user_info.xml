@@ -1,4 +1,3 @@
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -65,18 +64,18 @@
         app:layout_constraintVertical_bias="0.006" />
 
     <TextView
-        android:id="@+id/user_location"
+        android:id="@+id/user_text_matchRange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="@string/Location"
+        android:layout_marginTop="8dp"
+        android:text="@string/Match_range"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/profile_user"
-        app:layout_constraintTop_toBottomOf="@id/input_user_dob"
-        app:layout_constraintVertical_bias="0.022"
-        android:onClick="showDatePickerDialog"/>
+        app:layout_constraintTop_toBottomOf="@+id/user_dob_day"
+        app:layout_constraintVertical_bias="0.029" />
 
     <Button
         android:id="@+id/button_schedule"
@@ -105,10 +104,10 @@
         android:src="@drawable/pencil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintVertical_bias="0.349" />
 
 
     <ImageButton
@@ -128,22 +127,6 @@
         app:layout_constraintVertical_bias="0.73" />
 
     <EditText
-        android:id="@+id/input_user_dob"
-        android:clickable="true"
-        android:focusable="false"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:ems="11"
-        android:hint="mm/dd/yyyy"
-        android:inputType="date"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/user_dob"
-        app:layout_constraintTop_toBottomOf="@+id/user_dob"
-        app:layout_constraintVertical_bias="0.035" />
-
-    <EditText
         android:id="@+id/input_user_name"
         android:layout_width="153dp"
         android:layout_height="wrap_content"
@@ -157,17 +140,6 @@
         app:layout_constraintStart_toStartOf="@id/user_name"
         app:layout_constraintTop_toBottomOf="@id/user_name"
         app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/input_user_location"
-        android:layout_width="167dp"
-        android:layout_height="48dp"
-        android:ems="20"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/user_location"
-        app:layout_constraintTop_toBottomOf="@id/user_location" />
 
     <TextView
         android:id="@+id/user_pets"
@@ -266,7 +238,7 @@
         android:text="@string/Pet_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="@id/profile_pet1"
         app:layout_constraintTop_toBottomOf="@id/profile_pet1"
         app:layout_constraintVertical_bias="0.444" />
@@ -295,6 +267,7 @@
         app:layout_constraintStart_toEndOf="@+id/profile_pet1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.956" />
+
     <TextView
         android:id="@+id/name_pet2"
         android:layout_width="wrap_content"
@@ -336,6 +309,7 @@
         app:layout_constraintStart_toEndOf="@+id/profile_pet2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.956" />
+
     <TextView
         android:id="@+id/name_pet3"
         android:layout_width="wrap_content"
@@ -375,7 +349,80 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Spinner
+        android:id="@+id/user_dob_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="172dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
 
+    <Spinner
+        android:id="@+id/user_dob_day"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/user_dob_month"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
+
+    <Spinner
+        android:id="@+id/user_dob_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/user_dob_day"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="5dp"
+        android:layout_height="495dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <SeekBar
+        android:id="@+id/user_match_range"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:max="10"
+        android:progress="3"
+        app:layout_constraintBottom_toBottomOf="@+id/name_pet1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.615" />
 
 
 </android.support.constraint.ConstraintLayout>
