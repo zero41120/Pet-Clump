@@ -10,6 +10,7 @@
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
+		2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
 		29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797A207EE97D002971C5 /* AppDelegate.swift */; };
 		29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797C207EE97D002971C5 /* EntryPointVC.swift */; };
@@ -24,6 +25,7 @@
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_icon.png; path = ../../android/app/src/main/res/drawable/button_icon.png; sourceTree = "<group>"; };
 		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreLearningVC.swift; sourceTree = "<group>"; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
 		29C17977207EE97D002971C5 /* PetClump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetClump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
 				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
+				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
 				29C1797E207EE97D002971C5 /* Main.storyboard */,
 				29C17981207EE97F002971C5 /* Assets.xcassets */,
 				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
@@ -297,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 			);
