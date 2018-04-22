@@ -50,6 +50,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ix-NO-Atl">
+                                <rect key="frame" x="156" y="522" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go setting"/>
+                                <connections>
+                                    <segue destination="NHe-gv-fBJ" kind="show" id="CH5-Es-ZuA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -76,5 +84,262 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="46.326836581709152"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="6kg-iQ-QI8">
+            <objects>
+                <viewController id="NHe-gv-fBJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VvJ-4q-iHG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="text_about_me" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urX-tI-vey">
+                                <rect key="frame" x="150" y="50" width="75" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="74.5" id="a2b-AL-k5x"/>
+                                    <constraint firstAttribute="height" constant="25" id="csx-pI-8b6"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="About me">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" restorationIdentifier="profile_user" translatesAutoresizingMaskIntoConstraints="NO" id="Ku7-8X-Q5b">
+                                <rect key="frame" x="24" y="120" width="150" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="3ho-1A-nk9"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="user_name" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkJ-07-Kgs">
+                                <rect key="frame" x="205" y="101" width="45.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="pF0-BJ-Gxh"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Name">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="input_user_name" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hb1-6u-DgX">
+                                <rect key="frame" x="205" y="136" width="45.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="user_gender" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMu-uP-dSr">
+                                <rect key="frame" x="205" y="180" width="57" height="20"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Gender">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="user_dob" text="Date of birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LU8-pJ-cCS">
+                                <rect key="frame" x="390" y="251" width="97" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="user_location" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxa-dK-Hax">
+                                <rect key="frame" x="205" y="343" width="66" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="LDC-SH-pe2"/>
+                                    <constraint firstAttribute="width" constant="66" id="fig-bj-fka"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Location">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="input_user_location" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ct3-N2-EhI">
+                                <rect key="frame" x="205" y="381" width="140" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="JaV-fA-Eke"/>
+                                    <constraint firstAttribute="height" constant="30" id="JiQ-Re-jtg"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" restorationIdentifier="button_schedule" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eh4-ht-zri">
+                                <rect key="frame" x="56" y="290" width="86" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="My schedule">
+                                            <attributes>
+                                                <font key="NSFont" size="15" name="VarelaRound"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="user_pets" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lf-Rv-ke1">
+                                <rect key="frame" x="157" y="473" width="62" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="HmH-4J-AfI"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="My pets">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="button_edit_user_photo" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsa-1a-D9L">
+                                <rect key="frame" x="138" y="230" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7az-kG-iD4"/>
+                                    <constraint firstAttribute="width" constant="30" id="iEj-JF-EXO"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Edit">
+                                            <attributes>
+                                                <font key="NSFont" size="15" name="VarelaRound"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="name_pet1" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MZ-G3-1y0">
+                                <rect key="frame" x="56" y="639" width="40" height="20"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Pet 1">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ey8-YI-fFc">
+                                <rect key="frame" x="24" y="516" width="118" height="115"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e1A-OV-opY">
+                                <rect key="frame" x="155" y="516" width="113" height="115"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="YPE-Qv-0PG"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFt-fm-joY">
+                                <rect key="frame" x="205" y="257" width="97" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="EVi-Dm-dhg"/>
+                                    <constraint firstAttribute="height" constant="21" id="HAf-hI-j9d"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Date of birth">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVf-ZM-d5J">
+                                <rect key="frame" x="219" y="470" width="50" height="38"/>
+                                <state key="normal" title="Button" image="button_icon.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfm-p9-5ho">
+                                <rect key="frame" x="212" y="209" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Male"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRA-T2-Jq7">
+                                <rect key="frame" x="254" y="209" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Female"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uDQ-ob-KfQ">
+                                <rect key="frame" x="313" y="209" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Other"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1994/11/18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX2-M9-IcK">
+                                <rect key="frame" x="205" y="295" width="140" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eh4-ht-zri" firstAttribute="top" secondItem="bsa-1a-D9L" secondAttribute="bottom" constant="30" id="1GE-zI-MhF"/>
+                            <constraint firstItem="HkJ-07-Kgs" firstAttribute="trailing" secondItem="hb1-6u-DgX" secondAttribute="trailing" id="3Qa-JS-OBJ"/>
+                            <constraint firstItem="bsa-1a-D9L" firstAttribute="leading" secondItem="9AL-De-naX" secondAttribute="leading" constant="138" id="3qh-HC-oow"/>
+                            <constraint firstItem="Ku7-8X-Q5b" firstAttribute="top" secondItem="urX-tI-vey" secondAttribute="bottom" constant="45" id="4OL-mR-SIm"/>
+                            <constraint firstAttribute="bottom" secondItem="7lf-Rv-ke1" secondAttribute="bottom" constant="173" id="5co-gC-cwJ"/>
+                            <constraint firstItem="Ku7-8X-Q5b" firstAttribute="centerY" secondItem="CMu-uP-dSr" secondAttribute="centerY" id="6QW-T2-swq"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="bottom" secondItem="e1A-OV-opY" secondAttribute="bottom" constant="36" id="6Ry-Eg-Gfo"/>
+                            <constraint firstItem="HkJ-07-Kgs" firstAttribute="top" secondItem="urX-tI-vey" secondAttribute="bottom" constant="26" id="7N5-D1-ghl"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="trailing" secondItem="urX-tI-vey" secondAttribute="trailing" constant="150" id="An6-c9-9GX"/>
+                            <constraint firstItem="HkJ-07-Kgs" firstAttribute="leading" secondItem="AFt-fm-joY" secondAttribute="leading" id="BYt-BU-nWj"/>
+                            <constraint firstItem="bsa-1a-D9L" firstAttribute="top" secondItem="urX-tI-vey" secondAttribute="bottom" constant="155" id="Civ-kD-nTv"/>
+                            <constraint firstItem="2MZ-G3-1y0" firstAttribute="leading" secondItem="9AL-De-naX" secondAttribute="leading" constant="56" id="EOB-He-wpo"/>
+                            <constraint firstItem="e1A-OV-opY" firstAttribute="top" secondItem="KVf-ZM-d5J" secondAttribute="bottom" constant="8" symbolic="YES" id="Fxw-oO-hwT"/>
+                            <constraint firstItem="Ey8-YI-fFc" firstAttribute="leading" secondItem="Ku7-8X-Q5b" secondAttribute="leading" id="HpR-GQ-T9O"/>
+                            <constraint firstItem="7lf-Rv-ke1" firstAttribute="top" secondItem="Ct3-N2-EhI" secondAttribute="bottom" constant="62" id="ISw-OE-i6D"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="trailing" secondItem="KVf-ZM-d5J" secondAttribute="trailing" constant="106" id="O4V-iy-THM"/>
+                            <constraint firstItem="AFt-fm-joY" firstAttribute="top" secondItem="CMu-uP-dSr" secondAttribute="bottom" constant="57" id="PC6-T1-cYB"/>
+                            <constraint firstItem="KVf-ZM-d5J" firstAttribute="top" secondItem="Ct3-N2-EhI" secondAttribute="bottom" constant="59" id="RrU-ip-acr"/>
+                            <constraint firstItem="Ku7-8X-Q5b" firstAttribute="centerX" secondItem="eh4-ht-zri" secondAttribute="centerX" id="Smj-Vn-F7U"/>
+                            <constraint firstItem="7lf-Rv-ke1" firstAttribute="centerX" secondItem="urX-tI-vey" secondAttribute="centerX" id="SvL-5A-O29"/>
+                            <constraint firstItem="eh4-ht-zri" firstAttribute="top" secondItem="Ku7-8X-Q5b" secondAttribute="bottom" constant="30" id="U1a-pj-CMM"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="trailing" secondItem="bsa-1a-D9L" secondAttribute="trailing" constant="207" id="U4s-fb-cXB"/>
+                            <constraint firstItem="HkJ-07-Kgs" firstAttribute="leading" secondItem="hb1-6u-DgX" secondAttribute="leading" id="XMN-x4-19O"/>
+                            <constraint firstItem="Ku7-8X-Q5b" firstAttribute="leading" secondItem="9AL-De-naX" secondAttribute="leading" constant="24" id="Xdx-yZ-9l0"/>
+                            <constraint firstItem="urX-tI-vey" firstAttribute="leading" secondItem="9AL-De-naX" secondAttribute="leading" constant="150" id="ZDw-eQ-fgm"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="trailing" secondItem="wxa-dK-Hax" secondAttribute="trailing" constant="104" id="aE8-hb-eqO"/>
+                            <constraint firstItem="Ey8-YI-fFc" firstAttribute="trailing" secondItem="eh4-ht-zri" secondAttribute="trailing" id="cCS-HX-ucy"/>
+                            <constraint firstItem="e1A-OV-opY" firstAttribute="top" secondItem="7lf-Rv-ke1" secondAttribute="bottom" constant="22" id="d2J-mu-GhQ"/>
+                            <constraint firstItem="Ct3-N2-EhI" firstAttribute="top" secondItem="wxa-dK-Hax" secondAttribute="bottom" constant="17" id="fdx-7u-SrM"/>
+                            <constraint firstItem="AFt-fm-joY" firstAttribute="top" secondItem="CMu-uP-dSr" secondAttribute="bottom" constant="57" id="hxy-Hh-JVf"/>
+                            <constraint firstItem="urX-tI-vey" firstAttribute="top" secondItem="9AL-De-naX" secondAttribute="top" constant="30" id="jQB-gX-pNI"/>
+                            <constraint firstItem="Ey8-YI-fFc" firstAttribute="bottom" secondItem="e1A-OV-opY" secondAttribute="bottom" id="jc7-Sa-p8x"/>
+                            <constraint firstItem="KVf-ZM-d5J" firstAttribute="leading" secondItem="7lf-Rv-ke1" secondAttribute="trailing" id="jhF-8Y-bze"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="trailing" secondItem="AFt-fm-joY" secondAttribute="trailing" constant="73" id="jtJ-rt-gzg"/>
+                            <constraint firstItem="Ct3-N2-EhI" firstAttribute="leading" secondItem="9AL-De-naX" secondAttribute="leading" constant="205" id="kVJ-ae-dTy"/>
+                            <constraint firstItem="Ct3-N2-EhI" firstAttribute="top" secondItem="wxa-dK-Hax" secondAttribute="bottom" constant="17" id="nHz-jK-3Z8"/>
+                            <constraint firstItem="hb1-6u-DgX" firstAttribute="top" secondItem="HkJ-07-Kgs" secondAttribute="bottom" constant="14" id="nX6-aM-DPa"/>
+                            <constraint firstItem="2MZ-G3-1y0" firstAttribute="top" secondItem="Ey8-YI-fFc" secondAttribute="bottom" constant="8" symbolic="YES" id="nbu-d4-Iqf"/>
+                            <constraint firstItem="wxa-dK-Hax" firstAttribute="leading" secondItem="9AL-De-naX" secondAttribute="leading" constant="205" id="nfQ-uA-B6e"/>
+                            <constraint firstItem="Ey8-YI-fFc" firstAttribute="top" secondItem="e1A-OV-opY" secondAttribute="top" id="oNh-z0-0pi"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="trailing" secondItem="e1A-OV-opY" secondAttribute="trailing" constant="107" id="tGi-9F-OpK"/>
+                            <constraint firstItem="hb1-6u-DgX" firstAttribute="leading" secondItem="CMu-uP-dSr" secondAttribute="leading" id="xKo-Fw-JTB"/>
+                            <constraint firstItem="AFt-fm-joY" firstAttribute="leading" secondItem="9AL-De-naX" secondAttribute="leading" constant="205" id="yo2-tg-HWM"/>
+                            <constraint firstItem="9AL-De-naX" firstAttribute="trailing" secondItem="Ct3-N2-EhI" secondAttribute="trailing" constant="30" id="zT4-iC-oud"/>
+                            <constraint firstItem="Ku7-8X-Q5b" firstAttribute="bottom" secondItem="bsa-1a-D9L" secondAttribute="bottom" id="zYZ-4O-g5c"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9AL-De-naX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PVn-3o-Wc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="712.79999999999995" y="45.42728635682159"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="button_icon.png" width="48" height="48"/>
+    </resources>
 </document>

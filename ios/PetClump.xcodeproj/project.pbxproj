@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
+		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_icon.png; path = ../../android/app/src/main/res/drawable/button_icon.png; sourceTree = "<group>"; };
 		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 				29C17986207EE97F002971C5 /* Info.plist */,
 				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
+				292E24CD208AB0BA005311F1 /* button_icon.png */,
 			);
 			path = PetClump;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */,
 				2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */,
 				29C17982207EE97F002971C5 /* Assets.xcassets in Resources */,
+				292E24CE208AB0BA005311F1 /* button_icon.png in Resources */,
 				29C17980207EE97D002971C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
