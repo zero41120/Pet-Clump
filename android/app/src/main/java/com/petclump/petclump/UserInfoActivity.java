@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,13 +31,13 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
     ImageButton button_add_pets, button_edit_user_photo;
     CircularImageView profile_pet1, profile_pet2, profile_pet3;
     TextView name_pet1, name_pet2, name_pet3;
+    TextView match_range_value;
+    SeekBar user_match_range;
     Spinner user_dob_day, user_dob_month, user_dob_year, user_select_gender;
     Context c;
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet;
 
-    public UserInfoActivity() {
-    }
 
 
     @Override
@@ -59,13 +60,19 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
         name_pet1 = findViewById(R.id.name_pet1);
         name_pet2 = findViewById(R.id.name_pet2);
         name_pet3 = findViewById(R.id.name_pet3);
+
+        match_range_value = findViewById(R.id.match_range_value);
+        user_match_range = findViewById(R.id.user_match_range);
+
         user_dob_day = findViewById(R.id.user_dob_day);
         user_dob_day.setOnItemSelectedListener(this);
         user_dob_month = findViewById(R.id.user_dob_month);
-        user_dob_day.setOnItemSelectedListener(this);
+        user_dob_month.setOnItemSelectedListener(this);
         user_dob_year = findViewById(R.id.user_dob_year);
-        user_dob_day.setOnItemSelectedListener(this);
-        user_select_gender.findViewById(R.id.user_select_gender);
+        user_dob_year.setOnItemSelectedListener(this);
+        user_select_gender = findViewById(R.id.user_select_gender);
+        user_select_gender.setOnItemSelectedListener(this);
+
         year = 1928;
         day_array_string = new String[31];
         year_array_string = new String[90];
@@ -117,7 +124,33 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
         user_dob_month.setAdapter(adapter_month);
         user_dob_day.setAdapter(adapter_day);
         user_dob_year.setAdapter(adapter_year);
-        user_select_gender.setAdapter(adapter_year);
+        user_select_gender.setAdapter(adapter_gender);
+
+        user_match_range.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (0==progress){
+                    match_range_value.setText(getResources().getString(R.string.Within_5_miles));
+                }else if(1==progress){
+                    match_range_value.setText(getResources().getString(R.string.Within_20_miles));
+                }else if(2==progress){
+                    match_range_value.setText(getResources().getString(R.string.Within_100_miles));
+                }else{
+                    match_range_value.setText(getResources().getString(R.string.No_preferred_range));
+                }
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
     private void add_pets() {
         if (1 == number_of_pets) {
@@ -145,6 +178,7 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
                 Object output = parent.getItemAtPosition(pos);
                 Toast toast = Toast.makeText(c, (String)output, Toast.LENGTH_LONG);
                 toast.show();
+                break;
             case R.id.user_select_gender:
                 Toast toast2 = Toast.makeText(c, "gender selected! ", Toast.LENGTH_LONG);
                 toast2.show();
