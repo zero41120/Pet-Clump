@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">PetClump</string>
     <string name="greeting">Hello World!</string>
+    <string name="User_Signed_In">User Signed In</string>
+    <string name="Authentication_failed">Authentication_failed</string>
+    <string name="facebook_app_id" translatable="false">224973144722885</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb224973144722885</string>
+    <string name="Login_Cancelled">Login Cancelled</string>
+    <string name="User_Signed_Out">User Signed Out</string>
+    <string name="User_has_logined_in">User has logined in</string>
 
     <string name="settings">Settings</string>
 

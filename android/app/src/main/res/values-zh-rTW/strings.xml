@@ -2,6 +2,11 @@
 <resources>
     <string name="app_name">PetClump</string>
     <string name="greeting">哈囉世界!</string>
+    <string name="Authentication_failed">授權失敗</string>
+    <string name="User_Signed_In">登錄成功</string>
+    <string name="Login_Cancelled">登錄取消</string>
+    <string name="User_Signed_Out">用戶登出</string>
+
 
     <string name="settings">設定</string>
 
@@ -37,5 +42,6 @@
     <string name="About_me">關於我</string>
     <string name="Pet_2">寵物二號</string>
     <string name="Pet_3">寵物三號</string>
+    <string name="User_has_logined_in">用戶已登陸</string>
 
 </resources>

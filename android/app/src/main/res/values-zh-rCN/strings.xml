@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PetClump</string>
+    <string name="greeting">哈喽世界！</string>
+    <string name="User_Signed_In">登录成功</string>
+    <string name="Authentication_failed">授权失败</string>
+    <string name="Login_Cancelled">登录取消</string>
+    <string name="User_Signed_Out">用户登出</string>
+    <string name="User_has_logined_in">用户已登陆</string>
 
     <string name="DOG">狗狗</string>
-    <string name="greeting">哈喽世界！</string>
     <string name="settings">设定</string>
     <string name="CAT">猫咪</string>
     <string name="BIRD">鸟类</string>
