@@ -10,16 +10,16 @@
 
     <ImageView
         android:id="@+id/profile_user"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="123dp"
+        android:layout_height="192dp"
         android:layout_marginLeft="8dp"
         android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136"
+        app:layout_constraintVertical_bias="0.142"
         app:srcCompat="@drawable/owner_placeholder" />
 
     <TextView
@@ -52,16 +52,16 @@
         android:id="@+id/user_dob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="8dp"
 
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
         android:text="@string/Date_of_birth"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/user_dob_month"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/profile_user"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/user_select_gender" />
 
     <TextView
         android:id="@+id/user_text_matchRange"
@@ -75,20 +75,22 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/profile_user"
         app:layout_constraintTop_toBottomOf="@+id/user_dob_day"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintVertical_bias="0.033" />
 
     <Button
         android:id="@+id/button_schedule"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:text="@string/My_schedule"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/profile_user"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_user"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <ImageButton
         android:id="@+id/button_edit_user_photo"
@@ -104,10 +106,10 @@
         android:src="@drawable/pencil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.338"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <ImageButton
@@ -211,6 +213,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Pet_1"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.142"
@@ -253,6 +256,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Pet_2"
+        android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -295,6 +299,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/Pet_3"
+        android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -383,37 +388,49 @@
         android:id="@+id/user_match_range"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="39dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:max="8"
+        android:max="3"
         android:progress="3"
         app:layout_constraintBottom_toBottomOf="@+id/name_pet1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.807"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintTop_toBottomOf="@+id/user_text_matchRange"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/user_select_gender"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="23dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="125dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="180dp"
-        android:layout_marginRight="125dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_gender"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/match_range_value"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="164dp"
+        android:layout_marginStart="164dp"
+        android:text="@string/Within_100_miles"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_match_range" />
 
 
 </android.support.constraint.ConstraintLayout>
