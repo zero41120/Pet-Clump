@@ -21,12 +21,8 @@ import android.widget.Toast;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-
 public class UserInfoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private int number_of_pets = 1;
-    private int day_array[], year_array[];
     String day_array_string[];
     String year_array_string[];
     private int year;
@@ -34,11 +30,10 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
     ImageButton button_add_pets, button_edit_user_photo;
     CircularImageView profile_pet1, profile_pet2, profile_pet3;
     TextView name_pet1, name_pet2, name_pet3;
-    Spinner user_dob_day, user_dob_month, user_dob_year;
+    Spinner user_dob_day, user_dob_month, user_dob_year, user_select_gender;
     Context c;
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet;
-    DatePickerDialog.OnDateSetListener dob;
 
     public UserInfoActivity() {
     }
@@ -70,6 +65,7 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
         user_dob_day.setOnItemSelectedListener(this);
         user_dob_year = findViewById(R.id.user_dob_year);
         user_dob_day.setOnItemSelectedListener(this);
+        user_select_gender.findViewById(R.id.user_select_gender);
         year = 1928;
         day_array_string = new String[31];
         year_array_string = new String[90];
@@ -110,14 +106,18 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
                android.R.layout.simple_spinner_item, day_array_string);
         ArrayAdapter<String> adapter_year = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, year_array_string);
+        ArrayAdapter<CharSequence> adapter_gender = ArrayAdapter.createFromResource(this,
+                R.array.gender_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter_month.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter_year.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_gender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         user_dob_month.setAdapter(adapter_month);
         user_dob_day.setAdapter(adapter_day);
         user_dob_year.setAdapter(adapter_year);
+        user_select_gender.setAdapter(adapter_year);
     }
     private void add_pets() {
         if (1 == number_of_pets) {
@@ -140,13 +140,21 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
-        parent.getItemAtPosition(pos);
+        switch(parent.getId()){
+            case R.id.user_dob_day:
+                Object output = parent.getItemAtPosition(pos);
+                Toast toast = Toast.makeText(c, (String)output, Toast.LENGTH_LONG);
+                toast.show();
+            case R.id.user_select_gender:
+                Toast toast2 = Toast.makeText(c, "gender selected! ", Toast.LENGTH_LONG);
+                toast2.show();
+        }
+
+
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
-        Toast toast = Toast.makeText(c, "please select!", Toast.LENGTH_LONG);
-        toast.show();
     }
 
     private void edit_photo() {
