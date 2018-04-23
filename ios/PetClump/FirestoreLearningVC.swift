@@ -10,13 +10,14 @@
 import UIKit
 import Firebase
 
-class FirestoreLearningVC: UIViewController{
+class FirestoreLearningVC: UIViewController, QuickAlert{
     
     @IBOutlet weak var topInput: UITextField!
     @IBOutlet weak var botInput: UITextField!
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var fetchButton: UIButton!
     @IBOutlet weak var displayLabel: UILabel!
+    @IBOutlet weak var downloadLabel: UILabel!
     
     let debugMode = true
     let db = Firestore.firestore()
@@ -67,6 +68,31 @@ class FirestoreLearningVC: UIViewController{
             let top = myData!["top"] as? String ?? ""
             let bot = myData!["bot"] as? String ?? ""
             self.displayLabel.text = top + " : " + bot
+        }
+    }
+    
+    @IBAction func tapUploadProfile(_ sender: Any) {
+        if let id = Auth.auth().currentUser?.uid {
+            let profile = OwnerProfile(id: id)
+            profile.name = "Jimmy"
+            profile.upload(vc: self)
+        }
+    }
+    @IBAction func tapDownloadProfile(_ sender: Any) {
+        if let id = Auth.auth().currentUser?.uid {
+            var retObj: [String : Any] = ["id":"Error"]
+            print("Downloading for id: " + id)
+            let docRef =  Firestore.firestore().collection("users").document(id)
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    retObj = document.data()!
+                    let dataDescription = retObj.description
+                    print("Document data: \(dataDescription)")
+                    self.downloadLabel.text = dataDescription
+                } else {
+                    print("Document does not exist")
+                }
+            }
         }
     }
 }

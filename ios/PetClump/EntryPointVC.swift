@@ -15,7 +15,7 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 
-class EntryPointVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, GIDSignInDelegate{
+class EntryPointVC: UIViewController, QuickAlert, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, GIDSignInDelegate{
     
     @IBOutlet weak var signInButtonGoogle: GIDSignInButton!
     @IBOutlet weak var signOutButtonGoogle: UIButton!
