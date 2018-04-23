@@ -45,8 +45,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/profile_user"
-        app:layout_constraintTop_toBottomOf="@id/input_user_name"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        app:layout_constraintVertical_bias="0.15" />
 
     <TextView
         android:id="@+id/user_dob"
@@ -79,37 +79,36 @@
 
     <Button
         android:id="@+id/button_schedule"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:background="@color/grey"
         android:text="@string/My_schedule"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_user"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintTop_toBottomOf="@+id/button_edit_user_photo"
+        app:layout_constraintVertical_bias="0.047" />
 
-    <ImageButton
+    <Button
         android:id="@+id/button_edit_user_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@null"
-        android:src="@drawable/pencil"
+        android:background="@color/grey"
+        android:padding="5dp"
+        android:text="@string/Edit_photo"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_user"
+        app:layout_constraintVertical_bias="0.012" />
 
 
     <ImageButton
@@ -127,21 +126,6 @@
         app:layout_constraintStart_toEndOf="@+id/user_pets"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.73" />
-
-    <EditText
-        android:id="@+id/input_user_name"
-        android:layout_width="153dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill"
-        android:ems="15"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/user_name"
-        app:layout_constraintTop_toBottomOf="@id/user_name"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/user_pets"
@@ -431,6 +415,65 @@
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_match_range" />
+
+    <ImageButton
+        android:id="@+id/edit_name_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginLeft="324dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginStart="324dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/scrollView2"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.154"
+        app:srcCompat="@drawable/pencil" />
+
+    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/user_name_switcher"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintStart_toStartOf="@id/user_name"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        >
+
+        <TextView
+            android:id="@+id/text_user_name"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:text="Hello World"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/user_name"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/input_user_name"
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:ems="15"
+            android:inputType="textPersonName"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/user_name"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            app:layout_constraintVertical_bias="0.0" />
+    </ViewSwitcher>
 
 
 </android.support.constraint.ConstraintLayout>

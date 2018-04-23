@@ -1,9 +1,7 @@
 package com.petclump.petclump;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -11,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +17,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -28,7 +27,8 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
     String year_array_string[];
     private int year;
     ImageView profile_user;
-    ImageButton button_add_pets, button_edit_user_photo;
+    ImageButton button_add_pets, edit_name_button;
+    Button button_edit_user_photo;
     CircularImageView profile_pet1, profile_pet2, profile_pet3;
     TextView name_pet1, name_pet2, name_pet3;
     TextView match_range_value;
@@ -73,6 +73,9 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
         user_select_gender = findViewById(R.id.user_select_gender);
         user_select_gender.setOnItemSelectedListener(this);
 
+        edit_name_button = findViewById(R.id.edit_name_button);
+        edit_name_button.setTag(R.drawable.pencil);
+
         year = 1928;
         day_array_string = new String[31];
         year_array_string = new String[90];
@@ -99,6 +102,8 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
             Intent nextScreen = new Intent(c, PetInfoActivity.class);
             startActivity(nextScreen);
         });
+
+        edit_name_button.setOnClickListener(v ->nameChangeClick());
 
         button_add_pets = findViewById(R.id.button_add_pet);
         button_add_pets.setOnClickListener(v -> add_pets());
@@ -197,12 +202,21 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
-//    public void TextViewClicked(View view) {
-//        ViewSwitcher switcher = (ViewSwitcher) findViewById(R.id.my_switcher);
-//        switcher.showNext(); //or switcher.showPrevious();
-//        TextView myTV = switcher.findViewById(R.id.clickable_text_view);
-//        EditText myTX = switcher.findViewById(R.id.hidden_edit_view)
-//        //myTV.setText(getString((EditText)myTX));
-//        switcher.showPrevious();
-//    }
+    public void nameChangeClick() {
+        if(Integer.parseInt(edit_name_button.getTag().toString()) == R.drawable.pencil){
+            edit_name_button.setImageResource(R.drawable.googleg_disabled_color_18);
+            edit_name_button.setTag(R.drawable.googleg_disabled_color_18);
+        }else{
+            edit_name_button.setImageResource(R.drawable.pencil);
+            edit_name_button.setTag(R.drawable.pencil);
+        }
+
+        ViewSwitcher switcher = findViewById(R.id.user_name_switcher);
+        switcher.showNext(); //or switcher.showPrevious();
+        TextView text_user_name = switcher.findViewById(R.id.text_user_name);
+        EditText input_user_name = switcher.findViewById(R.id.input_user_name);
+        String string = input_user_name.getText().toString();
+        text_user_name.setText(string);
+        //switcher.showPrevious();
+    }
 }
