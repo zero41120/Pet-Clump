@@ -137,6 +137,29 @@
                                     <action selector="tapFetch:" destination="ImH-OM-O1W" eventType="touchUpInside" id="1RG-8p-whA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyE-dB-CI8">
+                                <rect key="frame" x="16" y="409" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Upload Profile"/>
+                                <connections>
+                                    <action selector="tapUploadProfile:" destination="ImH-OM-O1W" eventType="touchUpInside" id="vZD-7X-5yx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDf-PZ-mEF">
+                                <rect key="frame" x="16" y="447" width="343" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cby-Ee-Xtc">
+                                <rect key="frame" x="243" y="409" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Download Profile"/>
+                                <connections>
+                                    <action selector="tapDownloadProfile:" destination="ImH-OM-O1W" eventType="touchUpInside" id="GVz-Dp-Hal"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="HvD-Cb-wJR"/>
@@ -144,6 +167,7 @@
                     <connections>
                         <outlet property="botInput" destination="1pI-bP-937" id="H8c-1L-lt7"/>
                         <outlet property="displayLabel" destination="ycX-4j-fdb" id="m7m-S5-TYV"/>
+                        <outlet property="downloadLabel" destination="VDf-PZ-mEF" id="gNd-7w-hn9"/>
                         <outlet property="fetchButton" destination="wuF-4Z-FhY" id="dDl-Ky-NW8"/>
                         <outlet property="topInput" destination="iLj-Hr-qxC" id="dSG-rp-7ee"/>
                         <outlet property="uploadButton" destination="VmE-wx-xuT" id="bNh-gt-zbb"/>
