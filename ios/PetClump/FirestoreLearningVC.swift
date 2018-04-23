@@ -10,7 +10,7 @@
 import UIKit
 import Firebase
 
-class FirestoreLearningVC: UIViewController, QuickAlert{
+class FirestoreLearningVC: UIViewController{
     
     @IBOutlet weak var topInput: UITextField!
     @IBOutlet weak var botInput: UITextField!
