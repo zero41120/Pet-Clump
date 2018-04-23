@@ -179,14 +179,24 @@ public class UserInfoActivity extends AppCompatActivity implements AdapterView.O
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         switch(parent.getId()){
-            case R.id.user_dob_day:
-                Object output = parent.getItemAtPosition(pos);
-                Toast toast = Toast.makeText(c, (String)output, Toast.LENGTH_LONG);
+            case R.id.user_dob_month:
+                Object dob_month = parent.getItemAtPosition(pos);
+                Toast toast = Toast.makeText(c, (String)dob_month, Toast.LENGTH_LONG);
                 toast.show();
-                break;
-            case R.id.user_select_gender:
-                Toast toast2 = Toast.makeText(c, "gender selected! ", Toast.LENGTH_LONG);
+            case R.id.user_dob_day:
+                Object dob_day = parent.getItemAtPosition(pos);
+                Toast toast2 = Toast.makeText(c, (String)dob_day, Toast.LENGTH_LONG);
                 toast2.show();
+            case R.id.user_dob_year:
+                Object dob_year = parent.getItemAtPosition(pos);
+                Toast toast3 = Toast.makeText(c, (String)dob_year, Toast.LENGTH_LONG);
+                toast3.show();
+
+            case R.id.user_select_gender:
+                Object gender = parent.getItemAtPosition(pos);
+                Toast toast4 = Toast.makeText(c, (String)gender, Toast.LENGTH_LONG);
+                toast4.show();
+
         }
 
 

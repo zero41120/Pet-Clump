@@ -58,6 +58,7 @@
     <string-array name="gender_array">
         <item>Man</item>
         <item>Woman</item>
+        <item>Apache Helicopter</item>
         <item>Other</item>
     </string-array>
     <string name="Upload_successful">Upload successful</string>
