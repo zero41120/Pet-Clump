@@ -60,5 +60,6 @@
         <item>Woman</item>
         <item>Other</item>
     </string-array>
+    <string name="Upload_successful">Upload successful</string>
 
 </resources>

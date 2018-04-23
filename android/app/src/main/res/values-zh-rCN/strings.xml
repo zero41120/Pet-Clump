@@ -41,5 +41,6 @@
     <string name="About_me">关于我</string>
     <string name="Pet_2">宠物二号</string>
     <string name="Pet_3">宠物三号</string>
+    <string name="Upload_successful">上传成功</string>
 
 </resources>
