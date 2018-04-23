@@ -21,17 +21,38 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Future;
+
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
+    //Init Database
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+/*
+    //Testing fetch data
+    public void fetchData(View view){
+    DocumentReference database = db.collection("users").document("example");
+    ApiFuture<DocumentSnapshot> future = database.get();
+
+
+    }
+*/
 
     /*** Google Sign In set-up field ***/
     // Google Sign In button
@@ -96,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Create Google Sign In Client
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
+        Api
         // use the Google signIn button to sign in
         // call signIn()
         mGoogleBtn.setOnClickListener(new View.OnClickListener(){
