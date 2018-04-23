@@ -8,6 +8,9 @@
 import UIKit
 import Firebase
 
+/**
+ * This estension makes the UIViewController dismiss keyboard when touch non-keyboard area
+ */
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -56,26 +59,33 @@ class UserDataSettingVC: UIViewController, QuickAlert{
         self.setupData()
     }
     
+    // This method downloads the user data from Firestore
     func setupData(){
         if let id = Auth.auth().currentUser?.uid {
             print("Downloading for id: " + id)
+            
+            // Opens document
             let docRef =  Firestore.firestore().collection("users").document(id)
             docRef.getDocument { (document, error) in
                 if let document = document, document.exists {
+                    // Unwraps data object
                     let refObj = document.data()!
-                    let dataDescription = refObj.description
-                    print("Document data: \(dataDescription)")
+                    print("Document data: \(refObj.description)")
+                    
+                    // Gets user information
                     self.nameTextField.text = refObj["name"] as? String ?? ""
                     self.genderTextField.text = refObj["gender"] as? String ?? ""
+                    
+                    // Gets user birthdat and parse it
                     if let bd = refObj["birthday"] as? Timestamp{
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "yyyy/MM/dd"
                         self.birthdayTextField.text = dateFormatter.string(from: bd.dateValue())
                     }
+                    
+                    // Gets match perference and updates the slider
                     self.matchSlider.setValue(Float(refObj["distancePerference"] as? Int ?? 25), animated: true)
                     self.updateMatchRangeLabel()
-                } else {
-                    print("Document does not exist")
                 }
             }
         }
@@ -124,18 +134,23 @@ class UserDataSettingVC: UIViewController, QuickAlert{
     func updateMatchRangeLabel(){
         let range = Int(self.matchSlider.value)
         self.matchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
-        
     }
     
     @IBAction func tapUploadProfile(_ sender: Any) {
         guard (Auth.auth().currentUser != nil) else { return }
         let uid = Auth.auth().currentUser!.uid
+        
+        // Creates a profile object
         let profile = OwnerProfile(id: uid)
         profile.name     = nameTextField.text!
         profile.gender   = genderTextField.text!
         profile.birthday = self.datePicker!.date
         profile.distancePerference = Int(matchSlider.value)
+        
+        // Uploads the profile
         profile.upload(vc: self)
+        
+        // Notify user
         self.makeAlert(message: "Uploaded: " + profile.generateDictionary().description)
         
     }
