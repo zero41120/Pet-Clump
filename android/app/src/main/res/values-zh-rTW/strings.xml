@@ -60,7 +60,6 @@
     <string-array name="gender_array">
         <item>男</item>
         <item>女</item>
-        <item>阿帕奇戰鬥機^_^</item>
         <item>其他</item>
     </string-array>
     <string name="Match_range">配對範圍</string>
@@ -69,6 +68,7 @@
     <string name="Within_20_miles">20英里之內</string>
     <string name="Within_5_miles">5英里之內</string>
     <string name="Edit_photo">編輯照片</string>
+    <string name="Edit">編輯</string>
 
 
 </resources>
