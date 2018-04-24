@@ -143,4 +143,4 @@ class UserDataSettingVC: UIViewController, QuickAlert{
         
     }
 }
-
+    implementation 'com.google.firebase:firebase-firestore:15.0.0'

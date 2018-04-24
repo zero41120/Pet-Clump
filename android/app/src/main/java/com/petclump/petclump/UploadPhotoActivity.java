@@ -9,19 +9,30 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+/*import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;*/
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.petclump.petclump.models.OwnerProfile;
 
 import java.io.File;
+import java.io.IOException;
 
 public class UploadPhotoActivity extends AppCompatActivity {
 
@@ -35,6 +46,10 @@ public class UploadPhotoActivity extends AppCompatActivity {
     private String      photoPath;
     private ImageView   downloadView, uploadView;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    //private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    //private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("user/"+mAuth.getCurrentUser().getUid());
+
 
     /**
      * This method checks if given permissions are granted. If not, this method will
@@ -69,8 +84,43 @@ public class UploadPhotoActivity extends AppCompatActivity {
         buttonPickPicture.setOnClickListener( v -> pickImage());
         buttonDownload.setOnClickListener( v -> downloadImage());
         buttonUpload.setOnClickListener(v -> uploadImage());
-    }
 
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        /*mDocRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if(documentSnapshot.exists()){
+                    String content = documentSnapshot.getString(mAuth.getCurrentUser().getUid());
+                    TextView a =findViewById(R.id.text_test_download);
+                    a.setText(content);
+                }else if(e!=null){
+                    Log.w("Download", "Got an exception",e);
+                }
+            }
+        });
+        findViewById(R.id.button_upload_picture).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                OwnerProfile a = new OwnerProfile(
+                        mAuth.getCurrentUser().getUid(),
+                        "JYZ",
+                        "1975/08/32",
+                        "T",
+                        "male",
+                        1,
+                        1.0,
+                        2.0);
+                try{
+                    a.upload();
+                }catch(IOException e){
+
+                }
+            }
+        });*/
+    }
     /**
      * This method download this image images/IMG_20180414_213521.jpg from firebase
      * and save that to a temp file.

@@ -62,4 +62,33 @@
         app:layout_constraintBottom_toTopOf="@+id/downloadView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadView" />
+
+    <TextView
+        android:id="@+id/text_test_download"
+        android:layout_width="88dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="download"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/downloadView" />
+
+    <TextView
+        android:id="@+id/text_test_upload"
+        android:layout_width="88dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="208dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="upload"
+        app:layout_constraintBottom_toTopOf="@+id/text_test_download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toEndOf="@+id/uploadView" />
 </android.support.constraint.ConstraintLayout>
