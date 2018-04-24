@@ -68,6 +68,13 @@
     <string name="Within_100_miles">Within 100 miles</string>
     <string name="No_preferred_range">No preferred range</string>
     <string name="Edit_photo">Edit photo</string>
+
+    <string name="Edit">Edit</string>
+
     <string name="Upload_failed">Upload failed</string>
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Info_purpose">"How will Pet Clump use these information? "</string>
+    <string name="Info_purpose2">Other people will  see your name, gender, and birthday only after they\'ve become friends with you. Match range value is used to optimize matching result according to your need.</string>
 
 </resources>

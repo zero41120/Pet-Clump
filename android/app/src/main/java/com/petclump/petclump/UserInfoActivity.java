@@ -17,7 +17,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 
 public class UserInfoActivity extends AppCompatActivity {
     private int number_of_pets = 1;
-    ImageButton button_add_pet;
+    ImageButton button_add_pet, button_why;
     CircularImageView profile_pet1, profile_pet2, profile_pet3;
     TextView name_pet1, name_pet2, name_pet3;
     TextView user_name, user_gender, user_dob, user_match_range;
@@ -51,6 +51,7 @@ public class UserInfoActivity extends AppCompatActivity {
         user_match_range = findViewById(R.id.user_match_range);
         edit_button = findViewById(R.id.edit_button);
 
+
         if (2 == number_of_pets) {
             profile_pet2.setVisibility(View.VISIBLE);
             //name_pet2.setVisibility(View.VISIBLE);
@@ -68,6 +69,11 @@ public class UserInfoActivity extends AppCompatActivity {
 
         button_add_pet = findViewById(R.id.button_add_pet);
         button_add_pet.setOnClickListener(v -> add_pets());
+
+        button_why = findViewById(R.id.button_why);
+        button_why.setOnClickListener(v -> {
+            startActivity(new Intent(c, Popup.class));
+        });
 
         edit_button.setOnClickListener(v -> {
             //Starting a new Intent
