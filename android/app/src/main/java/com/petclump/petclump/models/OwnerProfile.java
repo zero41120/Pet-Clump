@@ -1,15 +1,21 @@
 package com.petclump.petclump.models;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.firestore.DocumentReference;
 //import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
 
 import java.io.IOException;
@@ -21,71 +27,121 @@ import java.util.Map;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class OwnerProfile  implements Profile {
+/**
+ * This is the onwer profile data model
+ * - id: this should be the uid from Firebase Auth object
+ * - name: this should be user's name to show to public
+ * - birthday: this is a Date object. In the initlizer, it's a yyyy/MM/dd string
+ * - gender: a string of any gender
+ * - distancePerference: this shows the user's perference for matching
+ * - lat and lon: for location calculation
+ * - freeTime: this is a 7*3 bool matrix for free time. In the initlizer, it's a 21 character string with 1 mark as free.
+ */
+public class OwnerProfile implements Profile {
     /*** data field ***/
-    String id="";
-    String name = "";
-    String gender = "";
-    Date birthday;
-    int distancePerference;
-    double lat,lon;
-    FreeSchedule freeTime;
+    final String id;
+    String name     = "No name";
+    String gender   = "Apache";
+    Date birthday   = new Date();
+    int distancePerference = 5;
+    double lat = 0.0 ,lon = 0.0;
+    FreeSchedule freeTime = new  FreeSchedule("");
 
     public OwnerProfile (String id){
-        String uid = "";
-        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        if(uid != "")
-            this.id = uid;
-        else
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null) {
+            this.id = id;
+        } else {
             this.id = "error_id";
-    }
-    public OwnerProfile(String id, String name, String bdString, String ftString,
-                     String gender, int disPerf, double lat, double lon){
-        this.id = id;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        try{
-            this.birthday = formatter.parse(bdString);
-        }catch(ParseException e){
-            e.printStackTrace();
-            Log.d("OwnerProfile","OwnerProfile contructor receives wrong format of birthday\n");
         }
-        this.freeTime = new FreeSchedule(ftString);
-        this.name = name;
-        this.gender = gender;
-        this.lat = lat;
-        this.lon = lon;
-        this.distancePerference = disPerf;
     }
+
     @Override
     public Map<String,Object> generateDictionary(){
-        Map<String, Object> temp= new HashMap<String, Object>();
+        Map<String, Object> temp= new HashMap<>();
         temp.put("id", id);
         temp.put("lat",lat);
         temp.put("lon",lon);
         temp.put("name",name);
         temp.put("gender",gender);
         temp.put("birthday",birthday);
-        temp.put("freeTime",freeTime);
+        temp.put("freeTime",freeTime.freeString);
         temp.put("distancePerference", distancePerference);
         return temp;
     }
-    /*@Override
-    public void upload()throws IOException{
+    @Override
+    public void upload(Context c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
-            throw new IOException("OwnerProfile.upload: User not signed in!\n");
+            Toast.makeText(c, "OwnerProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
         }
-        DocumentReference docRef = FirebaseFirestore.getInstance().document("users/" + this.id);
-        docRef.set(generateDictionary()).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), R.string.Upload_successful, Toast.LENGTH_SHORT).show();
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(this.id);
+        docRef.set(generateDictionary()).addOnCompleteListener(task -> {
+            String message = "";
+            if(task.isSuccessful()) {
+                message += "Upload successful for user: " + this.id;
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), R.string.Upload_failed, Toast.LENGTH_SHORT).show();
-            }
+            Log.d("Profile", "upload: " + message);
         });
 
-    }*/
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getDistancePerference() {
+        return distancePerference;
+    }
+
+    public void setDistancePerference(int distancePerference) {
+        this.distancePerference = distancePerference;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public FreeSchedule getFreeTime() {
+        return freeTime;
+    }
+
+    public void setFreeTime(String freeTime) {
+        this.freeTime = new FreeSchedule(freeTime);
+    }
 }

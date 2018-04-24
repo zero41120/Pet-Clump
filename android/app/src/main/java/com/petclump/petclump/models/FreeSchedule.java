@@ -18,8 +18,8 @@ class FreeSchedule{
     public FreeSchedule(String freeString){
         this.freeString = freeString;
         // initialize freeMatrix
+        freeMatrix = new boolean[7][3];
         for(int i=0; i<7; i++){
-            freeMatrix[i] = new boolean[3];
             for(int j=0; j<3; j++){
                 freeMatrix[i][j] = false;
             }

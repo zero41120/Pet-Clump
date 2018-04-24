@@ -19,20 +19,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
-/*import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;*/
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
 import com.petclump.petclump.models.OwnerProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 public class UploadPhotoActivity extends AppCompatActivity {
 
@@ -45,10 +46,12 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
     private String      photoPath;
     private ImageView   downloadView, uploadView;
+    private TextView    profileText;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
-    //private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    //private DocumentReference mDocRef = FirebaseFirestore.getInstance().document("user/"+mAuth.getCurrentUser().getUid());
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
 
 
     /**
@@ -77,49 +80,78 @@ public class UploadPhotoActivity extends AppCompatActivity {
 
         downloadView                = findViewById(R.id.downloadView);
         uploadView                  = findViewById(R.id.uploadView);
+        profileText                 = findViewById(R.id.profile_text);
         Button buttonPickPicture    = findViewById(R.id.button_pick_picture);
         Button buttonDownload       = findViewById(R.id.button_download_picture);
         Button buttonUpload         = findViewById(R.id.button_upload_picture);
+        Button buttonDownloadProfile = findViewById(R.id.download_profile_button);
+        Button buttonUploadProfile   = findViewById(R.id.upload_profile_button);
+
 
         buttonPickPicture.setOnClickListener( v -> pickImage());
         buttonDownload.setOnClickListener( v -> downloadImage());
         buttonUpload.setOnClickListener(v -> uploadImage());
 
+        buttonDownloadProfile.setOnClickListener(v -> {
+
+        });
+
     }
     @Override
     protected void onStart(){
         super.onStart();
-        /*mDocRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if(documentSnapshot.exists()){
-                    String content = documentSnapshot.getString(mAuth.getCurrentUser().getUid());
-                    TextView a =findViewById(R.id.text_test_download);
-                    a.setText(content);
-                }else if(e!=null){
-                    Log.w("Download", "Got an exception",e);
-                }
-            }
-        });
-        findViewById(R.id.button_upload_picture).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                OwnerProfile a = new OwnerProfile(
-                        mAuth.getCurrentUser().getUid(),
-                        "JYZ",
-                        "1975/08/32",
-                        "T",
-                        "male",
-                        1,
-                        1.0,
-                        2.0);
-                try{
-                    a.upload();
-                }catch(IOException e){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() == null){
+            Log.d(TAG, "onStart: user not logged in!");
+            return;
+        }
+        String uid = mAuth.getCurrentUser().getUid();
+        if (uid != null) {
+            DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+            mDocRef.addSnapshotListener((snap, error) -> {
+                if (snap != null && snap.exists()) {
 
+                    this.profileText.setText(snap.getData().toString());
+                    Log.d(TAG, "onStart: " + snap.getData().toString());
+                } else if (error != null) {
+                    Log.d(TAG, "Got an exception" + error.toString());
                 }
+            });
+        } else {
+            Log.d(TAG, "onStart: no uid");
+        }
+
+        findViewById(R.id.upload_profile_button).setOnClickListener(v -> {
+            if (uid == null){
+                Log.d(TAG, "onStart: User not logged in");
+                return;
             }
-        });*/
+            OwnerProfile profile = new OwnerProfile(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            profile.setName("Junyi Z");
+            profile.setBirthday(new Date());
+            profile.setDistancePerference(50);
+            profile.setFreeTime("010101010100110101110");
+            profile.setGender("Snail");
+            profile.upload(getApplicationContext());
+        });
+
+        findViewById(R.id.download_profile_button).setOnClickListener(v -> {
+            if (uid == null){
+                Log.d(TAG, "onStart: User not logged in");
+                return;
+            }
+            DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("user").document(uid);
+            mDocRef.get().addOnSuccessListener((documentSnapshot -> {
+                if (documentSnapshot.exists()){
+                    TextView text = findViewById(R.id.profile_text);
+                    text.setText(documentSnapshot.getData().toString());
+                    Log.d(TAG, "onStart: " + documentSnapshot.getData().toString());
+                } else {
+                    Log.d(TAG, "onStart: document does not exists");
+                }
+            }));
+
+        });
     }
     /**
      * This method download this image images/IMG_20180414_213521.jpg from firebase
