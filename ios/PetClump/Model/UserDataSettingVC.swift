@@ -65,6 +65,7 @@ class UserDataSettingVC: UIViewController, QuickAlert{
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "yyyy/MM/dd"
                         self.birthdayTextField.text = dateFormatter.string(from: bd.dateValue())
+                        self.datePicker!.date = bd.dateValue()
                     }
                     
                     // Gets match perference and updates the slider

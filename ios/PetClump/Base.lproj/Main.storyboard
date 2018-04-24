@@ -202,7 +202,7 @@
                                     <constraint firstAttribute="height" constant="22" id="DLY-9f-40a"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Vincent Hu">
+                                    <fragment content="-">
                                         <attributes>
                                             <font key="NSFont" size="17" name="VarelaRound"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -217,7 +217,7 @@
                                     <constraint firstAttribute="height" constant="22" id="ZdK-8e-NKV"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Apache Helicotper">
+                                    <fragment content="-">
                                         <attributes>
                                             <font key="NSFont" size="17" name="VarelaRound"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -232,7 +232,7 @@
                                     <constraint firstAttribute="height" constant="22" id="4Nq-HR-s3V"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="1911/10/10">
+                                    <fragment content="-">
                                         <attributes>
                                             <font key="NSFont" size="17" name="VarelaRound"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
