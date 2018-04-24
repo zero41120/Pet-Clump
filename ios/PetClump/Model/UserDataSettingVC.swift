@@ -8,38 +8,22 @@
 import UIKit
 import Firebase
 
-/**
- * This estension makes the UIViewController dismiss keyboard when touch non-keyboard area
- */
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
 
 class UserDataSettingVC: UIViewController, QuickAlert{
     
     // View UI
-    @IBOutlet weak var aboutMeLable: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var birthLabel: UILabel!
-    @IBOutlet weak var matchRangeLabel: UILabel!
-    @IBOutlet weak var myPetsLabel: UILabel!
+    @IBOutlet weak var aboutMeNavBar: UINavigationBar!
+    @IBOutlet weak var titleNameLabel: UILabel!
+    @IBOutlet weak var titleGenderLabel: UILabel!
+    @IBOutlet weak var titleBirthdayLabel: UILabel!
+    @IBOutlet weak var titleMatchRangeLabel: UILabel!
     
     // Controller UI
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var matchSlider: UISlider!
-    @IBOutlet weak var scheduleBut: UIButton!
-    @IBOutlet weak var editPhotoBut: UIButton!
+   
     
     // Genreated UI
     var datePicker: UIDatePicker?
@@ -103,6 +87,9 @@ class UserDataSettingVC: UIViewController, QuickAlert{
         // Set up genderpicker responder
         // TODO
     }
+    @IBAction func topCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func tapEditBirthday(_sender: Any) {
         // Save date
@@ -133,7 +120,7 @@ class UserDataSettingVC: UIViewController, QuickAlert{
     }
     func updateMatchRangeLabel(){
         let range = Int(self.matchSlider.value)
-        self.matchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
+        self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
     }
     
     @IBAction func tapUploadProfile(_ sender: Any) {
@@ -150,8 +137,8 @@ class UserDataSettingVC: UIViewController, QuickAlert{
         // Uploads the profile
         profile.upload(vc: self)
         
-        // Notify user
-        self.makeAlert(message: "Uploaded: " + profile.generateDictionary().description)
+        // Exit edit view
+        self.dismiss(animated: true, completion: nil)
         
     }
 }
