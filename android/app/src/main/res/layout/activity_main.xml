@@ -69,21 +69,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+        app:layout_constraintTop_toBottomOf="@+id/facebook_button" />
 
-    <!--<com.facebook.login.widget.LoginButton-->
-        <!--android:id="@+id/login_button"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="23dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginLeft="8dp"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="50dp"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/uidText" />-->
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebook_button"
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uidText" />
 
     <Button
         android:id="@+id/mGoogleSignOut"

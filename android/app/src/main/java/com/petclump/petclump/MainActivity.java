@@ -2,12 +2,22 @@ package com.petclump.petclump;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -17,8 +27,10 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.petclump.petclump.models.Specie;
 
@@ -29,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient mGoogleApiClient;
 
 
-//    // Facebook Sign-ins
-//    LoginButton loginButton;
-//    CallbackManager callbackManager;
+    // Facebook Sign-ins
+    LoginButton mLoginButton;
+    CallbackManager mCallbackManager;
 
     // UI
     TextView animalText, uidText;
@@ -46,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         animalText = findViewById(R.id.animalText);
         Button pickButton = findViewById(R.id.button_go_upload_photo);
         Button settingsButton = findViewById(R.id.button_settings);
+
+        // Show user UID
+        if (FirebaseAuth.getInstance().getCurrentUser() != null){
+            uidText.setText(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        }
 
         // Upload photo activity
         pickButton.setOnClickListener(v -> {
@@ -104,23 +121,68 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         .setResultCallback(status -> uidText.setText("Signed out")
                         ));
 
-        OptionalPendingResult<GoogleSignInResult> optionalPendingResult = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-        if (optionalPendingResult.isDone()) {
-            GoogleSignInResult googleSignInResult = optionalPendingResult.get();
-            handleSignInResult(googleSignInResult);
-        } else {
-            optionalPendingResult.setResultCallback(result -> handleSignInResult(result));
-        }
+//        OptionalPendingResult<GoogleSignInResult> optionalPendingResult = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+//        if (optionalPendingResult.isDone()) {
+//            GoogleSignInResult googleSignInResult = optionalPendingResult.get();
+//            handleSignInResult(googleSignInResult);
+//        } else {
+//            optionalPendingResult.setResultCallback(result -> handleSignInResult(result));
+//        }
         //FirebaseAuth.getInstance().addAuthStateListener(authListener);
 
     }
+
+    private void setupFacebookLogin(){
+        // Initialize Facebook Login button
+        mCallbackManager = CallbackManager.Factory.create();
+        LoginButton loginButton = findViewById(R.id.facebook_button);
+        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                handleSignInResult(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "facebook:onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, "facebook:onError", error);
+            }
+        });
+
+        LoginManager.getInstance().registerCallback(mCallbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                       handleSignInResult(loginResult.getAccessToken());
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d(TAG, "facebook:onCancel");
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.d(TAG, "facebook:onError", exception);
+                    }
+                });
+    }
+
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupUI();
         setupGoogleLogin();
+        setupFacebookLogin();
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -129,6 +191,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             this.handleSignInResult(result);
+        } else {
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -136,22 +200,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         if (result.isSuccess()){
             GoogleSignInAccount account = result.getSignInAccount();
             if (account != null) {
-                firebaseAuthWithGoogle(account);
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                if (mAuth.getCurrentUser() != null) {
-                    this.uidText.setText(mAuth.getCurrentUser().getUid());
-                } else {
-                    Log.d(TAG, "handleSignInResult: No current user");
-                }
+                AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+                firebaseAuthWithCredential(credential);
             }
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getIdToken());
+    private void handleSignInResult(AccessToken token){
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        firebaseAuthWithCredential(credential);
+    }
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+
+    private void firebaseAuthWithCredential(AuthCredential credential) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
@@ -159,11 +221,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
+                        Log.d(TAG, "firebaseAuthWithCredential: " + user.getUid());
+                        if (mAuth.getCurrentUser() != null) {
+                            this.uidText.setText(mAuth.getCurrentUser().getUid());
+                            Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
+
+                        } else {
+                            Log.d(TAG, "handleFBSignInResult: No current user");
+                        }
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                     }
-
                 });
     }
 
