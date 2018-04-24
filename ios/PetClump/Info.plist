@@ -64,6 +64,12 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We would like to get your location to recommand your match by distance.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>VarelaRound-Regular.otf</string>
+	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
