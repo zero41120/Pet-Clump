@@ -29,7 +29,7 @@ protocol Profile {
 class OwnerProfile: Profile{
     
     let id: String
-    var name: String = "No naoe"
+    var name: String = "No name"
     var birthday: Date = Date()
     var gender: String = "Apache"
     var distancePerference: Int = 5
@@ -48,17 +48,17 @@ class OwnerProfile: Profile{
             self.id = "error_id"
         }
     }
-    
-    convenience init(dic: [String: Any]){
-        print("Constructing with: " + dic.description)
-        self.init(id: dic["id"] as! String)
-        self.name = dic["name"] as? String ?? self.name
-        self.lat = dic["lat"] as? Double  ?? self.lat
-        self.lon = dic["lon"] as? Double ?? self.lon
-        self.gender = dic["gender"] as? String ?? self.gender
-        self.distancePerference = dic["distancePerference"] as? Int ?? self.distancePerference
-        self.freeTime = FreeSchedule(freeString: dic["freeTime"] as? String ?? "")
-    }
+//    
+//    convenience init(dic: [String: Any]){
+//        print("Constructing with: " + dic.description)
+//        self.init(id: dic["id"] as! String)
+//        self.name = dic["name"] as? String ?? self.name
+//        self.lat = dic["lat"] as? Double  ?? self.lat
+//        self.lon = dic["lon"] as? Double ?? self.lon
+//        self.gender = dic["gender"] as? String ?? self.gender
+//        self.distancePerference = dic["distancePerference"] as? Int ?? self.distancePerference
+//        self.freeTime = FreeSchedule(freeString: dic["freeTime"] as? String ?? "")
+//    }
     
     func generateDictionary() -> [String : Any] {
         return [
