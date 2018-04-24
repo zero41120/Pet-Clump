@@ -46,5 +46,6 @@
     <string name="Within_20_miles">Within 20 miles</string>
     <string name="Within_100_miles">Within 100 miles</string>
     <string name="No_preferred_range">No preferred range</string>
+    <string name="Upload_failed">上传失败</string>
 
 </resources>

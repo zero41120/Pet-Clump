@@ -1,10 +1,15 @@
 package com.petclump.petclump.models;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.firestore.DocumentReference;
+//import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
 
 import java.io.IOException;
@@ -64,18 +69,23 @@ public class OwnerProfile  implements Profile {
         temp.put("distancePerference", distancePerference);
         return temp;
     }
-    @Override
-    public void upload(Activity quickAlert)throws IOException{
+    /*@Override
+    public void upload()throws IOException{
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
             throw new IOException("OwnerProfile.upload: User not signed in!\n");
         }
-        let docRef = Firestore.firestore().collection("users").document(self.id)
-        docRef.setData(self.generateDictionary()) { (err: Error?) in
-            if let err = err{
-                vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
+        DocumentReference docRef = FirebaseFirestore.getInstance().document("users/" + this.id);
+        docRef.set(generateDictionary()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(), R.string.Upload_successful, Toast.LENGTH_SHORT).show();
             }
-            print("Uploaded successfully for user " + self.id)
-            Toast.makeText(getApplicationContext(), R.string.Upload_successful + this.id, Toast.LENGTH_SHORT).show();
-        }
-    }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), R.string.Upload_failed, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }*/
 }

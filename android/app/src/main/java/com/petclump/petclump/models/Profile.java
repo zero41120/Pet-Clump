@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface Profile{
     public Map<String, Object> generateDictionary();
-    public void upload(Activity quickAlert)throws IOException;
+   // public void upload()throws IOException;
 }

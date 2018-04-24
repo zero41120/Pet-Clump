@@ -68,5 +68,6 @@
     <string name="Within_100_miles">Within 100 miles</string>
     <string name="No_preferred_range">No preferred range</string>
     <string name="Edit_photo">Edit photo</string>
+    <string name="Upload_failed">Upload failed</string>
 
 </resources>
