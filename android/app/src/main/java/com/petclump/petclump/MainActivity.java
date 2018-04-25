@@ -44,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
     //Init Database
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-/*
-    //Testing fetch data
-    public void fetchData(View view){
-    DocumentReference database = db.collection("users").document("example");
-    ApiFuture<DocumentSnapshot> future = database.get();
-
-
-    }
-*/
 
     /*** Google Sign In set-up field ***/
     // Google Sign In button
