@@ -9,7 +9,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/user_name_label"
+        android:id="@+id/title_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/user_gender_label"
+        android:id="@+id/title_gender_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -36,10 +36,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+        app:layout_constraintTop_toBottomOf="@+id/name_label" />
 
     <TextView
-        android:id="@+id/user_dob_label"
+        android:id="@+id/title_birthday_label"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
 
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/user_gender" />
+        app:layout_constraintTop_toBottomOf="@+id/gender_label" />
 
 
     <ImageButton
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button_add_pet"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_user_info"
+        app:layout_constraintTop_toBottomOf="@+id/title_about_me_label"
         app:layout_constraintVertical_bias="1.0" />
 
 
@@ -152,7 +152,7 @@
         tools:layout_editor_absoluteY="455dp" />
 
     <TextView
-        android:id="@+id/text_user_info"
+        android:id="@+id/title_about_me_label"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="7dp"
@@ -165,13 +165,13 @@
         android:text="@string/About_me"
         android:textSize="@dimen/font_size"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/edit_button"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/edit_button"
+        android:id="@+id/save_button"
         android:layout_width="102dp"
         android:layout_height="19dp"
         android:layout_marginBottom="8dp"
@@ -198,7 +198,7 @@
         app:layout_constraintGuide_end="390dp" />
 
     <TextView
-        android:id="@+id/user_match_range_label"
+        android:id="@+id/title_match_range_label"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
@@ -210,10 +210,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/user_dob" />
+        app:layout_constraintTop_toBottomOf="@+id/birthday_label" />
 
     <TextView
-        android:id="@+id/user_match_range"
+        android:id="@+id/match_range_seekbar"
         style="@style/fontStyle1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -226,10 +226,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/user_match_range_label" />
+        app:layout_constraintTop_toBottomOf="@+id/title_match_range_label" />
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/name_label"
         style="@style/fontStyle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -242,10 +242,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/user_name_label" />
+        app:layout_constraintTop_toBottomOf="@+id/title_name_label" />
 
     <TextView
-        android:id="@+id/user_gender"
+        android:id="@+id/gender_label"
         style="@style/fontStyle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -258,10 +258,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/user_gender_label" />
+        app:layout_constraintTop_toBottomOf="@+id/title_gender_label" />
 
     <TextView
-        android:id="@+id/user_dob"
+        android:id="@+id/birthday_label"
         style="@style/fontStyle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -274,7 +274,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/user_dob_label" />
+        app:layout_constraintTop_toBottomOf="@+id/title_birthday_label" />
 
     <ImageButton
         android:id="@+id/button_why"
@@ -289,7 +289,7 @@
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/button_add_pet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_user_info"
+        app:layout_constraintStart_toEndOf="@+id/title_about_me_label"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/info" />
 
