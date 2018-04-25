@@ -8,7 +8,7 @@
     tools:context=".UserInfoEditActivity">
 
     <TextView
-        android:id="@+id/user_name_label"
+        android:id="@+id/title_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.148" />
 
     <TextView
-        android:id="@+id/user_gender_label"
+        android:id="@+id/title_gender_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -30,11 +30,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toEndOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/user_name_label"
+        app:layout_constraintTop_toBottomOf="@id/title_name_label"
         app:layout_constraintVertical_bias="0.106" />
 
     <TextView
-        android:id="@+id/user_dob_label"
+        android:id="@+id/title_birthday_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -88,7 +88,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/user_gender_label"
+        app:layout_constraintStart_toStartOf="@id/title_gender_label"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.328">
 
@@ -96,7 +96,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/text_user_info"
+        android:id="@+id/title_about_me_label"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
@@ -172,7 +172,7 @@
     </ScrollView>
 
     <SeekBar
-        android:id="@+id/user_match_range"
+        android:id="@+id/match_range_seekbar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="300dp"
         android:layout_height="38dp"
@@ -213,7 +213,7 @@
         android:text="@string/No_preferred_range"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/user_match_range" />
+        app:layout_constraintTop_toBottomOf="@id/match_range_seekbar" />
 
     <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/user_name_switcher"
@@ -222,14 +222,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/user_name_label"
-        app:layout_constraintTop_toBottomOf="@id/user_name_label"
+        app:layout_constraintStart_toStartOf="@id/title_name_label"
+        app:layout_constraintTop_toBottomOf="@id/title_name_label"
         app:layout_constraintVertical_bias="0.044">
 
     </ViewSwitcher>
 
     <Button
-        android:id="@+id/edit_button"
+        android:id="@+id/save_button"
         android:layout_width="69dp"
         android:layout_height="35dp"
         android:layout_marginBottom="547dp"
@@ -260,7 +260,7 @@
         android:text="@string/Cancel"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/edit_button"
+        app:layout_constraintEnd_toStartOf="@+id/save_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"

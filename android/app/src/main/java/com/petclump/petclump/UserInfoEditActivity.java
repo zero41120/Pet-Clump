@@ -1,11 +1,11 @@
 package com.petclump.petclump;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,9 +16,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.petclump.petclump.models.OwnerProfile;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Map;
+
 public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String day_array_string[];
-    String year_array_string[];
+    private static final String TAG = "EditUser";
+    String day_array_string[], year_array_string[];
     private int year;
     EditText user_name_editText;
     Button  save_button, cancel_button;
@@ -29,15 +41,23 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     Context c;
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+    Date birthday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        if(user == null){
+            Log.d(TAG, "onCreate: User not logged in");
+            finish();
+        }
+        setupUI();
+        downloadData();
+    }
+
+    private void setupUI(){
         setContentView(R.layout.activity_user_info_edit);
-
-
         c = getApplicationContext();
 
         constraintSet = new ConstraintSet();
@@ -46,7 +66,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
         user_name_editText = findViewById(R.id.user_name_editText);
         match_range_value = findViewById(R.id.match_range_value);
-        user_match_range_seekbar = findViewById(R.id.user_match_range);
+        user_match_range_seekbar = findViewById(R.id.match_range_seekbar);
 
         user_dob_day = findViewById(R.id.user_dob_day);
         user_dob_day.setOnItemSelectedListener(this);
@@ -57,7 +77,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         user_select_gender = findViewById(R.id.user_gender_spinner);
         user_select_gender.setOnItemSelectedListener(this);
 
-        save_button = findViewById(R.id.edit_button);
+        save_button = findViewById(R.id.save_button);
         cancel_button = findViewById(R.id.cancel_button);
 
         year = 1928;
@@ -100,68 +120,137 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         user_match_range_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (0 == progress) {
-                    match_range_value.setText(getResources().getString(R.string.Within_5_miles));
-                } else if (1 == progress) {
-                    match_range_value.setText(getResources().getString(R.string.Within_20_miles));
-                } else if (2 == progress) {
-                    match_range_value.setText(getResources().getString(R.string.Within_100_miles));
-                } else {
-                    match_range_value.setText(getResources().getString(R.string.No_preferred_range));
-                }
-
+                match_range_value.setText(progressToText(progress));
             }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
 
+
+    private void downloadData(){
+        if (user == null){ return; }
+        String uid = user.getUid();
+
+        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+        mDocRef.addSnapshotListener((snap, error) -> {
+            if (error != null) {
+                Log.d(TAG, "Download failed: " + error.toString());
+                return;
+            }
+            if (snap == null)   { return; }
+            if (!snap.exists()) { return; }
+            Map<String, Object> ref = snap.getData();
+            user_name_editText.setText(ref.get("name").toString());
+            int index = getSpinnerPosition(user_select_gender, ref.get("gender"));
+            user_select_gender.setSelection(index);
+            if (ref.get("birthday") instanceof Timestamp){
+                Timestamp bd = (Timestamp) ref.get("birthday");
+                birthday = bd.getApproximateDate();
+                GregorianCalendar gcBirthday = new GregorianCalendar();
+                gcBirthday.setTime(birthday);
+                index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
+                user_dob_year.setSelection(index);
+                index = getSpinnerPosition(user_dob_month, gcBirthday.get(Calendar.MONTH));
+                user_dob_month.setSelection(index);
+                index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
+                user_dob_day.setSelection(index);
+            }
+            String range = ref.get("distancePerference").toString();
+            match_range_value.setText(stringToProgressText(range));
+            user_match_range_seekbar.setProgress(stringToProgress(range));
+        });
+    }
+
+    private Integer getSpinnerPosition(Spinner spinner, Object item){
+        return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
+    }
+
+    private String progressToText(int progress){
+        switch (progress){
+            case  0: return getResources().getString(R.string.Within_5_miles);
+            case  1: return getResources().getString(R.string.Within_20_miles);
+            case  2: return getResources().getString(R.string.Within_100_miles) ;
+            default: return getResources().getString(R.string.No_preferred_range);
+        }
+    }
+
+    private String stringToProgressText(String s){
+        switch (s){
+            case    "5": return getResources().getString(R.string.Within_5_miles);
+            case   "20": return getResources().getString(R.string.Within_20_miles);
+            case  "100": return getResources().getString(R.string.Within_100_miles) ;
+            default:     return getResources().getString(R.string.No_preferred_range);
+        }
+    }
+
+    private Integer stringToProgress(String s){
+        switch (s){
+            case    "5": return 0;
+            case   "20": return 1;
+            case  "100": return 2;
+            default:     return 3;
+        }
+    }
+
+    private Integer progressToMile(int progress){
+        switch (progress){
+            case  0: return 5;
+            case  1: return 20;
+            case  2: return 100;
+            default: return 0;
+        }
+    }
+
     private void cancelData() {
-        // switch activity to the main page without saving the data
-            Intent nextScreen = new Intent(c, UserInfoActivity.class);
-            startActivity(nextScreen);
+        finish();
     }
 
     private void saveData() {
-        Intent nextScreen = new Intent(c, UserInfoActivity.class);
-        startActivity(nextScreen);
-
+        OwnerProfile profile = new OwnerProfile(user.getUid());
+        profile.setGender(user_select_gender.getSelectedItem().toString());
+        profile.setName(user_name_editText.getText().toString());
+        profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
+        GregorianCalendar birthday = new GregorianCalendar();
+        birthday.set(
+            Integer.parseInt(user_dob_year.getSelectedItem().toString()),
+            getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1,
+            getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
+        );
+        profile.setBirthday(birthday.getTime());
+        profile.upload(c);
+        finish();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
+
+        // I'm pretty sure the control logic is incorrect.
         // An item was selected. You can retrieve the selected item using
-        switch (parent.getId()) {
-            case R.id.user_dob_month:
-                dob_month = parent.getItemAtPosition(pos);
-            case R.id.user_dob_day:
-                dob_day = parent.getItemAtPosition(pos);
-                Toast toast2 = Toast.makeText(c, (String) dob_day, Toast.LENGTH_LONG);
-                toast2.show();
-
-            case R.id.user_dob_year:
-                dob_year = parent.getItemAtPosition(pos);
-                Toast toast3 = Toast.makeText(c, (String) dob_year, Toast.LENGTH_LONG);
-                toast3.show();
-
-            case R.id.user_gender_spinner:
-                gender = parent.getItemAtPosition(pos);
-                Toast toast4 = Toast.makeText(c, (String) gender, Toast.LENGTH_LONG);
-                toast4.show();
-
-        }
-        String string = dob_year.toString()+" "+
-                dob_month.toString()+" "+dob_day.toString()+" "+gender.toString();
-        Toast toast5 = Toast.makeText(c, string, Toast.LENGTH_LONG );
-        toast5.show();
+//        switch (parent.getId()) {
+//            case R.id.user_dob_month:
+//                dob_month = parent.getItemAtPosition(pos);
+//            case R.id.user_dob_day:
+//                dob_day = parent.getItemAtPosition(pos);
+//                Toast toast2 = Toast.makeText(c, (String) dob_day, Toast.LENGTH_LONG);
+//                toast2.show();
+//
+//            case R.id.user_dob_year:
+//                dob_year = parent.getItemAtPosition(pos);
+//                Toast toast3 = Toast.makeText(c, (String) dob_year, Toast.LENGTH_LONG);
+//                toast3.show();
+//
+//            case R.id.user_gender_spinner:
+//                gender = parent.getItemAtPosition(pos);
+//                Toast toast4 = Toast.makeText(c, (String) gender, Toast.LENGTH_LONG);
+//                toast4.show();
+//
+//        }
+//        String string = dob_year.toString()+" "+
+//                dob_month.toString()+" "+dob_day.toString()+" "+gender.toString();
+//        Toast toast5 = Toast.makeText(c, string, Toast.LENGTH_LONG );
+//        toast5.show();
 
 
     }
