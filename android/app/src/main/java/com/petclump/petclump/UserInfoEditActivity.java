@@ -150,10 +150,9 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             gcBirthday.setTime((Date)ref.get("birthday"));
             index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
             user_dob_year.setSelection(index);
-            index = gcBirthday.get(Calendar.MONTH);
 
+            index = gcBirthday.get(Calendar.MONTH)-1;
             Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
-            Log.d("INDEX:",String.valueOf(index));
             user_dob_month.setSelection(index);
             index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
             user_dob_day.setSelection(index);
