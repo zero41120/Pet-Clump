@@ -21,6 +21,7 @@ import com.petclump.petclump.R;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +56,23 @@ public class OwnerProfile implements Profile {
             this.id = "error_id";
         }
     }
-
+    public static String num_month(int num){
+        switch(num){
+            case 1: return "Jan";
+            case 2: return "Feb";
+            case 3: return "Mar";
+            case 4: return "Apr";
+            case 5: return "May";
+            case 6: return "Jun";
+            case 7: return "Jul";
+            case 8: return "Aug";
+            case 9: return "Sep";
+            case 10: return "Oct";
+            case 11: return "Nov";
+            case 12: return "Dec";
+        }
+        return "month_error";
+    }
     @Override
     public Map<String,Object> generateDictionary(){
         Map<String, Object> temp= new HashMap<>();

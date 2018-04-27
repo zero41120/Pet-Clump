@@ -8,6 +8,7 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,8 +20,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.petclump.petclump.models.OwnerProfile;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 public class UserInfoActivity extends AppCompatActivity {
@@ -79,9 +83,15 @@ public class UserInfoActivity extends AppCompatActivity {
             startActivity(new Intent(c, Popup.class))
         );
 
-        edit_button.setOnClickListener(v ->
-            startActivity(new Intent(c, UserInfoEditActivity.class))
-        );
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(c, UserInfoEditActivity.class));
+                finish();
+            }
+
+        });
+
     }
 
     private void downloadData(){
@@ -99,11 +109,12 @@ public class UserInfoActivity extends AppCompatActivity {
             Map<String, Object> ref = snap.getData();
             name_label.setText(ref.get("name").toString());
             gender_label.setText(ref.get("gender").toString());
-            if (ref.get("birthday") instanceof Timestamp){
-                Timestamp bd = (Timestamp) ref.get("birthday");
-                birthday = bd.getApproximateDate();
-                birthday_label.setText(birthday.toString());
-            }
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime((Date) ref.get("birthday"));
+            String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)))+" "
+                +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
+                +String.valueOf(calendar.get(Calendar.YEAR));
+            birthday_label.setText(t);
             range_label.setText(ref.get("distancePerference").toString());
         });
     }

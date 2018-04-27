@@ -1,6 +1,7 @@
 package com.petclump.petclump;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -145,18 +146,15 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             user_name_editText.setText(ref.get("name").toString());
             int index = getSpinnerPosition(user_select_gender, ref.get("gender"));
             user_select_gender.setSelection(index);
-            if (ref.get("birthday") instanceof Timestamp){
-                Timestamp bd = (Timestamp) ref.get("birthday");
-                birthday = bd.getApproximateDate();
-                GregorianCalendar gcBirthday = new GregorianCalendar();
-                gcBirthday.setTime(birthday);
-                index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
-                user_dob_year.setSelection(index);
-                index = getSpinnerPosition(user_dob_month, gcBirthday.get(Calendar.MONTH));
-                user_dob_month.setSelection(index);
-                index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
-                user_dob_day.setSelection(index);
-            }
+            Calendar gcBirthday = new GregorianCalendar();
+            gcBirthday.setTime((Date)ref.get("birthday"));
+            index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
+            user_dob_year.setSelection(index);
+            index = getSpinnerPosition(user_dob_month, gcBirthday.get(Calendar.MONTH));
+            Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
+            user_dob_month.setSelection(5);
+            index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
+            user_dob_day.setSelection(index);
             String range = ref.get("distancePerference").toString();
             match_range_value.setText(stringToProgressText(range));
             user_match_range_seekbar.setProgress(stringToProgress(range));
@@ -218,8 +216,12 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1,
             getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
         );
+        Log.d("uploadBirthday:","year:"+user_dob_year.getSelectedItem().toString()
+            +"month:"+(getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1
+        )+"\n");
         profile.setBirthday(birthday.getTime());
         profile.upload(c);
+        startActivity(new Intent(c, UserInfoActivity.class));
         finish();
     }
 
