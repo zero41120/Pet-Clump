@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadPhotoActivity">
+
+    <Button
+        android:id="@+id/button_pick_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="61dp"
+        android:text="Pick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/uploadView"
+        android:layout_width="131dp"
+        android:layout_height="113dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="37dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_pick_picture"
+        app:srcCompat="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/button_upload_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="29dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="61dp"
+        android:text="Upload"
+        app:layout_constraintStart_toEndOf="@+id/button_pick_picture"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/downloadView"
+        android:layout_width="146dp"
+        android:layout_height="136dp"
+        android:layout_marginBottom="29dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:color/holo_blue_dark" />
+
+    <Button
+        android:id="@+id/button_download_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="39dp"
+        android:text="Download"
+        app:layout_constraintBottom_toTopOf="@+id/downloadView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadView" />
+
+    <Button
+        android:id="@+id/upload_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:text="Upload Profile"
+        app:layout_constraintStart_toEndOf="@+id/uploadView"
+        app:layout_constraintTop_toBottomOf="@+id/download_profile_button" />
+
+    <TextView
+        android:id="@+id/profile_text"
+        android:layout_width="143dp"
+        android:layout_height="208dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/downloadView"
+        app:layout_constraintTop_toBottomOf="@+id/upload_profile_button" />
+
+    <Button
+        android:id="@+id/download_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="57dp"
+        android:text="Download Profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/uploadView"
+        app:layout_constraintTop_toBottomOf="@+id/button_upload_picture" />
+
+</android.support.constraint.ConstraintLayout>

@@ -3,9 +3,77 @@
     <string name="greeting">Hello World!</string>
     <string name="User_Signed_In">User Signed In</string>
     <string name="Authentication_failed">Authentication_failed</string>
-    <string name="facebook_app_id">224973144722885</string>
-    <string name="fb_login_protocol_scheme">fb224973144722885</string>
+    <string name="facebook_app_id" translatable="false">224973144722885</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb224973144722885</string>
     <string name="Login_Cancelled">Login Cancelled</string>
     <string name="User_Signed_Out">User Signed Out</string>
     <string name="User_has_logined_in">User has logined in</string>
+
+    <string name="settings">Settings</string>
+
+    <string name="DOG">Dog</string>
+    <string name="CAT">Cat</string>
+    <string name="BIRD">Bird</string>
+    <string name="ANT">Ant</string>
+    <string name="FERRET">Ferret</string>
+    <string name="FISH">Fish</string>
+    <string name="FROG">Frog</string>
+    <string name="GOAT">Goat</string>
+    <string name="HAMSTER">Hamster</string>
+    <string name="HORSE">Horse</string>
+    <string name="PIG">Pig</string>
+    <string name="RABBIT">Rabbit</string>
+    <string name="SNAKE">Snake</string>
+    <string name="TURTLE">Turtle</string>
+    <string name="OCTOPUS">Octopus</string>
+    <string name="LLAMA">Llama</string>
+    <string name="OTHER">Other</string>
+    <string name="EAGLE">Eagle</string>
+    <string name="LIZARD">Lizard</string>
+    <string name="Name">Name</string>
+    <string name="Date_of_birth">Date of birth</string>
+    <string name="Match_range">Match range</string>
+    <string name="Gender">Gender</string>
+    <string name="My_pets">My pets</string>
+    <string name="My_schedule">My schedule</string>
+    <string name="Pet_1">Pet 1</string>
+    <string name="Photo_of_me">Photo of me</string>
+    <string name="About_me">About me</string>
+    <string name="Pet_2">Pet 2</string>
+    <string name="Pet_3">Pet 3</string>
+    <string-array name="month_array">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+    <string-array name="gender_array">
+        <item>Man</item>
+        <item>Woman</item>
+        <item>Apache Helicopter</item>
+        <item>Other</item>
+    </string-array>
+    <string name="Upload_successful">Upload successful</string>
+
+    <string name="Within_5_miles">Within 5 miles</string>
+    <string name="Within_20_miles">Within 20 miles</string>
+    <string name="Within_100_miles">Within 100 miles</string>
+    <string name="No_preferred_range">No preferred range</string>
+    <string name="Edit_photo">Edit photo</string>
+
+    <string name="Edit">Edit</string>
+
+    <string name="Upload_failed">Upload failed</string>
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Info_purpose">"How will Pet Clump use these information? "</string>
+    <string name="Info_purpose2">Other people will  see your name, gender, and birthday only after they\'ve become friends with you. Match range value is used to optimize matching result according to your need.</string>
 </resources>

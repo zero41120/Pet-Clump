@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <dimen name="font_size">25sp</dimen>
+    <dimen name="profile_pet_size">100dp</dimen>
+</resources>

@@ -3,13 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
+		2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
+		29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */; };
+		29A6E5B7208EB8DB006352CF /* VarelaRound-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */; };
+		29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */; };
+		29B19366208D31BB00A59783 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B19365208D31BB00A59783 /* Profile.swift */; };
+		29B1936C208D4C8800A59783 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1936B208D4C8800A59783 /* Common.swift */; };
 		29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797A207EE97D002971C5 /* AppDelegate.swift */; };
 		29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797C207EE97D002971C5 /* EntryPointVC.swift */; };
 		29C17980207EE97D002971C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C1797E207EE97D002971C5 /* Main.storyboard */; };
@@ -20,10 +27,17 @@
 
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
+		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
 		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreLearningVC.swift; sourceTree = "<group>"; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
+		29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewVC.swift; sourceTree = "<group>"; };
+		29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.otf"; sourceTree = "<group>"; };
+		29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataSettingVC.swift; path = Model/UserDataSettingVC.swift; sourceTree = "<group>"; };
+		29B19365208D31BB00A59783 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		29B1936B208D4C8800A59783 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		29C17977207EE97D002971C5 /* PetClump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetClump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C1797A207EE97D002971C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29C1797C207EE97D002971C5 /* EntryPointVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointVC.swift; sourceTree = "<group>"; };
@@ -58,6 +72,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		29A6E5B5208EB851006352CF /* font */ = {
+			isa = PBXGroup;
+			children = (
+				29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		29B19362208D310D00A59783 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29B19365208D31BB00A59783 /* Profile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		29B1936D208D4CD000A59783 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				292E24CD208AB0BA005311F1 /* button_icon.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		29C1796E207EE97D002971C5 = {
 			isa = PBXGroup;
 			children = (
@@ -79,14 +117,21 @@
 		29C17979207EE97D002971C5 /* PetClump */ = {
 			isa = PBXGroup;
 			children = (
+				29A6E5B5208EB851006352CF /* font */,
+				29B1936D208D4CD000A59783 /* image */,
+				29B19362208D310D00A59783 /* Model */,
 				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
+				29B1936B208D4C8800A59783 /* Common.swift */,
 				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
+				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
 				29C1797E207EE97D002971C5 /* Main.storyboard */,
 				29C17981207EE97F002971C5 /* Assets.xcassets */,
 				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 				29C17986207EE97F002971C5 /* Info.plist */,
 				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
+				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
+				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
 			);
 			path = PetClump;
 			sourceTree = "<group>";
@@ -136,6 +181,7 @@
 				TargetAttributes = {
 					29C17976207EE97D002971C5 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -145,7 +191,7 @@
 				};
 			};
 			buildConfigurationList = 29C17972207EE97D002971C5 /* Build configuration list for PBXProject "PetClump" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -169,7 +215,9 @@
 			files = (
 				29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */,
 				2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */,
+				29A6E5B7208EB8DB006352CF /* VarelaRound-Regular.otf in Resources */,
 				29C17982207EE97F002971C5 /* Assets.xcassets in Resources */,
+				292E24CE208AB0BA005311F1 /* button_icon.png in Resources */,
 				29C17980207EE97D002971C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +340,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
+				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
+				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
+				29B1936C208D4C8800A59783 /* Common.swift in Sources */,
+				29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,8 +480,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -443,10 +495,7 @@
 				DEVELOPMENT_TEAM = VAPY9Z8ZT4;
 				INFOPLIST_FILE = PetClump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -464,10 +513,7 @@
 				DEVELOPMENT_TEAM = VAPY9Z8ZT4;
 				INFOPLIST_FILE = PetClump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
