@@ -15,7 +15,7 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 
-class EntryPointVC: UIViewController, QuickAlert, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, GIDSignInDelegate{
+class EntryPointVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, GIDSignInDelegate{
 
     
     @IBOutlet weak var signInButtonGoogle: GIDSignInButton!
@@ -123,19 +123,6 @@ class EntryPointVC: UIViewController, QuickAlert, GIDSignInUIDelegate, FBSDKLogi
             self.transitionLoginStateUI()
             self.makeAlert(message: message)
         }
-    }
-    
-    /**
-     * This method make a alter with OK button.
-     * - Parameter message: A string mess to show in the alter
-     */
-    func makeAlert(message: String){
-        // Make alert
-        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
     }
     
     // ===============

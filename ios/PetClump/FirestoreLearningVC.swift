@@ -10,7 +10,7 @@
 import UIKit
 import Firebase
 
-class FirestoreLearningVC: UIViewController, QuickAlert{
+class FirestoreLearningVC: UIViewController{
     
     @IBOutlet weak var topInput: UITextField!
     @IBOutlet weak var botInput: UITextField!
@@ -18,23 +18,13 @@ class FirestoreLearningVC: UIViewController, QuickAlert{
     @IBOutlet weak var fetchButton: UIButton!
     @IBOutlet weak var displayLabel: UILabel!
     @IBOutlet weak var downloadLabel: UILabel!
+    @IBAction func tapExit(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     let debugMode = true
     let db = Firestore.firestore()
     var docRef: DocumentReference!
-
-    /**
-     * This method make a alter with OK button.
-     * - Parameter message: A string mess to show in the alter
-     */
-    func makeAlert(message: String){
-        // Make alert
-        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

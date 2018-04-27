@@ -12,6 +12,10 @@
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
 		2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
+		298FEB61209381220018F368 /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB60209381220018F368 /* QuizVC.swift */; };
+		298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB62209393C30018F368 /* PetDataViewVC.swift */; };
+		298FEB65209393F50018F368 /* PetDataSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB64209393F50018F368 /* PetDataSettingVC.swift */; };
+		298FEB67209394D70018F368 /* MatchingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB66209394D70018F368 /* MatchingVC.swift */; };
 		29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */; };
 		29A6E5B7208EB8DB006352CF /* VarelaRound-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */; };
 		29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */; };
@@ -33,6 +37,10 @@
 		2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreLearningVC.swift; sourceTree = "<group>"; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
+		298FEB60209381220018F368 /* QuizVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizVC.swift; sourceTree = "<group>"; };
+		298FEB62209393C30018F368 /* PetDataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDataViewVC.swift; sourceTree = "<group>"; };
+		298FEB64209393F50018F368 /* PetDataSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDataSettingVC.swift; sourceTree = "<group>"; };
+		298FEB66209394D70018F368 /* MatchingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingVC.swift; sourceTree = "<group>"; };
 		29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewVC.swift; sourceTree = "<group>"; };
 		29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.otf"; sourceTree = "<group>"; };
 		29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataSettingVC.swift; path = Model/UserDataSettingVC.swift; sourceTree = "<group>"; };
@@ -132,6 +140,10 @@
 				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
 				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
 				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
+				298FEB60209381220018F368 /* QuizVC.swift */,
+				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
+				298FEB64209393F50018F368 /* PetDataSettingVC.swift */,
+				298FEB66209394D70018F368 /* MatchingVC.swift */,
 			);
 			path = PetClump;
 			sourceTree = "<group>";
@@ -341,12 +353,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
+				298FEB61209381220018F368 /* QuizVC.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
+				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
 				29B1936C208D4C8800A59783 /* Common.swift in Sources */,
 				29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
+				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
+				298FEB65209393F50018F368 /* PetDataSettingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

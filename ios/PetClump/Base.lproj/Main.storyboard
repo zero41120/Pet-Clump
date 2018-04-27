@@ -66,6 +66,22 @@
                                     <segue destination="ImH-OM-O1W" kind="show" id="r3d-gL-A6e"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98A-3W-DBZ">
+                                <rect key="frame" x="21" y="748" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go Quiz"/>
+                                <connections>
+                                    <segue destination="mHd-qO-rXk" kind="show" id="NQ8-wY-gFA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KhL-uZ-e7s">
+                                <rect key="frame" x="287" y="747" width="64" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Matching"/>
+                                <connections>
+                                    <segue destination="pd9-Ar-iKx" kind="show" id="G48-bw-VZq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -250,6 +266,14 @@
                                     <action selector="slidedMatchRange:" destination="NHe-gv-fBJ" eventType="valueChanged" id="fKv-Dc-6rl"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1i-Hn-Sok">
+                                <rect key="frame" x="160" y="581" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Pet"/>
+                                <connections>
+                                    <segue destination="N3z-EC-o4p" kind="show" id="srb-iz-Ba6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -300,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klC-Ev-rlf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789.60000000000002" y="45.812807881773402"/>
+            <point key="canvasLocation" x="790" y="-666"/>
         </scene>
         <!--Firestore LearningVC-->
         <scene sceneID="Oug-LU-bjI">
@@ -310,6 +334,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBE-rC-lmP">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hYN-Nk-Jff"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Firebase Testing" id="fA0-sJ-ud4">
+                                        <barButtonItem key="leftBarButtonItem" title="Exit" id="Vq1-nA-2Gn">
+                                            <connections>
+                                                <action selector="tapExit:" destination="ImH-OM-O1W" id="346-PH-etB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iLj-Hr-qxC">
                                 <rect key="frame" x="16" y="130" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -372,6 +414,11 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vBE-rC-lmP" firstAttribute="leading" secondItem="HvD-Cb-wJR" secondAttribute="leading" id="Ivl-nx-KAg"/>
+                            <constraint firstItem="vBE-rC-lmP" firstAttribute="top" secondItem="HvD-Cb-wJR" secondAttribute="top" id="yBm-Ov-tCS"/>
+                            <constraint firstItem="vBE-rC-lmP" firstAttribute="trailing" secondItem="HvD-Cb-wJR" secondAttribute="trailing" id="z99-Y6-XUG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HvD-Cb-wJR"/>
                     </view>
                     <connections>
@@ -385,7 +432,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZHQ-2h-zUs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="810.94452773613204"/>
+            <point key="canvasLocation" x="33" y="-666"/>
+        </scene>
+        <!--QuizVC-->
+        <scene sceneID="iaO-MR-AeE">
+            <objects>
+                <viewController id="mHd-qO-rXk" customClass="QuizVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F4C-g9-a8C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J7Z-y8-F7i">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7Pd-PK-MW0"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Quiz View" id="lV9-mj-ZIb">
+                                        <barButtonItem key="leftBarButtonItem" title="Exit" id="eku-nT-BFe">
+                                            <connections>
+                                                <action selector="tapExit:" destination="mHd-qO-rXk" id="FV8-yr-8R7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J7Z-y8-F7i" firstAttribute="trailing" secondItem="1MH-qy-UJp" secondAttribute="trailing" id="fbA-85-caA"/>
+                            <constraint firstItem="J7Z-y8-F7i" firstAttribute="leading" secondItem="1MH-qy-UJp" secondAttribute="leading" id="lEN-bQ-IF8"/>
+                            <constraint firstItem="J7Z-y8-F7i" firstAttribute="top" secondItem="1MH-qy-UJp" secondAttribute="top" id="mLc-WW-OLk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1MH-qy-UJp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BGx-hO-KY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33" y="773"/>
         </scene>
         <!--User Data SettingVC-->
         <scene sceneID="6kg-iQ-QI8">
@@ -491,7 +578,7 @@
                                                 <action selector="topCancel:" destination="NHe-gv-fBJ" id="FXh-Rh-gFl"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="9Iq-Dn-49R">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="9Iq-Dn-49R">
                                             <connections>
                                                 <action selector="tapUploadProfile:" destination="NHe-gv-fBJ" id="uo9-SW-wvQ"/>
                                             </connections>
@@ -560,7 +647,146 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVn-3o-Wc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1544.8" y="45.812807881773402"/>
+            <point key="canvasLocation" x="1492" y="-667"/>
+        </scene>
+        <!--Pet Data ViewVC-->
+        <scene sceneID="tku-3l-9Nf">
+            <objects>
+                <viewController id="N3z-EC-o4p" customClass="PetDataViewVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7yA-b3-KnD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y21-C3-zch">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="prT-da-bTj"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="About Pet" id="6No-NO-3ud">
+                                        <barButtonItem key="leftBarButtonItem" title="Exit" id="H0X-eS-RcM">
+                                            <connections>
+                                                <action selector="tapExit:" destination="N3z-EC-o4p" id="W28-No-est"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" id="4L1-bn-lpm">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="hyG-0h-aDK">
+                                                <rect key="frame" x="276" y="5" width="83" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Edit">
+                                                            <attributes>
+                                                                <font key="NSFont" size="15" name="VarelaRound"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                            </button>
+                                            <connections>
+                                                <segue destination="Pgl-KU-rDt" kind="show" id="wSc-Wb-A7P"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="y21-C3-zch" firstAttribute="top" secondItem="Iy8-Sk-RoD" secondAttribute="top" id="7cI-bn-Icq"/>
+                            <constraint firstItem="y21-C3-zch" firstAttribute="trailing" secondItem="Iy8-Sk-RoD" secondAttribute="trailing" id="Zqd-Ln-HBf"/>
+                            <constraint firstItem="y21-C3-zch" firstAttribute="leading" secondItem="Iy8-Sk-RoD" secondAttribute="leading" id="bto-B1-acw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Iy8-Sk-RoD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1AH-ff-BbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="790" y="47"/>
+        </scene>
+        <!--Pet Data SettingVC-->
+        <scene sceneID="kJO-Eb-taN">
+            <objects>
+                <viewController id="Pgl-KU-rDt" customClass="PetDataSettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lk4-LK-RPH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYv-47-tYn">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ffW-Vt-3wk"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="About Pet" id="EoD-YG-8Nq">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YEu-wi-aSA">
+                                            <connections>
+                                                <action selector="tapExit:" destination="Pgl-KU-rDt" id="uc6-Kt-EOh"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fca-wh-2JF"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SYv-47-tYn" firstAttribute="leading" secondItem="TMM-hi-aUp" secondAttribute="leading" id="0hh-Ir-fM0"/>
+                            <constraint firstItem="SYv-47-tYn" firstAttribute="trailing" secondItem="TMM-hi-aUp" secondAttribute="trailing" id="Iyx-tN-t48"/>
+                            <constraint firstItem="SYv-47-tYn" firstAttribute="top" secondItem="TMM-hi-aUp" secondAttribute="top" id="N7p-gT-5FS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TMM-hi-aUp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N9i-Tr-Iiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1492" y="46"/>
+        </scene>
+        <!--MatchingVC-->
+        <scene sceneID="0zg-02-5nt">
+            <objects>
+                <viewController id="pd9-Ar-iKx" customClass="MatchingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rqS-8g-UbA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQm-xV-L6e">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="w4i-2U-d7V"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Matching View" id="GbS-Hj-vlz">
+                                        <barButtonItem key="leftBarButtonItem" title="Exit" id="NFr-sd-qsa">
+                                            <connections>
+                                                <action selector="tapExit:" destination="pd9-Ar-iKx" id="2yu-a4-HqZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LQm-xV-L6e" firstAttribute="top" secondItem="5uT-iX-yI9" secondAttribute="top" id="El7-De-5CT"/>
+                            <constraint firstItem="LQm-xV-L6e" firstAttribute="trailing" secondItem="5uT-iX-yI9" secondAttribute="trailing" id="I8K-jz-Fnn"/>
+                            <constraint firstItem="LQm-xV-L6e" firstAttribute="leading" secondItem="5uT-iX-yI9" secondAttribute="leading" id="dII-o4-uQN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5uT-iX-yI9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJF-RG-KqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="773"/>
         </scene>
     </scenes>
 </document>

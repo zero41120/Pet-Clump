@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 
-class UserDataViewVC: UIViewController, QuickAlert{
+class UserDataViewVC: UIViewController{
     
     // Title Labels
     @IBOutlet weak var titleNameLabel:       UILabel!
@@ -81,17 +81,5 @@ class UserDataViewVC: UIViewController, QuickAlert{
     @IBAction func tapCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    // Conform SimpleAlert
-    func makeAlert(message: String){
-        // Make alert
-        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    
 }
 

@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 
-class UserDataSettingVC: UIViewController, QuickAlert{
+class UserDataSettingVC: UIViewController{
     
     // View UI
     @IBOutlet weak var aboutMeNavBar: UINavigationBar!
@@ -103,17 +103,6 @@ class UserDataSettingVC: UIViewController, QuickAlert{
         }
         
         self.view.endEditing(true);
-    }
-    
-    
-    // Conform SimpleAlert
-    func makeAlert(message: String){
-        // Make alert
-        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func slidedMatchRange(_ sender: Any) {

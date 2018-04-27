@@ -9,10 +9,21 @@
 import Foundation
 import UIKit
 
+
+
+protocol QuickAlert {
+    /**
+     * This method make a alter with OK button.
+     * - Parameter message: A string mess to show in the alter
+     */
+    func makeAlert(message: String)
+}
+
+
 /**
  * This estension makes the UIViewController dismiss keyboard when touch non-keyboard area
  */
-extension UIViewController {
+extension UIViewController: QuickAlert {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -22,13 +33,13 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-}
-
-
-protocol QuickAlert {
-    /**
-     * This method make a alter with OK button.
-     * - Parameter message: A string mess to show in the alter
-     */
-    func makeAlert(message: String)
+    
+    func makeAlert(message: String){
+        // Make alert
+        let alert = UIAlertController(title: "Message", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
 }
