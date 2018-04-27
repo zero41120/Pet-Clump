@@ -2,7 +2,7 @@
 *. DS_Store
 
 #ignore ideas
-.idea/*
+android/.idea/*
 
 # Compiled class file
 *.class

@@ -7,7 +7,6 @@ target 'PetClump' do
 
   # Pods for PetClump
   pod 'Firebase/Core'
-
   pod 'Firebase/Firestore'
   pod 'FirebaseUI'
   pod 'FirebaseUI/Auth'
@@ -28,6 +27,5 @@ post_install do |installer|
     end
   end
 end
-
 
 end
