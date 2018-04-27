@@ -23,6 +23,37 @@ class UserDataSettingVC: UIViewController{
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var matchSlider: UISlider!
+    
+    ///below is the IBOutlet of each time slot when choosing weekly schedule.
+    //monday
+    @IBOutlet weak var amMo: UIImageView!
+    @IBOutlet weak var noMo: UIImageView!
+    @IBOutlet weak var pmMo: UIImageView!
+    //tuesday
+    @IBOutlet weak var amTu: UIImageView!
+    @IBOutlet weak var noTu: UIImageView!
+    @IBOutlet weak var pmTu: UIImageView!
+    //wednesday
+    @IBOutlet weak var amWe: UIImageView!
+    @IBOutlet weak var noWe: UIImageView!
+    @IBOutlet weak var pmWe: UIImageView!
+    //thursday
+    @IBOutlet weak var amTh: UIImageView!
+    @IBOutlet weak var noTh: UIImageView!
+    @IBOutlet weak var pmTh: UIImageView!
+    //friday
+    @IBOutlet weak var amFr: UIImageView!
+    @IBOutlet weak var noFr: UIImageView!
+    @IBOutlet weak var pmFr: UIImageView!
+    //saturday
+    @IBOutlet weak var amSa: UIImageView!
+    @IBOutlet weak var noSa: UIImageView!
+    @IBOutlet weak var pmSa: UIImageView!
+    //sunday
+    @IBOutlet weak var amSu: UIImageView!
+    @IBOutlet weak var noSu: UIImageView!
+    @IBOutlet weak var pmSu: UIImageView!
+    
    
     
     // Genreated UI
