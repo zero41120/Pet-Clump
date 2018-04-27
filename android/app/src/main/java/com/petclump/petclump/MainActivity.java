@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         animalText = findViewById(R.id.animalText);
         Button pickButton = findViewById(R.id.button_go_upload_photo);
         Button settingsButton = findViewById(R.id.button_settings);
+        Button quizButton = findViewById(R.id.quiz_button);
+        Button matchingButton = findViewById(R.id.matching_button);
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // Show user UID if logged in
@@ -78,16 +80,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
         // Upload photo activity
-        pickButton.setOnClickListener(v -> {
-            Intent nextScreen = new Intent(c, UploadPhotoActivity.class);
-            startActivity(nextScreen);
-        });
+        pickButton.setOnClickListener(v ->
+            startActivity(new Intent(c, UploadPhotoActivity.class))
+        );
 
         // Setting page activity
-        settingsButton.setOnClickListener(v -> {
-            Intent nextScreen = new Intent(c, UserInfoActivity.class);
-            startActivity(nextScreen);
-        });
+        settingsButton.setOnClickListener(v ->
+            startActivity(new Intent(c, UserInfoActivity.class))
+        );
+
+        // Quiz activity
+        quizButton.setOnClickListener(v->
+            startActivity(new Intent(c, QuizActivity.class))
+        );
+
+        // Matching activity
+        matchingButton.setOnClickListener(v->
+            startActivity(new Intent(c, MatchingActivity.class))
+        );
 
         // Animal text on screen
         Thread t = new Thread() {
