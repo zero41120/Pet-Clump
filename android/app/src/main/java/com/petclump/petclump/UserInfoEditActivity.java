@@ -150,9 +150,12 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             gcBirthday.setTime((Date)ref.get("birthday"));
             index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
             user_dob_year.setSelection(index);
-            index = getSpinnerPosition(user_dob_month, gcBirthday.get(Calendar.MONTH));
+            index = gcBirthday.get(Calendar.MONTH);
+
             Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
-            user_dob_month.setSelection(5);
+            Log.d("INDEX:",String.valueOf(index));
+
+            user_dob_month.setSelection(index);
             index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
             user_dob_day.setSelection(index);
             String range = ref.get("distancePerference").toString();
@@ -213,7 +216,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         GregorianCalendar birthday = new GregorianCalendar();
         birthday.set(
             Integer.parseInt(user_dob_year.getSelectedItem().toString()),
-            getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1,
+            getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()),
             getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
         );
         Log.d("uploadBirthday:","year:"+user_dob_year.getSelectedItem().toString()
@@ -221,7 +224,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         )+"\n");
         profile.setBirthday(birthday.getTime());
         profile.upload(c);
-        startActivity(new Intent(c, UserInfoActivity.class));
         finish();
     }
 

@@ -83,14 +83,7 @@ public class UserInfoActivity extends AppCompatActivity {
             startActivity(new Intent(c, Popup.class))
         );
 
-        edit_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(c, UserInfoEditActivity.class));
-                finish();
-            }
-
-        });
+        edit_button.setOnClickListener(v -> startActivity(new Intent(c, UserInfoEditActivity.class)));
 
     }
 
@@ -111,7 +104,7 @@ public class UserInfoActivity extends AppCompatActivity {
             gender_label.setText(ref.get("gender").toString());
             Calendar calendar = new GregorianCalendar();
             calendar.setTime((Date) ref.get("birthday"));
-            String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)))+" "
+            String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
                 +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
                 +String.valueOf(calendar.get(Calendar.YEAR));
             birthday_label.setText(t);
