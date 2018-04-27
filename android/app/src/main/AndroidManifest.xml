@@ -15,7 +15,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PetInfoActivity"/>
-        <activity android:name=".UserInfoEditActivity"/>
+        <activity android:name=".UserInfoEditActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".UploadPhotoActivity" />
         <activity android:name=".UserInfoActivity" android:windowSoftInputMode="adjustPan|stateHidden" />
 

@@ -80,16 +80,16 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         save_button = findViewById(R.id.save_button);
         cancel_button = findViewById(R.id.cancel_button);
 
-        year = 1928;
+        year = 2003;
         day_array_string = new String[31];
-        year_array_string = new String[90];
+        year_array_string = new String[75];
         for (int i = 0; i < 31; i++) {
             day_array_string[i] = String.valueOf(i + 1);
         }
 
-        for (int i = 0; i < 75; i++) {
-            year_array_string[i] = String.valueOf(year);
-            year += 1;
+        for (int i = 75; i > 0; i--) {
+            year_array_string[75-i] = String.valueOf(year);
+            year -= 1;
         }
 
 
