@@ -8,9 +8,8 @@
 import UIKit
 import Firebase
 
-
 class UserDataSettingVC: UIViewController{
-    
+
     // View UI
     @IBOutlet weak var aboutMeNavBar: UINavigationBar!
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -23,25 +22,20 @@ class UserDataSettingVC: UIViewController{
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var matchSlider: UISlider!
-   
-    
+
     // Genreated UI
     var datePicker: UIDatePicker?
-    var genderPicker: UIPickerView!
+    var genderPicker: UIPickerView?
+    var genderPickerDelegate: GenderInput?
     
-    // Data for picker
-    let genderPickerData: [String] = [
-        NSLocalizedString("Male",   comment: "For picking the gender male"),
-        NSLocalizedString("Female", comment: "For picking the gender female"),
-        NSLocalizedString("Apache", comment: "For picking the gender Apache, it's an attack helicotper."),
-        NSLocalizedString("Other",  comment: "For picking the gender other than male, female, and Apache")
-    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         self.setupData()
     }
+    
     
     // This method downloads the user data from Firestore
     func setupData(){
@@ -82,11 +76,17 @@ class UserDataSettingVC: UIViewController{
         
         // Set up datepicker responder
         datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
+        datePicker!.datePickerMode = .date
         birthdayTextField.inputView = datePicker
         
         // Set up genderpicker responder
-        // TODO
+        genderPicker = UIPickerView()
+        genderPickerDelegate = GenderInput(textField: genderTextField)
+        genderPicker!.delegate = genderPickerDelegate
+        genderPicker!.dataSource = genderPickerDelegate
+        genderPicker!.frame = CGRect(0,0,self.view.bounds.width, 280.0)
+        genderTextField.delegate = genderPickerDelegate
+        genderTextField.inputView = genderPicker
     }
     @IBAction func topCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -126,9 +126,46 @@ class UserDataSettingVC: UIViewController{
         
         // Uploads the profile
         profile.upload(vc: self)
-        
         // Exit edit view
         self.dismiss(animated: true, completion: nil)
         
+    }
+}
+
+class GenderInput: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+    
+    private var textField: UITextField!
+    
+    init(textField: UITextField){
+        self.textField = textField
+    }
+    
+    // Data for picker
+    let genderPickerData: [String] = [
+        NSLocalizedString("Male",   comment: "For picking the gender male"),
+        NSLocalizedString("Female", comment: "For picking the gender female"),
+        NSLocalizedString("Apache Helicotper", comment: "For picking the gender Apache, it's an attack helicotper."),
+        NSLocalizedString("Other",  comment: "For picking the gender other than male, female, and Apache")
+    ]
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genderPickerData.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return genderPickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textField.text = genderPickerData[row]
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }
