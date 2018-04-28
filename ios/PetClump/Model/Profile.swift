@@ -48,17 +48,6 @@ class OwnerProfile: Profile{
             self.id = "error_id"
         }
     }
-//    
-//    convenience init(dic: [String: Any]){
-//        print("Constructing with: " + dic.description)
-//        self.init(id: dic["id"] as! String)
-//        self.name = dic["name"] as? String ?? self.name
-//        self.lat = dic["lat"] as? Double  ?? self.lat
-//        self.lon = dic["lon"] as? Double ?? self.lon
-//        self.gender = dic["gender"] as? String ?? self.gender
-//        self.distancePerference = dic["distancePerference"] as? Int ?? self.distancePerference
-//        self.freeTime = FreeSchedule(freeString: dic["freeTime"] as? String ?? "")
-//    }
     
     func generateDictionary() -> [String : Any] {
         return [
@@ -68,7 +57,7 @@ class OwnerProfile: Profile{
             "name": name ,
             "gender":   gender ,
             "birthday": birthday ,
-            "freeTime": freeTime.freeString,
+            "freeTime": freeTime.freeTimeAsString,
             "distancePerference": distancePerference
         ]
     }
@@ -92,7 +81,7 @@ class OwnerProfile: Profile{
 
 class FreeSchedule{
     var freeMatrix = Array(repeating: Array(repeating: false, count: 3), count:7)
-    var freeString: String
+    var freeTimeAsString: String
     
     enum PartDay: Int { case Morning = 0, AfterNoon = 1, Night = 2 }
     enum WeekDay: Int {
@@ -100,13 +89,8 @@ class FreeSchedule{
              Saturday = 5, Sunday = 6
     }
     
-    
-    func isFree(weekDay: WeekDay, partDay: PartDay) -> Bool {
-        return freeMatrix[weekDay.rawValue][partDay.rawValue]
-    }
-    
     init(freeString: String){
-        self.freeString = freeString
+        self.freeTimeAsString = freeString
         var chars = Array(freeString), manCounter = 0, weekCounter = 0
         if chars.count != 21 {
             chars = Array("000000000000000000000")
@@ -118,6 +102,24 @@ class FreeSchedule{
             manCounter %= 3
             if manCounter == 0 { weekCounter += 1 }
         }
+    }
+    
+    func isFree(weekDay: WeekDay, partDay: PartDay) -> Bool {
+        return freeMatrix[weekDay.rawValue][partDay.rawValue]
+    }
+    
+    func getCommonFreeTime(other: FreeSchedule) -> FreeSchedule{
+        var commonStirng = ""
+        let thisTime = Array(self.freeTimeAsString)
+        let otherTime = Array(other.freeTimeAsString)
+        for index in 0...thisTime.count {
+            if thisTime[index] == "1" && otherTime[index] == "1"{
+                commonStirng += "1"
+            } else {
+                commonStirng += "0"
+            }
+        }
+        return FreeSchedule(freeString: commonStirng)
     }
 }
 
