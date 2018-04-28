@@ -477,7 +477,6 @@
         <!--User Data SettingVC-->
         <scene sceneID="6kg-iQ-QI8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PVn-3o-Wc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="NHe-gv-fBJ" customClass="UserDataSettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VvJ-4q-iHG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -828,6 +827,7 @@
                         <outlet property="titleNameLabel" destination="HkJ-07-Kgs" id="Vmo-tq-ZkD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PVn-3o-Wc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1492" y="-667.24137931034488"/>
         </scene>

@@ -20,12 +20,13 @@
 		29A6E5B7208EB8DB006352CF /* VarelaRound-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */; };
 		29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */; };
 		29B19366208D31BB00A59783 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B19365208D31BB00A59783 /* Profile.swift */; };
-		29B1936C208D4C8800A59783 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1936B208D4C8800A59783 /* Common.swift */; };
+		29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */; };
 		29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797A207EE97D002971C5 /* AppDelegate.swift */; };
 		29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797C207EE97D002971C5 /* EntryPointVC.swift */; };
 		29C17980207EE97D002971C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C1797E207EE97D002971C5 /* Main.storyboard */; };
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
+		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +46,7 @@
 		29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.otf"; sourceTree = "<group>"; };
 		29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataSettingVC.swift; path = Model/UserDataSettingVC.swift; sourceTree = "<group>"; };
 		29B19365208D31BB00A59783 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		29B1936B208D4C8800A59783 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		29C17977207EE97D002971C5 /* PetClump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetClump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C1797A207EE97D002971C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29C1797C207EE97D002971C5 /* EntryPointVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPointVC.swift; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		29C17981207EE97F002971C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
 		CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetClump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +80,15 @@
 				1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		290DF24820953F2C00A64D0C /* view */ = {
+			isa = PBXGroup;
+			children = (
+				29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */,
+			);
+			name = view;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		29A6E5B5208EB851006352CF /* font */ = {
@@ -125,12 +136,13 @@
 		29C17979207EE97D002971C5 /* PetClump */ = {
 			isa = PBXGroup;
 			children = (
+				290DF24820953F2C00A64D0C /* view */,
 				29A6E5B5208EB851006352CF /* font */,
 				29B1936D208D4CD000A59783 /* image */,
 				29B19362208D310D00A59783 /* Model */,
 				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
-				29B1936B208D4C8800A59783 /* Common.swift */,
+				29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */,
 				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
 				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
 				29C1797E207EE97D002971C5 /* Main.storyboard */,
@@ -358,10 +370,11 @@
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
-				29B1936C208D4C8800A59783 /* Common.swift in Sources */,
+				29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */,
 				29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
+				29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */,
 				298FEB65209393F50018F368 /* PetDataSettingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

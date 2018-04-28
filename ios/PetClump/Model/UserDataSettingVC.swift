@@ -53,8 +53,7 @@ class UserDataSettingVC: UIViewController{
     @IBOutlet weak var amSu: UIImageView!
     @IBOutlet weak var noSu: UIImageView!
     @IBOutlet weak var pmSu: UIImageView!
-    
-   
+  
     // Genreated UI
     var datePicker: UIDatePicker?
     var genderPicker: UIPickerView?
@@ -102,6 +101,15 @@ class UserDataSettingVC: UIViewController{
         }
     }
     
+    @objc private func toggleImageColor(tapGestureRecognizer: UITapGestureRecognizer){
+        
+        let imageView = tapGestureRecognizer.view as! UIImageView
+        imageView.backgroundColor =
+            imageView.backgroundColor == UIImageView.getDefaultSelectedColor() ?
+            UIImageView.getDefaultDeselectedColor() :
+            UIImageView.getDefaultSelectedColor();
+    }
+    
     func setupUI(){
         // Hide keyboard when touch
         self.hideKeyboardWhenTappedAround()
@@ -117,6 +125,10 @@ class UserDataSettingVC: UIViewController{
             if let imageView = view as? UIImageView {
                 imageView.layer.borderColor = color
                 imageView.layer.borderWidth = 1
+                imageView.backgroundColor = UIImageView.getDefaultDeselectedColor()
+                let tap = UITapGestureRecognizer(target: self, action: #selector(toggleImageColor(tapGestureRecognizer:)))
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(tap)
             }
         }
         
