@@ -116,6 +116,61 @@ class UserDataSettingVC: UIViewController{
         datePicker?.datePickerMode = .date
         birthdayTextField.inputView = datePicker
         
+        
+        // Set up weekly buttons
+        //monday
+        let color = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
+        amMo.layer.borderColor = color
+        amMo.layer.borderWidth = 1
+        noMo.layer.borderColor = color
+        noMo.layer.borderWidth = 1
+        pmMo.layer.borderColor = color
+        pmMo.layer.borderWidth = 1
+        
+        //tuesday
+        amTu.layer.borderColor = color
+        amTu.layer.borderWidth = 1
+        noTu.layer.borderColor = color
+        noTu.layer.borderWidth = 1
+        pmTu.layer.borderColor = color
+        pmTu.layer.borderWidth = 1
+        
+        //wednesday
+        amWe.layer.borderColor = color
+        amWe.layer.borderWidth = 1
+        noWe.layer.borderColor = color
+        noWe.layer.borderWidth = 1
+        pmWe.layer.borderColor = color
+        pmWe.layer.borderWidth = 1
+        //thursday
+        amTh.layer.borderColor = color
+        amTh.layer.borderWidth = 1
+        noTh.layer.borderColor = color
+        noTh.layer.borderWidth = 1
+        pmTh.layer.borderColor = color
+        pmTh.layer.borderWidth = 1
+        //friday
+        amFr.layer.borderColor = color
+        amFr.layer.borderWidth = 1
+        noFr.layer.borderColor = color
+        noFr.layer.borderWidth = 1
+        pmFr.layer.borderColor = color
+        pmFr.layer.borderWidth = 1
+        //saturday
+        amSa.layer.borderColor = color
+        amSa.layer.borderWidth = 1
+        noSa.layer.borderColor = color
+        noSa.layer.borderWidth = 1
+        pmSa.layer.borderColor = color
+        pmSa.layer.borderWidth = 1
+        //sunday
+        amSu.layer.borderColor = color
+        amSu.layer.borderWidth = 1
+        noSu.layer.borderColor = color
+        noSu.layer.borderWidth = 1
+        pmSu.layer.borderColor = color
+        pmSu.layer.borderWidth = 1
+        
         // Set up genderpicker responder
         // TODO
     }
