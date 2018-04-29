@@ -1,9 +1,20 @@
 package com.petclump.petclump;
 
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.GestureDetector.OnGestureListener;
+import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
@@ -26,37 +37,66 @@ public class QuizActivity extends AppCompatActivity {
         return questions;
     }
 
-    //Quiz
-    private static void Quiz(){
-        //initialize lists
-        char[] answers = new char[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        List<String> ListOfQuestions= QuizQuestions();
+
+
+    private float x1,x2,y1,y2;
+    private int index = 0;
+    private int[] answers = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private final List<String> ListOfQuestions= QuizQuestions();
+    final int MIN_DISTANCE = 150;
+    //View myView = findViewById(R.id.quzView);
+    //TextView quizView = (TextView)findViewById(R.id.quzView);
 
 
 
-        for(int i=0; i<= 10; i++){
-            String Question = ListOfQuestions.get(i);
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        String Question = ListOfQuestions.get(index);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    x1 = event.getX();
+                    y1 = event.getY();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    x2 = event.getX();
+                    y2 = event.getY();
 
-            //updste current question to textview
-            //initialize buttons or swipes (yes, no, skip)
+                    float deltaX = x2 - x1;
+                    float deltaY = y2 - y1;
 
-            //on yes press
-            answers[i] = 1;
-            continue;
+                    if (Math.abs(deltaX) > MIN_DISTANCE & Math.abs(deltaY) < MIN_DISTANCE) {
+                        if (x2 > x1) {
+                            //right swipe
+                            answers[index] = 1;
+                            index = index + 1;
+                            Toast.makeText(this, "Left to Right swipe" + Arrays.toString(answers) + index, Toast.LENGTH_SHORT).show ();
+                            break;
+                     //       continue;
+                        } else {
+                            //left swipe
+                            answers[index] = 0;
+                            index = index + 1;
+                            Toast.makeText(this, "Right to Left swipe" + Arrays.toString(answers) + index, Toast.LENGTH_SHORT).show ();
+                            break;
+                         //   continue;
+                        }
 
-            //on no press
-            answers[i] = 2;
-            continue;
-
-            //on skip
-            continue;
-
-
-
-
-        }
-        //push "answers" to database
-
+                    } else {
+                        if (Math.abs(deltaY) > MIN_DISTANCE & Math.abs(deltaX) < MIN_DISTANCE) {
+                            if (y1 > y2) {
+                                //up swipe
+                                Toast.makeText(this, "Bottom to Top Swipe", Toast.LENGTH_SHORT).show ();
+                                answers[index] = 2;
+                                index = index + 1;
+                                break;
+                             //   continue;
+                            }
+                        }
+                    }
+                    break;
+            }
+   //     }
+            return super.onTouchEvent(event);
     }
 
     @Override

@@ -6,4 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".QuizActivity">
 
+    <TextView
+        android:id="@+id/quzView"
+        android:layout_width="369dp"
+        android:layout_height="493dp"
+        android:layout_marginBottom="66dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="43dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="66dp"
+        android:gravity="center"
+        android:text="Quiz!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
