@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button_add_pet"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_about_me_label"
+        app:layout_constraintTop_toBottomOf="@+id/about_my_pet_label"
         app:layout_constraintVertical_bias="1.0" />
 
 
@@ -152,7 +152,7 @@
         tools:layout_editor_absoluteY="455dp" />
 
     <TextView
-        android:id="@+id/title_about_me_label"
+        android:id="@+id/about_my_pet_label"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="7dp"
@@ -290,7 +290,7 @@
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/button_add_pet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/title_about_me_label"
+        app:layout_constraintStart_toEndOf="@+id/about_my_pet_label"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/info" />
 

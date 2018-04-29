@@ -96,7 +96,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/title_about_me_label"
+        android:id="@+id/about_my_pet_label"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"

@@ -211,7 +211,7 @@
             android:id="@+id/Label_pet_name"
             style="@style/fontStyle4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="29dp"
             android:layout_marginBottom="17dp"
             android:layout_marginEnd="324dp"
             android:layout_marginLeft="28dp"
@@ -272,9 +272,10 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="312dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="24dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Label_pet_name" />
 
