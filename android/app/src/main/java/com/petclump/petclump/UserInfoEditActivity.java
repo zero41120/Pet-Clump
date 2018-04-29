@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileUIUpdator{
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -42,6 +42,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     Date birthday;
+    private OwnerProfile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             finish();
         }
         setupUI();
-        downloadData();
     }
 
     private void setupUI(){
@@ -89,7 +89,11 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             year_array_string[75-i] = String.valueOf(year);
             year -= 1;
         }
-
+        // get pet_num by extra, sent from UserInfoActivity
+        // Bundle extras = getIntent().getExtras();
+        // if(extras != null){
+        //    pet_num = extras.getInt("pet_num");
+        //}
 
         //edit_name_button.setOnClickListener(v ->nameChangeClick());
         save_button.setOnClickListener(v -> saveData());
@@ -124,40 +128,34 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+        profile = new OwnerProfile();
+        profile.download(user.getUid(),this);
     }
 
+    @Override
+    public void UpdateUI() {
+        if(null == profile){
+            Log.d(TAG,"_update without setting up profile");
+        }
 
-    private void downloadData(){
-        if (user == null){ return; }
-        String uid = user.getUid();
+        user_name_editText.setText(profile.getName());
+        int index = getSpinnerPosition(user_select_gender, profile.getGender());
+        user_select_gender.setSelection(index);
+        Calendar gcBirthday = new GregorianCalendar();
+        gcBirthday.setTime((Date)profile.getBirthday());
+        index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
+        user_dob_year.setSelection(index);
 
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
-        mDocRef.addSnapshotListener((snap, error) -> {
-            if (error != null) {
-                Log.d(TAG, "Download failed: " + error.toString());
-                return;
-            }
-            if (snap == null)   { return; }
-            if (!snap.exists()) { return; }
-            Map<String, Object> ref = snap.getData();
-            user_name_editText.setText(ref.get("name").toString());
-            int index = getSpinnerPosition(user_select_gender, ref.get("gender"));
-            user_select_gender.setSelection(index);
-            Calendar gcBirthday = new GregorianCalendar();
-            gcBirthday.setTime((Date)ref.get("birthday"));
-            index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
-            user_dob_year.setSelection(index);
-
-            index = gcBirthday.get(Calendar.MONTH)-1;
-            Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
-            user_dob_month.setSelection(index);
-            index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
-            user_dob_day.setSelection(index);
-            String range = ref.get("distancePerference").toString();
-            match_range_value.setText(stringToProgressText(range));
-            user_match_range_seekbar.setProgress(stringToProgress(range));
-        });
+        index = gcBirthday.get(Calendar.MONTH);
+        Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
+        user_dob_month.setSelection(index);
+        index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
+        user_dob_day.setSelection(index);
+        String range = String.valueOf(profile.getDistancePerference());
+        match_range_value.setText(stringToProgressText(range));
+        user_match_range_seekbar.setProgress(stringToProgress(range));
     }
+
 
     private Integer getSpinnerPosition(Spinner spinner, Object item){
         return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
@@ -204,7 +202,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void saveData() {
-        OwnerProfile profile = new OwnerProfile(user.getUid());
+        OwnerProfile profile = new OwnerProfile();
         profile.setGender(user_select_gender.getSelectedItem().toString());
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
@@ -218,12 +216,11 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             +"month:"+(getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1
         )+"\n");
         profile.setBirthday(birthday.getTime());
-        profile.upload(c);
+        profile.upload(user.getUid(),c);
         finish();
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
         // I'm pretty sure the control logic is incorrect.
         // An item was selected. You can retrieve the selected item using

@@ -21,13 +21,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.petclump.petclump.models.OwnerProfile;
+import com.petclump.petclump.models.Profile;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity implements ProfileUIUpdator {
     private static final String TAG = "User Info Activity";
     private int number_of_pets = 1;
     private ImageButton button_add_pet, button_why;
@@ -39,6 +40,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private ConstraintLayout constraintLayout;
     private ConstraintSet constraintSet;
     private Date birthday;
+    private OwnerProfile profile;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -50,7 +52,6 @@ public class UserInfoActivity extends AppCompatActivity {
             finish();
         }
         setupUI();
-        downloadData();
     }
 
     private void setupUI(){
@@ -83,33 +84,25 @@ public class UserInfoActivity extends AppCompatActivity {
             startActivity(new Intent(c, Popup.class))
         );
 
-        edit_button.setOnClickListener(v -> startActivity(new Intent(c, UserInfoEditActivity.class)));
-
+        edit_button.setOnClickListener(v-> startActivity(new Intent(c, UserInfoEditActivity.class)));
+        profile = new OwnerProfile();
+        profile.download(user.getUid(), this);
     }
 
-    private void downloadData(){
-        if (user == null){ return; }
-        String uid = user.getUid();
-
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
-        mDocRef.addSnapshotListener((snap, error) -> {
-            if (error != null) {
-                Log.d(TAG, "Download failed: " + error.toString());
-                return;
-            }
-            if (snap == null)   { return; }
-            if (!snap.exists()) { return; }
-            Map<String, Object> ref = snap.getData();
-            name_label.setText(ref.get("name").toString());
-            gender_label.setText(ref.get("gender").toString());
-            Calendar calendar = new GregorianCalendar();
-            calendar.setTime((Date) ref.get("birthday"));
-            String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
+    @Override
+    public void UpdateUI(){
+        if(null == profile){
+            Log.d(TAG,"_update without setting up profile");
+        }
+        name_label.setText(profile.getName());
+        gender_label.setText(profile.getGender());
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime((Date) profile.getBirthday());
+        String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
                 +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
                 +String.valueOf(calendar.get(Calendar.YEAR));
-            birthday_label.setText(t);
-            range_label.setText(ref.get("distancePerference").toString());
-        });
+        birthday_label.setText(t);
+        range_label.setText(String.valueOf(profile.getDistancePerference()));
     }
 
     private void add_pets() {
