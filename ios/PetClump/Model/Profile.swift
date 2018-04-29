@@ -13,6 +13,11 @@ import Firebase
 protocol Profile {
     func generateDictionary() -> [String: Any]
     func upload(vc: QuickAlert)
+    func download(id: String, callerView: ProfileUIUpdater)
+}
+
+protocol ProfileUIUpdater{
+    func updateUI()
 }
 
 
@@ -28,7 +33,7 @@ protocol Profile {
  */
 class OwnerProfile: Profile{
     
-    let id: String
+    var id: String = "error_id"
     var name: String = "No name"
     var birthday: Date = Date()
     var gender: String = "Apache"
@@ -41,11 +46,33 @@ class OwnerProfile: Profile{
      * This is the id initializer. When loading a profile, only logged in user
      * may construct this object.
      */
-    init(id: String) {
-        if let _ = Auth.auth().currentUser?.uid{
-            self.id = id
-        } else {
-            self.id = "error_id"
+    init() {}
+
+    func download(id: String, callerView: ProfileUIUpdater){
+        // Opens document
+        let docRef =  Firestore.firestore().collection("users").document(id)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Unwraps data object
+                let refObj = document.data()!
+                print("Document data: \(refObj.description)")
+                
+                // Gets user information
+                self.name = refObj["name"] as? String ?? ""
+                self.gender = refObj["gender"] as? String ?? ""
+                
+                // Gets user birthdat and parse it
+                if let bd = refObj["birthday"] as? Timestamp{
+                    self.birthday = bd.dateValue()
+                }
+                
+                // Gets match perference and updates the slider
+                self.distancePerference = refObj["distancePerference"] as? Int ?? 25
+                
+                // Gets Freetime and convert to Free schedule
+                self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
+            }
+            callerView.updateUI()
         }
     }
     
@@ -76,7 +103,12 @@ class OwnerProfile: Profile{
             print("Uploaded successfully for user " + self.id)
         }
     }
-
+    
+    func getBirthdayString() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        return dateFormatter.string(from: self.birthday)
+    }
 }
 
 class FreeSchedule{
