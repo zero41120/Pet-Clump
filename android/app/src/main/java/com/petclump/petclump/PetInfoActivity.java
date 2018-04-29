@@ -25,24 +25,7 @@ public class PetInfoActivity extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if(user == null){
-            Log.d(TAG, "onCreate: User not logged in");
-            finish();
-        }
-        setupUI();
-        //downloadData();
-    }
-    private void setupUI(){
-        setContentView(R.layout.activity_pet_info);
-        c = getApplicationContext();
-        Button b = (Button)findViewById(R.id.button2);
-        b.setOnClickListener(v -> startActivity(new Intent(c, PetInfoEditActivity.class)));
-    }
-    private void downloadData(){
+    
 
     Button Button_to_quiz, Button_return;
     ImageButton Button_edit;
