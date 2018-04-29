@@ -115,12 +115,6 @@ class FreeSchedule{
     var freeMatrix = Array(repeating: Array(repeating: false, count: 3), count:7)
     var freeTimeAsString: String
     
-    enum PartDay: Int { case Morning = 0, AfterNoon = 1, Night = 2 }
-    enum WeekDay: Int {
-        case Monday = 0, Tuesday = 1, Wednesday = 2, Thursday = 3, Friday = 4,
-             Saturday = 5, Sunday = 6
-    }
-    
     init(freeString: String){
         self.freeTimeAsString = freeString
         var chars = Array(freeString), manCounter = 0, weekCounter = 0
@@ -136,8 +130,8 @@ class FreeSchedule{
         }
     }
     
-    func isFree(weekDay: WeekDay, partDay: PartDay) -> Bool {
-        return freeMatrix[weekDay.rawValue][partDay.rawValue]
+    func isFree(weekDay: Int, partDay: Int) -> Bool {
+        return freeMatrix[weekDay][partDay]
     }
     
     func getCommonFreeTime(other: FreeSchedule) -> FreeSchedule{
