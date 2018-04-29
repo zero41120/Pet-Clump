@@ -13,7 +13,6 @@ public enum Specie {
     GOAT, HAMSTER, HORSE, PIG, RABBIT, SNAKE, TURTLE,
     OCTOPUS, LLAMA, EAGLE, OTHER;
 
-
     public String getName(Context applicationContext){
         Resources R = applicationContext.getResources();
         String packageName = applicationContext.getPackageName();

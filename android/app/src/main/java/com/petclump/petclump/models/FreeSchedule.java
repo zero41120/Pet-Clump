@@ -37,4 +37,5 @@ class FreeSchedule{
             if (manCounter == 0) { weekCounter += 1; }
         }
     }
+
 }

@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.petclump.petclump.ProfileUIUpdator;
 import com.petclump.petclump.R;
 
 import java.io.IOException;
@@ -26,7 +27,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * This is the onwer profile data model
@@ -40,22 +40,14 @@ import static com.facebook.FacebookSdk.getApplicationContext;
  */
 public class OwnerProfile implements Profile {
     /*** data field ***/
-    final String id;
-    String name     = "No name";
-    String gender   = "Apache";
-    Date birthday   = new Date();
-    int distancePerference = 5;
-    double lat = 0.0 ,lon = 0.0;
-    FreeSchedule freeTime = new  FreeSchedule("");
+    private String name     = "No name";
+    private String gender   = "Apache";
+    private Date birthday   = new Date();
+    private int distancePerference = 5;
+    private double lat = 0.0 ,lon = 0.0;
+    private FreeSchedule freeTime = new FreeSchedule("");
 
-    public OwnerProfile (String id){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user != null) {
-            this.id = id;
-        } else {
-            this.id = "error_id";
-        }
-    }
+    public OwnerProfile (){}
     public static String num_month(int num){
         switch(num){
             case 1: return "Jan";
@@ -76,7 +68,6 @@ public class OwnerProfile implements Profile {
     @Override
     public Map<String,Object> generateDictionary(){
         Map<String, Object> temp= new HashMap<>();
-        temp.put("id", id);
         temp.put("lat",lat);
         temp.put("lon",lon);
         temp.put("name",name);
@@ -87,24 +78,49 @@ public class OwnerProfile implements Profile {
         return temp;
     }
     @Override
-    public void upload(Context c){
+    public void upload(String id, Context c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
             Toast.makeText(c, "OwnerProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
         }
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(this.id);
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(id);
         docRef.set(generateDictionary()).addOnCompleteListener(task -> {
             String message = "";
             if(task.isSuccessful()) {
-                message += "Upload successful for user: " + this.id;
+                message += "Upload successful for user: " + id;
             }
             Log.d("Profile", "upload: " + message);
+        });
+    }
+    @Override
+    public void download(String id, ProfileUIUpdator c){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String TAG = "OwnerProfile_"+name;
+        if (user == null){ Log.w(TAG,"empty user");  return; }
+        String uid = user.getUid();
+        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+
+        mDocRef.addSnapshotListener((snap, error) -> {
+            if (error != null) {
+                Log.d(TAG, "Download failed: " + error.toString());
+                return;
+            }
+
+            if (snap == null)   { return; }
+            if (!snap.exists()) { return; }
+            Map<String, Object> ref = snap.getData();
+            this.name = (String) ref.get("name");
+            Log.d(TAG, "Download successfully" + name);
+            this.gender = (String) ref.get("gender");
+            this.birthday = (Date) ref.get("birthday");
+            this.distancePerference = Integer.parseInt(ref.get("distancePerference").toString());
+            this.lat = (Double)ref.get("lat");
+            this.lon = (Double)ref.get("lon");
+            this.freeTime = new FreeSchedule((String) ref.get("freeTime"));
+            c.UpdateUI();
         });
 
     }
 
-    public String getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -153,7 +169,6 @@ public class OwnerProfile implements Profile {
     public void setLon(double lon) {
         this.lon = lon;
     }
-
     public FreeSchedule getFreeTime() {
         return freeTime;
     }
