@@ -136,6 +136,7 @@ class UserDataSettingVC: UIViewController{
         self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
     }
     
+
     @IBAction func tapUploadProfile(_ sender: Any) {
         guard (Auth.auth().currentUser != nil) else { return }
         let uid = Auth.auth().currentUser!.uid
@@ -146,6 +147,28 @@ class UserDataSettingVC: UIViewController{
         profile.gender   = genderTextField.text!
         profile.birthday = self.datePicker!.date
         profile.distancePerference = Int(matchSlider.value)
+        
+        //set up the weekly-schedule and svae it.
+        var someArray: [String] = [String](repeating: "0", count: 21)
+        
+        for view in self.view.subviews as [UIView] {
+            if let imageView = view as? UIImageView {
+        
+                let week = imageView.tag / 10
+                let part = imageView.tag % 10
+                let num = ( week - 1 ) * 3 + part-1
+                
+                if imageView.backgroundColor == UIImageView.getDefaultSelectedColor() {
+                    someArray[num] = "1"
+                }
+                else {
+                    someArray[num] = "0"
+                }
+            }
+        }
+        let freeString = someArray.joined(separator: "")
+        profile.freeTime = FreeSchedule(freeString: freeString)
+        
         
         // Uploads the profile
         profile.upload(vc: self)
