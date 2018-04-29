@@ -9,8 +9,9 @@ import UIKit
 import Firebase
 
 
-class UserDataViewVC: UIViewController{
+class UserDataViewVC: UIViewController, ProfileUIUpdater{
     
+    var profile: OwnerProfile = OwnerProfile()
     // Title Labels
     @IBOutlet weak var titleNameLabel:       UILabel!
     @IBOutlet weak var titleMyPetLabel:      UILabel!
@@ -27,11 +28,10 @@ class UserDataViewVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        self.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.setupData()
+        self.setupUI()
     }
     
     func setupUI(){
@@ -41,45 +41,35 @@ class UserDataViewVC: UIViewController{
         self.titleGenderLabel.text     = NSLocalizedString("Gender", comment: "This is the tile for specifying the gender of the user. It's not the sex of the user.")
         self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
         self.hideKeyboardWhenTappedAround()
+        if let uid = Auth.auth().currentUser?.uid{
+            profile.download(id: uid, callerView: self)
+        }
     }
     
     // This method downloads the user data from Firestore
-    func setupData(){
+    func updateUI() {
         
-        // Verify user is logged in
-        guard let id = Auth.auth().currentUser?.uid else { return }
-        print("Downloading for id: " + id)
-
-        // Opens document
-        let docRef =  Firestore.firestore().collection("users").document(id)
-        docRef.getDocument { (document, error) in
-            
-            // Unwraps data object
-            guard let document = document, document.exists else { return }
-            let refObj = document.data()!
-            print("Finish Downloading: \(refObj.description)")
-
-            // Gets user information
-            self.nameLabel.text = refObj["name"] as? String ?? ""
-            self.genderLabel.text = refObj["gender"] as? String ?? ""
-
-            // Gets user birthdat and parse it
-            if let bd = refObj["birthday"] as? Timestamp{
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy/MM/dd"
-                self.birthdayLabel.text = dateFormatter.string(from: bd.dateValue())
-            }
-
-            // Gets match perference and updates the slider
-            self.matchSlider.setValue(Float(refObj["distancePerference"] as? Int ?? 25), animated: true)
-            let range = Int(self.matchSlider.value)
-            self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
-        }
+        // Gets user information
+        self.nameLabel.text = profile.name
+        self.genderLabel.text = profile.gender
+        self.birthdayLabel.text = profile.getBirthdayString()
+ 
+        // Gets match perference and updates the slider
+        self.matchSlider.setValue(Float(profile.distancePerference), animated: true)
+        let range = Int(self.matchSlider.value)
+        self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
     }
     
     // Dismisses the view
     @IBAction func tapCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is UserDataSettingVC {
+            let vc = segue.destination as? UserDataSettingVC
+            vc?.profile = self.profile
+        }
     }
 }
 
