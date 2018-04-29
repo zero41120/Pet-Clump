@@ -1,7 +1,6 @@
 package com.petclump.petclump;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -15,9 +14,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -75,7 +72,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         user_dob_month.setOnItemSelectedListener(this);
         user_dob_year = findViewById(R.id.user_dob_year);
         user_dob_year.setOnItemSelectedListener(this);
-        user_select_gender = findViewById(R.id.user_gender_spinner);
+        user_select_gender = findViewById(R.id.pet_specie);
         user_select_gender.setOnItemSelectedListener(this);
 
         save_button = findViewById(R.id.save_button);

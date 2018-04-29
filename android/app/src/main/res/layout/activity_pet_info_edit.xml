@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="@string/Gender"
+        android:text="@string/Specie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.034"
@@ -41,7 +41,7 @@
 
         android:layout_marginLeft="20dp"
         android:layout_marginTop="8dp"
-        android:text="@string/Date_of_birth"
+        android:text="@string/Age"
         app:layout_constraintBottom_toTopOf="@+id/user_dob_month"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
@@ -62,21 +62,6 @@
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/user_dob_day"
         app:layout_constraintVertical_bias="0.067" />
-
-    <Button
-        android:id="@+id/button_schedule"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="124dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@color/grey"
-        android:text="@string/My_schedule"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
     <RadioGroup
@@ -171,25 +156,6 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <SeekBar
-        android:id="@+id/match_range_seekbar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="300dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:max="3"
-        android:progress="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.234"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/pet_bio_label"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Spinner
         android:id="@+id/pet_specie"
         android:layout_width="wrap_content"
@@ -202,18 +168,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.315" />
-
-    <TextView
-        android:id="@+id/match_range_value"
-        android:layout_width="200dp"
-        android:layout_height="16dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/No_preferred_range"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/match_range_seekbar" />
 
     <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/user_name_switcher"
@@ -275,7 +229,7 @@
         app:layout_constraintGuide_begin="21dp" />
 
     <EditText
-        android:id="@+id/user_name_editText"
+        android:id="@+id/pet_name_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -284,12 +238,22 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="108dp"
         android:ems="10"
-        android:maxLength="20"
         android:inputType="textPersonName"
+        android:maxLength="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="342dp"
+        android:layout_height="138dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="348dp" />
+
 
 </android.support.constraint.ConstraintLayout>
+

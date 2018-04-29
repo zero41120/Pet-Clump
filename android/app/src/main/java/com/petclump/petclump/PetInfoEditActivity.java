@@ -8,6 +8,10 @@ public class PetInfoEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet_info_view);
+        setContentView(R.layout.activity_pet_info_edit);
+
+    }
+    private void setupUI(){
+
     }
 }
