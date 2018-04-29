@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-
-
 protocol QuickAlert {
     /**
      * This method make a alter with OK button.
