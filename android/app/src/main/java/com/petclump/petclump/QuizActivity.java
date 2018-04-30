@@ -185,7 +185,7 @@ public class QuizActivity extends AppCompatActivity {
                                     result = result * 10 + answers[i];
                                 }
                                 Intent intent = new Intent();
-                                intent.putExtra("QuizResult)", result);
+                                intent.putExtra("QuizResult", result);
                                 setResult(Activity.RESULT_OK, intent);
                                 finish();
                             }
@@ -205,7 +205,7 @@ public class QuizActivity extends AppCompatActivity {
                                     result = result * 10 + answers[i];
                                 }
                                 Intent intent = new Intent();
-                                intent.putExtra("QuizResult)", result);
+                                intent.putExtra("QuizResult", result);
                                 setResult(Activity.RESULT_OK, intent);
                                 finish();
                             }
@@ -229,7 +229,7 @@ public class QuizActivity extends AppCompatActivity {
                                         result = result * 10 + answers[i];
                                     }
                                     Intent intent = new Intent();
-                                    intent.putExtra("QuizResult)", result);
+                                    intent.putExtra("QuizResult", result);
 
                                     setResult(Activity.RESULT_OK, intent);
                                     finish();
