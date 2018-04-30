@@ -47,8 +47,9 @@ class UserDataViewVC: UIViewController, ProfileUpdater{
         case  1: id = profile.petId1
         default: id = profile.petId2
         }
-        pdv.profile = PetProfile()
-        pdv.profile!.id = id
+        pdv.ownerProfile = self.profile
+        pdv.petProfile = PetProfile()
+        pdv.petProfile!.id = id
         self.present(pdv, animated: true, completion: nil)
     }
     

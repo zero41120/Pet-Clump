@@ -63,8 +63,13 @@ class PetProfile: Profile{
             vc.makeAlert(message: "User is not signed in!")
             return
         }
-        
-        let docRef = Firestore.firestore().collection(COLLECTION_NAME).document(self.id)
+        let docRef: DocumentReference
+        if self.id == "error_id"{
+            docRef = Firestore.firestore().collection(COLLECTION_NAME).document()
+        } else {
+            docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(self.id)
+        }
+
         docRef.setData(self.generateDictionary()) { (err: Error?) in
             if let err = err{
                 vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)

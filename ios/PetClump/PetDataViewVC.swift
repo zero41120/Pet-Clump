@@ -19,15 +19,11 @@ class PetDataViewVC: UIViewController, ProfileUpdater{
     @IBOutlet weak var petSpeciesLabel: UILabel!
     @IBOutlet weak var petAgeTitleLabel: UILabel!
     @IBOutlet weak var petBioTitleLabel: UILabel!
-    
     //Information display
     @IBOutlet weak var petNameTextField: UITextField!
     @IBOutlet weak var petSpeciesTextField: UITextField!
     @IBOutlet weak var petAgeTextField: UITextField!
     @IBOutlet weak var petBioTextField: UITextView!
-    
-    
-    
     //Pet pictures display
     @IBOutlet weak var bigPetPicture: UIImageView!
     @IBOutlet weak var smallPetPicture1: UIImageView!
@@ -40,10 +36,10 @@ class PetDataViewVC: UIViewController, ProfileUpdater{
     @IBOutlet weak var petAndOwnerPic2: UIImageView!
     @IBOutlet weak var petAndOwnerPic3: UIImageView!
 
-    var profile: PetProfile?
+    var ownerProfile: OwnerProfile?
+    var petProfile:   PetProfile?
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Id is \(profile!.id)")
         setupUI()
     }
     
