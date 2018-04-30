@@ -15,10 +15,10 @@ class PetProfile: Profile{
     
     
     private let COLLECTION_NAME = "pets"
-    var bio: String     = "bio"
-    var age: String     = "As old as your grandma"
-    var name: String    = "No name"
-    var specie: String  = "Pet"
+    var bio: String     = ""
+    var age: String     = ""
+    var name: String    = ""
+    var specie: String  = "Other"
     var ownerId: String = "error_id"
     var sequence: Int   = 0
     // Image
@@ -38,6 +38,9 @@ class PetProfile: Profile{
         let generatedId = "\(uid)\(sequence)"
         let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
         docRef.getDocument { (document, error) in
+            if let e = error{
+                print(e)
+            }
             if let document = document, document.exists {
                 // Unwraps data object
                 let refObj = document.data()!

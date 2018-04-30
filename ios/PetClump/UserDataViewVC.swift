@@ -34,7 +34,7 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.setupUI()
+        self.fetchData()
     }
     
     @objc private func enterPetView(tapGestureRecognizer: UITapGestureRecognizer){
@@ -63,11 +63,19 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
                 imageView.setRounded()
                 let tap = UITapGestureRecognizer(target: self, action: #selector(enterPetView(tapGestureRecognizer:)))
                 imageView.isUserInteractionEnabled = true
-                imageView.addGestureRecognizer(tap)            }
+                imageView.addGestureRecognizer(tap)
+            }
         }
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    private func fetchData(){
         if let uid = Auth.auth().currentUser?.uid{
             profile.download(uid: uid, callerView: self)
+            let image0 = PetProfileImageDownloader.init(uid: uid, sequence: 0, imageView: pet0ImageView)
+            let image1 = PetProfileImageDownloader.init(uid: uid, sequence: 1, imageView: pet1ImageView)
+            let image2 = PetProfileImageDownloader.init(uid: uid, sequence: 2, imageView: pet2ImageView)
+            image0.download(); image1.download(); image2.download()
         }
     }
     
@@ -91,3 +99,28 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
     }
 }
 
+class PetProfileImageDownloader: ProfilerDownloader{
+    private let imageView: UIImageView
+    private var petProfile: PetProfile?
+    private let uid: String
+    private let sequence: Int
+
+    init(uid: String, sequence: Int, imageView: UIImageView){
+        self.imageView = imageView
+        self.uid = uid
+        self.sequence = sequence
+    }
+    
+    func download(){
+        petProfile = PetProfile()
+        petProfile!.sequence = self.sequence
+        petProfile!.download(uid: self.uid, callerView: self)
+    }
+    
+    func didCompleteDownload() {
+        print("did finish download image for - \(petProfile!.name) -")
+        if petProfile!.name != ""{
+            imageView.backgroundColor = UIColor.green
+        }
+    }
+}
