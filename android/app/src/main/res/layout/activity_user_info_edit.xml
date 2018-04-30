@@ -1,4 +1,8 @@
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,10 +20,10 @@
         android:text="@string/Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <TextView
         android:id="@+id/pet_specie_label"
@@ -29,15 +33,15 @@
         android:text="@string/Gender"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/pet_name_label"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.107" />
 
     <TextView
         android:id="@+id/pet_age"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="15dp"
         android:layout_marginBottom="8dp"
 
         android:layout_marginLeft="20dp"
@@ -45,10 +49,10 @@
         android:text="@string/Date_of_birth"
         app:layout_constraintBottom_toTopOf="@+id/user_dob_month"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/pet_specie"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintVertical_bias="0.481" />
 
     <TextView
         android:id="@+id/pet_bio_label"
@@ -63,21 +67,6 @@
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/user_dob_day"
         app:layout_constraintVertical_bias="0.067" />
-
-    <Button
-        android:id="@+id/button_schedule"
-        android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="124dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@color/grey"
-        android:text="@string/My_schedule"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
     <RadioGroup
@@ -119,26 +108,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/user_dob_year"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintVertical_bias="0.358" />
 
     <Spinner
         android:id="@+id/user_dob_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/user_dob_month"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.355" />
 
     <Spinner
         android:id="@+id/user_dob_year"
@@ -150,10 +139,10 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toEndOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.359" />
 
 
 
@@ -181,13 +170,13 @@
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginStart="84dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintVertical_bias="0.239" />
 
     <TextView
         android:id="@+id/user_match_value"
@@ -203,19 +192,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/user_match_value_seekbar" />
-
-    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/user_name_switcher"
-        android:layout_width="153dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/pet_name_label"
-        app:layout_constraintTop_toBottomOf="@id/pet_name_label"
-        app:layout_constraintVertical_bias="0.044">
-
-    </ViewSwitcher>
 
     <Button
         android:id="@+id/save_button"
@@ -271,20 +247,23 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="148dp"
         android:ems="10"
-        android:maxLength="20"
         android:inputType="textPersonName"
+        android:maxLength="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="373dp"
-        android:layout_height="300dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="521dp">
+        android:layout_height="504dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_match_value">
 
         <TableRow
             android:layout_width="match_parent"
@@ -296,14 +275,46 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/schedule_gray"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="779dp" />
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/schedule_gray"
+                tools:layout_editor_absoluteX="81dp"
+                tools:layout_editor_absoluteY="779dp" /></TableRow>
+
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
 
-
+    <TextView
+        android:id="@+id/free_schedule_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="309dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="309dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/Free_schedule"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_match_value"
+        app:layout_constraintVertical_bias="0.635" />
 
 
 </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
