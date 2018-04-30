@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Label_pet_old">
+            app:layout_constraintTop_toBottomOf="@+id/pet_bio">
 
 
             <Button
@@ -142,10 +142,10 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="72dp"
             android:text="DUGGYY"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintHorizontal_bias="0.446"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -154,9 +154,9 @@
             style="@style/fontStyle3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="56dp"
             android:text="DUGGYY and I "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pet_profile_4" />
@@ -200,9 +200,9 @@
             style="@style/fontStyle3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="312dp"
-            android:layout_marginRight="312dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginEnd="188dp"
+            android:layout_marginRight="188dp"
+            android:layout_marginTop="40dp"
             android:text="@string/info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -262,9 +262,9 @@
             android:layout_marginTop="21dp"
             android:text="@string/Bio"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pet_age_label" />
+            app:layout_constraintTop_toBottomOf="@+id/pet_age" />
 
-        <TextView
+        <EditText
             android:id="@+id/pet_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -279,7 +279,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Label_pet_name" />
 
-        <TextView
+        <EditText
             android:id="@+id/pet_specie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -293,8 +293,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Label_pet_specie" />
 
-        <TextView
-            android:id="@+id/pet_age_label"
+        <EditText
+            android:id="@+id/pet_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -304,7 +304,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Label_pet_old" />
 
-        <TextView
+        <EditText
             android:id="@+id/pet_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -312,6 +312,8 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
             android:text="TextView"
+            android:lines="6"
+            android:maxLength="500"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_pet_bio" />
 
@@ -319,13 +321,41 @@
             android:id="@+id/Button_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="52dp"
             android:background="@null"
             app:layout_constraintStart_toEndOf="@+id/info_label"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:srcCompat="@drawable/pencil" />
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="42dp"
+            android:text="@android:string/cancel"
+            app:layout_constraintEnd_toStartOf="@+id/info_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Button_edit"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

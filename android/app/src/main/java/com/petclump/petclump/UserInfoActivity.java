@@ -76,9 +76,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileUIUpda
             startActivity(new Intent(c, PetInfoActivity.class))
         );
 
-        button_add_pet = findViewById(R.id.button_add_pet);
-        button_add_pet.setOnClickListener(v -> add_pets());
-
         button_why = findViewById(R.id.button_why);
         button_why.setOnClickListener(v ->
             startActivity(new Intent(c, Popup.class))
@@ -103,23 +100,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileUIUpda
                 +String.valueOf(calendar.get(Calendar.YEAR));
         birthday_label.setText(t);
         range_label.setText(String.valueOf(profile.getDistancePerference()));
-    }
-
-    private void add_pets() {
-        if (1 == number_of_pets) {
-            number_of_pets += 1;
-            profile_pet2.setVisibility(View.VISIBLE);
-            //name_pet2.setVisibility(View.VISIBLE);
-
-        } else if (2 == number_of_pets) {
-            number_of_pets += 1;
-            profile_pet3.setVisibility(View.VISIBLE);
-            //name_pet3.setVisibility(View.VISIBLE);
-
-        } else {//if 3==number
-            Toast toast = Toast.makeText(c, "you've reached the maximum pet number!", Toast.LENGTH_LONG);
-            toast.show();
-        }
     }
 }
 
