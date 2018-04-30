@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataSettingVC: UIViewController, ProfileUpdater{
+class UserDataSettingVC: UIViewController, ProfilerDownloader{
 
     // Profile from UserDataViewVC
     var profile: OwnerProfile = OwnerProfile()
@@ -36,13 +36,13 @@ class UserDataSettingVC: UIViewController, ProfileUpdater{
         super.viewDidLoad()
         self.setupUI()
         if let uid = Auth.auth().currentUser?.uid {
-            profile.download(id: uid, callerView: self)
+            profile.download(uid: uid, callerView: self)
         }
     }
     
     
     // This method downloads the user data from Firestore
-    func onComplete() {
+    func didCompleteDownload() {
         // Gets user information
         self.nameTextField.text = profile.name
         self.genderTextField.text = profile.gender
@@ -137,11 +137,9 @@ class UserDataSettingVC: UIViewController, ProfileUpdater{
 
     @IBAction func tapUploadProfile(_ sender: Any) {
         guard (Auth.auth().currentUser != nil) else { return }
-        let uid = Auth.auth().currentUser!.uid
         
         // Creates a profile object
         let profile = OwnerProfile()
-        profile.id       = uid
         profile.name     = nameTextField.text!
         profile.gender   = genderTextField.text!
         profile.birthday = self.datePicker!.date
@@ -169,8 +167,8 @@ class UserDataSettingVC: UIViewController, ProfileUpdater{
         profile.freeTime = FreeSchedule(freeString: freeString)
         
         
-        // Uploads the profile
-        profile.upload(vc: self)
+        // Uploads the profile with empty completed action
+        profile.upload(vc: self, callerView: nil)
         // Exit edit view
         self.dismiss(animated: true, completion: nil)
         

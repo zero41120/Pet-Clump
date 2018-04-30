@@ -8,10 +8,10 @@
 import UIKit
 import Firebase
 
+class UserDataViewVC: UIViewController, ProfilerDownloader{
 
-class UserDataViewVC: UIViewController, ProfileUpdater{
-    
     var profile: OwnerProfile = OwnerProfile()
+    
     // Title Labels
     @IBOutlet weak var titleNameLabel:       UILabel!
     @IBOutlet weak var titleMyPetLabel:      UILabel!
@@ -41,15 +41,13 @@ class UserDataViewVC: UIViewController, ProfileUpdater{
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
         let imageView = tapGestureRecognizer.view as! UIImageView
-        let id: String, sequence: Int
+        let sequence: Int
         switch imageView.tag {
-        case  0: id = profile.petId0; sequence = 0
-        case  1: id = profile.petId1; sequence = 1
-        default: id = profile.petId2; sequence = 2
+            case  0: sequence = 0
+            case  1: sequence = 1
+            default: sequence = 2
         }
-        pdv.ownerProfile = self.profile
         pdv.petProfile = PetProfile()
-        pdv.petProfile!.id = id
         pdv.petProfile!.sequence = sequence
         self.present(pdv, animated: true, completion: nil)
     }
@@ -69,13 +67,12 @@ class UserDataViewVC: UIViewController, ProfileUpdater{
         }
         self.hideKeyboardWhenTappedAround()
         if let uid = Auth.auth().currentUser?.uid{
-            profile.download(id: uid, callerView: self)
+            profile.download(uid: uid, callerView: self)
         }
     }
     
     // This method downloads the user data from Firestore
-    func onComplete() {
-        
+    func didCompleteDownload() {
         // Gets user information
         self.nameLabel.text = profile.name
         self.genderLabel.text = profile.gender
@@ -86,6 +83,7 @@ class UserDataViewVC: UIViewController, ProfileUpdater{
         let range = Int(self.matchSlider.value)
         self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
     }
+    
     
     // Dismisses the view
     @IBAction func tapCancel(_ sender: Any) {

@@ -11,13 +11,15 @@ import CoreLocation
 import Firebase
 
 class PetProfile: Profile{
+
+    
+    
     private let COLLECTION_NAME = "pets"
-    var id: String      = "error_id"
     var bio: String     = "bio"
     var age: String     = "As old as your grandma"
     var name: String    = "No name"
     var specie: String  = "Pet"
-    var ownerId: String = "error_owner_id"
+    var ownerId: String = "error_id"
     var sequence: Int   = 0
     // Image
     var mainPhoto: [UInt8] = []
@@ -30,10 +32,11 @@ class PetProfile: Profile{
     var groupPhoto0: [UInt8] = []
     var groupPhoto1: [UInt8] = []
     var groupPhoto2: [UInt8] = []
-    
-    func download(id: String, callerView: ProfileUpdater){
+
+    func download(uid: String, callerView: ProfilerDownloader?) {
         // Opens document
-        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(id)
+        let generatedId = "\(uid)\(sequence)"
+        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 // Unwraps data object
@@ -41,19 +44,19 @@ class PetProfile: Profile{
                 print("Document data: \(refObj.description)")
                 
                 // Gets user information
-                self.id      = id
                 self.name    = refObj["name"] as? String ?? ""
                 self.age     = refObj["age"]  as? String ?? ""
+                self.bio     = refObj["bio"]  as? String ?? ""
                 self.specie  = refObj["spe"]  as? String ?? ""
                 self.ownerId = refObj["owner_id"] as? String ?? ""
             }
-            callerView.onComplete()
+            guard (callerView != nil) else { return }
+            callerView!.didCompleteDownload()
         }
     }
     
     func generateDictionary() -> [String : Any] {
         return [
-            "id":   id,
             "bio":  bio,
             "age":  age,
             "name": name,
@@ -63,23 +66,20 @@ class PetProfile: Profile{
         ]
     }
     
-    func upload(vc: QuickAlert) {
-        guard Auth.auth().currentUser != nil else {
+    func upload(vc: QuickAlert, callerView: ProfileUploader?) {
+        guard let uid = Auth.auth().currentUser?.uid else {
             vc.makeAlert(message: "User is not signed in!")
             return
         }
-        let docRef: DocumentReference
-        if self.id == "error_id"{
-            docRef = Firestore.firestore().collection(COLLECTION_NAME).document()
-        } else {
-            docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(self.id)
-        }
-
+        let generatedId = "\(uid)\(sequence)"
+        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
         docRef.setData(self.generateDictionary()) { (err: Error?) in
             if let err = err{
                 vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
             }
-            print("Uploaded successfully for pet " + self.id)
+            print("Uploaded successfully for pet " + generatedId)
+            guard (callerView != nil) else { return }
+            callerView!.didCompleteUpload()
         }
     }
 }

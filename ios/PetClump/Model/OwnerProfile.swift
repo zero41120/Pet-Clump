@@ -21,23 +21,23 @@ import Firebase
  * - freeTime: this is a 7*3 bool matrix for free time. In the initlizer, it's a 21 character string with 1 mark as free.
  */
 class OwnerProfile: Profile{
+    func upload(vc: QuickAlert, callerView: ProfileUploader?) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let docRef = Firestore.firestore().collection("users").document(uid)
+        docRef.setData(self.generateDictionary()) { (err: Error?) in
+            if let err = err{
+                vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
+            }
+            print("Uploaded successfully for user " + uid)
+            guard (callerView != nil) else { return }
+            callerView!.didCompleteUpload()
+        }
+    }
     
-    private let COLLECTION_NAME:String = "users"
-    var id: String = "error_id"
-    var name: String = "No name"
-    var birthday: Date = Date()
-    var gender: String = "Apache"
-    var distancePerference: Int = 5
-    var lat: Double = 0.0
-    var lon: Double = 0.0
-    var freeTime = FreeSchedule(freeString: "")
-    var petId0 = "error_id"
-    var petId1 = "error_id"
-    var petId2 = "error_id"
-    
-    func download(id: String, callerView: ProfileUpdater){
+    func download(uid: String, callerView: ProfilerDownloader?) {
         // Opens document
-        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(id)
+        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(uid)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 // Unwraps data object
@@ -59,39 +59,32 @@ class OwnerProfile: Profile{
                 // Gets Freetime and convert to Free schedule
                 self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
             }
-            callerView.onComplete()
+            guard (callerView != nil) else { return }
+            callerView!.didCompleteDownload()
         }
     }
     
+    
+    private let COLLECTION_NAME:String = "users"
+    var name: String = "No name"
+    var birthday: Date = Date()
+    var gender: String = "Apache"
+    var distancePerference: Int = 5
+    var lat: Double = 0.0
+    var lon: Double = 0.0
+    var freeTime = FreeSchedule(freeString: "")
+
+    
     func generateDictionary() -> [String : Any] {
         return [
-            "id":   id ,
             "lat":  lat ,
             "lon":  lon ,
             "name": name ,
             "gender":   gender ,
             "birthday": birthday ,
             "freeTime": freeTime.freeTimeAsString,
-            "distancePerference": distancePerference,
-            "pet_id0": petId0,
-            "pet_id1": petId1,
-            "pet_id2": petId2
+            "distancePerference": distancePerference
         ]
-    }
-    
-    func upload(vc: QuickAlert) {
-        guard Auth.auth().currentUser != nil else {
-            vc.makeAlert(message: "User is not signed in!")
-            return
-        }
-        
-        let docRef = Firestore.firestore().collection("users").document(id)
-        docRef.setData(self.generateDictionary()) { (err: Error?) in
-            if let err = err{
-                vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
-            }
-            print("Uploaded successfully for user " + self.id)
-        }
     }
     
     func getBirthdayString() -> String{

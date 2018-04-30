@@ -62,11 +62,10 @@ class FirestoreLearningVC: UIViewController{
     }
     
     @IBAction func tapUploadProfile(_ sender: Any) {
-        if let id = Auth.auth().currentUser?.uid {
+        if let _ = Auth.auth().currentUser?.uid {
             let profile = OwnerProfile()
-            profile.id = id
             profile.name = "Jimmy"
-            profile.upload(vc: self)
+            profile.upload(vc: self, callerView: nil)
         }
     }
     @IBAction func tapDownloadProfile(_ sender: Any) {
