@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileUpdator {
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileDownloader, ProfileUploader {
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -130,7 +131,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
     @Override
-    public void onComplete() {
+    public void didCompleteDownload() {
         if(null == profile){
             Log.d(TAG,"_update without setting up profile");
         }
@@ -213,7 +214,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             +"month:"+(getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1
         )+"\n");
         profile.setBirthday(birthday.getTime());
-        profile.upload(user.getUid(),c);
+        profile.upload(user.getUid(),this);
         finish();
     }
 
@@ -253,4 +254,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
 
+    @Override
+    public void didCompleteUpload() {
+        Toast.makeText(c, "OwnerProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
+    }
 }

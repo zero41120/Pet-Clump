@@ -10,7 +10,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.petclump.petclump.ProfileUpdator;
+import com.petclump.petclump.ProfileDownloader;
+import com.petclump.petclump.ProfileUploader;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -35,9 +36,7 @@ public class OwnerProfile implements Profile {
     private int distancePerference = 5;
     private double lat = 0.0 ,lon = 0.0;
     private FreeSchedule freeTime = new FreeSchedule("");
-    private String pet_id0 = "error_id";
-    private String pet_id1 = "error_id";
-    private String pet_id2 = "error_id";
+
 
     public OwnerProfile (){}
     public static String num_month(int num){
@@ -67,15 +66,12 @@ public class OwnerProfile implements Profile {
         temp.put("birthday",birthday);
         temp.put("freeTime",freeTime.freeString);
         temp.put("distancePerference", distancePerference);
-        temp.put("pet_id0", pet_id0);
-        temp.put("pet_id1", pet_id1);
-        temp.put("pet_id2", pet_id2);
         return temp;
     }
     @Override
-    public void upload(String id, Context c){
+    public void upload(String id, ProfileUploader c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
-            Toast.makeText(c, "OwnerProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
+            c.didCompleteUpload();
         }
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(id);
         docRef.set(generateDictionary()).addOnCompleteListener(task -> {
@@ -87,12 +83,11 @@ public class OwnerProfile implements Profile {
         });
     }
     @Override
-    public void download(String id, ProfileUpdator c){
+    public void download(String id, ProfileDownloader c){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String TAG = "OwnerProfile_"+name;
         if (user == null){ Log.w(TAG,"empty user");  return; }
-        String uid = user.getUid();
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(id);
 
         mDocRef.addSnapshotListener((snap, error) -> {
             if (error != null) {
@@ -112,31 +107,11 @@ public class OwnerProfile implements Profile {
             this.lon = (Double)ref.get("lon");
             this.freeTime = new FreeSchedule((String) ref.get("freeTime"));
 
-            if(ref.get("pet_id0") == null)
-                this.pet_id0 = "null";
-            else
-                this.pet_id0 = ref.get("pet_id0").toString();
-
-            if(ref.get("pet_id1") == null)
-                this.pet_id0 = "null";
-            else
-                this.pet_id1 = ref.get("pet_id1").toString();
-
-            if(ref.get("pet_id2") == null)
-                this.pet_id2 = "null";
-            else
-                this.pet_id2 = ref.get("pet_id2").toString();
-            c.onComplete();
+            c.didCompleteDownload();
         });
 
     }
 
-    public String getPet_id0() { return pet_id0;}
-    public String getPet_id1() { return pet_id1;}
-    public String getPet_id2() { return pet_id2;}
-    public void setPet_id0(String id){pet_id0 = id;}
-    public void setPet_id1(String id){pet_id1 = id;}
-    public void setPet_id2(String id){pet_id2 = id;}
     public String getName() {
         return name;
     }

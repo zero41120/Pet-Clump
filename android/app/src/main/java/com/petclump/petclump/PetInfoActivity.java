@@ -25,7 +25,7 @@ import android.widget.TextView;
 public class PetInfoActivity extends AppCompatActivity{
     private static final String TAG = "Pet Info Activity";
     private TextView pet_name, pet_spe, pet_age, pet_bio;
-    private String pet_id = "null";
+    private int sequence = -1;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
@@ -35,42 +35,48 @@ public class PetInfoActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pet_info);
         Bundle extras = getIntent().getExtras();
         if(extras != null && extras.get("pet_id") != null){
-            pet_id = extras.get("pet_id").toString();
+            sequence = (Integer) extras.get("sequence");
         }
 
         setupUI();
 
     }
     private void setupUI(){
-        setContentView(R.layout.activity_pet_info);
 
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
         Button_return = findViewById(R.id.Button_return);
         Button_edit = findViewById(R.id.Button_edit);
-        Button_to_quiz.setOnClickListener(v ->
-                startActivity(new Intent(this, QuizActivity.class))
-        );
-        Button_return.setOnClickListener(v ->
-                finish()
-        );
-        Button_edit.setOnClickListener(v->
-                startActivity(new Intent(this,PetInfoEditActivity.class))
-        );
+
         // set up UI
         pet_age = findViewById(R.id.pet_name);
         pet_bio = findViewById(R.id.pet_bio);
         pet_spe = findViewById(R.id.pet_specie);
         pet_name = findViewById(R.id.pet_name);
-        if(!pet_id.equals("error_id")) {
+        if(sequence != -1) {
             PetProfile profile = new PetProfile();
-            profile.download(pet_id, () -> {
+            profile.download(user.getUid()+sequence, () -> {
                 pet_age.setText(profile.getAge());
                 pet_bio.setText(profile.getBio());
                 pet_spe.setText(profile.getSpe());
                 pet_name.setText(profile.getName());
             });
         }
+        Button_to_quiz.setOnClickListener(v ->
+                startActivity(new Intent(this, QuizActivity.class))
+        );
+        Button_return.setOnClickListener(v ->
+                finish()
+        );
+        Button_edit.setOnClickListener(v->{
+            Intent i = new Intent(this, PetInfoEditActivity.class);
+            i.putExtra("sequence", sequence);
+            startActivity(i);
+        });
     }
+
+
+
 }

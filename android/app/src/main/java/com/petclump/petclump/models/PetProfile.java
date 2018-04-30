@@ -8,7 +8,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.petclump.petclump.ProfileUpdator;
+import com.petclump.petclump.ProfileDownloader;
+import com.petclump.petclump.ProfileUploader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,12 +21,12 @@ public class PetProfile implements Profile{
     private String name;
     private String owner_id;
     private Map<String, Object> ref = null;
-    private String pet_id = "error_id";
     private Integer sequence = -1;
 
 
     public PetProfile (){
     }
+
 
     public Map<String,Object> generateDictionary(){
         Map<String, Object> temp= new HashMap<>();
@@ -34,20 +35,14 @@ public class PetProfile implements Profile{
         temp.put("spe", spe);
         temp.put("name",name);
         temp.put("owner_id",owner_id);
-        temp.put("pet_id", pet_id);
         temp.put("sequence",sequence);
         return temp;
     }
-    public void upload(String id, Context c){
+    public void upload(String id, ProfileUploader c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
-            Toast.makeText(c, "PetProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
+            c.didCompleteUpload();
         }
-        DocumentReference docRef;
-        if(pet_id.equals("error_id")){
-             docRef= FirebaseFirestore.getInstance().collection("pets").document();
-        }
-        else
-            docRef= FirebaseFirestore.getInstance().collection("pets").document(pet_id);
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("pets").document(id);
 
         docRef.set(generateDictionary()).addOnCompleteListener(task -> {
             String message = "";
@@ -59,12 +54,11 @@ public class PetProfile implements Profile{
         });
     }
     @Override
-    public void download(String id, ProfileUpdator c){
+    public void download(String id, ProfileDownloader c){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String TAG = "PetProfile_"+name;
-        if (user == null){ return; }
-        String uid = user.getUid();
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("pets").document(uid);
+        if (user == null){ c.didCompleteDownload(); return;}
+        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("pets").document(id);
 
         mDocRef.addSnapshotListener((snap, error) -> {
             if (error != null) {
@@ -79,7 +73,8 @@ public class PetProfile implements Profile{
             this.spe = ref.get("spe").toString();
             this.name = ref.get("name").toString();
             this.owner_id = ref.get("owner_id").toString();
-            c.onComplete();
+            this.sequence = (Integer)ref.get("sequence");
+            c.didCompleteDownload();
         });
 
     }

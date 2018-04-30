@@ -89,33 +89,15 @@ public class UserInfoActivity extends AppCompatActivity {
 
         Intent i = new Intent(c, PetInfoActivity.class);
         profile_pet1.setOnClickListener(v->{
-
-            String pet_id = "error_id";
-            // pet_id0
-            pet_id = profile.getPet_id0().toString();
-            if(!pet_id.equals("error_id")){
-                i.putExtra("pet_id", pet_id);
-            }
+            i.putExtra("sequence", 0);
             startActivity(i);
         });
         profile_pet2.setOnClickListener(v->{
-
-            String pet_id = "error_id";
-            // pet_id1
-            pet_id = profile.getPet_id1().toString();
-            if(!pet_id.equals("error_id")){
-                i.putExtra("pet_id", pet_id);
-            }
+            i.putExtra("sequence", 1);
             startActivity(i);
         });
         profile_pet3.setOnClickListener(v->{
-
-            String pet_id = "error_id";
-            // pet_id2
-            pet_id = profile.getPet_id2().toString();
-            if(!pet_id.equals("error_id")){
-                i.putExtra("pet_id", pet_id);
-            }
+            i.putExtra("sequence", 2);
             startActivity(i);
         });
 

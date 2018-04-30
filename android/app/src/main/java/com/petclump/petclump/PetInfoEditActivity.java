@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
 
 public class PetInfoEditActivity extends AppCompatActivity {
@@ -15,26 +18,23 @@ public class PetInfoEditActivity extends AppCompatActivity {
     Button cancel_button, save_button;
     Spinner pet_specie;
     String specie_array_string[];
-    String pet_id = null;
+    private int sequence = -1;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_info_edit);
         // used to judge if its
         Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            pet_id = extras.getString("pet_id");
+        if(extras != null && extras.get("pet_id") != null){
+            sequence = (Integer) extras.get("sequence");
         }
-
         setupUI();
     }
 
     private void saveData() {
-
         finish();
-
-
     }
 
     private void setupUI(){
@@ -61,8 +61,13 @@ public class PetInfoEditActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, specie_array_string);
         adapter_specie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pet_specie.setAdapter(adapter_specie);
-
-
+        PetProfile pet = new PetProfile();
+        pet.download(user.getUid()+sequence, ()->{
+            pet_name_editText.setText(pet.getName());
+            pet_age_editText.setText(pet.getAge());
+            pet_bio_editText.setText(pet.getBio());
+            pet_specie.setSelection(Specie.num_specie(pet.getSpe().toString()));
+        });
 
     }
 }
