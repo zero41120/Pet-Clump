@@ -8,9 +8,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.petclump.petclump.ProfileUIUpdator;
+import com.petclump.petclump.ProfileUpdator;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,12 +48,12 @@ public class PetProfile implements Profile{
         });
     }
     @Override
-    public void download(String id, ProfileUIUpdator c){
+    public void download(String id, ProfileUpdator c){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String TAG = "PetProfile_"+name;
         if (user == null){ return; }
         String uid = user.getUid();
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("pets").document(uid);
 
         mDocRef.addSnapshotListener((snap, error) -> {
             if (error != null) {
@@ -64,9 +63,16 @@ public class PetProfile implements Profile{
             if (snap == null)   { return; }
             if (!snap.exists()) { return; }
             this.ref = snap.getData();
+            this.bio = ref.get("bio").toString();
+            this.age = ref.get("age").toString();
+            this.spe = ref.get("spe").toString();
+            this.name = ref.get("name").toString();
+            this.owner_id = ref.get("owner_id").toString();
+            c.onComplete();
         });
-        c.UpdateUI();
+
     }
+
     public String getOwnerId() {
         return owner_id;
     }

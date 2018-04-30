@@ -55,41 +55,20 @@
         app:layout_constraintTop_toBottomOf="@+id/gender_label" />
 
 
-    <ImageButton
-        android:id="@+id/button_add_pet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="108dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginRight="108dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="420dp"
-        android:background="@null"
-        android:src="@drawable/pencil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/user_pets"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/user_pets"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginLeft="155dp"
-        android:layout_marginRight="14dp"
-        android:layout_marginStart="155dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/My_pets"
         android:textSize="@dimen/font_size"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/profile_pet1"
-        app:layout_constraintEnd_toStartOf="@+id/button_add_pet"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/profile_pet2"
         app:layout_constraintTop_toBottomOf="@+id/about_my_pet_label"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.933"
+        tools:layout_editor_absoluteX="142dp" />
 
 
     <com.mikhaellopez.circularimageview.CircularImageView
@@ -119,7 +98,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:src="@drawable/pig_placeholder"
-        android:visibility="gone"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
@@ -139,7 +117,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:src="@drawable/ray"
-        android:visibility="gone"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"

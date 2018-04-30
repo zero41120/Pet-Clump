@@ -17,16 +17,13 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.models.OwnerProfile;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Map;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileUIUpdator{
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileUpdator {
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -133,7 +130,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
     @Override
-    public void UpdateUI() {
+    public void onComplete() {
         if(null == profile){
             Log.d(TAG,"_update without setting up profile");
         }

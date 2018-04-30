@@ -1,28 +1,17 @@
 package com.petclump.petclump.models;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.firestore.DocumentReference;
 //import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.petclump.petclump.ProfileUIUpdator;
-import com.petclump.petclump.R;
+import com.petclump.petclump.ProfileUpdator;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +35,9 @@ public class OwnerProfile implements Profile {
     private int distancePerference = 5;
     private double lat = 0.0 ,lon = 0.0;
     private FreeSchedule freeTime = new FreeSchedule("");
+    private String pet_id0 = "null";
+    private String pet_id1 = "null";
+    private String pet_id2 = "null";
 
     public OwnerProfile (){}
     public static String num_month(int num){
@@ -75,6 +67,9 @@ public class OwnerProfile implements Profile {
         temp.put("birthday",birthday);
         temp.put("freeTime",freeTime.freeString);
         temp.put("distancePerference", distancePerference);
+        temp.put("pet_id0", pet_id0);
+        temp.put("pet_id1", pet_id1);
+        temp.put("pet_id2", pet_id2);
         return temp;
     }
     @Override
@@ -92,7 +87,7 @@ public class OwnerProfile implements Profile {
         });
     }
     @Override
-    public void download(String id, ProfileUIUpdator c){
+    public void download(String id, ProfileUpdator c){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String TAG = "OwnerProfile_"+name;
         if (user == null){ Log.w(TAG,"empty user");  return; }
@@ -116,12 +111,32 @@ public class OwnerProfile implements Profile {
             this.lat = (Double)ref.get("lat");
             this.lon = (Double)ref.get("lon");
             this.freeTime = new FreeSchedule((String) ref.get("freeTime"));
-            c.UpdateUI();
+
+            if(ref.get("pet_id0") == null)
+                this.pet_id0 = "null";
+            else
+                this.pet_id0 = ref.get("pet_id0").toString();
+
+            if(ref.get("pet_id1") == null)
+                this.pet_id0 = "null";
+            else
+                this.pet_id1 = ref.get("pet_id1").toString();
+
+            if(ref.get("pet_id2") == null)
+                this.pet_id2 = "null";
+            else
+                this.pet_id2 = ref.get("pet_id2").toString();
+            c.onComplete();
         });
 
     }
 
-
+    public String getPet_id0() { return pet_id0;}
+    public String getPet_id1() { return pet_id1;}
+    public String getPet_id2() { return pet_id2;}
+    public void setPet_id0(String id){pet_id0 = id;}
+    public void setPet_id1(String id){pet_id1 = id;}
+    public void setPet_id2(String id){pet_id2 = id;}
     public String getName() {
         return name;
     }
