@@ -11,19 +11,6 @@ import Firebase
 
 class PetDataViewVC: UIViewController, ProfileUpdater{
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-    }
-    
-    func setupUI(){
-        
-    }
-    
-    func onComplete() {
-        
-    }
-    
     //Title Labels
     @IBOutlet weak var nameTitleLabel: UILabel!
     @IBOutlet weak var petAndOwnerTitleLabel: UILabel!
@@ -50,6 +37,22 @@ class PetDataViewVC: UIViewController, ProfileUpdater{
     @IBOutlet weak var petAndOwnerPic1: UIImageView!
     @IBOutlet weak var petAndOwnerPic2: UIImageView!
     @IBOutlet weak var petAndOwnerPic3: UIImageView!
+
+    var profile: PetProfile?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("Id is \(profile!.id)")
+        setupUI()
+    }
+    
+    func setupUI(){
+        
+    }
+    
+    func onComplete() {
+        
+    }
+    
     
     @IBAction func tapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

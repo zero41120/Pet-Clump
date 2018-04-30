@@ -31,9 +31,9 @@ class OwnerProfile: Profile{
     var lat: Double = 0.0
     var lon: Double = 0.0
     var freeTime = FreeSchedule(freeString: "")
-    var petId0 = ""
-    var petId1 = ""
-    var petId2 = ""
+    var petId0 = "error_id"
+    var petId1 = "error_id"
+    var petId2 = "error_id"
     
     func download(id: String, callerView: ProfileUpdater){
         // Opens document

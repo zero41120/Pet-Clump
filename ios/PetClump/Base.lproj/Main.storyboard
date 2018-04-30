@@ -809,7 +809,7 @@
         <!--Pet Data ViewVC-->
         <scene sceneID="tku-3l-9Nf">
             <objects>
-                <viewController id="N3z-EC-o4p" customClass="PetDataViewVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PetDataViewVC" id="N3z-EC-o4p" customClass="PetDataViewVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yA-b3-KnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -997,13 +997,13 @@
                     </view>
                     <size key="freeformSize" width="375" height="1300"/>
                     <connections>
-                        <outlet property="PetAndOwnePic2" destination="gj0-TS-BDU" id="Zrc-Xk-W4t"/>
                         <outlet property="bigPetPicture" destination="Xsk-cc-49C" id="Gjl-No-2yl"/>
                         <outlet property="infoTitleLabel" destination="gD5-yR-Byn" id="qC5-LL-xbX"/>
                         <outlet property="nameTitleLabel" destination="UbG-7g-raW" id="u1r-cT-dnD"/>
                         <outlet property="petAgeDisplayLabel" destination="cQu-eo-pAh" id="VBp-yl-Jpj"/>
                         <outlet property="petAgeTitleLabel" destination="nhr-8f-TK9" id="maS-t0-py5"/>
                         <outlet property="petAndOwnerPic1" destination="wlr-WQ-YcJ" id="H5c-oB-BIo"/>
+                        <outlet property="petAndOwnerPic2" destination="gj0-TS-BDU" id="5BH-cQ-VmV"/>
                         <outlet property="petAndOwnerPic3" destination="shY-nN-6a6" id="HiM-Kr-OA3"/>
                         <outlet property="petAndOwnerTitleLabel" destination="gbZ-vG-X2K" id="Qo6-74-P2U"/>
                         <outlet property="petBioDisplayLabel" destination="Gwm-Ly-ir5" id="xzj-Kp-gx2"/>
