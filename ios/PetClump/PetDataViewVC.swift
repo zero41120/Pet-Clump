@@ -93,8 +93,9 @@ class PetDataViewVC: UIViewController, ProfilerDownloader{
             petProfile!.specie = petSpeciesTextField.text!
             petProfile!.ownerId = uid
             petProfile!.upload(vc: self, callerView: nil)
+            self.makeAlert(message: NSLocalizedString("Your pet information is saved!", comment: "This is a alter message that shows up and the user tap save on the pet information viewing page."))
         }
-        self.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func tapExit(_ sender: Any) {

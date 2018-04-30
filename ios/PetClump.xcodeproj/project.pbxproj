@@ -179,21 +179,21 @@
 			isa = PBXGroup;
 			children = (
 				29C1797E207EE97D002971C5 /* Main.storyboard */,
+				29C17986207EE97F002971C5 /* Info.plist */,
+				29C17981207EE97F002971C5 /* Assets.xcassets */,
+				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
+				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				290DF24820953F2C00A64D0C /* view */,
 				29A6E5B5208EB851006352CF /* font */,
 				29B1936D208D4CD000A59783 /* image */,
 				29B19362208D310D00A59783 /* Model */,
-				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
 				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
 				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
-				29C17981207EE97F002971C5 /* Assets.xcassets */,
-				29C17986207EE97F002971C5 /* Info.plist */,
-				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
 				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
 				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
-				298FEB60209381220018F368 /* QuizVC.swift */,
 				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
+				298FEB60209381220018F368 /* QuizVC.swift */,
 				298FEB66209394D70018F368 /* MatchingVC.swift */,
 			);
 			path = PetClump;
