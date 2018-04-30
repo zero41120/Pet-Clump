@@ -7,9 +7,36 @@
 //
 
 import UIKit
-
+import Firebase
 
 class PetDataViewVC: UIViewController{
+    
+    //Title Labels
+    @IBOutlet weak var nameTitleLabel: UILabel!
+    @IBOutlet weak var petAndOwnerTitleLabel: UILabel!
+    @IBOutlet weak var infoTitleLabel: UILabel!
+    @IBOutlet weak var petNameTitleLabel: UILabel!
+    @IBOutlet weak var petSpeciesLabel: UILabel!
+    @IBOutlet weak var petAgeTitleLabel: UILabel!
+    @IBOutlet weak var petBioTitleLabel: UILabel!
+    
+    //Information display
+    @IBOutlet weak var petNameDispplayLabel: UILabel!
+    @IBOutlet weak var petSpeciesDisplayLabel: UILabel!
+    @IBOutlet weak var petAgeDisplayLabel: UILabel!
+    @IBOutlet weak var petBioDisplayLabel: UILabel!
+    
+    //Pet pictures display
+    @IBOutlet weak var bigPetPicture: UIImageView!
+    @IBOutlet weak var smallPetPicture1: UIImageView!
+    @IBOutlet weak var smallPetPicture2: UIImageView!
+    @IBOutlet weak var smallPetPicture3: UIImageView!
+    @IBOutlet weak var smallPetPicture4: UIImageView!
+    @IBOutlet weak var smallPetPicture5: UIImageView!
+    //Pet and Owner Pictures display
+    @IBOutlet weak var petAndOwnerPic1: UIImageView!
+    @IBOutlet weak var petAndOwnerPic2: UIImageView!
+    @IBOutlet weak var petAndOwnerPic3: UIImageView!
     
     @IBAction func tapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
