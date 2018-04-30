@@ -12,9 +12,14 @@
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
 		2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
+		298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFEC20969349007A6846 /* OwnerProfile.swift */; };
+		298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF0209693A7007A6846 /* PetProfile.swift */; };
+		298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF42096998C007A6846 /* GenderPicker.swift */; };
+		298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */; };
+		298BCFF920969EAB007A6846 /* SpeciePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF820969EAB007A6846 /* SpeciePicker.swift */; };
+		298BCFFE2096E213007A6846 /* LimitTextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */; };
 		298FEB61209381220018F368 /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB60209381220018F368 /* QuizVC.swift */; };
 		298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB62209393C30018F368 /* PetDataViewVC.swift */; };
-		298FEB65209393F50018F368 /* PetDataSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB64209393F50018F368 /* PetDataSettingVC.swift */; };
 		298FEB67209394D70018F368 /* MatchingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB66209394D70018F368 /* MatchingVC.swift */; };
 		29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */; };
 		29A6E5B7208EB8DB006352CF /* VarelaRound-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */; };
@@ -55,9 +60,14 @@
 		2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreLearningVC.swift; sourceTree = "<group>"; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
+		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
+		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
+		298BCFF42096998C007A6846 /* GenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPicker.swift; sourceTree = "<group>"; };
+		298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTextFieldInput.swift; sourceTree = "<group>"; };
+		298BCFF820969EAB007A6846 /* SpeciePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciePicker.swift; sourceTree = "<group>"; };
+		298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTextViewInput.swift; sourceTree = "<group>"; };
 		298FEB60209381220018F368 /* QuizVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizVC.swift; sourceTree = "<group>"; };
 		298FEB62209393C30018F368 /* PetDataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDataViewVC.swift; sourceTree = "<group>"; };
-		298FEB64209393F50018F368 /* PetDataSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetDataSettingVC.swift; sourceTree = "<group>"; };
 		298FEB66209394D70018F368 /* MatchingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingVC.swift; sourceTree = "<group>"; };
 		29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewVC.swift; sourceTree = "<group>"; };
 		29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.otf"; sourceTree = "<group>"; };
@@ -110,10 +120,40 @@
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
-				29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */,
+				298BD0002096E8CF007A6846 /* delegates */,
+				298BCFFF2096E8B8007A6846 /* extensions */,
+				298BCFFC2096DFD6007A6846 /* pickers */,
+				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 			);
 			name = view;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		298BCFFC2096DFD6007A6846 /* pickers */ = {
+			isa = PBXGroup;
+			children = (
+				298BCFF42096998C007A6846 /* GenderPicker.swift */,
+				298BCFF820969EAB007A6846 /* SpeciePicker.swift */,
+			);
+			path = pickers;
+			sourceTree = "<group>";
+		};
+		298BCFFF2096E8B8007A6846 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */,
+				29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		298BD0002096E8CF007A6846 /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */,
+				298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */,
+			);
+			path = delegates;
 			sourceTree = "<group>";
 		};
 		29A6E5B5208EB851006352CF /* font */ = {
@@ -128,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				29B19365208D31BB00A59783 /* Profile.swift */,
+				298BCFEC20969349007A6846 /* OwnerProfile.swift */,
+				298BCFF0209693A7007A6846 /* PetProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,25 +203,23 @@
 		29C17979207EE97D002971C5 /* PetClump */ = {
 			isa = PBXGroup;
 			children = (
+				29C1797E207EE97D002971C5 /* Main.storyboard */,
+				29C17986207EE97F002971C5 /* Info.plist */,
+				29C17981207EE97F002971C5 /* Assets.xcassets */,
+				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
+				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				84771F7720968FB6007385F0 /* QuizVC */,
 				290DF24820953F2C00A64D0C /* view */,
 				29A6E5B5208EB851006352CF /* font */,
 				29B1936D208D4CD000A59783 /* image */,
 				29B19362208D310D00A59783 /* Model */,
-				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
-				29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */,
 				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
 				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
-				29C1797E207EE97D002971C5 /* Main.storyboard */,
-				29C17981207EE97F002971C5 /* Assets.xcassets */,
-				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
-				29C17986207EE97F002971C5 /* Info.plist */,
-				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
 				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
 				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
 				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
-				298FEB64209393F50018F368 /* PetDataSettingVC.swift */,
+				298FEB60209381220018F368 /* QuizVC.swift */,
 				298FEB66209394D70018F368 /* MatchingVC.swift */,
 			);
 			path = PetClump;
@@ -444,17 +484,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */,
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
 				298FEB61209381220018F368 /* QuizVC.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
+				298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
+				298BCFFE2096E213007A6846 /* LimitTextViewInput.swift in Sources */,
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
+				298BCFF920969EAB007A6846 /* SpeciePicker.swift in Sources */,
+				298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */,
 				29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */,
 				29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */,
 				84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
+				298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */,
 				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
 
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,

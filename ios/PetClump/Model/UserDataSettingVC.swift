@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataSettingVC: UIViewController, ProfileUIUpdater{
+class UserDataSettingVC: UIViewController, ProfilerDownloader{
 
     // Profile from UserDataViewVC
     var profile: OwnerProfile = OwnerProfile()
@@ -30,19 +30,19 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
     var datePicker: UIDatePicker?
     var genderPicker: UIPickerView?
     var genderPickerDelegate: GenderInput?
-    var nameInputDelegate: NameInput?
+    var nameInputDelegate: LimitTextFieldInput?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
         if let uid = Auth.auth().currentUser?.uid {
-            profile.download(id: uid, callerView: self)
+            profile.download(uid: uid, callerView: self)
         }
     }
     
     
     // This method downloads the user data from Firestore
-    func updateUI() {
+    func didCompleteDownload() {
         // Gets user information
         self.nameTextField.text = profile.name
         self.genderTextField.text = profile.gender
@@ -50,6 +50,24 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
         // Gets user birthdat and parse it
         self.birthdayTextField.text = profile.getBirthdayString()
         self.datePicker!.date = profile.birthday
+        
+        // Gets weekly schedule
+        let color = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
+        for view in self.view.subviews as [UIView] {
+            if let imageView = view as? UIImageView {
+                let week = imageView.tag / 10 - 1
+                let part = imageView.tag % 10 - 1
+                imageView.layer.borderColor = color
+                imageView.layer.borderWidth = 1
+                imageView.backgroundColor = profile.freeTime.isFree(weekDay: week, partDay: part) ?
+                    UIImageView.getDefaultSelectedColor() :
+                    UIImageView.getDefaultDeselectedColor()
+                
+                let tap = UITapGestureRecognizer(target: self, action: #selector(toggleImageColor(tapGestureRecognizer:)))
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(tap)
+            }
+        }
     
         // Gets match perference and updates the slider
         self.matchSlider.setValue(Float(profile.distancePerference), animated: true)
@@ -73,7 +91,7 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
         self.hideKeyboardWhenTappedAround()
         
         // Set up delegate to limit user input to 20 characters
-        self.nameInputDelegate = NameInput()
+        self.nameInputDelegate = LimitTextFieldInput(count: 20)
         self.nameTextField.delegate = self.nameInputDelegate
 
         // Set up datepicker responder
@@ -81,23 +99,6 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
         datePicker!.datePickerMode = .date
         birthdayTextField.inputView = datePicker
         
-        // Set up weekly buttons
-        let color = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
-        for view in self.view.subviews as [UIView] {
-            if let imageView = view as? UIImageView {
-                let week = imageView.tag / 10 - 1
-                let part = imageView.tag % 10 - 1
-                imageView.layer.borderColor = color
-                imageView.layer.borderWidth = 1
-                imageView.backgroundColor = profile.freeTime.isFree(weekDay: week, partDay: part) ?
-                    UIImageView.getDefaultSelectedColor() :
-                    UIImageView.getDefaultDeselectedColor()
-                
-                let tap = UITapGestureRecognizer(target: self, action: #selector(toggleImageColor(tapGestureRecognizer:)))
-                imageView.isUserInteractionEnabled = true
-                imageView.addGestureRecognizer(tap)
-            }
-        }
         
         // Set up genderpicker responder
         genderPicker = UIPickerView()
@@ -136,11 +137,9 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
 
     @IBAction func tapUploadProfile(_ sender: Any) {
         guard (Auth.auth().currentUser != nil) else { return }
-        let uid = Auth.auth().currentUser!.uid
         
         // Creates a profile object
         let profile = OwnerProfile()
-        profile.id       = uid
         profile.name     = nameTextField.text!
         profile.gender   = genderTextField.text!
         profile.birthday = self.datePicker!.date
@@ -168,68 +167,11 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
         profile.freeTime = FreeSchedule(freeString: freeString)
         
         
-        // Uploads the profile
-        profile.upload(vc: self)
+        // Uploads the profile with empty completed action
+        profile.upload(vc: self, callerView: nil)
         // Exit edit view
         self.dismiss(animated: true, completion: nil)
         
-    }
-}
-
-class GenderInput: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
-    
-    
-    // Data for picker
-    let genderPickerData: [String] = [
-        "-",
-        NSLocalizedString("Male",   comment: "For picking the gender male"),
-        NSLocalizedString("Female", comment: "For picking the gender female"),
-        NSLocalizedString("Apache Helicotper", comment: "For picking the gender Apache, it's an attack helicotper."),
-        NSLocalizedString("Other",  comment: "For picking the gender other than male, female, and Apache")
-    ]
-    
-    /**
-     * Constructor that gets the UI to update
-     */
-    private var textField: UITextField!
-    init(textField: UITextField){
-        self.textField = textField
-    }
-    
-    // Number of rows
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genderPickerData.count
-    }
-    
-    // Number of column
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // Text on the row
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genderPickerData[row]
-    }
-    
-    // Selecting completetion
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textField.text = genderPickerData[row] != "-" ? genderPickerData[row] : genderPickerData.last
-    }
-    
-    // Disable user keyboard entry for text field
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return false
-    }
-}
-
-class NameInput: NSObject, UITextFieldDelegate {
-    // Disable user to entry more than 20 character
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print("active delegate")
-        guard let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
-        print("new len \(newLength)")
-        return newLength <= 20 // Bool
     }
 }
 
