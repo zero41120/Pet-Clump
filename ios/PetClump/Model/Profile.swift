@@ -13,6 +13,11 @@ import Firebase
 protocol Profile {
     func generateDictionary() -> [String: Any]
     func upload(vc: QuickAlert)
+    func download(id: String, callerView: ProfileUIUpdater)
+}
+
+protocol ProfileUIUpdater{
+    func updateUI()
 }
 
 
@@ -28,7 +33,7 @@ protocol Profile {
  */
 class OwnerProfile: Profile{
     
-    let id: String
+    var id: String = "error_id"
     var name: String = "No name"
     var birthday: Date = Date()
     var gender: String = "Apache"
@@ -41,24 +46,35 @@ class OwnerProfile: Profile{
      * This is the id initializer. When loading a profile, only logged in user
      * may construct this object.
      */
-    init(id: String) {
-        if let _ = Auth.auth().currentUser?.uid{
-            self.id = id
-        } else {
-            self.id = "error_id"
+    init() {}
+
+    func download(id: String, callerView: ProfileUIUpdater){
+        // Opens document
+        let docRef =  Firestore.firestore().collection("users").document(id)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Unwraps data object
+                let refObj = document.data()!
+                print("Document data: \(refObj.description)")
+                
+                // Gets user information
+                self.name = refObj["name"] as? String ?? ""
+                self.gender = refObj["gender"] as? String ?? ""
+                
+                // Gets user birthdat and parse it
+                if let bd = refObj["birthday"] as? Timestamp{
+                    self.birthday = bd.dateValue()
+                }
+                
+                // Gets match perference and updates the slider
+                self.distancePerference = refObj["distancePerference"] as? Int ?? 25
+                
+                // Gets Freetime and convert to Free schedule
+                self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
+            }
+            callerView.updateUI()
         }
     }
-//    
-//    convenience init(dic: [String: Any]){
-//        print("Constructing with: " + dic.description)
-//        self.init(id: dic["id"] as! String)
-//        self.name = dic["name"] as? String ?? self.name
-//        self.lat = dic["lat"] as? Double  ?? self.lat
-//        self.lon = dic["lon"] as? Double ?? self.lon
-//        self.gender = dic["gender"] as? String ?? self.gender
-//        self.distancePerference = dic["distancePerference"] as? Int ?? self.distancePerference
-//        self.freeTime = FreeSchedule(freeString: dic["freeTime"] as? String ?? "")
-//    }
     
     func generateDictionary() -> [String : Any] {
         return [
@@ -68,7 +84,7 @@ class OwnerProfile: Profile{
             "name": name ,
             "gender":   gender ,
             "birthday": birthday ,
-            "freeTime": freeTime.freeString,
+            "freeTime": freeTime.freeTimeAsString,
             "distancePerference": distancePerference
         ]
     }
@@ -87,26 +103,20 @@ class OwnerProfile: Profile{
             print("Uploaded successfully for user " + self.id)
         }
     }
-
+    
+    func getBirthdayString() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        return dateFormatter.string(from: self.birthday)
+    }
 }
 
 class FreeSchedule{
     var freeMatrix = Array(repeating: Array(repeating: false, count: 3), count:7)
-    var freeString: String
-    
-    enum PartDay: Int { case Morning = 0, AfterNoon = 1, Night = 2 }
-    enum WeekDay: Int {
-        case Monday = 0, Tuesday = 1, Wednesday = 2, Thursday = 3, Friday = 4,
-             Saturday = 5, Sunday = 6
-    }
-    
-    
-    func isFree(weekDay: WeekDay, partDay: PartDay) -> Bool {
-        return freeMatrix[weekDay.rawValue][partDay.rawValue]
-    }
+    var freeTimeAsString: String
     
     init(freeString: String){
-        self.freeString = freeString
+        self.freeTimeAsString = freeString
         var chars = Array(freeString), manCounter = 0, weekCounter = 0
         if chars.count != 21 {
             chars = Array("000000000000000000000")
@@ -118,6 +128,24 @@ class FreeSchedule{
             manCounter %= 3
             if manCounter == 0 { weekCounter += 1 }
         }
+    }
+    
+    func isFree(weekDay: Int, partDay: Int) -> Bool {
+        return freeMatrix[weekDay][partDay]
+    }
+    
+    func getCommonFreeTime(other: FreeSchedule) -> FreeSchedule{
+        var commonStirng = ""
+        let thisTime = Array(self.freeTimeAsString)
+        let otherTime = Array(other.freeTimeAsString)
+        for index in 0...thisTime.count {
+            if thisTime[index] == "1" && otherTime[index] == "1"{
+                commonStirng += "1"
+            } else {
+                commonStirng += "0"
+            }
+        }
+        return FreeSchedule(freeString: commonStirng)
     }
 }
 
