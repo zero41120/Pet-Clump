@@ -44,7 +44,7 @@ class PetDataViewVC: UIViewController, ProfileUpdater{
     }
     
     func setupUI(){
-        
+        self.nameTitleLabel.text       = NSLocalizedString("Pet Name", comment: "This is the title for specifying the name of the pet")
     }
     
     func onComplete() {
