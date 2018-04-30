@@ -21,10 +21,12 @@ class PetDataViewVC: UIViewController, ProfileUpdater{
     @IBOutlet weak var petBioTitleLabel: UILabel!
     
     //Information display
-    @IBOutlet weak var petNameDispplayLabel: UILabel!
-    @IBOutlet weak var petSpeciesDisplayLabel: UILabel!
-    @IBOutlet weak var petAgeDisplayLabel: UILabel!
-    @IBOutlet weak var petBioDisplayLabel: UILabel!
+    @IBOutlet weak var petNameTextField: UITextField!
+    @IBOutlet weak var petSpeciesTextField: UITextField!
+    @IBOutlet weak var petAgeTextField: UITextField!
+    @IBOutlet weak var petBioTextField: UITextView!
+    
+    
     
     //Pet pictures display
     @IBOutlet weak var bigPetPicture: UIImageView!

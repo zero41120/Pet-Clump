@@ -829,21 +829,7 @@
                                                 <action selector="tapExit:" destination="N3z-EC-o4p" id="W28-No-est"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="4L1-bn-lpm">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="hyG-0h-aDK">
-                                                <rect key="frame" x="276" y="5" width="83" height="34"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Edit">
-                                                            <attributes>
-                                                                <font key="NSFont" metaFont="system" size="15"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                </state>
-                                            </button>
-                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4L1-bn-lpm"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -917,22 +903,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxG-Nc-z8h">
-                                                <rect key="frame" x="27" y="685" width="320" height="41"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Species" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YT1-Sa-tAd">
                                                 <rect key="frame" x="26" y="734" width="61" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCH-LE-d67">
-                                                <rect key="frame" x="26" y="775" width="320" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -945,13 +917,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQu-eo-pAh">
-                                                <rect key="frame" x="26" y="864" width="320" height="43"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yad-L6-9ui">
                                                 <rect key="frame" x="26" y="923" width="25" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -959,13 +924,35 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwm-Ly-ir5">
-                                                <rect key="frame" x="26" y="952" width="320" height="237"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKj-bC-k8t">
+                                                <rect key="frame" x="26" y="685" width="320" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUI-G0-ONu">
+                                                <rect key="frame" x="26" y="776" width="320" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-qp-xsu">
+                                                <rect key="frame" x="26" y="867" width="320" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4db-At-PxJ">
+                                                <rect key="frame" x="26" y="963" width="320" height="233"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1000,18 +987,19 @@
                         <outlet property="bigPetPicture" destination="Xsk-cc-49C" id="Gjl-No-2yl"/>
                         <outlet property="infoTitleLabel" destination="gD5-yR-Byn" id="qC5-LL-xbX"/>
                         <outlet property="nameTitleLabel" destination="UbG-7g-raW" id="u1r-cT-dnD"/>
-                        <outlet property="petAgeDisplayLabel" destination="cQu-eo-pAh" id="VBp-yl-Jpj"/>
+                        <outlet property="petAgeTextField" destination="CJB-qp-xsu" id="jft-Fe-zbx"/>
                         <outlet property="petAgeTitleLabel" destination="nhr-8f-TK9" id="maS-t0-py5"/>
                         <outlet property="petAndOwnerPic1" destination="wlr-WQ-YcJ" id="H5c-oB-BIo"/>
-                        <outlet property="petAndOwnerPic2" destination="gj0-TS-BDU" id="5BH-cQ-VmV"/>
+
+                        <outlet property="petAndOwnerPic2" destination="gj0-TS-BDU" id="HkX-S5-3D8"/>
                         <outlet property="petAndOwnerPic3" destination="shY-nN-6a6" id="HiM-Kr-OA3"/>
                         <outlet property="petAndOwnerTitleLabel" destination="gbZ-vG-X2K" id="Qo6-74-P2U"/>
-                        <outlet property="petBioDisplayLabel" destination="Gwm-Ly-ir5" id="xzj-Kp-gx2"/>
+                        <outlet property="petBioTextField" destination="4db-At-PxJ" id="t8i-tc-fho"/>
                         <outlet property="petBioTitleLabel" destination="Yad-L6-9ui" id="4Ia-Wr-gIk"/>
-                        <outlet property="petNameDispplayLabel" destination="IxG-Nc-z8h" id="WjL-6P-H7h"/>
+                        <outlet property="petNameTextField" destination="vKj-bC-k8t" id="GHv-a9-7C8"/>
                         <outlet property="petNameTitleLabel" destination="fIP-tO-wpd" id="v2n-vx-8ry"/>
-                        <outlet property="petSpeciesDisplayLabel" destination="gCH-LE-d67" id="7xJ-p8-VoL"/>
                         <outlet property="petSpeciesLabel" destination="YT1-Sa-tAd" id="g1t-7L-aXp"/>
+                        <outlet property="petSpeciesTextField" destination="xUI-G0-ONu" id="8ez-f9-onq"/>
                         <outlet property="smallPetPicture1" destination="uff-lh-A1i" id="U66-Vc-Efb"/>
                         <outlet property="smallPetPicture2" destination="cmJ-qH-011" id="jSy-OZ-zKO"/>
                         <outlet property="smallPetPicture3" destination="gGo-vH-Php" id="ob6-Il-v54"/>
@@ -1021,7 +1009,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1AH-ff-BbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="790" y="175"/>
+            <point key="canvasLocation" x="789.60000000000002" y="174.38423645320196"/>
         </scene>
         <!--MatchingVC-->
         <scene sceneID="0zg-02-5nt">
