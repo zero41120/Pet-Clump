@@ -9,12 +9,22 @@
 import UIKit
 
 
-class PetDataViewVC: UIViewController{
+class PetDataViewVC: UIViewController, ProfileUpdater{
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI(){
+        
+    }
+    
+    func onComplete() {
+        
+    }
     
     @IBAction func tapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 }

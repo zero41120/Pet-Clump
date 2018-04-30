@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 
-class UserDataViewVC: UIViewController, ProfileUIUpdater{
+class UserDataViewVC: UIViewController, ProfileUpdater{
     
     var profile: OwnerProfile = OwnerProfile()
     // Title Labels
@@ -18,6 +18,9 @@ class UserDataViewVC: UIViewController, ProfileUIUpdater{
     @IBOutlet weak var titleGenderLabel:     UILabel!
     @IBOutlet weak var titleBirthdayLabel:   UILabel!
     @IBOutlet weak var titleMatchRangeLabel: UILabel!
+    @IBOutlet weak var pet0ImageView: UIImageView!
+    @IBOutlet weak var pet1ImageView: UIImageView!
+    @IBOutlet weak var pet2ImageView: UIImageView!
     
     // Information display
     @IBOutlet weak var nameLabel: UILabel!
@@ -34,12 +37,26 @@ class UserDataViewVC: UIViewController, ProfileUIUpdater{
         self.setupUI()
     }
     
+    @objc private func enterPetView(tapGestureRecognizer: UITapGestureRecognizer){
+        
+        let imageView = tapGestureRecognizer.view as! UIImageView
+        let pdv = PetDataViewVC()
+        self.present(pdv, animated: true, completion: nil)
+    }
+    
     func setupUI(){
         let range = 25
         self.titleNameLabel.text       = NSLocalizedString("Name", comment: "This is the title for specifying the name of the user")
         self.titleMyPetLabel.text      = NSLocalizedString("My Pet", comment: "This is the tile for specifying the section of the pet for the user")
         self.titleGenderLabel.text     = NSLocalizedString("Gender", comment: "This is the tile for specifying the gender of the user. It's not the sex of the user.")
         self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
+        for view in self.view.subviews as [UIView] {
+            if let imageView = view as? UIImageView {
+                imageView.setRounded()
+                let tap = UITapGestureRecognizer(target: self, action: #selector(enterPetView(tapGestureRecognizer:)))
+                imageView.isUserInteractionEnabled = true
+                imageView.addGestureRecognizer(tap)            }
+        }
         self.hideKeyboardWhenTappedAround()
         if let uid = Auth.auth().currentUser?.uid{
             profile.download(id: uid, callerView: self)
@@ -47,7 +64,7 @@ class UserDataViewVC: UIViewController, ProfileUIUpdater{
     }
     
     // This method downloads the user data from Firestore
-    func updateUI() {
+    func onComplete() {
         
         // Gets user information
         self.nameLabel.text = profile.name
@@ -63,13 +80,6 @@ class UserDataViewVC: UIViewController, ProfileUIUpdater{
     // Dismisses the view
     @IBAction func tapCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is UserDataSettingVC {
-            let vc = segue.destination as? UserDataSettingVC
-            vc?.profile = self.profile
-        }
     }
 }
 

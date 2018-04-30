@@ -11,10 +11,26 @@ import UIKit
 
 class PetDataSettingVC: UIViewController{
     
-    @IBAction func tapExit(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    private var profile: PetProfile = PetProfile()
+    private var bioLimitDelegate: LimitTextFieldInput?
+    private var nameDelegate: LimitTextFieldInput?
+    private var ageDelegate: LimitTextFieldInput?
+    private var specitDelegate: LimitTextFieldInput?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    func setupUI(){
+        
+    }
+    
+    func onComplete() {
+        
+    }
+    
+    @IBAction func tapExit(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataSettingVC: UIViewController, ProfileUIUpdater{
+class UserDataSettingVC: UIViewController, ProfileUpdater{
 
     // Profile from UserDataViewVC
     var profile: OwnerProfile = OwnerProfile()
@@ -30,7 +30,7 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
     var datePicker: UIDatePicker?
     var genderPicker: UIPickerView?
     var genderPickerDelegate: GenderInput?
-    var nameInputDelegate: NameInput?
+    var nameInputDelegate: LimitTextFieldInput?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
     
     
     // This method downloads the user data from Firestore
-    func updateUI() {
+    func onComplete() {
         // Gets user information
         self.nameTextField.text = profile.name
         self.genderTextField.text = profile.gender
@@ -73,7 +73,7 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
         self.hideKeyboardWhenTappedAround()
         
         // Set up delegate to limit user input to 20 characters
-        self.nameInputDelegate = NameInput()
+        self.nameInputDelegate = LimitTextFieldInput(count: 20)
         self.nameTextField.delegate = self.nameInputDelegate
 
         // Set up datepicker responder
@@ -173,63 +173,6 @@ class UserDataSettingVC: UIViewController, ProfileUIUpdater{
         // Exit edit view
         self.dismiss(animated: true, completion: nil)
         
-    }
-}
-
-class GenderInput: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
-    
-    
-    // Data for picker
-    let genderPickerData: [String] = [
-        "-",
-        NSLocalizedString("Male",   comment: "For picking the gender male"),
-        NSLocalizedString("Female", comment: "For picking the gender female"),
-        NSLocalizedString("Apache Helicotper", comment: "For picking the gender Apache, it's an attack helicotper."),
-        NSLocalizedString("Other",  comment: "For picking the gender other than male, female, and Apache")
-    ]
-    
-    /**
-     * Constructor that gets the UI to update
-     */
-    private var textField: UITextField!
-    init(textField: UITextField){
-        self.textField = textField
-    }
-    
-    // Number of rows
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genderPickerData.count
-    }
-    
-    // Number of column
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // Text on the row
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genderPickerData[row]
-    }
-    
-    // Selecting completetion
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textField.text = genderPickerData[row] != "-" ? genderPickerData[row] : genderPickerData.last
-    }
-    
-    // Disable user keyboard entry for text field
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return false
-    }
-}
-
-class NameInput: NSObject, UITextFieldDelegate {
-    // Disable user to entry more than 20 character
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print("active delegate")
-        guard let text = textField.text else { return true }
-        let newLength = text.count + string.count - range.length
-        print("new len \(newLength)")
-        return newLength <= 20 // Bool
     }
 }
 

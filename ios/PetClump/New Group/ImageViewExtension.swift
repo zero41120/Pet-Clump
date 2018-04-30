@@ -15,4 +15,10 @@ extension UIImageView {
     static func getDefaultDeselectedColor() -> UIColor{
         return UIColor(red:25/255, green:25/255, blue:25/255, alpha: 0.7)
     }
+    
+    func setRounded() {
+        let radius = self.frame.width / 2
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
+    }
 }
