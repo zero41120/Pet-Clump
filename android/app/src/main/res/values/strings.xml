@@ -77,6 +77,7 @@
     <string name="Cancel">Cancel</string>
     <string name="Info_purpose">"How will Pet Clump use these information? "</string>
     <string name="Info_purpose2">Other people will  see your name, gender, and birthday only after they\'ve become friends with you. Match range value is used to optimize matching result according to your need.</string>
+
     <string name="Name">Name</string>
     <string name="your_pet">Photos of your pet</string>
     <string name="My_pet_and_I">My pet and I</string>
@@ -95,4 +96,8 @@
     <string name="Fri">Fri</string>
     <string name="Sat">Sat</string>
     <string name="Sun">Sun</string>
+
+    <string name="your_pet">Photos of your pet</string>
+    <string name="My_pet_and_I">My pet and I</string>
+    <string name="info">Info</string>
 </resources>

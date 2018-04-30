@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-
-
 protocol QuickAlert {
     /**
      * This method make a alter with OK button.
@@ -19,6 +17,12 @@ protocol QuickAlert {
     func makeAlert(message: String)
 }
 
+// https://stackoverflow.com/questions/37946990/cgrectmake-cgpointmake-cgsizemake-cgrectzero-cgpointzero-is-unavailable-in-s
+extension CGRect{
+    init(_ x:CGFloat,_ y:CGFloat,_ width:CGFloat,_ height:CGFloat) {
+        self.init(x:x,y:y,width:width,height:height)
+    }
+}
 
 /**
  * This estension makes the UIViewController dismiss keyboard when touch non-keyboard area
