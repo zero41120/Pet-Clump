@@ -1,10 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp">
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -196,16 +190,19 @@
         app:layout_constraintVertical_bias="0.315" />
 
     <TextView
-        android:id="@+id/user_match_value_seekbar"
+        android:id="@+id/user_match_value"
         android:layout_width="200dp"
         android:layout_height="16dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="6dp"
         android:text="@string/No_preferred_range"
         android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/user_match_value_seekbar" />
+        app:layout_constraintTop_toBottomOf="@+id/user_match_value_seekbar" />
 
     <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/user_name_switcher"
@@ -310,4 +307,3 @@
 
 
 </android.support.constraint.ConstraintLayout>
-</ScrollView>
