@@ -32,7 +32,10 @@ import java.util.List;
 /*
 This is the functionality for the quiz portion of the application, it returns a string of numbers that will serve as the quiz result. They key is "QuizResult"
 
-also passed integer number of questions to be answered with key "questions"
+also passed integer number of total questions to be/have been answered with key "questions"
+
+ex) first time is passed 10, second time passed 20 ect
+
 */
 
 public class QuizActivity extends AppCompatActivity {
@@ -175,7 +178,7 @@ public class QuizActivity extends AppCompatActivity {
                             answers[index] = 1;
                             index = index + 1;
 
-                            Toast.makeText(this, "Left to Right swipe" + Arrays.toString(answers), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, "Left to Right swipe" + Arrays.toString(answers), Toast.LENGTH_SHORT).show();
 
                             if (index >= answers.length) {
                                 for (int i = 0; i < answers.length; i++) {
@@ -195,7 +198,7 @@ public class QuizActivity extends AppCompatActivity {
                             answers[index] = 0;
                             index = index + 1;
 
-                            Toast.makeText(this, "Right to Left swipe" + Arrays.toString(answers), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, "Right to Left swipe" + Arrays.toString(answers), Toast.LENGTH_SHORT).show();
 
                             if (index >= answers.length) {
                                 for (int i = 0; i < answers.length; i++) {
@@ -219,7 +222,7 @@ public class QuizActivity extends AppCompatActivity {
                                 answers[index] = 2;
                                 index = index + 1;
 
-                                Toast.makeText(this, "Bottom to Top Swipe" + Arrays.toString(answers), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(this, "Bottom to Top Swipe" + Arrays.toString(answers), Toast.LENGTH_SHORT).show();
 
                                 if (index >= answers.length) {
                                     for (int i = 0; i < answers.length; i++) {
