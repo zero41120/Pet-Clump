@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileDownloader, ProfileUploader {
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileDownloader, ProfileUploader, View.OnClickListener {
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -88,6 +88,16 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             year_array_string[75-i] = String.valueOf(year);
             year -= 1;
         }
+        // freely schedule
+        ImageView imageViews[][] = new ImageView[7][3];
+        for(int i=1; i<8; i++) {
+            for(int j=1; j<4; j++) {
+                String imageID = "sch" + i + j;
+                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
+                imageViews[i][j] = ( findViewById(resID));
+            }
+        }
+
         // get pet_num by extra, sent from UserInfoActivity
         // Bundle extras = getIntent().getExtras();
         // if(extras != null){
@@ -228,19 +238,18 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         // Another interface callback
     }
     public void scheduleTest(){
-        ImageView imageViews[][] = new ImageView[7][3];
-        for(int i=1; i<8; i++) {
-            for(int j=1; j<4; j++) {
-                String imageID = "sch" + i + j;
-                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
-                imageViews[i][j] = ( findViewById(resID));
-            }
-        }
+
+
     }
 
 
     @Override
     public void didCompleteUpload() {
         Toast.makeText(c, "OwnerProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
