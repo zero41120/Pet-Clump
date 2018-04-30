@@ -30,7 +30,6 @@ public class PetInfoActivity extends AppCompatActivity{
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
 
-
     Button Button_to_quiz, Button_return;
     ImageButton Button_edit;
     @Override

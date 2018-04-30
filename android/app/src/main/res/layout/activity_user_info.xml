@@ -195,7 +195,7 @@
         app:layout_constraintTop_toBottomOf="@+id/birthday_label" />
 
     <TextView
-        android:id="@+id/match_range_seekbar"
+        android:id="@+id/user_match_value"
         style="@style/fontStyle1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

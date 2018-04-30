@@ -55,13 +55,13 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_user_info_edit);
         c = getApplicationContext();
 
-        constraintSet = new ConstraintSet();
+/*        constraintSet = new ConstraintSet();
         constraintLayout = findViewById(R.id.user_info_edit_layout);
-        constraintSet.clone(constraintLayout);
+        constraintSet.clone(constraintLayout);*/
 
         user_name_editText = findViewById(R.id.user_name_editText);
-        match_range_value = findViewById(R.id.match_range_value);
-        user_match_range_seekbar = findViewById(R.id.match_range_seekbar);
+        //match_range_value = findViewById(R.id.);
+        user_match_range_seekbar = findViewById(R.id.user_match_value_seekbar);
 
         user_dob_day = findViewById(R.id.user_dob_day);
         user_dob_day.setOnItemSelectedListener(this);
@@ -149,7 +149,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
         user_dob_day.setSelection(index);
         String range = String.valueOf(profile.getDistancePerference());
-        match_range_value.setText(stringToProgressText(range));
+        //match_range_value.setText(stringToProgressText(range));
         user_match_range_seekbar.setProgress(stringToProgress(range));
     }
 

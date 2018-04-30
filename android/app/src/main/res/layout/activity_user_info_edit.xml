@@ -164,7 +164,7 @@
 
 
     <SeekBar
-        android:id="@+id/match_range_seekbar"
+        android:id="@+id/user_match_value_seekbar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="300dp"
         android:layout_height="38dp"
@@ -196,7 +196,7 @@
         app:layout_constraintVertical_bias="0.315" />
 
     <TextView
-        android:id="@+id/match_range_value"
+        android:id="@+id/user_match_value_seekbar"
         android:layout_width="200dp"
         android:layout_height="16dp"
         android:layout_marginLeft="84dp"
@@ -205,7 +205,7 @@
         android:text="@string/No_preferred_range"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/match_range_seekbar" />
+        app:layout_constraintTop_toBottomOf="@id/user_match_value_seekbar" />
 
     <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/user_name_switcher"
@@ -221,7 +221,7 @@
     </ViewSwitcher>
 
     <Button
-        android:id="@+id/edit_button"
+        android:id="@+id/save_button"
         android:layout_width="69dp"
         android:layout_height="35dp"
         android:layout_marginBottom="547dp"
@@ -252,7 +252,7 @@
         android:text="@string/Cancel"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/edit_button"
+        app:layout_constraintEnd_toStartOf="@+id/save_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
