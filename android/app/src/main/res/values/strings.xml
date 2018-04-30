@@ -88,4 +88,11 @@
     <string name="Return">Return</string>
     <string name="About_my_pet">About my pet</string>
     <string name="Free_schedule">Free schedule</string>
+    <string name="Mon">Mon</string>
+    <string name="Tue">Tue</string>
+    <string name="Wed">Wed</string>
+    <string name="Thu">Thu</string>
+    <string name="Fri">Fri</string>
+    <string name="Sat">Sat</string>
+    <string name="Sun">Sun</string>
 </resources>
