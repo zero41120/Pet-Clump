@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -220,37 +221,21 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-        // I'm pretty sure the control logic is incorrect.
-        // An item was selected. You can retrieve the selected item using
-//        switch (parent.getId()) {
-//            case R.id.user_dob_month:
-//                dob_month = parent.getItemAtPosition(pos);
-//            case R.id.user_dob_day:
-//                dob_day = parent.getItemAtPosition(pos);
-//                Toast toast2 = Toast.makeText(c, (String) dob_day, Toast.LENGTH_LONG);
-//                toast2.show();
-//
-//            case R.id.user_dob_year:
-//                dob_year = parent.getItemAtPosition(pos);
-//                Toast toast3 = Toast.makeText(c, (String) dob_year, Toast.LENGTH_LONG);
-//                toast3.show();
-//
-//            case R.id.user_gender_spinner:
-//                gender = parent.getItemAtPosition(pos);
-//                Toast toast4 = Toast.makeText(c, (String) gender, Toast.LENGTH_LONG);
-//                toast4.show();
-//
-//        }
-//        String string = dob_year.toString()+" "+
-//                dob_month.toString()+" "+dob_day.toString()+" "+gender.toString();
-//        Toast toast5 = Toast.makeText(c, string, Toast.LENGTH_LONG );
-//        toast5.show();
-
 
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
+    }
+    public void scheduleTest(){
+        ImageView imageViews[][] = new ImageView[7][3];
+        for(int i=1; i<8; i++) {
+            for(int j=1; j<4; j++) {
+                String imageID = "sch" + i + j;
+                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
+                imageViews[i][j] = ( findViewById(resID));
+            }
+        }
     }
 
 
