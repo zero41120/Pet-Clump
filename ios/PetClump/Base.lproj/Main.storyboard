@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,9 +66,8 @@
                                     <segue destination="ImH-OM-O1W" kind="show" id="r3d-gL-A6e"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98A-3W-DBZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98A-3W-DBZ">
                                 <rect key="frame" x="21" y="748" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Go Quiz"/>
                                 <connections>
                                     <segue destination="mHd-qO-rXk" kind="show" id="NQ8-wY-gFA"/>
@@ -88,10 +87,12 @@
                             <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="4wR-75-6CU" secondAttribute="trailing" constant="179" id="7bl-ks-LhC"/>
                             <constraint firstItem="4wR-75-6CU" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="178" id="APo-w9-gWs"/>
                             <constraint firstItem="4wR-75-6CU" firstAttribute="top" secondItem="fJF-8F-Rb7" secondAttribute="top" constant="244" id="BEg-E3-pXa"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="bottom" secondItem="98A-3W-DBZ" secondAttribute="bottom" id="CKx-dT-GCh"/>
                             <constraint firstItem="9yl-6b-CVq" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="90" id="GvX-xn-WL9"/>
                             <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="9yl-6b-CVq" secondAttribute="trailing" constant="83" id="Niv-8O-DZd"/>
                             <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="TvC-uG-9Ke" secondAttribute="trailing" constant="83" id="P6U-Bx-RQI"/>
                             <constraint firstItem="TvC-uG-9Ke" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="83" id="Y89-FK-Wlh"/>
+                            <constraint firstItem="98A-3W-DBZ" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="21" id="etF-mM-RcQ"/>
                             <constraint firstItem="9yl-6b-CVq" firstAttribute="top" secondItem="TvC-uG-9Ke" secondAttribute="bottom" constant="32" id="euW-nS-FJ0"/>
                             <constraint firstItem="TvC-uG-9Ke" firstAttribute="top" secondItem="4wR-75-6CU" secondAttribute="bottom" constant="8" id="vLS-fn-0Jp"/>
                         </constraints>
@@ -124,7 +125,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="My pets">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -139,7 +140,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Name">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -153,7 +154,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Match Range: 25">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -181,7 +182,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Date of birth">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -220,7 +221,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="-">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -235,7 +236,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="-">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -250,7 +251,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="-">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -460,6 +461,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DO-mu-f7t">
+                                <rect key="frame" x="30" y="728" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -490,7 +496,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Name">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -536,7 +542,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Date of birth">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -594,7 +600,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Match Range: 25">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -680,7 +686,7 @@
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Edit">
                                                             <attributes>
-                                                                <font key="NSFont" size="15" name="VarelaRound"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
