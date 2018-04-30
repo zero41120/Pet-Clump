@@ -41,15 +41,16 @@ class UserDataViewVC: UIViewController, ProfileUpdater{
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
         let imageView = tapGestureRecognizer.view as! UIImageView
-        let id: String
+        let id: String, sequence: Int
         switch imageView.tag {
-        case  0: id = profile.petId0
-        case  1: id = profile.petId1
-        default: id = profile.petId2
+        case  0: id = profile.petId0; sequence = 0
+        case  1: id = profile.petId1; sequence = 1
+        default: id = profile.petId2; sequence = 2
         }
         pdv.ownerProfile = self.profile
         pdv.petProfile = PetProfile()
         pdv.petProfile!.id = id
+        pdv.petProfile!.sequence = sequence
         self.present(pdv, animated: true, completion: nil)
     }
     

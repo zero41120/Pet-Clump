@@ -829,7 +829,11 @@
                                                 <action selector="tapExit:" destination="N3z-EC-o4p" id="W28-No-est"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4L1-bn-lpm"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4L1-bn-lpm">
+                                            <connections>
+                                                <action selector="tapSave:" destination="N3z-EC-o4p" id="D1W-6V-mXK"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

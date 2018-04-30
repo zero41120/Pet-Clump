@@ -13,17 +13,20 @@ import Firebase
 class PetProfile: Profile{
     private let COLLECTION_NAME = "pets"
     var id: String      = "error_id"
+    var bio: String     = "bio"
     var age: String     = "As old as your grandma"
     var name: String    = "No name"
     var specie: String  = "Pet"
     var ownerId: String = "error_owner_id"
+    var sequence: Int   = 0
+    // Image
     var mainPhoto: [UInt8] = []
     var photo1: [UInt8] = []
     var photo2: [UInt8] = []
     var photo3: [UInt8] = []
     var photo4: [UInt8] = []
     var photo5: [UInt8] = []
-    
+    // Group photo
     var groupPhoto0: [UInt8] = []
     var groupPhoto1: [UInt8] = []
     var groupPhoto2: [UInt8] = []
@@ -50,11 +53,13 @@ class PetProfile: Profile{
     
     func generateDictionary() -> [String : Any] {
         return [
-            "id":   id ,
+            "id":   id,
+            "bio":  bio,
             "age":  age,
             "name": name,
             "spe":  specie,
-            "owner_id": ownerId
+            "owner_id": ownerId,
+            "sequence": sequence
         ]
     }
     

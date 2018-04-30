@@ -45,12 +45,24 @@ class PetDataViewVC: UIViewController, ProfileUpdater{
     
     func setupUI(){
         self.nameTitleLabel.text       = NSLocalizedString("Pet Name", comment: "This is the title for specifying the name of the pet")
-    }
-    
-    func onComplete() {
         
     }
     
+    func onComplete() {
+        petNameTextField.text = petProfile!.name
+        petSpeciesTextField.text = petProfile!.specie
+        petAgeTextField.text = petProfile!.age
+        petBioTextField.text = petProfile!.bio
+        
+        
+    }
+    
+    @IBAction func tapSave(_ sender: Any) {
+        petProfile!.name = petNameTextField.text!
+        petProfile!.bio  = petBioTextField.text!
+        petProfile!.age  = petAgeTextField.text!
+        petProfile!.specie = petSpeciesTextField.text!
+    }
     
     @IBAction func tapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
