@@ -64,7 +64,7 @@ public class PetInfoActivity extends AppCompatActivity{
         pet_bio = findViewById(R.id.pet_bio);
         pet_spe = findViewById(R.id.pet_specie);
         pet_name = findViewById(R.id.pet_name);
-        if(!pet_id.equals("null")) {
+        if(!pet_id.equals("error_id")) {
             PetProfile profile = new PetProfile();
             profile.download(pet_id, () -> {
                 pet_age.setText(profile.getAge());

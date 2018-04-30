@@ -62,7 +62,7 @@ public class UserInfoActivity extends AppCompatActivity {
         birthday_label  = findViewById(R.id.birthday_label);
         range_label     = findViewById(R.id.match_range_seekbar);
 
-        edit_button     = findViewById(R.id.save_button);
+        edit_button     = findViewById(R.id.edit_button);
 
         profile_pet1.setOnClickListener(v ->
             startActivity(new Intent(c, PetInfoActivity.class))
@@ -74,54 +74,52 @@ public class UserInfoActivity extends AppCompatActivity {
             startActivity(new Intent(c, Popup.class))
         );
         // Enter Pet_info to create new pet
-        edit_button.setOnClickListener(v-> startActivity(new Intent(c, PetInfoEditActivity.class)));
+        edit_button.setOnClickListener(v-> startActivity(new Intent(c, UserInfoEditActivity.class)));
 
         profile = new OwnerProfile();
         profile.download(user.getUid(), ()->{
                 if(null == profile){
-                    Log.d(TAG,"_update without setting up profile");
-                }
-                name_label.setText(profile.getName());
-                gender_label.setText(profile.getGender());
-                Calendar calendar = new GregorianCalendar();
-                calendar.setTime((Date) profile.getBirthday());
-                String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
-                        +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
-                        +String.valueOf(calendar.get(Calendar.YEAR));
-                birthday_label.setText(t);
-                range_label.setText(String.valueOf(profile.getDistancePerference()));
+                Log.d(TAG,"_update without setting up profile");
+            }
+            name_label.setText(profile.getName());
+            gender_label.setText(profile.getGender());
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime((Date) profile.getBirthday());
+            String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
+                    +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
+                    +String.valueOf(calendar.get(Calendar.YEAR));
+            birthday_label.setText(t);
+            range_label.setText(String.valueOf(profile.getDistancePerference()));
         });
-        Intent i = new Intent();
+
+        Intent i = new Intent(c, PetInfoActivity.class);
         profile_pet1.setOnClickListener(v->{
 
-            String pet_id = "null";
+            String pet_id = "error_id";
             // pet_id0
             pet_id = profile.getPet_id0().toString();
-            if(!pet_id.equals("null")){
+            if(!pet_id.equals("error_id")){
                 i.putExtra("pet_id", pet_id);
-                pet_id = "null";
             }
-            startActivity(new Intent(c, PetInfoActivity.class));
+            startActivity(i);
         });
         profile_pet2.setOnClickListener(v->{
 
-            String pet_id = "null";
+            String pet_id = "error_id";
             // pet_id1
             pet_id = profile.getPet_id1().toString();
-            if(!pet_id.equals("null")){
+            if(!pet_id.equals("error_id")){
                 i.putExtra("pet_id", pet_id);
-                pet_id = "null";
             }
-            startActivity(new Intent(c, PetInfoActivity.class));
+            startActivity(i);
         });
         profile_pet3.setOnClickListener(v->{
 
-            String pet_id = "null";
+            String pet_id = "error_id";
             // pet_id2
             pet_id = profile.getPet_id2().toString();
-            if(!pet_id.equals("null")){
+            if(!pet_id.equals("error_id")){
                 i.putExtra("pet_id", pet_id);
-                pet_id = "null";
             }
             startActivity(i);
         });

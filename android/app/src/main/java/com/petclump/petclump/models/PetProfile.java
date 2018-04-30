@@ -20,6 +20,9 @@ public class PetProfile implements Profile{
     private String name;
     private String owner_id;
     private Map<String, Object> ref = null;
+    private String pet_id = "error_id";
+    private Integer sequence = -1;
+
 
     public PetProfile (){
     }
@@ -31,13 +34,21 @@ public class PetProfile implements Profile{
         temp.put("spe", spe);
         temp.put("name",name);
         temp.put("owner_id",owner_id);
+        temp.put("pet_id", pet_id);
+        temp.put("sequence",sequence);
         return temp;
     }
     public void upload(String id, Context c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
             Toast.makeText(c, "PetProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
         }
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("pets").document();
+        DocumentReference docRef;
+        if(pet_id.equals("error_id")){
+             docRef= FirebaseFirestore.getInstance().collection("pets").document();
+        }
+        else
+            docRef= FirebaseFirestore.getInstance().collection("pets").document(pet_id);
+
         docRef.set(generateDictionary()).addOnCompleteListener(task -> {
             String message = "";
             if(task.isSuccessful()) {

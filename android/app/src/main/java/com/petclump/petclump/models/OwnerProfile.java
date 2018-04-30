@@ -35,9 +35,9 @@ public class OwnerProfile implements Profile {
     private int distancePerference = 5;
     private double lat = 0.0 ,lon = 0.0;
     private FreeSchedule freeTime = new FreeSchedule("");
-    private String pet_id0 = "null";
-    private String pet_id1 = "null";
-    private String pet_id2 = "null";
+    private String pet_id0 = "error_id";
+    private String pet_id1 = "error_id";
+    private String pet_id2 = "error_id";
 
     public OwnerProfile (){}
     public static String num_month(int num){
