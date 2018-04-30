@@ -66,9 +66,8 @@
                                     <segue destination="ImH-OM-O1W" kind="show" id="r3d-gL-A6e"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98A-3W-DBZ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98A-3W-DBZ">
                                 <rect key="frame" x="21" y="748" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Go Quiz"/>
                                 <connections>
                                     <segue destination="mHd-qO-rXk" kind="show" id="NQ8-wY-gFA"/>
@@ -88,10 +87,12 @@
                             <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="4wR-75-6CU" secondAttribute="trailing" constant="179" id="7bl-ks-LhC"/>
                             <constraint firstItem="4wR-75-6CU" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="178" id="APo-w9-gWs"/>
                             <constraint firstItem="4wR-75-6CU" firstAttribute="top" secondItem="fJF-8F-Rb7" secondAttribute="top" constant="244" id="BEg-E3-pXa"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="bottom" secondItem="98A-3W-DBZ" secondAttribute="bottom" id="CKx-dT-GCh"/>
                             <constraint firstItem="9yl-6b-CVq" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="90" id="GvX-xn-WL9"/>
                             <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="9yl-6b-CVq" secondAttribute="trailing" constant="83" id="Niv-8O-DZd"/>
                             <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="TvC-uG-9Ke" secondAttribute="trailing" constant="83" id="P6U-Bx-RQI"/>
                             <constraint firstItem="TvC-uG-9Ke" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="83" id="Y89-FK-Wlh"/>
+                            <constraint firstItem="98A-3W-DBZ" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="21" id="etF-mM-RcQ"/>
                             <constraint firstItem="9yl-6b-CVq" firstAttribute="top" secondItem="TvC-uG-9Ke" secondAttribute="bottom" constant="32" id="euW-nS-FJ0"/>
                             <constraint firstItem="TvC-uG-9Ke" firstAttribute="top" secondItem="4wR-75-6CU" secondAttribute="bottom" constant="8" id="vLS-fn-0Jp"/>
                         </constraints>
@@ -460,6 +461,11 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7DO-mu-f7t">
+                                <rect key="frame" x="30" y="728" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

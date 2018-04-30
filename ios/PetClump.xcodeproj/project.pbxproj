@@ -28,7 +28,24 @@
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
 		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
+		84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */; };
+		847769B320969252002AF924 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769A820969252002AF924 /* Direction.swift */; };
+		847769B420969252002AF924 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 847769A920969252002AF924 /* Info.plist */; };
+		847769B520969252002AF924 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AA20969252002AF924 /* Scheduler.swift */; };
+		847769B620969252002AF924 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AB20969252002AF924 /* ViewManager.swift */; };
+		847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AC20969252002AF924 /* ZLSwipeableView.swift */; };
+		847769B920969289002AF924 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769B820969289002AF924 /* CardView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		847769B120969252002AF924 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 460B72511B76D3E600BB5ED8;
+			remoteInfo = ZLSwipeableViewSwift;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
@@ -56,6 +73,14 @@
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
+		84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableViewController.swift; sourceTree = "<group>"; };
+		847769A820969252002AF924 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		847769A920969252002AF924 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		847769AA20969252002AF924 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		847769AB20969252002AF924 /* ViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
+		847769AC20969252002AF924 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
+		847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ZLSwipeableViewSwift.xcodeproj; sourceTree = "<group>"; };
+		847769B820969289002AF924 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetClump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,6 +161,7 @@
 		29C17979207EE97D002971C5 /* PetClump */ = {
 			isa = PBXGroup;
 			children = (
+				84771F7720968FB6007385F0 /* QuizVC */,
 				290DF24820953F2C00A64D0C /* view */,
 				29A6E5B5208EB851006352CF /* font */,
 				29B1936D208D4CD000A59783 /* image */,
@@ -152,12 +178,43 @@
 				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
 				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
 				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
-				298FEB60209381220018F368 /* QuizVC.swift */,
 				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
 				298FEB64209393F50018F368 /* PetDataSettingVC.swift */,
 				298FEB66209394D70018F368 /* MatchingVC.swift */,
 			);
 			path = PetClump;
+			sourceTree = "<group>";
+		};
+		84771F7720968FB6007385F0 /* QuizVC */ = {
+			isa = PBXGroup;
+			children = (
+				847769A720969252002AF924 /* ZLSwipeableViewSwift */,
+				298FEB60209381220018F368 /* QuizVC.swift */,
+				847769B820969289002AF924 /* CardView.swift */,
+				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
+			);
+			path = QuizVC;
+			sourceTree = "<group>";
+		};
+		847769A720969252002AF924 /* ZLSwipeableViewSwift */ = {
+			isa = PBXGroup;
+			children = (
+				847769A820969252002AF924 /* Direction.swift */,
+				847769A920969252002AF924 /* Info.plist */,
+				847769AA20969252002AF924 /* Scheduler.swift */,
+				847769AB20969252002AF924 /* ViewManager.swift */,
+				847769AC20969252002AF924 /* ZLSwipeableView.swift */,
+				847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */,
+			);
+			path = ZLSwipeableViewSwift;
+			sourceTree = "<group>";
+		};
+		847769AE20969252002AF924 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				847769B220969252002AF924 /* ZLSwipeableViewSwift.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B5B004EA17432DBFD1994CBE /* Frameworks */ = {
@@ -225,12 +282,28 @@
 			mainGroup = 29C1796E207EE97D002971C5;
 			productRefGroup = 29C17978207EE97D002971C5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 847769AE20969252002AF924 /* Products */;
+					ProjectRef = 847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				29C17976207EE97D002971C5 /* PetClump */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		847769B220969252002AF924 /* ZLSwipeableViewSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZLSwipeableViewSwift.framework;
+			remoteRef = 847769B120969252002AF924 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		29C17975207EE97D002971C5 /* Resources */ = {
@@ -243,6 +316,7 @@
 				29C17982207EE97F002971C5 /* Assets.xcassets in Resources */,
 				292E24CE208AB0BA005311F1 /* button_icon.png in Resources */,
 				29C17980207EE97D002971C5 /* Main.storyboard in Resources */,
+				847769B420969252002AF924 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +332,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-PetClump/Pods-PetClump-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -271,6 +346,8 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/UIColor+FlatColors/UIColor_FlatColors.framework",
+				"${BUILT_PRODUCTS_DIR}/ZLSwipeableViewSwift/ZLSwipeableViewSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -282,6 +359,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -295,6 +373,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_FlatColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZLSwipeableViewSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -365,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
+				847769B520969252002AF924 /* Scheduler.swift in Sources */,
 				298FEB61209381220018F368 /* QuizVC.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
@@ -372,10 +453,16 @@
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
 				29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */,
 				29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */,
+				84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
+
+				847769B620969252002AF924 /* ViewManager.swift in Sources */,
+				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,
 				29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */,
 				298FEB65209393F50018F368 /* PetDataSettingVC.swift in Sources */,
+				847769B920969289002AF924 /* CardView.swift in Sources */,
+				847769B320969252002AF924 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
