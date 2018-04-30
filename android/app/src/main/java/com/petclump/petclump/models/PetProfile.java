@@ -15,18 +15,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PetProfile implements Profile{
-    private String bio;
-    private String age;
-    private String spe;
-    private String name;
-    private String owner_id;
-    private Map<String, Object> ref = null;
+    private String bio = "PET_BIO";
+    private String age = "0";
+    private String spe = "CAT";
+    private String name = "Guko";
+    private String owner_id = "null";
     private Integer sequence = -1;
 
 
     public PetProfile (){
     }
-
 
     public Map<String,Object> generateDictionary(){
         Map<String, Object> temp= new HashMap<>();
@@ -67,13 +65,13 @@ public class PetProfile implements Profile{
             }
             if (snap == null)   { return; }
             if (!snap.exists()) { return; }
-            this.ref = snap.getData();
+            Map<String, Object> ref = snap.getData();
             this.bio = ref.get("bio").toString();
             this.age = ref.get("age").toString();
             this.spe = ref.get("spe").toString();
             this.name = ref.get("name").toString();
             this.owner_id = ref.get("owner_id").toString();
-            this.sequence = (Integer)ref.get("sequence");
+            this.sequence = Integer.parseInt(ref.get("sequence").toString());
             c.didCompleteDownload();
         });
 
@@ -93,5 +91,6 @@ public class PetProfile implements Profile{
     public void setSpe(String spe){this.spe = spe;}
     public void setBio(String bio){this.bio = bio;}
     public void setAge(String age){this.age = age;}
+    public void setSequence(int s){this.sequence = s;}
 
 }

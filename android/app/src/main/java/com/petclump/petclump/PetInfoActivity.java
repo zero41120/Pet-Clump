@@ -30,16 +30,16 @@ public class PetInfoActivity extends AppCompatActivity{
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
 
-    Button Button_to_quiz, Button_return;
+    Button Button_to_quiz, Button_return, Button_save;
     ImageButton Button_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_info);
         Bundle extras = getIntent().getExtras();
-        if(extras != null && extras.get("pet_id") != null){
-            sequence = (Integer) extras.get("sequence");
-        }
+        sequence = (Integer) extras.get("sequence");
+        Log.d(TAG,"sequence:"+sequence);
+
 
         setupUI();
 
@@ -49,21 +49,22 @@ public class PetInfoActivity extends AppCompatActivity{
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
         Button_return = findViewById(R.id.Button_return);
         Button_edit = findViewById(R.id.Button_edit);
+        Button_save = findViewById(R.id.button_save);
 
         // set up UI
         pet_age = findViewById(R.id.pet_name);
         pet_bio = findViewById(R.id.pet_bio);
         pet_spe = findViewById(R.id.pet_specie);
         pet_name = findViewById(R.id.pet_name);
-        if(sequence != -1) {
-            PetProfile profile = new PetProfile();
-            profile.download(user.getUid()+sequence, () -> {
-                pet_age.setText(profile.getAge());
-                pet_bio.setText(profile.getBio());
-                pet_spe.setText(profile.getSpe());
-                pet_name.setText(profile.getName());
-            });
-        }
+
+        PetProfile profile = new PetProfile();
+        profile.download(user.getUid()+sequence, () -> {
+            pet_age.setText(profile.getAge());
+            pet_bio.setText(profile.getBio());
+            pet_spe.setText(profile.getSpe());
+            pet_name.setText(profile.getName());
+        });
+
         Button_to_quiz.setOnClickListener(v ->
                 startActivity(new Intent(this, QuizActivity.class))
         );
@@ -74,6 +75,17 @@ public class PetInfoActivity extends AppCompatActivity{
             Intent i = new Intent(this, PetInfoEditActivity.class);
             i.putExtra("sequence", sequence);
             startActivity(i);
+        });
+
+        Button_save.setOnClickListener(v->{
+            PetProfile pet = new PetProfile();
+            pet.upload(user.getUid()+sequence,()->{
+                pet.setBio(pet_bio.getText().toString());
+                pet.setAge(pet_age.getText().toString());
+                pet.setName(pet_name.getText().toString());
+                pet.setOwner_id(user.getUid());
+                pet.setSequence(sequence);
+            });
         });
     }
 

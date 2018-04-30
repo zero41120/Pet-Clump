@@ -27,7 +27,7 @@ public class PetInfoEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pet_info_edit);
         // used to judge if its
         Bundle extras = getIntent().getExtras();
-        if(extras != null && extras.get("pet_id") != null){
+        if(extras != null && extras.get("sequence") != null){
             sequence = (Integer) extras.get("sequence");
         }
         setupUI();
