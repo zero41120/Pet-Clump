@@ -60,7 +60,7 @@
 		2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreLearningVC.swift; sourceTree = "<group>"; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
-		294C94C42097D74700266533 /* QuizVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuizVC.swift; path = PetClump/QuizVC/QuizVC.swift; sourceTree = SOURCE_ROOT; };
+		294C94C42097D74700266533 /* QuizVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuizVC.swift; path = PetClump/controller/QuizVC.swift; sourceTree = SOURCE_ROOT; };
 		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
 		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
 		298BCFF42096998C007A6846 /* GenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPicker.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		298FEB66209394D70018F368 /* MatchingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingVC.swift; sourceTree = "<group>"; };
 		29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewVC.swift; sourceTree = "<group>"; };
 		29A6E5B6208EB8B6006352CF /* VarelaRound-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VarelaRound-Regular.otf"; sourceTree = "<group>"; };
-		29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataSettingVC.swift; path = Model/UserDataSettingVC.swift; sourceTree = "<group>"; };
+		29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettingVC.swift; sourceTree = "<group>"; };
 		29B19365208D31BB00A59783 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		29C17977207EE97D002971C5 /* PetClump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetClump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +120,9 @@
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				29B1936D208D4CD000A59783 /* image */,
+				847769B820969289002AF924 /* CardView.swift */,
+				29A6E5B5208EB851006352CF /* font */,
 				298BD0002096E8CF007A6846 /* delegates */,
 				298BCFFF2096E8B8007A6846 /* extensions */,
 				298BCFFC2096DFD6007A6846 /* pickers */,
@@ -127,6 +130,22 @@
 			);
 			name = view;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		294C94C62097E13B00266533 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				847769A720969252002AF924 /* ZLSwipeableViewSwift */,
+				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
+				294C94C42097D74700266533 /* QuizVC.swift */,
+				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
+				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
+				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
+				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
+				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
+				298FEB66209394D70018F368 /* MatchingVC.swift */,
+			);
+			path = controller;
 			sourceTree = "<group>";
 		};
 		298BCFFC2096DFD6007A6846 /* pickers */ = {
@@ -208,31 +227,12 @@
 				29C17981207EE97F002971C5 /* Assets.xcassets */,
 				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
 				2948A2FB208523C8007FEDD8 /* PetClump.entitlements */,
-				84771F7720968FB6007385F0 /* QuizVC */,
-				290DF24820953F2C00A64D0C /* view */,
-				29A6E5B5208EB851006352CF /* font */,
-				29B1936D208D4CD000A59783 /* image */,
-				29B19362208D310D00A59783 /* Model */,
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
-				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
-				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
-				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
-				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
-				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
-				298FEB66209394D70018F368 /* MatchingVC.swift */,
+				294C94C62097E13B00266533 /* controller */,
+				290DF24820953F2C00A64D0C /* view */,
+				29B19362208D310D00A59783 /* Model */,
 			);
 			path = PetClump;
-			sourceTree = "<group>";
-		};
-		84771F7720968FB6007385F0 /* QuizVC */ = {
-			isa = PBXGroup;
-			children = (
-				847769A720969252002AF924 /* ZLSwipeableViewSwift */,
-				847769B820969289002AF924 /* CardView.swift */,
-				294C94C42097D74700266533 /* QuizVC.swift */,
-				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
-			);
-			path = QuizVC;
 			sourceTree = "<group>";
 		};
 		847769A720969252002AF924 /* ZLSwipeableViewSwift */ = {
