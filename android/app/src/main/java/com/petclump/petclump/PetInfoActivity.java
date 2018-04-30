@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class PetInfoActivity extends AppCompatActivity{
     private static final String TAG = "Pet Info Activity";
-    private TextView pet_name, pet_spe, pet_age, pet_bio;
+    private TextView pet_name, pet_spe, pet_age, pet_bio, pet_primary_name, pet_and_I_name;
     private int sequence = -1;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -52,13 +52,18 @@ public class PetInfoActivity extends AppCompatActivity{
         Button_save = findViewById(R.id.button_save);
 
         // set up UI
-        pet_age = findViewById(R.id.pet_name);
+        pet_age = findViewById(R.id.pet_age);
         pet_bio = findViewById(R.id.pet_bio);
         pet_spe = findViewById(R.id.pet_specie);
         pet_name = findViewById(R.id.pet_name);
 
+        pet_primary_name = findViewById(R.id.title_pet_name);
+        pet_and_I_name = findViewById(R.id.Txt_my_pet_and_I);
+
         PetProfile profile = new PetProfile();
         profile.download(user.getUid()+sequence, () -> {
+            pet_primary_name.setText(profile.getName());
+            pet_and_I_name.setText(profile.getName()+" and I");
             pet_age.setText(profile.getAge());
             pet_bio.setText(profile.getBio());
             pet_spe.setText(profile.getSpe());
@@ -79,13 +84,13 @@ public class PetInfoActivity extends AppCompatActivity{
 
         Button_save.setOnClickListener(v->{
             PetProfile pet = new PetProfile();
-            pet.upload(user.getUid()+sequence,()->{
-                pet.setBio(pet_bio.getText().toString());
-                pet.setAge(pet_age.getText().toString());
-                pet.setName(pet_name.getText().toString());
-                pet.setOwner_id(user.getUid());
-                pet.setSequence(sequence);
-            });
+            pet.setBio(pet_bio.getText().toString());
+            pet.setAge(pet_age.getText().toString());
+            pet.setName(pet_name.getText().toString());
+            pet.setSpe(pet_spe.getText().toString());
+            pet.setOwner_id(user.getUid());
+            pet.setSequence(sequence);
+            pet.upload(user.getUid()+sequence,()->{});
         });
     }
 
