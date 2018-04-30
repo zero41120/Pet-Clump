@@ -59,6 +59,7 @@
         android:id="@+id/user_pets"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="155dp"
         android:layout_marginStart="155dp"
@@ -67,10 +68,11 @@
         android:text="@string/My_pets"
         android:textSize="@dimen/font_size"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/profile_pet1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/profile_pet2"
         app:layout_constraintTop_toBottomOf="@+id/about_my_pet_label"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.933"
+        tools:layout_editor_absoluteX="142dp" />
 
 
     <com.mikhaellopez.circularimageview.CircularImageView
@@ -100,7 +102,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:src="@drawable/pig_placeholder"
-
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"

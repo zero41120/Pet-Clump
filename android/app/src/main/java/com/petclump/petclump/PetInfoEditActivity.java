@@ -16,24 +16,28 @@ public class PetInfoEditActivity extends AppCompatActivity {
     Button cancel_button, save_button;
     Spinner pet_specie;
     String specie_array_string[];
-
+    String pet_id = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_pet_info_edit);
+        // used to judge if its
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            pet_id = extras.getString("pet_id");
+        }
+
         setupUI();
-        downloadData();
     }
 
-    private void downloadData(){
-
-    }
     private void saveData() {
+
         finish();
 
+
     }
+
     private void setupUI(){
         specie_array_string = new String[19];
         pet_name_editText = findViewById(R.id.pet_name_editText);
@@ -54,11 +58,10 @@ public class PetInfoEditActivity extends AppCompatActivity {
         cancel_button.setOnClickListener(v->
             finish());
         ArrayAdapter<String> adapter_specie = new ArrayAdapter<>(this,
+
                 android.R.layout.simple_spinner_item, specie_array_string);
         adapter_specie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pet_specie.setAdapter(adapter_specie);
-
-
 
 
 

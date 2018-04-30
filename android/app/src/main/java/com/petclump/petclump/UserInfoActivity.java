@@ -7,28 +7,20 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.petclump.petclump.models.OwnerProfile;
-import com.petclump.petclump.models.Profile;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Map;
 
-public class UserInfoActivity extends AppCompatActivity implements ProfileUIUpdator {
+public class UserInfoActivity extends AppCompatActivity {
     private static final String TAG = "User Info Activity";
     private int number_of_pets = 1;
     private ImageButton button_add_pet, button_why;
@@ -68,7 +60,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileUIUpda
         name_label      = findViewById(R.id.name_label);
         gender_label    = findViewById(R.id.gender_label);
         birthday_label  = findViewById(R.id.birthday_label);
-        range_label     = findViewById(R.id.match_range_seekbar);
+        range_label     = findViewById(R.id.match_range_value);
 
         edit_button     = findViewById(R.id.save_button);
 
@@ -80,26 +72,60 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileUIUpda
         button_why.setOnClickListener(v ->
             startActivity(new Intent(c, Popup.class))
         );
+        // Enter Pet_info to create new pet
+        edit_button.setOnClickListener(v-> startActivity(new Intent(c, PetInfoEditActivity.class)));
 
-        edit_button.setOnClickListener(v-> startActivity(new Intent(c, UserInfoEditActivity.class)));
         profile = new OwnerProfile();
-        profile.download(user.getUid(), this);
+        profile.download(user.getUid(), ()->{
+                if(null == profile){
+                    Log.d(TAG,"_update without setting up profile");
+                }
+                name_label.setText(profile.getName());
+                gender_label.setText(profile.getGender());
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime((Date) profile.getBirthday());
+                String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
+                        +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
+                        +String.valueOf(calendar.get(Calendar.YEAR));
+                birthday_label.setText(t);
+                range_label.setText(String.valueOf(profile.getDistancePerference()));
+        });
+        Intent i = new Intent();
+        profile_pet1.setOnClickListener(v->{
+
+            String pet_id = "null";
+            // pet_id0
+            pet_id = profile.getPet_id0().toString();
+            if(!pet_id.equals("null")){
+                i.putExtra("pet_id", pet_id);
+                pet_id = "null";
+            }
+            startActivity(new Intent(c, PetInfoActivity.class));
+        });
+        profile_pet2.setOnClickListener(v->{
+
+            String pet_id = "null";
+            // pet_id1
+            pet_id = profile.getPet_id1().toString();
+            if(!pet_id.equals("null")){
+                i.putExtra("pet_id", pet_id);
+                pet_id = "null";
+            }
+            startActivity(new Intent(c, PetInfoActivity.class));
+        });
+        profile_pet3.setOnClickListener(v->{
+
+            String pet_id = "null";
+            // pet_id2
+            pet_id = profile.getPet_id2().toString();
+            if(!pet_id.equals("null")){
+                i.putExtra("pet_id", pet_id);
+                pet_id = "null";
+            }
+            startActivity(i);
+        });
+
     }
 
-    @Override
-    public void UpdateUI(){
-        if(null == profile){
-            Log.d(TAG,"_update without setting up profile");
-        }
-        name_label.setText(profile.getName());
-        gender_label.setText(profile.getGender());
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime((Date) profile.getBirthday());
-        String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
-                +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
-                +String.valueOf(calendar.get(Calendar.YEAR));
-        birthday_label.setText(t);
-        range_label.setText(String.valueOf(profile.getDistancePerference()));
-    }
 }
 
