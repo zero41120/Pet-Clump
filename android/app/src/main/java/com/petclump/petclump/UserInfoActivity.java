@@ -60,14 +60,13 @@ public class UserInfoActivity extends AppCompatActivity {
         name_label      = findViewById(R.id.name_label);
         gender_label    = findViewById(R.id.gender_label);
         birthday_label  = findViewById(R.id.birthday_label);
-        range_label     = findViewById(R.id.match_range_seekbar);
+        range_label     = findViewById(R.id.match_range_value);
 
         edit_button     = findViewById(R.id.edit_button);
 
         profile_pet1.setOnClickListener(v ->
             startActivity(new Intent(c, PetInfoActivity.class))
         );
-
 
         button_why = findViewById(R.id.button_why);
         button_why.setOnClickListener(v ->
@@ -125,8 +124,6 @@ public class UserInfoActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 }
 

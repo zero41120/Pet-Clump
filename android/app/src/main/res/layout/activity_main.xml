@@ -118,7 +118,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Go Quiz"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/button_save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

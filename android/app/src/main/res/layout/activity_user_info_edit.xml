@@ -1,3 +1,10 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,7 +41,7 @@
         app:layout_constraintVertical_bias="0.106" />
 
     <TextView
-        android:id="@+id/pet_age_label"
+        android:id="@+id/pet_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -154,22 +161,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.438" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="7dp"
-        android:layout_height="495dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <SeekBar
         android:id="@+id/match_range_seekbar"
@@ -229,7 +221,7 @@
     </ViewSwitcher>
 
     <Button
-        android:id="@+id/save_button"
+        android:id="@+id/edit_button"
         android:layout_width="69dp"
         android:layout_height="35dp"
         android:layout_marginBottom="547dp"
@@ -260,7 +252,7 @@
         android:text="@string/Cancel"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/save_button"
+        app:layout_constraintEnd_toStartOf="@+id/edit_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
@@ -291,5 +283,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TableLayout
+        android:layout_width="373dp"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="521dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+
+
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

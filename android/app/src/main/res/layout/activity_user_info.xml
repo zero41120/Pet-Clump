@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/name_label" />
 
     <TextView
-        android:id="@+id/pet_age_label"
+        android:id="@+id/pet_age"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
 
@@ -59,12 +59,16 @@
         android:id="@+id/user_pets"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginStart="155dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/My_pets"
         android:textSize="@dimen/font_size"
         android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/profile_pet2"
         app:layout_constraintTop_toBottomOf="@+id/about_my_pet_label"
         app:layout_constraintVertical_bias="0.933"
@@ -117,6 +121,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:src="@drawable/ray"
+
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
@@ -142,13 +147,13 @@
         android:text="@string/About_me"
         android:textSize="@dimen/font_size"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/save_button"
+        app:layout_constraintBottom_toTopOf="@+id/edit_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/save_button"
+        android:id="@+id/edit_button"
         android:layout_width="102dp"
         android:layout_height="19dp"
         android:layout_marginBottom="8dp"
@@ -252,20 +257,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/pet_age_label" />
+        app:layout_constraintTop_toBottomOf="@+id/pet_age" />
 
     <ImageButton
         android:id="@+id/button_why"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="375dp"
         android:layout_marginEnd="118dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="118dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="29dp"
         android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/button_add_pet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/about_my_pet_label"
         app:layout_constraintTop_toTopOf="parent"
