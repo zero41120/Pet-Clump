@@ -43,4 +43,28 @@ public enum Specie {
         }
         return -1;
     }
+    public static String specie_num(int n){
+        switch(n){
+            case 0: return "DOG";
+            case 1: return "CAT";
+            case 2: return "BIRD";
+            case 3: return "ANT";
+            case 4: return "FERRET";
+            case 5: return "FISH";
+            case 6: return "FROG";
+            case 7: return "LIZARD";
+            case 8: return "GOAT";
+            case 9: return "HAMSTER";
+            case 10: return "HORSE";
+            case 11: return "PIG";
+            case 12: return "RABBIT";
+            case 13: return "SNAKE";
+            case 14: return "TURTLE";
+            case 15: return "OCTOPUS";
+            case 16: return "LLAMA";
+            case 17: return "EAGLE";
+            case 18: return "OTHER";
+        }
+        return "WRONG_ANIMAL";
+    }
 }

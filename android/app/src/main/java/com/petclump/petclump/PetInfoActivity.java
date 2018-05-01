@@ -107,8 +107,12 @@ public class PetInfoActivity extends AppCompatActivity{
             //pet.setSpe(pet_specie.getText().toString());
             pet.setOwner_id(user.getUid());
             pet.setSequence(sequence);
+            pet.setSpe(Specie.specie_num(getSpinnerPosition(pet_specie, pet_specie.getSelectedItem())));
             pet.upload(user.getUid()+sequence,()->{});
         });
+    }
+    private Integer getSpinnerPosition(Spinner spinner, Object item){
+        return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
     }
 
 

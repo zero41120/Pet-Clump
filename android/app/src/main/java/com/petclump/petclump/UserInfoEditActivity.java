@@ -273,11 +273,11 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         if((Integer)i.getTag() == gray_id){
             i.setTag(R.drawable.schedule_green);
             i.setImageResource(R.drawable.schedule_green);
-            Log.d("ClickView to green",String.valueOf((Integer)i.getTag()));
+            //Log.d("ClickView to green",String.valueOf((Integer)i.getTag()));
         }else{
             i.setTag(R.drawable.schedule_gray);
             i.setImageResource(R.drawable.schedule_gray);
-            Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
+            //Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
         }
     }
 }
