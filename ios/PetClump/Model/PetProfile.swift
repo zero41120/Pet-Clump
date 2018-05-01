@@ -33,7 +33,7 @@ class PetProfile: Profile{
     var groupPhoto1: [UInt8] = []
     var groupPhoto2: [UInt8] = []
 
-    func download(uid: String, callerView: ProfilerDownloader?) {
+    func download(uid: String, completion: ProfileDownloader?) {
         // Opens document
         let generatedId = "\(uid)\(sequence)"
         let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
@@ -53,8 +53,8 @@ class PetProfile: Profile{
                 self.specie  = refObj["spe"]  as? String ?? ""
                 self.ownerId = refObj["owner_id"] as? String ?? ""
             }
-            guard (callerView != nil) else { return }
-            callerView!.didCompleteDownload()
+            guard (completion != nil) else { return }
+            completion!.didCompleteDownload()
         }
     }
     
@@ -69,7 +69,7 @@ class PetProfile: Profile{
         ]
     }
     
-    func upload(vc: QuickAlert, callerView: ProfileUploader?) {
+    func upload(vc: QuickAlert, completion: ProfileUploader?) {
         guard let uid = Auth.auth().currentUser?.uid else {
             vc.makeAlert(message: "User is not signed in!")
             return
@@ -81,8 +81,8 @@ class PetProfile: Profile{
                 vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
             }
             print("Uploaded successfully for pet " + generatedId)
-            guard (callerView != nil) else { return }
-            callerView!.didCompleteUpload()
+            guard (completion != nil) else { return }
+            completion!.didCompleteUpload()
         }
     }
 }

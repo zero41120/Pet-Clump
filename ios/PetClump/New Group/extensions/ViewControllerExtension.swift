@@ -17,6 +17,10 @@ protocol QuickAlert {
     func makeAlert(message: String)
 }
 
+protocol ConfirmDismissAlert{
+    func confirmBeforeDismiss(title: String, message: String)
+}
+
 // https://stackoverflow.com/questions/37946990/cgrectmake-cgpointmake-cgsizemake-cgrectzero-cgpointzero-is-unavailable-in-s
 extension CGRect{
     init(_ x:CGFloat,_ y:CGFloat,_ width:CGFloat,_ height:CGFloat) {

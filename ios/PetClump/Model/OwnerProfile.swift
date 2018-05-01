@@ -21,7 +21,7 @@ import Firebase
  * - freeTime: this is a 7*3 bool matrix for free time. In the initlizer, it's a 21 character string with 1 mark as free.
  */
 class OwnerProfile: Profile{
-    func upload(vc: QuickAlert, callerView: ProfileUploader?) {
+    func upload(vc: QuickAlert, completion: ProfileUploader?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let docRef = Firestore.firestore().collection("users").document(uid)
@@ -30,12 +30,12 @@ class OwnerProfile: Profile{
                 vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
             }
             print("Uploaded successfully for user " + uid)
-            guard (callerView != nil) else { return }
-            callerView!.didCompleteUpload()
+            guard (completion != nil) else { return }
+            completion!.didCompleteUpload()
         }
     }
     
-    func download(uid: String, callerView: ProfilerDownloader?) {
+    func download(uid: String, completion: ProfileDownloader?) {
         // Opens document
         let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(uid)
         docRef.getDocument { (document, error) in
@@ -59,8 +59,8 @@ class OwnerProfile: Profile{
                 // Gets Freetime and convert to Free schedule
                 self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
             }
-            guard (callerView != nil) else { return }
-            callerView!.didCompleteDownload()
+            guard (completion != nil) else { return }
+            completion!.didCompleteDownload()
         }
     }
     

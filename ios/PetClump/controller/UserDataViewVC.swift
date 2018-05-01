@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataViewVC: UIViewController, ProfilerDownloader{
+class UserDataViewVC: UIViewController, ProfileDownloader{
 
     var profile: OwnerProfile = OwnerProfile()
     
@@ -71,7 +71,7 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
     
     private func fetchData(){
         if let uid = Auth.auth().currentUser?.uid{
-            profile.download(uid: uid, callerView: self)
+            profile.download(uid: uid, completion: self)
             let image0 = PetProfileImageDownloader.init(uid: uid, sequence: 0, imageView: pet0ImageView)
             let image1 = PetProfileImageDownloader.init(uid: uid, sequence: 1, imageView: pet1ImageView)
             let image2 = PetProfileImageDownloader.init(uid: uid, sequence: 2, imageView: pet2ImageView)
@@ -99,7 +99,7 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
     }
 }
 
-class PetProfileImageDownloader: ProfilerDownloader{
+class PetProfileImageDownloader: ProfileDownloader{
     private let imageView: UIImageView
     private var petProfile: PetProfile?
     private let uid: String
@@ -114,7 +114,7 @@ class PetProfileImageDownloader: ProfilerDownloader{
     func download(){
         petProfile = PetProfile()
         petProfile!.sequence = self.sequence
-        petProfile!.download(uid: self.uid, callerView: self)
+        petProfile!.download(uid: self.uid, completion: self)
     }
     
     func didCompleteDownload() {

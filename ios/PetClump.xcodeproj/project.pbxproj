@@ -129,7 +129,6 @@
 				29A6E5B5208EB851006352CF /* font */,
 				298BD0002096E8CF007A6846 /* delegates */,
 				298BCFFF2096E8B8007A6846 /* extensions */,
-				298BCFFC2096DFD6007A6846 /* pickers */,
 				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 			);
 			name = view;
@@ -174,6 +173,7 @@
 		298BD0002096E8CF007A6846 /* delegates */ = {
 			isa = PBXGroup;
 			children = (
+				298BCFFC2096DFD6007A6846 /* pickers */,
 				298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */,
 				298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */,
 			);

@@ -7,18 +7,49 @@
 //
 
 import UIKit
+import Firebase
 
-class QuizVC: ZLSwipeableViewController {
+class QuizVC: ZLSwipeableViewController, ConfirmDismissAlert, ProfileDownloader, ProfileUploader{
+    func confirmBeforeDismiss(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Leave", style: .destructive, handler: { (action: UIAlertAction!) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
     
-    
+
+    var petProfile: PetProfile?
    
     @IBAction func tapExit(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        confirmBeforeDismiss(title: "Leaving quiz", message: "Are you sure you want to leave the quiz?")
     }
     
     override func viewDidLoad() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         super.viewDidLoad()
+        petProfile!.download(uid: uid, completion: self)
+
+        // didCompleteDownloader will setup quiz action
         
+    }
+ 
+    // MARK: - Actions
+    
+    @objc func leftBarButtonAction() {
+        self.swipeableView.swipeTopView(fromPoint: CGPoint(x: 10, y: 300), inDirection: CGVector(dx: -700, dy: -300))
+    }
+    
+    @objc func upBarButtonAction() {
+        self.swipeableView.swipeTopView(fromPoint: CGPoint(x: 100, y: 30), inDirection: CGVector(dx: 100, dy: -800))
+    }
+    
+    func didCompleteDownload() {
+        print("profile downloaded, ready for quiz!")
         leftBarButtonItem.action = #selector(leftBarButtonAction)
         upBarButtonItem.action = #selector(upBarButtonAction)
         
@@ -41,17 +72,11 @@ class QuizVC: ZLSwipeableViewController {
             }
             return (location, directionVector!)
         }
-        
-    }
- 
-    // MARK: - Actions
-    
-    @objc func leftBarButtonAction() {
-        self.swipeableView.swipeTopView(fromPoint: CGPoint(x: 10, y: 300), inDirection: CGVector(dx: -700, dy: -300))
     }
     
-    @objc func upBarButtonAction() {
-        self.swipeableView.swipeTopView(fromPoint: CGPoint(x: 100, y: 30), inDirection: CGVector(dx: 100, dy: -800))
+    func didCompleteUpload() {
+        self.dismiss(animated: true, completion: nil)
     }
+    
     
 }
