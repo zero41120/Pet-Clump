@@ -279,19 +279,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Label_pet_name" />
 
-        <EditText
+
+        <Spinner
             android:id="@+id/pet_specie"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="312dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="312dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="17dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="23dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Label_pet_specie" />
+            app:layout_constraintTop_toBottomOf="@+id/Label_pet_specie"
+            app:layout_constraintVertical_bias="0.027" />
 
         <EditText
             android:id="@+id/pet_age"
