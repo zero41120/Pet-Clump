@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.petclump.petclump.models.FreeSchedule;
 import com.petclump.petclump.models.OwnerProfile;
 
 import java.util.Calendar;
@@ -42,6 +43,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
     Date birthday;
     private OwnerProfile profile;
+    private static final int gray_id = 2131165335;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +59,9 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_user_info_edit);
         c = getApplicationContext();
 
-/*        constraintSet = new ConstraintSet();
+        constraintSet = new ConstraintSet();
         constraintLayout = findViewById(R.id.user_info_edit_layout);
-        constraintSet.clone(constraintLayout);*/
+        constraintSet.clone(constraintLayout);
 
         user_name_editText = findViewById(R.id.user_name_editText);
         match_range_value = findViewById(R.id.user_match_value);
@@ -88,15 +90,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             year_array_string[75-i] = String.valueOf(year);
             year -= 1;
         }
-        // freely schedule
-        ImageView imageViews[][] = new ImageView[7][3];
-        for(int i=1; i<8; i++) {
-            for(int j=1; j<4; j++) {
-                String imageID = "sch" + i + j;
-                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
-                imageViews[i][j] = ( findViewById(resID));
-            }
-        }
+
+
 
         // get pet_num by extra, sent from UserInfoActivity
         // Bundle extras = getIntent().getExtras();
@@ -138,32 +133,45 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
         profile = new OwnerProfile();
-        profile.download(user.getUid(),this);
+        profile.download(user.getUid(),()->{
+            user_name_editText.setText(profile.getName());
+            int index = getSpinnerPosition(user_select_gender, profile.getGender());
+            user_select_gender.setSelection(index);
+            Calendar gcBirthday = new GregorianCalendar();
+            gcBirthday.setTime((Date)profile.getBirthday());
+            index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
+            user_dob_year.setSelection(index);
+
+            index = gcBirthday.get(Calendar.MONTH);
+            Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
+            user_dob_month.setSelection(index);
+            index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
+            user_dob_day.setSelection(index);
+            String range = String.valueOf(profile.getDistancePerference());
+            match_range_value.setText(stringToProgressText(range));
+            user_match_range_seekbar.setProgress(stringToProgress(range));
+            // setup free schedule
+            FreeSchedule freeSchedule = profile.getFreeTime();
+            ImageView imageViews[][] = new ImageView[8][4];
+            for(int i=1; i<8; i++) {
+                for(int j=1; j<4; j++) {
+                    String imageID = "sch" + i + j;
+                    int resID = getResources().getIdentifier(imageID, "id", getPackageName());
+                    ImageView im = findViewById(resID);
+                    if(!freeSchedule.isFree(i,j)){
+                        im.setTag(R.drawable.schedule_gray);
+
+                    }else{
+                        im.setTag(R.drawable.schedule_green);
+                        im.setImageResource(R.drawable.schedule_green);
+                    }
+                        im.setOnClickListener(this);
+                }
+            }
+        });
     }
 
-    @Override
-    public void didCompleteDownload() {
-        if(null == profile){
-            Log.d(TAG,"_update without setting up profile");
-        }
-
-        user_name_editText.setText(profile.getName());
-        int index = getSpinnerPosition(user_select_gender, profile.getGender());
-        user_select_gender.setSelection(index);
-        Calendar gcBirthday = new GregorianCalendar();
-        gcBirthday.setTime((Date)profile.getBirthday());
-        index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
-        user_dob_year.setSelection(index);
-
-        index = gcBirthday.get(Calendar.MONTH);
-        Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
-        user_dob_month.setSelection(index);
-        index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
-        user_dob_day.setSelection(index);
-        String range = String.valueOf(profile.getDistancePerference());
-        match_range_value.setText(stringToProgressText(range));
-        user_match_range_seekbar.setProgress(stringToProgress(range));
-    }
+    public void didCompleteDownload(){}
 
 
     private Integer getSpinnerPosition(Spinner spinner, Object item){
@@ -225,6 +233,21 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             +"month:"+(getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1
         )+"\n");
         profile.setBirthday(birthday.getTime());
+        // set up freeschedule
+        String freetime = "";
+        for(int i=1; i<8; i++){
+            for(int j=1; j<4; j++){
+                String imageID = "sch" + i + j;
+                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
+                ImageView t = findViewById(resID);
+                if((Integer)t.getTag() == gray_id)
+                    freetime += "0";
+                else
+                    freetime += "1";
+            }
+        }
+        //Log.d("freetime:",freetime);
+        profile.setFreeTime(freetime);
         profile.upload(user.getUid(),this);
         finish();
     }
@@ -237,10 +260,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
     }
-    public void scheduleTest(){
-
-
-    }
 
 
     @Override
@@ -250,6 +269,15 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onClick(View v) {
-
+        ImageView i = findViewById(v.getId());
+        if((Integer)i.getTag() == gray_id){
+            i.setTag(R.drawable.schedule_green);
+            i.setImageResource(R.drawable.schedule_green);
+            Log.d("ClickView to green",String.valueOf((Integer)i.getTag()));
+        }else{
+            i.setTag(R.drawable.schedule_gray);
+            i.setImageResource(R.drawable.schedule_gray);
+            Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
+        }
     }
 }

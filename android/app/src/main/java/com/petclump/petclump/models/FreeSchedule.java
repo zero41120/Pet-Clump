@@ -1,18 +1,13 @@
 package com.petclump.petclump.models;
 
-class FreeSchedule{
+public class FreeSchedule{
     boolean[][] freeMatrix;
 
     String freeString;
 
-    enum PartDay{ Morning, AfterNoon, Night};
-    enum WeekDay{
-        Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
-    }
 
-
-    public boolean isFree(WeekDay weekDay, PartDay partDay){
-        return freeMatrix[weekDay.ordinal()][partDay.ordinal()];
+    public boolean isFree(int weekDay, int partDay){
+        return freeMatrix[weekDay-1][partDay-1];
     }
 
     public FreeSchedule(String freeString){
