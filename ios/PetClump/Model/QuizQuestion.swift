@@ -84,5 +84,6 @@ class QuizQuestion {
     ]
     
     static func getQuestion(beginIndex: Int, count: Int) -> [String]{
+        return []
     }
 }
