@@ -11,20 +11,22 @@ import Firebase
 
 class PetDataViewVC: UIViewController, ProfilerDownloader{
     //Title Labels
-    @IBOutlet weak var nameTitleLabel: UILabel!
-    @IBOutlet weak var petAndOwnerTitleLabel: UILabel!
-    @IBOutlet weak var infoTitleLabel: UILabel!
-    @IBOutlet weak var petNameTitleLabel: UILabel!
-    @IBOutlet weak var petSpeciesLabel: UILabel!
-    @IBOutlet weak var petAgeTitleLabel: UILabel!
-    @IBOutlet weak var petBioTitleLabel: UILabel!
+    @IBOutlet weak var nameTitleLabel:          UILabel!
+    @IBOutlet weak var petAndOwnerTitleLabel:   UILabel!
+    @IBOutlet weak var infoTitleLabel:          UILabel!
+    @IBOutlet weak var petNameTitleLabel:       UILabel!
+    @IBOutlet weak var petSpeciesLabel:         UILabel!
+    @IBOutlet weak var petAgeTitleLabel:        UILabel!
+    @IBOutlet weak var petBioTitleLabel:        UILabel!
+    @IBOutlet weak var bioRemainingLabel:       UILabel!
+
     //Information display
-    @IBOutlet weak var petNameTextField: UITextField!
+    @IBOutlet weak var petNameTextField:    UITextField!
     @IBOutlet weak var petSpeciesTextField: UITextField!
-    @IBOutlet weak var petAgeTextField: UITextField!
-    @IBOutlet weak var petBioTextView: UITextView!
+    @IBOutlet weak var petAgeTextField:     UITextField!
+    @IBOutlet weak var petBioTextView:      UITextView!
     //Pet pictures display
-    @IBOutlet weak var bigPetPicture: UIImageView!
+    @IBOutlet weak var bigPetPicture:    UIImageView!
     @IBOutlet weak var smallPetPicture1: UIImageView!
     @IBOutlet weak var smallPetPicture2: UIImageView!
     @IBOutlet weak var smallPetPicture3: UIImageView!
@@ -34,7 +36,6 @@ class PetDataViewVC: UIViewController, ProfilerDownloader{
     @IBOutlet weak var petAndOwnerPic1: UIImageView!
     @IBOutlet weak var petAndOwnerPic2: UIImageView!
     @IBOutlet weak var petAndOwnerPic3: UIImageView!
-    @IBOutlet weak var bioRemainingLabel: UILabel!
     
     var petProfile: PetProfile?
     var speciePicker: UIPickerView?
@@ -75,12 +76,12 @@ class PetDataViewVC: UIViewController, ProfilerDownloader{
         petSpeciesTextField.inputView = speciePicker
         
         // Set up textfield delegates
-        remainingBioDelegate = LimitTextViewInput(count: 500, remainingLable: bioRemainingLabel)
         nameInputDelegate = LimitTextFieldInput(count: 20)
-        ageInputDelegate = LimitTextFieldInput(count: 50)
-        petBioTextView.delegate = remainingBioDelegate
+        ageInputDelegate  = LimitTextFieldInput(count: 50)
+        remainingBioDelegate = LimitTextViewInput(count: 500, remainingLable: bioRemainingLabel)
+        petBioTextView.makeTextField(delegate: remainingBioDelegate!)
         petNameTextField.delegate = nameInputDelegate
-        petAgeTextField.delegate = ageInputDelegate
+        petAgeTextField.delegate  = ageInputDelegate
         
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905331E209915F50076A2AF /* TextViewExtension.swift */; };
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
+		2905331E209915F50076A2AF /* TextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewExtension.swift; sourceTree = "<group>"; };
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
 		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,8 +124,8 @@
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
-				29B1936D208D4CD000A59783 /* image */,
 				847769B820969289002AF924 /* CardView.swift */,
+				29B1936D208D4CD000A59783 /* image */,
 				29A6E5B5208EB851006352CF /* font */,
 				298BD0002096E8CF007A6846 /* delegates */,
 				298BCFFF2096E8B8007A6846 /* extensions */,
@@ -164,6 +166,7 @@
 			children = (
 				29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */,
 				29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */,
+				2905331E209915F50076A2AF /* TextViewExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */,
 				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
+				2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */,
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,
 				294C94C52097D74700266533 /* QuizVC.swift in Sources */,
 				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,
