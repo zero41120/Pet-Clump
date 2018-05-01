@@ -30,26 +30,16 @@ class UserDataViewVC: UIViewController, ProfileDownloader{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
+        if let uid = Auth.auth().currentUser?.uid {
+            self.setupUI()
+            profile.download(uid: uid, completion: self)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.fetchData()
-    }
-    
-    @objc private func enterPetView(tapGestureRecognizer: UITapGestureRecognizer){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
-        let imageView = tapGestureRecognizer.view as! UIImageView
-        let sequence: Int
-        switch imageView.tag {
-            case  0: sequence = 0
-            case  1: sequence = 1
-            default: sequence = 2
-        }
-        pdv.petProfile = PetProfile()
-        pdv.petProfile!.sequence = sequence
-        self.present(pdv, animated: true, completion: nil)
     }
     
     func setupUI(){
@@ -67,6 +57,21 @@ class UserDataViewVC: UIViewController, ProfileDownloader{
             }
         }
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    @objc private func enterPetView(tapGestureRecognizer: UITapGestureRecognizer){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
+        let imageView = tapGestureRecognizer.view as! UIImageView
+        let sequence: Int
+        switch imageView.tag {
+        case  0: sequence = 0
+        case  1: sequence = 1
+        default: sequence = 2
+        }
+        pdv.petProfile = PetProfile()
+        pdv.petProfile!.sequence = sequence
+        self.present(pdv, animated: true, completion: nil)
     }
     
     private func fetchData(){

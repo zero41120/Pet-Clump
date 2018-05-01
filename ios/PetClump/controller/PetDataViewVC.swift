@@ -48,11 +48,14 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     
     
     override func viewDidLoad() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         super.viewDidLoad()
-        setupUI()
-        setupDelegate()
-        petProfile!.download(uid: uid, completion: self)
+        if let uid = Auth.auth().currentUser?.uid {
+            self.setupUI()
+            setupDelegate()
+            petProfile!.download(uid: uid, completion: self)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     // Pre-fill text fields when pet info is downloaded from Firebase

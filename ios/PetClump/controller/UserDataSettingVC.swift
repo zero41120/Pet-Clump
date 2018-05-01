@@ -34,9 +34,11 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
         if let uid = Auth.auth().currentUser?.uid {
+            self.setupUI()
             profile.download(uid: uid, completion: self)
+        } else {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
