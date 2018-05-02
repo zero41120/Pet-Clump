@@ -49,15 +49,19 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let uid = Auth.auth().currentUser?.uid {
+        if let _ = Auth.auth().currentUser?.uid {
             self.setupUI()
             setupDelegate()
-            petProfile!.download(uid: uid, completion: self)
         } else {
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        petProfile!.download(uid: uid, completion: self)
+    }
+    
     // Pre-fill text fields when pet info is downloaded from Firebase
     func didCompleteDownload() {
         self.petBioTextView.text        = petProfile!.bio
@@ -65,6 +69,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         self.petNameTextField.text      = petProfile!.name
         self.bioRemainingLabel.text     = "\(petProfile!.bio.count)/500"
         self.petSpeciesTextField.text   = petProfile!.specie
+        self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(petProfile!.quiz.count)/100)", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
     }
     
     private func setupUI(){
@@ -110,6 +115,9 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     }
     
     @IBAction func tapQuiz(_ sender: Any){
+        if petProfile!.quiz.count == 100 {
+            makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
+        }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let qvc = storyBoard.instantiateViewController(withIdentifier: "QuizVC") as! QuizVC
         qvc.petProfile = PetProfile()

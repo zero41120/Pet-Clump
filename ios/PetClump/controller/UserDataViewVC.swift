@@ -39,7 +39,7 @@ class UserDataViewVC: UIViewController, ProfileDownloader{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.fetchData()
+        self.fetchPetImage()
     }
     
     func setupUI(){
@@ -74,7 +74,7 @@ class UserDataViewVC: UIViewController, ProfileDownloader{
         self.present(pdv, animated: true, completion: nil)
     }
     
-    private func fetchData(){
+    private func fetchPetImage(){
         if let uid = Auth.auth().currentUser?.uid{
             profile.download(uid: uid, completion: self)
             let image0 = PetProfileImageDownloader.init(uid: uid, sequence: 0, imageView: pet0ImageView)
