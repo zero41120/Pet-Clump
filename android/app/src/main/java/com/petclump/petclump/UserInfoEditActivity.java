@@ -53,8 +53,9 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             finish();
         }
         setupUI();
-        //checkBirthday();
+
     }
+
 
     private void setupUI(){
         setContentView(R.layout.activity_user_info_edit);
@@ -153,7 +154,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             user_match_range_seekbar.setProgress(stringToProgress(range));
             // setup free schedule
             FreeSchedule freeSchedule = profile.getFreeTime();
-            ImageView imageViews[][] = new ImageView[8][4];
             for(int i=1; i<8; i++) {
                 for(int j=1; j<4; j++) {
                     String imageID = "sch" + i + j;
@@ -214,13 +214,24 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             default: return 0;
         }
     }
-    private void checkBirthday(){
-        if (getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem())==(2|4|6|9|11)
+    private boolean checkBirthday(){
+        boolean valid = true;
+        if (getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem())==(4|6|9|11)
                 && (getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1)==31){
             Toast toast = Toast.makeText(getApplicationContext(), "you enter wrong birthday",Toast.LENGTH_LONG);
             toast.show();
-            //finish();
+            user_dob_day.setSelection(29);
+            valid = false;
+
+        }else if (getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem())==2
+                && (getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1)==(30|31)){
+            Toast toast = Toast.makeText(getApplicationContext(), "you enter wrong birthday",Toast.LENGTH_LONG);
+            toast.show();
+            user_dob_day.setSelection(28);
+            valid = false;
         }
+        return valid;
+
     }
     private void cancelData() {
         finish();
@@ -232,12 +243,15 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
         GregorianCalendar birthday = new GregorianCalendar();
+        if (checkBirthday()){
+            birthday.set(
+                    Integer.parseInt(user_dob_year.getSelectedItem().toString()),
+                    getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()),
+                    getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
+            );
+        }
 
-        birthday.set(
-            Integer.parseInt(user_dob_year.getSelectedItem().toString()),
-            getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()),
-            getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
-        );
+
         Log.d("uploadBirthday:","year:"+user_dob_year.getSelectedItem().toString()
             +"month:"+(getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1
         )+"\n");
