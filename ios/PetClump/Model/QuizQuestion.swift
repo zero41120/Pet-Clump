@@ -8,6 +8,11 @@
 
 import Foundation
 
+class QuizAnswer {
+    public static let NO = "0"
+    public static let YES = "1"
+    public static let SKIP = "2"
+}
 class QuizQuestion {
     
     static let defaultQuestions = [

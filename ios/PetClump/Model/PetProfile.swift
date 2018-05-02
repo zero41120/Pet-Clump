@@ -18,9 +18,11 @@ class PetProfile: Profile{
     var bio: String     = ""
     var age: String     = ""
     var name: String    = ""
+    var quiz: String    = ""
     var specie: String  = "Other"
     var ownerId: String = "error_id"
     var sequence: Int   = 0
+    
     // Image
     var mainPhoto: [UInt8] = []
     var photo1: [UInt8] = []
@@ -47,11 +49,13 @@ class PetProfile: Profile{
                 print("Document data: \(refObj.description)")
                 
                 // Gets user information
-                self.name    = refObj["name"] as? String ?? ""
                 self.age     = refObj["age"]  as? String ?? ""
                 self.bio     = refObj["bio"]  as? String ?? ""
+                self.quiz    = refObj["quiz"] as? String ?? ""
+                self.name    = refObj["name"] as? String ?? ""
                 self.specie  = refObj["spe"]  as? String ?? ""
                 self.ownerId = refObj["owner_id"] as? String ?? ""
+                
             }
             guard (completion != nil) else { return }
             completion!.didCompleteDownload()
@@ -62,8 +66,9 @@ class PetProfile: Profile{
         return [
             "bio":  bio,
             "age":  age,
-            "name": name,
             "spe":  specie,
+            "name": name,
+            "quiz": quiz,
             "owner_id": ownerId,
             "sequence": sequence
         ]
