@@ -136,7 +136,7 @@
         <TextView
             android:id="@+id/title_pet_name"
             style="@style/fontStyle3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -144,6 +144,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
             android:text="DUGGYY"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.438"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,13 +153,13 @@
         <TextView
             android:id="@+id/Txt_my_pet_and_I"
             style="@style/fontStyle3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="96dp"
-            android:layout_marginStart="96dp"
+            android:layout_gravity="center"
             android:layout_marginTop="44dp"
             android:gravity="center"
             android:text="DUGGYY and I "
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pet_profile_4" />
 
@@ -274,6 +275,7 @@
             android:layout_marginRight="312dp"
             android:layout_marginStart="52dp"
             android:layout_marginTop="24dp"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -283,11 +285,12 @@
         <Spinner
             android:id="@+id/pet_specie"
             android:layout_width="300dp"
-            android:layout_height="23dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="52dp"
             android:layout_marginStart="52dp"
             android:layout_marginTop="24dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Label_pet_specie"
@@ -300,6 +303,7 @@
             android:layout_marginLeft="52dp"
             android:layout_marginStart="52dp"
             android:layout_marginTop="24dp"
+            android:textSize="20dp"
             android:text=""
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Label_pet_old" />
@@ -311,6 +315,7 @@
             android:layout_marginLeft="52dp"
             android:layout_marginStart="52dp"
             android:layout_marginTop="40dp"
+            android:textSize="20dp"
             android:maxLength="500"
             android:lines="6"
             android:text="@string/Bio"

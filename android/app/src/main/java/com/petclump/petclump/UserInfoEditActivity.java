@@ -245,13 +245,11 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
         GregorianCalendar birthday = new GregorianCalendar();
-        if (checkBirthday()){
-            birthday.set(
-                    Integer.parseInt(user_dob_year.getSelectedItem().toString()),
-                    getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()),
-                    getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
-            );
-        }
+        birthday.set(
+            Integer.parseInt(user_dob_year.getSelectedItem().toString()),
+            getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()),
+            getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
+        );
 
 
         Log.d("uploadBirthday:","year:"+user_dob_year.getSelectedItem().toString()
