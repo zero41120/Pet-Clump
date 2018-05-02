@@ -216,15 +216,17 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
     private boolean checkBirthday(){
         boolean valid = true;
-        if (getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem())==(4|6|9|11)
-                && (getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1)==31){
+        int month = getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem());
+        int day = getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1;
+        if ((month==4||month==6||month==9||month==11)
+                && (day==31)){
             Toast toast = Toast.makeText(getApplicationContext(), "you enter wrong birthday",Toast.LENGTH_LONG);
             toast.show();
             user_dob_day.setSelection(29);
             valid = false;
 
-        }else if (getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem())==2
-                && (getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1)==(30|31)){
+        }else if ((month==2)
+                && (day==30||day==31)){
             Toast toast = Toast.makeText(getApplicationContext(), "you enter wrong birthday",Toast.LENGTH_LONG);
             toast.show();
             user_dob_day.setSelection(28);
