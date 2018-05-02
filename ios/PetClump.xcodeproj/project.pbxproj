@@ -139,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				847769A720969252002AF924 /* ZLSwipeableViewSwift */,
-				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
 				294C94C42097D74700266533 /* QuizVC.swift */,
 				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
 				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
@@ -244,6 +243,7 @@
 		847769A720969252002AF924 /* ZLSwipeableViewSwift */ = {
 			isa = PBXGroup;
 			children = (
+				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
 				847769A820969252002AF924 /* Direction.swift */,
 				847769A920969252002AF924 /* Info.plist */,
 				847769AA20969252002AF924 /* Scheduler.swift */,
