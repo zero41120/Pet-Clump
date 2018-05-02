@@ -63,7 +63,8 @@ class QuizVC: UIViewController, ProfileDownloader, ProfileUploader{
             view1.bottom == view2.bottom - 100
         }
         
-        self.questions = Array(QuizQuestion.defaultQuestions[0...10])
+        //give out the quiz questions to the user based their previously answered question index.
+        self.questions = QuizQuestion.getQuestion(quizString: (petProfile?.quiz)!, count: 10)
         
         swipeableView!.interpretDirection = {(topView: UIView, direction: ZLSwipeableViewDirection,
             views: [UIView], swipeableView: ZLSwipeableView) in
