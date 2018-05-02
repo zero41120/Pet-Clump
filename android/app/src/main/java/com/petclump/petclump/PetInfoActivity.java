@@ -53,7 +53,6 @@ public class PetInfoActivity extends AppCompatActivity{
 
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
         Button_return = findViewById(R.id.Button_return);
-        Button_edit = findViewById(R.id.Button_edit);
         Button_save = findViewById(R.id.button_save);
 
         // set up UI

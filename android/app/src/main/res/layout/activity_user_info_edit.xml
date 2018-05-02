@@ -35,13 +35,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
             android:text="@string/Gender"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name_editText"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.071"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/pet_name_label"
-            app:layout_constraintVertical_bias="0.105" />
+            app:layout_constraintStart_toEndOf="@id/guideline1" />
 
         <TextView
             android:id="@+id/pet_age"
@@ -50,30 +50,31 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
 
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
             android:text="@string/Date_of_birth"
             app:layout_constraintBottom_toTopOf="@+id/user_dob_month"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintHorizontal_bias="0.088"
             app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/pet_specie"
-            app:layout_constraintVertical_bias="0.481" />
+            app:layout_constraintTop_toBottomOf="@+id/user_select_gender" />
 
         <TextView
             android:id="@+id/pet_bio_label"
             style="@style/fontStyle4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
             android:text="@string/Match_range"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintHorizontal_bias="0.089"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@+id/user_dob_day"
-            app:layout_constraintVertical_bias="0.067" />
+            app:layout_constraintVertical_bias="0.038" />
 
 
         <RadioGroup
@@ -100,13 +101,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/About_me"
             android:textSize="@dimen/font_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,16 +114,11 @@
             android:id="@+id/user_dob_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="410dp"
             app:layout_constraintEnd_toStartOf="@+id/user_dob_day"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/user_dob_year"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.355" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/user_dob_day"
@@ -138,7 +133,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/user_dob_month"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.356" />
+            app:layout_constraintVertical_bias="0.348" />
 
         <Spinner
             android:id="@+id/user_dob_year"
@@ -148,8 +143,7 @@
             android:layout_marginLeft="50dp"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.356"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <SeekBar
@@ -172,30 +166,29 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Spinner
-            android:id="@+id/pet_specie"
-            android:layout_width="wrap_content"
+            android:id="@+id/user_select_gender"
+            android:layout_width="250dp"
             android:layout_height="23dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.264" />
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="@id/pet_specie_label"
+            app:layout_constraintTop_toBottomOf="@id/pet_specie_label"
+
+            />
 
         <TextView
             android:id="@+id/user_match_value"
             android:layout_width="200dp"
-            android:layout_height="16dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="130dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="130dp"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="24dp"
             android:text="@string/No_preferred_range"
             android:textAlignment="center"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@+id/user_match_value_seekbar" />
 
@@ -251,14 +244,14 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="24dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="20"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.219"
+            app:layout_constraintHorizontal_bias="0.236"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/pet_name_label" />
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -559,20 +552,17 @@
 
         <TextView
             android:id="@+id/free_schedule_label"
+            style="@style/fontStyle4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="309dp"
-            android:layout_marginLeft="43dp"
-            android:layout_marginRight="309dp"
-            android:layout_marginStart="43dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginStart="52dp"
             android:layout_marginTop="13dp"
             android:text="@string/Free_schedule"
             app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_match_value"
-            app:layout_constraintVertical_bias="0.635" />
+            app:layout_constraintVertical_bias="0.695" />
 
 
     </android.support.constraint.ConstraintLayout>

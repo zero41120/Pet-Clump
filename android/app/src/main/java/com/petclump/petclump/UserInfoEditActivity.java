@@ -53,6 +53,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             finish();
         }
         setupUI();
+        //checkBirthday();
     }
 
     private void setupUI(){
@@ -73,7 +74,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         user_dob_month.setOnItemSelectedListener(this);
         user_dob_year = findViewById(R.id.user_dob_year);
         user_dob_year.setOnItemSelectedListener(this);
-        user_select_gender = findViewById(R.id.pet_specie);
+        user_select_gender = findViewById(R.id.user_select_gender);
         user_select_gender.setOnItemSelectedListener(this);
 
         save_button = findViewById(R.id.save_button);
@@ -213,7 +214,14 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             default: return 0;
         }
     }
-
+    private void checkBirthday(){
+        if (getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem())==(2|4|6|9|11)
+                && (getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1)==31){
+            Toast toast = Toast.makeText(getApplicationContext(), "you enter wrong birthday",Toast.LENGTH_LONG);
+            toast.show();
+            //finish();
+        }
+    }
     private void cancelData() {
         finish();
     }
@@ -224,6 +232,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
         GregorianCalendar birthday = new GregorianCalendar();
+
         birthday.set(
             Integer.parseInt(user_dob_year.getSelectedItem().toString()),
             getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()),
