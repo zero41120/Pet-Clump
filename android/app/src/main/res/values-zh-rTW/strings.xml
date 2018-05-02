@@ -74,4 +74,11 @@
     <string name="Info_purpose">會如何使用這些資料?</string>
     <string name="Info_purpose2">"只有和您配對成功的朋友看得到您的個人資訊. 我們將會使用您選擇的配對範圍,優化配對結果 "</string>
     <string name="info">寵物資訊</string>
+    <string name="Specie">品種</string>
+    <string name="Age">年齡</string>
+    <string name="Bio">簡介</string>
+    <string name="Quiz">測驗囉</string>
+    <string name="Return">返回</string>
+    <string name="About_my_pet">關於我的寶</string>
+    <string name="Free_schedule">免費時間表</string>
 </resources>

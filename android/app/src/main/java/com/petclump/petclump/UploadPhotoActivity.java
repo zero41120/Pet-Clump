@@ -121,7 +121,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
             Log.d(TAG, "onStart: no uid");
         }
 
-        findViewById(R.id.upload_profile_button).setOnClickListener(v -> {
+        /*findViewById(R.id.upload_profile_button).setOnClickListener(v -> {
             if (uid == null){
                 Log.d(TAG, "onStart: User not logged in");
                 return;
@@ -133,7 +133,7 @@ public class UploadPhotoActivity extends AppCompatActivity {
             profile.setFreeTime("010101010100110101110");
             profile.setGender("Snail");
             profile.upload(getApplicationContext());
-        });
+        });*/
 
         findViewById(R.id.download_profile_button).setOnClickListener(v -> {
             if (uid == null){

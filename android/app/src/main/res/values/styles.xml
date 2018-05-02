@@ -14,15 +14,20 @@
     </style>
 
     <style name="fontStyle2" parent="TextAppearance.AppCompat">
-    <item name="android:textColor">@color/colorPrimaryDark</item>
-    <item name="android:textStyle">bold</item>
-    <item name="android:textSize">48dp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">48dp</item>
 
     </style>
     <style name="fontStyle3" parent="TextAppearance.AppCompat">
-    <item name="android:textColor">@color/colorPrimaryDark</item>
-    <item name="android:textStyle">bold</item>
-    <item name="android:textSize">32dp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32dp</item>
+    </style>
+    <style name="fontStyle4" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/navy</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24dp</item>
     </style>
 
     <style name="AppTheme.CustomTheme">

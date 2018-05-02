@@ -1,7 +1,6 @@
 package com.petclump.petclump;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -12,24 +11,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.petclump.petclump.models.FreeSchedule;
 import com.petclump.petclump.models.OwnerProfile;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Map;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileDownloader, ProfileUploader, View.OnClickListener {
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -45,6 +42,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     Date birthday;
+    private OwnerProfile profile;
+    private static final int gray_id = 2131165335;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +53,9 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             finish();
         }
         setupUI();
-        downloadData();
+
     }
+
 
     private void setupUI(){
         setContentView(R.layout.activity_user_info_edit);
@@ -66,8 +66,8 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         constraintSet.clone(constraintLayout);
 
         user_name_editText = findViewById(R.id.user_name_editText);
-        match_range_value = findViewById(R.id.match_range_value);
-        user_match_range_seekbar = findViewById(R.id.match_range_seekbar);
+        match_range_value = findViewById(R.id.user_match_value);
+        user_match_range_seekbar = findViewById(R.id.user_match_value_seekbar);
 
         user_dob_day = findViewById(R.id.user_dob_day);
         user_dob_day.setOnItemSelectedListener(this);
@@ -75,7 +75,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         user_dob_month.setOnItemSelectedListener(this);
         user_dob_year = findViewById(R.id.user_dob_year);
         user_dob_year.setOnItemSelectedListener(this);
-        user_select_gender = findViewById(R.id.user_gender_spinner);
+        user_select_gender = findViewById(R.id.user_select_gender);
         user_select_gender.setOnItemSelectedListener(this);
 
         save_button = findViewById(R.id.save_button);
@@ -93,6 +93,13 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             year -= 1;
         }
 
+
+
+        // get pet_num by extra, sent from UserInfoActivity
+        // Bundle extras = getIntent().getExtras();
+        // if(extras != null){
+        //    pet_num = extras.getInt("pet_num");
+        //}
 
         //edit_name_button.setOnClickListener(v ->nameChangeClick());
         save_button.setOnClickListener(v -> saveData());
@@ -127,40 +134,46 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-    }
-
-
-    private void downloadData(){
-        if (user == null){ return; }
-        String uid = user.getUid();
-
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(uid);
-        mDocRef.addSnapshotListener((snap, error) -> {
-            if (error != null) {
-                Log.d(TAG, "Download failed: " + error.toString());
-                return;
-            }
-            if (snap == null)   { return; }
-            if (!snap.exists()) { return; }
-            Map<String, Object> ref = snap.getData();
-            user_name_editText.setText(ref.get("name").toString());
-            int index = getSpinnerPosition(user_select_gender, ref.get("gender"));
+        profile = new OwnerProfile();
+        profile.download(user.getUid(),()->{
+            user_name_editText.setText(profile.getName());
+            int index = getSpinnerPosition(user_select_gender, profile.getGender());
             user_select_gender.setSelection(index);
             Calendar gcBirthday = new GregorianCalendar();
-            gcBirthday.setTime((Date)ref.get("birthday"));
+            gcBirthday.setTime((Date)profile.getBirthday());
             index = getSpinnerPosition(user_dob_year, gcBirthday.get(Calendar.YEAR));
             user_dob_year.setSelection(index);
 
-            index = gcBirthday.get(Calendar.MONTH)-1;
+            index = gcBirthday.get(Calendar.MONTH);
             Log.d("MONTH:",String.valueOf(gcBirthday.get(Calendar.MONTH)));
             user_dob_month.setSelection(index);
             index = getSpinnerPosition(user_dob_day, gcBirthday.get(Calendar.DAY_OF_MONTH));
             user_dob_day.setSelection(index);
-            String range = ref.get("distancePerference").toString();
+            String range = String.valueOf(profile.getDistancePerference());
             match_range_value.setText(stringToProgressText(range));
             user_match_range_seekbar.setProgress(stringToProgress(range));
+            // setup free schedule
+            FreeSchedule freeSchedule = profile.getFreeTime();
+            for(int i=1; i<8; i++) {
+                for(int j=1; j<4; j++) {
+                    String imageID = "sch" + i + j;
+                    int resID = getResources().getIdentifier(imageID, "id", getPackageName());
+                    ImageView im = findViewById(resID);
+                    if(!freeSchedule.isFree(i,j)){
+                        im.setTag(R.drawable.schedule_gray);
+
+                    }else{
+                        im.setTag(R.drawable.schedule_green);
+                        im.setImageResource(R.drawable.schedule_green);
+                    }
+                        im.setOnClickListener(this);
+                }
+            }
         });
     }
+
+    public void didCompleteDownload(){}
+
 
     private Integer getSpinnerPosition(Spinner spinner, Object item){
         return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
@@ -201,13 +214,33 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             default: return 0;
         }
     }
+    private boolean checkBirthday(){
+        boolean valid = true;
+        int month = getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem());
+        int day = getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1;
+        if ((month==4||month==6||month==9||month==11)
+                && (day==31)){
+            Toast toast = Toast.makeText(getApplicationContext(), "you enter wrong birthday",Toast.LENGTH_LONG);
+            toast.show();
+            user_dob_day.setSelection(29);
+            valid = false;
 
+        }else if ((month==2)
+                && (day==30||day==31)){
+            Toast toast = Toast.makeText(getApplicationContext(), "you enter wrong birthday",Toast.LENGTH_LONG);
+            toast.show();
+            user_dob_day.setSelection(28);
+            valid = false;
+        }
+        return valid;
+
+    }
     private void cancelData() {
         finish();
     }
 
     private void saveData() {
-        OwnerProfile profile = new OwnerProfile(user.getUid());
+        OwnerProfile profile = new OwnerProfile();
         profile.setGender(user_select_gender.getSelectedItem().toString());
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
@@ -217,42 +250,32 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()),
             getSpinnerPosition(user_dob_day, user_dob_day.getSelectedItem()) + 1
         );
+
+
         Log.d("uploadBirthday:","year:"+user_dob_year.getSelectedItem().toString()
             +"month:"+(getSpinnerPosition(user_dob_month, user_dob_month.getSelectedItem()) + 1
         )+"\n");
         profile.setBirthday(birthday.getTime());
-        profile.upload(c);
+        // set up freeschedule
+        String freetime = "";
+        for(int i=1; i<8; i++){
+            for(int j=1; j<4; j++){
+                String imageID = "sch" + i + j;
+                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
+                ImageView t = findViewById(resID);
+                if((Integer)t.getTag() == gray_id)
+                    freetime += "0";
+                else
+                    freetime += "1";
+            }
+        }
+        //Log.d("freetime:",freetime);
+        profile.setFreeTime(freetime);
+        profile.upload(user.getUid(),this);
         finish();
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-
-        // I'm pretty sure the control logic is incorrect.
-        // An item was selected. You can retrieve the selected item using
-//        switch (parent.getId()) {
-//            case R.id.user_dob_month:
-//                dob_month = parent.getItemAtPosition(pos);
-//            case R.id.user_dob_day:
-//                dob_day = parent.getItemAtPosition(pos);
-//                Toast toast2 = Toast.makeText(c, (String) dob_day, Toast.LENGTH_LONG);
-//                toast2.show();
-//
-//            case R.id.user_dob_year:
-//                dob_year = parent.getItemAtPosition(pos);
-//                Toast toast3 = Toast.makeText(c, (String) dob_year, Toast.LENGTH_LONG);
-//                toast3.show();
-//
-//            case R.id.user_gender_spinner:
-//                gender = parent.getItemAtPosition(pos);
-//                Toast toast4 = Toast.makeText(c, (String) gender, Toast.LENGTH_LONG);
-//                toast4.show();
-//
-//        }
-//        String string = dob_year.toString()+" "+
-//                dob_month.toString()+" "+dob_day.toString()+" "+gender.toString();
-//        Toast toast5 = Toast.makeText(c, string, Toast.LENGTH_LONG );
-//        toast5.show();
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
 
     }
@@ -262,4 +285,22 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
 
+    @Override
+    public void didCompleteUpload() {
+        Toast.makeText(c, "OwnerProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View v) {
+        ImageView i = findViewById(v.getId());
+        if((Integer)i.getTag() == gray_id){
+            i.setTag(R.drawable.schedule_green);
+            i.setImageResource(R.drawable.schedule_green);
+            //Log.d("ClickView to green",String.valueOf((Integer)i.getTag()));
+        }else{
+            i.setTag(R.drawable.schedule_gray);
+            i.setImageResource(R.drawable.schedule_gray);
+            //Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
+        }
+    }
 }
