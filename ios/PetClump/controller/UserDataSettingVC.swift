@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataSettingVC: UIViewController, ProfilerDownloader{
+class UserDataSettingVC: UIViewController, ProfileDownloader{
 
     // Profile from UserDataViewVC
     var profile: OwnerProfile = OwnerProfile()
@@ -34,9 +34,11 @@ class UserDataSettingVC: UIViewController, ProfilerDownloader{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
         if let uid = Auth.auth().currentUser?.uid {
-            profile.download(uid: uid, callerView: self)
+            self.setupUI()
+            profile.download(uid: uid, completion: self)
+        } else {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -168,7 +170,7 @@ class UserDataSettingVC: UIViewController, ProfilerDownloader{
         
         
         // Uploads the profile with empty completed action
-        profile.upload(vc: self, callerView: nil)
+        profile.upload(vc: self, completion: nil)
         // Exit edit view
         self.dismiss(animated: true, completion: nil)
         

@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905331E209915F50076A2AF /* TextViewExtension.swift */; };
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
 		2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
 		294C94C52097D74700266533 /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C94C42097D74700266533 /* QuizVC.swift */; };
+		294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C94C72097E35E00266533 /* QuizQuestion.swift */; };
 		298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFEC20969349007A6846 /* OwnerProfile.swift */; };
 		298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF0209693A7007A6846 /* PetProfile.swift */; };
 		298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF42096998C007A6846 /* GenderPicker.swift */; };
@@ -54,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
+		2905331E209915F50076A2AF /* TextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewExtension.swift; sourceTree = "<group>"; };
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
 		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +64,7 @@
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
 		294C94C42097D74700266533 /* QuizVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuizVC.swift; path = PetClump/controller/QuizVC.swift; sourceTree = SOURCE_ROOT; };
+		294C94C72097E35E00266533 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
 		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
 		298BCFF42096998C007A6846 /* GenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPicker.swift; sourceTree = "<group>"; };
@@ -117,15 +121,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		29053320209A2A100076A2AF /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				847769A720969252002AF924 /* ZLSwipeableViewSwift */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
-				29B1936D208D4CD000A59783 /* image */,
 				847769B820969289002AF924 /* CardView.swift */,
+				29B1936D208D4CD000A59783 /* image */,
 				29A6E5B5208EB851006352CF /* font */,
 				298BD0002096E8CF007A6846 /* delegates */,
 				298BCFFF2096E8B8007A6846 /* extensions */,
-				298BCFFC2096DFD6007A6846 /* pickers */,
 				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 			);
 			name = view;
@@ -135,8 +146,6 @@
 		294C94C62097E13B00266533 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				847769A720969252002AF924 /* ZLSwipeableViewSwift */,
-				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
 				294C94C42097D74700266533 /* QuizVC.swift */,
 				29C1797C207EE97D002971C5 /* EntryPointVC.swift */,
 				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
@@ -162,6 +171,7 @@
 			children = (
 				29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */,
 				29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */,
+				2905331E209915F50076A2AF /* TextViewExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -169,6 +179,7 @@
 		298BD0002096E8CF007A6846 /* delegates */ = {
 			isa = PBXGroup;
 			children = (
+				298BCFFC2096DFD6007A6846 /* pickers */,
 				298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */,
 				298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */,
 			);
@@ -189,6 +200,7 @@
 				29B19365208D31BB00A59783 /* Profile.swift */,
 				298BCFEC20969349007A6846 /* OwnerProfile.swift */,
 				298BCFF0209693A7007A6846 /* PetProfile.swift */,
+				294C94C72097E35E00266533 /* QuizQuestion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +243,7 @@
 				294C94C62097E13B00266533 /* controller */,
 				290DF24820953F2C00A64D0C /* view */,
 				29B19362208D310D00A59783 /* Model */,
+				29053320209A2A100076A2AF /* lib */,
 			);
 			path = PetClump;
 			sourceTree = "<group>";
@@ -238,6 +251,7 @@
 		847769A720969252002AF924 /* ZLSwipeableViewSwift */ = {
 			isa = PBXGroup;
 			children = (
+				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
 				847769A820969252002AF924 /* Direction.swift */,
 				847769A920969252002AF924 /* Info.plist */,
 				847769AA20969252002AF924 /* Scheduler.swift */,
@@ -489,6 +503,7 @@
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
 				298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
+				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
 				298BCFFE2096E213007A6846 /* LimitTextViewInput.swift in Sources */,
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
@@ -500,6 +515,7 @@
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */,
 				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
+				2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */,
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,
 				294C94C52097D74700266533 /* QuizVC.swift in Sources */,
 				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,

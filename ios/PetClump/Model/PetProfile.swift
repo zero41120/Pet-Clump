@@ -18,9 +18,11 @@ class PetProfile: Profile{
     var bio: String     = ""
     var age: String     = ""
     var name: String    = ""
+    var quiz: String    = ""
     var specie: String  = "Other"
     var ownerId: String = "error_id"
     var sequence: Int   = 0
+    
     // Image
     var mainPhoto: [UInt8] = []
     var photo1: [UInt8] = []
@@ -33,7 +35,7 @@ class PetProfile: Profile{
     var groupPhoto1: [UInt8] = []
     var groupPhoto2: [UInt8] = []
 
-    func download(uid: String, callerView: ProfilerDownloader?) {
+    func download(uid: String, completion: ProfileDownloader?) {
         // Opens document
         let generatedId = "\(uid)\(sequence)"
         let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
@@ -47,14 +49,16 @@ class PetProfile: Profile{
                 print("Document data: \(refObj.description)")
                 
                 // Gets user information
-                self.name    = refObj["name"] as? String ?? ""
                 self.age     = refObj["age"]  as? String ?? ""
                 self.bio     = refObj["bio"]  as? String ?? ""
+                self.quiz    = refObj["quiz"] as? String ?? ""
+                self.name    = refObj["name"] as? String ?? ""
                 self.specie  = refObj["spe"]  as? String ?? ""
                 self.ownerId = refObj["owner_id"] as? String ?? ""
+                
             }
-            guard (callerView != nil) else { return }
-            callerView!.didCompleteDownload()
+            guard (completion != nil) else { return }
+            completion!.didCompleteDownload()
         }
     }
     
@@ -62,14 +66,15 @@ class PetProfile: Profile{
         return [
             "bio":  bio,
             "age":  age,
-            "name": name,
             "spe":  specie,
+            "name": name,
+            "quiz": quiz,
             "owner_id": ownerId,
             "sequence": sequence
         ]
     }
     
-    func upload(vc: QuickAlert, callerView: ProfileUploader?) {
+    func upload(vc: QuickAlert, completion: ProfileUploader?) {
         guard let uid = Auth.auth().currentUser?.uid else {
             vc.makeAlert(message: "User is not signed in!")
             return
@@ -81,8 +86,8 @@ class PetProfile: Profile{
                 vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
             }
             print("Uploaded successfully for pet " + generatedId)
-            guard (callerView != nil) else { return }
-            callerView!.didCompleteUpload()
+            guard (completion != nil) else { return }
+            completion!.didCompleteUpload()
         }
     }
 }

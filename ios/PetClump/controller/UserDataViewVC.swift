@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataViewVC: UIViewController, ProfilerDownloader{
+class UserDataViewVC: UIViewController, ProfileDownloader{
 
     var profile: OwnerProfile = OwnerProfile()
     
@@ -30,26 +30,16 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
+        if let uid = Auth.auth().currentUser?.uid {
+            self.setupUI()
+            profile.download(uid: uid, completion: self)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.fetchData()
-    }
-    
-    @objc private func enterPetView(tapGestureRecognizer: UITapGestureRecognizer){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
-        let imageView = tapGestureRecognizer.view as! UIImageView
-        let sequence: Int
-        switch imageView.tag {
-            case  0: sequence = 0
-            case  1: sequence = 1
-            default: sequence = 2
-        }
-        pdv.petProfile = PetProfile()
-        pdv.petProfile!.sequence = sequence
-        self.present(pdv, animated: true, completion: nil)
+        self.fetchPetImage()
     }
     
     func setupUI(){
@@ -69,9 +59,24 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
         self.hideKeyboardWhenTappedAround()
     }
     
-    private func fetchData(){
+    @objc private func enterPetView(tapGestureRecognizer: UITapGestureRecognizer){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
+        let imageView = tapGestureRecognizer.view as! UIImageView
+        let sequence: Int
+        switch imageView.tag {
+        case  0: sequence = 0
+        case  1: sequence = 1
+        default: sequence = 2
+        }
+        pdv.petProfile = PetProfile()
+        pdv.petProfile!.sequence = sequence
+        self.present(pdv, animated: true, completion: nil)
+    }
+    
+    private func fetchPetImage(){
         if let uid = Auth.auth().currentUser?.uid{
-            profile.download(uid: uid, callerView: self)
+            profile.download(uid: uid, completion: self)
             let image0 = PetProfileImageDownloader.init(uid: uid, sequence: 0, imageView: pet0ImageView)
             let image1 = PetProfileImageDownloader.init(uid: uid, sequence: 1, imageView: pet1ImageView)
             let image2 = PetProfileImageDownloader.init(uid: uid, sequence: 2, imageView: pet2ImageView)
@@ -99,7 +104,7 @@ class UserDataViewVC: UIViewController, ProfilerDownloader{
     }
 }
 
-class PetProfileImageDownloader: ProfilerDownloader{
+class PetProfileImageDownloader: ProfileDownloader{
     private let imageView: UIImageView
     private var petProfile: PetProfile?
     private let uid: String
@@ -114,7 +119,7 @@ class PetProfileImageDownloader: ProfilerDownloader{
     func download(){
         petProfile = PetProfile()
         petProfile!.sequence = self.sequence
-        petProfile!.download(uid: self.uid, callerView: self)
+        petProfile!.download(uid: self.uid, completion: self)
     }
     
     func didCompleteDownload() {

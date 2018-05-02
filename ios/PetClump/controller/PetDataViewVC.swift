@@ -9,22 +9,24 @@
 import UIKit
 import Firebase
 
-class PetDataViewVC: UIViewController, ProfilerDownloader{
+class PetDataViewVC: UIViewController, ProfileDownloader{
     //Title Labels
-    @IBOutlet weak var nameTitleLabel: UILabel!
-    @IBOutlet weak var petAndOwnerTitleLabel: UILabel!
-    @IBOutlet weak var infoTitleLabel: UILabel!
-    @IBOutlet weak var petNameTitleLabel: UILabel!
-    @IBOutlet weak var petSpeciesLabel: UILabel!
-    @IBOutlet weak var petAgeTitleLabel: UILabel!
-    @IBOutlet weak var petBioTitleLabel: UILabel!
+    @IBOutlet weak var nameTitleLabel:          UILabel!
+    @IBOutlet weak var petAndOwnerTitleLabel:   UILabel!
+    @IBOutlet weak var infoTitleLabel:          UILabel!
+    @IBOutlet weak var petNameTitleLabel:       UILabel!
+    @IBOutlet weak var petSpeciesLabel:         UILabel!
+    @IBOutlet weak var petAgeTitleLabel:        UILabel!
+    @IBOutlet weak var petBioTitleLabel:        UILabel!
+    @IBOutlet weak var bioRemainingLabel:       UILabel!
+
     //Information display
-    @IBOutlet weak var petNameTextField: UITextField!
+    @IBOutlet weak var petNameTextField:    UITextField!
     @IBOutlet weak var petSpeciesTextField: UITextField!
-    @IBOutlet weak var petAgeTextField: UITextField!
-    @IBOutlet weak var petBioTextView: UITextView!
+    @IBOutlet weak var petAgeTextField:     UITextField!
+    @IBOutlet weak var petBioTextView:      UITextView!
     //Pet pictures display
-    @IBOutlet weak var bigPetPicture: UIImageView!
+    @IBOutlet weak var bigPetPicture:    UIImageView!
     @IBOutlet weak var smallPetPicture1: UIImageView!
     @IBOutlet weak var smallPetPicture2: UIImageView!
     @IBOutlet weak var smallPetPicture3: UIImageView!
@@ -34,39 +36,54 @@ class PetDataViewVC: UIViewController, ProfilerDownloader{
     @IBOutlet weak var petAndOwnerPic1: UIImageView!
     @IBOutlet weak var petAndOwnerPic2: UIImageView!
     @IBOutlet weak var petAndOwnerPic3: UIImageView!
-    @IBOutlet weak var bioRemainingLabel: UILabel!
-    
-    var petProfile: PetProfile?
-    var speciePicker: UIPickerView?
+
+    @IBOutlet weak var quizButton: UIButton!
+
+    var petProfile:     PetProfile?
+    var speciePicker:   UIPickerView?
+    var ageInputDelegate:   UITextFieldDelegate?
+    var nameInputDelegate:  UITextFieldDelegate?
     var speciePickerDelegate: SpeciePicker?
     var remainingBioDelegate: UITextViewDelegate?
-    var nameInputDelegate:  UITextFieldDelegate?
-    var ageInputDelegate: UITextFieldDelegate?
+    
+    
     override func viewDidLoad() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         super.viewDidLoad()
-        setupUI()
-        petProfile!.download(uid: uid, callerView: self)
-    }
-
-    func didCompleteDownload() {
-        self.petNameTextField.text = petProfile!.name
-        self.petAgeTextField.text  = petProfile!.age
-        self.petSpeciesTextField.text  = petProfile!.specie
-        self.petBioTextView.text  = petProfile!.bio
-        self.bioRemainingLabel.text = "\(petProfile!.bio.count)/500"
+        if let _ = Auth.auth().currentUser?.uid {
+            self.setupUI()
+            setupDelegate()
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
-    func setupUI(){
+    override func viewWillAppear(_ animated: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        petProfile!.download(uid: uid, completion: self)
+    }
+    
+    // Pre-fill text fields when pet info is downloaded from Firebase
+    func didCompleteDownload() {
+        self.petBioTextView.text        = petProfile!.bio
+        self.petAgeTextField.text       = petProfile!.age
+        self.petNameTextField.text      = petProfile!.name
+        self.bioRemainingLabel.text     = "\(petProfile!.bio.count)/500"
+        self.petSpeciesTextField.text   = petProfile!.specie
+        self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(petProfile!.quiz.count)/100)", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+    }
+    
+    private func setupUI(){
         self.nameTitleLabel.text        = NSLocalizedString("Pet Name", comment: "This is the title for specifying the name of the pet")
-        self.petAndOwnerTitleLabel.text = NSLocalizedString("Pet And I", comment: "This is the title for the picture section of the pet and owner")
         self.infoTitleLabel.text        = NSLocalizedString("INFO", comment: "This is the title for the section of the pet information")
-        self.petNameTitleLabel.text     = NSLocalizedString("Name", comment: "This is the title for specifying the name of the pet in the pet info section")
         self.petSpeciesLabel.text       = NSLocalizedString("Species", comment: "This is the title for specifying the species of the pet")
         self.petAgeTitleLabel.text      = NSLocalizedString("Age", comment: "This is the title for specifying the age of the pet")
         self.petBioTitleLabel.text      = NSLocalizedString("Bio", comment: "This is the title for specifying the Bio of the pet")
-        
-        // Set up specie picker
+        self.petNameTitleLabel.text     = NSLocalizedString("Name", comment: "This is the title for specifying the name of the pet in the pet info section")
+        self.petAndOwnerTitleLabel.text = NSLocalizedString("Pet And I", comment: "This is the title for the picture section of the pet and owner")
+    }
+    
+    private func setupDelegate(){
+        // Specie picker
         speciePicker = UIPickerView()
         speciePickerDelegate = SpeciePicker(textField: petSpeciesTextField)
         speciePicker!.delegate = speciePickerDelegate
@@ -74,14 +91,13 @@ class PetDataViewVC: UIViewController, ProfilerDownloader{
         petSpeciesTextField.delegate = speciePickerDelegate
         petSpeciesTextField.inputView = speciePicker
         
-        // Set up textfield delegates
-        remainingBioDelegate = LimitTextViewInput(count: 500, remainingLable: bioRemainingLabel)
+        // Text fields and textview delegates
         nameInputDelegate = LimitTextFieldInput(count: 20)
-        ageInputDelegate = LimitTextFieldInput(count: 50)
-        petBioTextView.delegate = remainingBioDelegate
+        ageInputDelegate  = LimitTextFieldInput(count: 50)
+        remainingBioDelegate = LimitTextViewInput(count: 500, remainingLable: bioRemainingLabel)
+        petBioTextView.makeTextField(delegate: remainingBioDelegate!)
         petNameTextField.delegate = nameInputDelegate
-        petAgeTextField.delegate = ageInputDelegate
-        
+        petAgeTextField.delegate  = ageInputDelegate
     }
     
     
@@ -92,10 +108,21 @@ class PetDataViewVC: UIViewController, ProfilerDownloader{
             petProfile!.age  = petAgeTextField.text!
             petProfile!.specie = petSpeciesTextField.text!
             petProfile!.ownerId = uid
-            petProfile!.upload(vc: self, callerView: nil)
+            petProfile!.upload(vc: self, completion: nil)
             self.makeAlert(message: NSLocalizedString("Your pet information is saved!", comment: "This is a alter message that shows up and the user tap save on the pet information viewing page."))
         }
         
+    }
+    
+    @IBAction func tapQuiz(_ sender: Any){
+        if petProfile!.quiz.count == 100 {
+            makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
+        }
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let qvc = storyBoard.instantiateViewController(withIdentifier: "QuizVC") as! QuizVC
+        qvc.petProfile = PetProfile()
+        qvc.petProfile!.sequence = self.petProfile!.sequence
+        self.present(qvc, animated: true, completion: nil)
     }
     
     @IBAction func tapExit(_ sender: Any) {
