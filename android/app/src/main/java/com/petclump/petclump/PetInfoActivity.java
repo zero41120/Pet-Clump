@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class PetInfoActivity extends AppCompatActivity{
@@ -35,7 +36,7 @@ public class PetInfoActivity extends AppCompatActivity{
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
 
-    Button Button_to_quiz, Button_return, Button_save;
+    Button Button_to_quiz, Button_return, Button_save, Button_delete;
     ImageButton Button_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class PetInfoActivity extends AppCompatActivity{
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
         Button_return = findViewById(R.id.Button_return);
         Button_save = findViewById(R.id.button_save);
+        Button_delete = findViewById(R.id.Button_delete_pet);
 
         // set up UI
         pet_age = findViewById(R.id.pet_age);
@@ -68,7 +70,6 @@ public class PetInfoActivity extends AppCompatActivity{
             i+=1;
         }
         ArrayAdapter<String> adapter_specie = new ArrayAdapter<>(this,
-
                 android.R.layout.simple_spinner_item, specie_array_string);
         adapter_specie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pet_specie.setAdapter(adapter_specie);
@@ -92,6 +93,9 @@ public class PetInfoActivity extends AppCompatActivity{
         Button_return.setOnClickListener(v ->
                 finish()
         );
+        Button_delete.setOnClickListener(v-> new PetProfile().delete(user.getUid()+sequence,()->{
+            //Toast.makeText(getApplicationContext(), "Delete successfully!",Toast.LENGTH_SHORT);
+        }) );
 //        Button_edit.setOnClickListener(v->{
 //            Intent i = new Intent(this, PetInfoEditActivity.class);
 //            i.putExtra("sequence", sequence);
@@ -113,7 +117,6 @@ public class PetInfoActivity extends AppCompatActivity{
     private Integer getSpinnerPosition(Spinner spinner, Object item){
         return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
     }
-
 
 
 }

@@ -58,15 +58,16 @@ public class OwnerProfile implements Profile {
     }
     @Override
     public Map<String,Object> generateDictionary(){
-        Map<String, Object> temp= new HashMap<>();
-        temp.put("lat",lat);
-        temp.put("lon",lon);
-        temp.put("name",name);
-        temp.put("gender",gender);
-        temp.put("birthday",birthday);
-        temp.put("freeTime",freeTime.freeString);
-        temp.put("distancePerference", distancePerference);
-        return temp;
+        return  new HashMap<String,Object>(){{
+            put("lat", lat);
+            put("lon", lon);
+            put("name", name);
+            put("gender", gender);
+            put("birthday", birthday);
+            put("freeTime", freeTime.freeString);
+            put("distancePerference", distancePerference);
+        }};
+
     }
     @Override
     public void upload(String id, ProfileUploader c){

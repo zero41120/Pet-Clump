@@ -348,5 +348,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+        <Button
+            android:id="@+id/Button_delete_pet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="8dp"
+            android:text="Delete"
+            app:layout_constraintStart_toEndOf="@+id/Label_pet_name"
+            app:layout_constraintTop_toBottomOf="@+id/button_save" />
+
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

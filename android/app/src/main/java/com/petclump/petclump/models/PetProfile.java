@@ -1,13 +1,17 @@
 package com.petclump.petclump.models;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.petclump.petclump.ProfileDeletor;
 import com.petclump.petclump.ProfileDownloader;
 import com.petclump.petclump.ProfileUploader;
 
@@ -21,20 +25,23 @@ public class PetProfile implements Profile{
     private String name = "Guko";
     private String owner_id = "null";
     private Integer sequence = -1;
+    private String TAG = "PetProfile";
 
 
     public PetProfile (){
     }
 
     public Map<String,Object> generateDictionary(){
-        Map<String, Object> temp= new HashMap<>();
-        temp.put("bio", bio);
-        temp.put("age", age);
-        temp.put("spe", spe);
-        temp.put("name",name);
-        temp.put("owner_id",owner_id);
-        temp.put("sequence",sequence);
-        return temp;
+        return new HashMap<String, Object>(){{
+            put("bio", bio);
+            put("age", age);
+            put("spe", spe);
+            put("name",name);
+            put("owner_id",owner_id);
+            put("sequence",sequence);
+        }};
+
+
     }
     public void upload(String id, ProfileUploader c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
@@ -74,7 +81,25 @@ public class PetProfile implements Profile{
             this.sequence = Integer.parseInt(ref.get("sequence").toString());
             c.didCompleteDownload();
         });
-
+    }
+    public void delete(String id, ProfileDeletor c){
+        if (FirebaseAuth.getInstance().getCurrentUser() == null){
+            Log.d(TAG, " Current User is none");
+        }
+        FirebaseFirestore.getInstance().collection("pets").document(id).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        c.didCompleteDelete();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });;
     }
 
     public String getOwnerId() {
