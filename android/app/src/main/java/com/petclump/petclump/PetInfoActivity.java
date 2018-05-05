@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
+import com.petclump.petclump.models.QuizQuestion;
 import com.petclump.petclump.models.Specie;
 
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class PetInfoActivity extends AppCompatActivity{
@@ -40,6 +42,7 @@ public class PetInfoActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        c = getApplicationContext();
         setContentView(R.layout.activity_pet_info);
         Bundle extras = getIntent().getExtras();
         sequence = (Integer) extras.get("sequence");
@@ -86,17 +89,21 @@ public class PetInfoActivity extends AppCompatActivity{
             pet_name.setText(profile.getName());
         });
 
-        Button_to_quiz.setOnClickListener(v ->
-                startActivity(new Intent(this, QuizActivity.class))
-        );
+
+
+        Button_to_quiz.setOnClickListener(v -> {
+            if(profile.getQuiz().length() == QuizQuestion.getNumberOfAvaliableQuestions(c)){
+                Toast.makeText(c, R.string.You_have_answered_all_questions, Toast.LENGTH_LONG).show();
+            } else {
+                startActivity(new Intent(this, QuizActivity.class) {{
+                    putExtra("sequence", sequence);
+                }});
+            }
+        });
         Button_return.setOnClickListener(v ->
                 finish()
         );
-//        Button_edit.setOnClickListener(v->{
-//            Intent i = new Intent(this, PetInfoEditActivity.class);
-//            i.putExtra("sequence", sequence);
-//            startActivity(i);
-//        });
+
 
         Button_save.setOnClickListener(v->{
             PetProfile pet = new PetProfile();
