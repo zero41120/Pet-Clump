@@ -88,10 +88,14 @@ class QuizQuestion {
         NSLocalizedString("Can you bear your pet to date with other pets and make you lonely?", comment: "This is a quiz question")
     ]
     
+    static func getNumberOfAvaliableQuestions() -> Int{
+        return defaultQuestions.count
+    }
+    
     static func  getQuestion(quizString: String, count: Int) -> [String]?{
-        let beginIndex = quizString.count + 1
+        let beginIndex = quizString.count
         let endingIndex = beginIndex + count
-        guard endingIndex < self.defaultQuestions.count else { return nil }
+        guard endingIndex < self.defaultQuestions.count + 1 else { return nil }
         let tempQuestion = Array(defaultQuestions[beginIndex ..< endingIndex])
         return tempQuestion
     }
