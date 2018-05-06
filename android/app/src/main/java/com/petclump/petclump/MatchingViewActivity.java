@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.petclump.petclump.models.PetProfile;
 
 import java.util.ArrayList;
@@ -20,12 +23,14 @@ import java.util.List;
  * * * *
  *******/
 public class MatchingViewActivity extends AppCompatActivity {
+    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 30;
     private List<PetProfile> pets;
     private RecyclerView recyclerView;
     private RecycleViewAdapter recycleViewAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private static final String TAG = "MatchingViewActivity";
     private PetProfile profile;
+    private Query petProfileQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,27 +58,26 @@ public class MatchingViewActivity extends AppCompatActivity {
     }
 
     private void downloadPetProfiles(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        petProfileQuery = db.collection("pets").limit(DEFAULT_DOWNLOAD_LIMIT);
 
-        PetProfile gg = new PetProfile();
-        gg.setAge("10 years old");
-        gg.setBio("gg in the house");
-        gg.setName("gg");
+        petProfileQuery.get().addOnSuccessListener(documentSnapshots -> {
+            DocumentSnapshot lastVisible = documentSnapshots.getDocuments()
+                    .get(documentSnapshots.size() -1);
+            for (DocumentSnapshot doc: documentSnapshots.getDocuments()) {
+                doc.getData();
+                Log.d(TAG, "downloadPetProfiles: " + doc.getId());
+                pets.add(new PetProfile(){{
+                    setAge(doc.getData().get("name").toString());
+                    setAge(doc.getData().get("age").toString());
+                    setAge(doc.getData().get("bio").toString());
+                }});
+            }
 
-        PetProfile pp = new PetProfile();
-        pp.setAge("IDK");
-        pp.setBio("pp in the house");
-        pp.setName("pp");
-
-        PetProfile tt = new PetProfile();
-        tt.setAge("RIP");
-        tt.setBio("tt in the house");
-        tt.setName("tt");
-        pets.add(gg);
-        pets.add(pp);
-        pets.add(tt);
-        Log.d(TAG, "onCreate: " + pets.size());
-
-
+            petProfileQuery = db.collection("cities")
+                    .startAfter(lastVisible)
+                    .limit(DEFAULT_DOWNLOAD_LIMIT);
+        });
     }
 
 }
