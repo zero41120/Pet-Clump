@@ -1,8 +1,14 @@
 package com.petclump.petclump;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,23 +27,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class PetInfoActivity extends AppCompatActivity{
+
+public class PetInfoActivity extends AppCompatActivity implements ImageView.OnClickListener{
     private static final String TAG = "Pet Info Activity";
     private TextView pet_name, pet_age, pet_bio, pet_primary_name, pet_and_I_name;
     private Spinner pet_specie;
     private String[] specie_array_string;
     private int sequence = -1;
+    private ImageView pet_view_main, pet_view_1, pet_view_2, pet_view_3, pet_view_4, pet_view_5,
+            group_view_1, group_view_2, group_view_3;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
 
     Button Button_to_quiz, Button_return, Button_save, Button_delete;
-    ImageButton Button_edit;
+    private PetProfile pet = new PetProfile();
+    private static final int INTIAL_CODE = 99;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +62,71 @@ public class PetInfoActivity extends AppCompatActivity{
         sequence = (Integer) extras.get("sequence");
         Log.d(TAG,"sequence:"+sequence);
 
-
         setupUI();
-
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode > INTIAL_CODE){
+            //pet_view_5.setImageURI();
+
+            int code = requestCode;
+            Uri imageUrl = data.getData();
+            ImageView t;
+            switch(code){
+                case 100:
+                    t = pet_view_main;
+                    pet_view_main.setImageURI(imageUrl);
+                    break;
+                case 101:
+                    t = pet_view_1;
+                    pet_view_1.setImageURI(imageUrl);
+                    break;
+                case 102:
+                    t = pet_view_2;
+                    pet_view_2.setImageURI(imageUrl);
+                    break;
+                case 103:
+                    t = pet_view_3;
+                    pet_view_3.setImageURI(imageUrl);
+                    break;
+                case 104:
+                    t = pet_view_4;
+                    pet_view_4.setImageURI(imageUrl);
+                    break;
+                case 105:
+                    t = pet_view_5;
+                    pet_view_5.setImageURI(imageUrl);
+                    break;
+                case 111:
+                    t = group_view_1;
+                    group_view_1.setImageURI(imageUrl);
+                   break;
+                case 112:
+                    t = group_view_2;
+                    group_view_2.setImageURI(imageUrl);
+                    break;
+                case 113:
+                    t = group_view_3;
+                    group_view_3.setImageURI(imageUrl);
+                    break;
+                default: Log.w(TAG,"PHOTOT GALLERY RESULT called on unknown request code "+ code);
+                    return;
+            }
+            t.setDrawingCacheEnabled(true);
+            t.buildDrawingCache();
+            Bitmap bitmap = t.getDrawingCache();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            t.setDrawingCacheEnabled(false);
+            byte[] d = baos.toByteArray();
+            pet.setPhoto(t.getTag().toString(),d,()->{
+                Toast.makeText(getApplicationContext(),"Upload Successful! Please press SAVE to confirm.",Toast.LENGTH_SHORT).show();
+            });
+        }
+    }
+
     private void setupUI(){
 
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
@@ -57,11 +134,32 @@ public class PetInfoActivity extends AppCompatActivity{
         Button_save = findViewById(R.id.button_save);
         Button_delete = findViewById(R.id.Button_delete_pet);
 
+        pet_view_main = findViewById(R.id.pet_main_profile);
+        pet_view_1 = findViewById(R.id.pet_profile_1);
+        pet_view_2 = findViewById(R.id.pet_profile_2);
+        pet_view_3 = findViewById(R.id.pet_profile_3);
+        pet_view_4 = findViewById(R.id.pet_profile_4);
+        pet_view_5 = findViewById(R.id.pet_profile_5);
+        group_view_1 = findViewById(R.id.PO_profile_1);
+        group_view_2 = findViewById(R.id.PO_profile_2);
+        group_view_3 = findViewById(R.id.PO_profile_3);
+
         // set up UI
         pet_age = findViewById(R.id.pet_age);
         pet_bio = findViewById(R.id.pet_bio);
         pet_name = findViewById(R.id.pet_name);
         pet_specie = findViewById(R.id.pet_specie);
+
+        // set_up pet_view listener
+        pet_view_main.setOnClickListener(this);
+        pet_view_1.setOnClickListener(this);
+        pet_view_2.setOnClickListener(this);
+        pet_view_3.setOnClickListener(this);
+        pet_view_4.setOnClickListener(this);
+        pet_view_5.setOnClickListener(this);
+        group_view_1.setOnClickListener(this);
+        group_view_2.setOnClickListener(this);
+        group_view_3.setOnClickListener(this);
 
         specie_array_string = new String[19];
         int i = 0;
@@ -76,15 +174,43 @@ public class PetInfoActivity extends AppCompatActivity{
 
         pet_primary_name = findViewById(R.id.title_pet_name);
         pet_and_I_name = findViewById(R.id.Txt_my_pet_and_I);
+        // download information
+        pet.download(user.getUid()+sequence, () -> {
+            pet_primary_name.setText(pet.getName());
+            pet_and_I_name.setText(pet.getName()+" and I");
+            pet_age.setText(pet.getAge());
+            pet_bio.setText(pet.getBio());
+            pet_specie.setSelection(Specie.num_specie(pet.getSpe().toString()));
+            pet_name.setText(pet.getName());
 
-        PetProfile profile = new PetProfile();
-        profile.download(user.getUid()+sequence, () -> {
-            pet_primary_name.setText(profile.getName());
-            pet_and_I_name.setText(profile.getName()+" and I");
-            pet_age.setText(profile.getAge());
-            pet_bio.setText(profile.getBio());
-            pet_specie.setSelection(Specie.num_specie(profile.getSpe().toString()));
-            pet_name.setText(profile.getName());
+            // setup picture URL
+            String [] url = new String[]{
+                pet.getMain_profile_url(),
+                pet.getPet_profile_url_1(),
+                pet.getPet_profile_url_2(),
+                pet.getPet_profile_url_3(),
+                pet.getPet_profile_url_4(),
+                pet.getPet_profile_url_5(),
+                pet.getGroup_profile_url_1(),
+                pet.getGroup_profile_url_2(),
+                pet.getGroup_profile_url_3()};
+            ImageView[] im = new ImageView[]{
+                pet_view_main,
+                pet_view_1,
+                pet_view_2,
+                pet_view_3,
+                pet_view_4,
+                pet_view_5,
+                group_view_1,
+                group_view_2,
+                group_view_3
+            };
+            // download the url
+            for(int k=0; k<9; k++){
+                if(url[k].compareTo("") != 0){
+                    new DownloadImageTask(im[k]).execute(url[k]);
+                }
+            }
         });
 
         Button_to_quiz.setOnClickListener(v ->
@@ -94,16 +220,15 @@ public class PetInfoActivity extends AppCompatActivity{
                 finish()
         );
         Button_delete.setOnClickListener(v-> new PetProfile().delete(user.getUid()+sequence,()->{
-            //Toast.makeText(getApplicationContext(), "Delete successfully!",Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "Delete successfully!",Toast.LENGTH_SHORT).show();
         }) );
 //        Button_edit.setOnClickListener(v->{
 //            Intent i = new Intent(this, PetInfoEditActivity.class);
 //            i.putExtra("sequence", sequence);
 //            startActivity(i);
 //        });
-
+        // upload pet information
         Button_save.setOnClickListener(v->{
-            PetProfile pet = new PetProfile();
             pet.setBio(pet_bio.getText().toString());
             pet.setAge(pet_age.getText().toString());
             pet.setName(pet_name.getText().toString());
@@ -111,12 +236,78 @@ public class PetInfoActivity extends AppCompatActivity{
             pet.setOwner_id(user.getUid());
             pet.setSequence(sequence);
             pet.setSpe(Specie.specie_num(getSpinnerPosition(pet_specie, pet_specie.getSelectedItem())));
-            pet.upload(user.getUid()+sequence,()->{});
+            pet.upload(user.getUid()+sequence,()->{
+                Toast.makeText(getApplicationContext(), "Upload Complete!", Toast.LENGTH_SHORT).show();
+            });
         });
     }
     private Integer getSpinnerPosition(Spinner spinner, Object item){
         return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
     }
+    private void openGallery(int code){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, code);
+    }
+    // pet_photo settings
+    @Override
+    public void onClick(View v) {
+        // open gallery
+        int code = INTIAL_CODE;
+        switch(v.getTag().toString()){
+            case "main":
+                code = 100;
+                break;
+            case "p1":
+                code = 101;
+                break;
+            case "p2":
+                code = 102;
+                break;
+            case "p3":
+                code = 103;
+                break;
+            case "p4":
+                code = 104;
+                break;
+            case "p5":
+                code = 105;
+                break;
+            case "g1":
+                code = 111;
+                break;
+            case "g2":
+                code = 112;
+                break;
+            case "g3":
+                code = 113;
+                break;
+            default: Log.w(TAG,"PHOTOT GALLERY RESULT called on unknown tag ");
+                return;
+        }
+        openGallery(code);
+    }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
+        ImageView bmImage;
 
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
 
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
 }
