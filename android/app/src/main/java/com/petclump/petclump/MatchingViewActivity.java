@@ -39,7 +39,6 @@ public class MatchingViewActivity extends AppCompatActivity {
 
         pets = new ArrayList<>();
         downloadPetProfiles();
-        setRecyclerView();
 //        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 //        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //            @Override
@@ -68,15 +67,18 @@ public class MatchingViewActivity extends AppCompatActivity {
                 doc.getData();
                 Log.d(TAG, "downloadPetProfiles: " + doc.getId());
                 pets.add(new PetProfile(){{
-                    setAge(doc.getData().get("name").toString());
+                    Log.d(TAG, doc.getData().get("name").toString());
+                    setName(doc.getData().get("name").toString());
                     setAge(doc.getData().get("age").toString());
-                    setAge(doc.getData().get("bio").toString());
+                    setBio(doc.getData().get("bio").toString());
                 }});
             }
 
-            petProfileQuery = db.collection("cities")
+            petProfileQuery = db.collection("pets")
                     .startAfter(lastVisible)
                     .limit(DEFAULT_DOWNLOAD_LIMIT);
+            setRecyclerView();
+            Log.d(TAG, pets.toString());
         });
     }
 
