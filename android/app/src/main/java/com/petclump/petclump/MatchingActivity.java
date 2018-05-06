@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 /*****
@@ -30,10 +31,23 @@ public class MatchingActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null){
+            finish();
+        }
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         super.onResume();
         Intent i = new Intent(this, MatchingViewActivity.class);
-        match_pet1.setOnClickListener(v->startActivity(i));
-        match_pet2.setOnClickListener(v->startActivity(i));
-        match_pet3.setOnClickListener(v->startActivity(i));
+        match_pet1.setOnClickListener(v->{
+            i.putExtra("petId", uid + "0");
+            startActivity(i);
+        });
+        match_pet2.setOnClickListener(v->{
+            i.putExtra("petId", uid + "1");
+            startActivity(i);
+        });
+        match_pet3.setOnClickListener(v->{
+            i.putExtra("petId", uid + "2");
+            startActivity(i);
+        });
     }
 }

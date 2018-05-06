@@ -21,7 +21,7 @@ import java.util.List;
 public class MatchingViewActivity extends AppCompatActivity {
     private List<PetProfile> pets;
     private static final String TAG = "MatchingViewActivity";
-
+    private PetProfile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
