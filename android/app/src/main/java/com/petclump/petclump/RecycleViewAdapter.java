@@ -27,6 +27,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Style for the grid
         View view;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
         view = mInflater.inflate(R.layout.matchview_layout, parent, false);
@@ -35,6 +36,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        // User the position to get the profile to show a card
         holder.pet_matchview_label.setText(pets.get(position).getName());
         holder.pet_matchview_image.setImageResource(R.drawable.dog_placeholder);
         holder.matchview_cardView.setOnClickListener(v->{

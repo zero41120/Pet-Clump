@@ -7,6 +7,11 @@ import android.widget.Button;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+/*****
+ * * *
+ * * *
+ * * *
+ *****/
 public class MatchingActivity extends AppCompatActivity {
     private Button vm_button_settings;
     private CircularImageView match_pet1, match_pet2, match_pet3;
@@ -18,9 +23,9 @@ public class MatchingActivity extends AppCompatActivity {
         match_pet1 = findViewById(R.id.match_pet1);
         match_pet2 = findViewById(R.id.match_pet2);
         match_pet3 = findViewById(R.id.match_pet3);
-        vm_button_settings.setOnClickListener(v ->
-                startActivity(new Intent(this, UserInfoActivity.class))
-        );
+        vm_button_settings.setOnClickListener(v -> {
+            startActivity(new Intent(this, UserInfoActivity.class));
+        });
     }
 
     @Override

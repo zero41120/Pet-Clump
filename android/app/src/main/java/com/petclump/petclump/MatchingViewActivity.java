@@ -12,6 +12,12 @@ import com.petclump.petclump.models.PetProfile;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/*******
+ * * * *
+ * * * *
+ * * * *
+ *******/
 public class MatchingViewActivity extends AppCompatActivity {
     private List<PetProfile> pets;
     private static final String TAG = "MatchingViewActivity";
@@ -23,6 +29,17 @@ public class MatchingViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_matching_view);
 
         pets = new ArrayList<>();
+        downloadPetProfiles();
+
+
+        RecyclerView recyclerView = findViewById(R.id.matchviewRecycle);
+        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(this, pets);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(recycleViewAdapter);
+    }
+
+    private void downloadPetProfiles(){
+
         PetProfile gg = new PetProfile();
         gg.setAge("10 years old");
         gg.setBio("gg in the house");
@@ -42,11 +59,6 @@ public class MatchingViewActivity extends AppCompatActivity {
         pets.add(tt);
         Log.d(TAG, "onCreate: " + pets.size());
 
-        RecyclerView recyclerView = findViewById(R.id.matchviewRecycle);
-        RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(this, pets);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(recycleViewAdapter);
     }
-
 
 }
