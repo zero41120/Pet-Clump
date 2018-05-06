@@ -32,9 +32,10 @@
                 android:layout_width="wrap_content"
                 style="@style/fontStyle4"
                 android:layout_margin="10dp"
+                android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+
                 android:text="Good old pig" />
             <TextView
                 android:id="@+id/matchviewprofile_specie"
@@ -43,6 +44,7 @@
                 style="@style/fontStyle4"
                 android:gravity="center"
                 android:layout_margin="10dp"
+                android:padding="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/DOG" />
@@ -55,9 +57,8 @@
             android:layout_width="match_parent"
             style="@style/fontStyle4"
             android:layout_margin="10dp"
-            android:gravity="center"
+            android:padding="10dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="100 years old" />
         <TextView
             android:id="@+id/matchviewprofile_bio"
@@ -65,7 +66,8 @@
             android:layout_width="match_parent"
             style="@style/fontStyle4"
             android:layout_margin="10dp"
-            android:gravity="center"
+            android:padding="10dp"
+
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="100 years old pig that is so old even its grandma already die" />

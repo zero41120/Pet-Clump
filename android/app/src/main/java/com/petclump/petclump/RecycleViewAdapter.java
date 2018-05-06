@@ -1,6 +1,7 @@
 package com.petclump.petclump;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,9 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
+import com.petclump.petclump.models.PetProfile;
+import com.petclump.petclump.models.Profile;
 
+import java.util.List;
+
+public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
+    private List<PetProfile> pets;
     private Context mContext;
+
+    public RecycleViewAdapter(MatchingViewActivity matchingViewActivity, List<PetProfile> pets) {
+        this.mContext = matchingViewActivity;
+        this.pets = pets;
+    }
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,11 +37,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.pet_matchview_label.setText("hey");
         holder.pet_matchview_image.setImageResource(R.drawable.dog_placeholder);
-        holder.matchview_cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
+        holder.matchview_cardView.setOnClickListener(v->{
+            mContext.startActivity(new Intent(mContext, MatchingViewProfileActivity.class));
         });
 }
 
