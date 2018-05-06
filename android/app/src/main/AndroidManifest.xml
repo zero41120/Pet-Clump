@@ -53,10 +53,13 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".PetInfoEditActivity"
+        <activity
+            android:name=".PetInfoEditActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".MatchingActivity" />
-        <activity android:name=".QuizActivity"></activity>
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".MatchingViewActivity" />
+        <activity android:name=".MatchingViewProfileActivity"></activity>
     </application>
 
 </manifest>
