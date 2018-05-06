@@ -19,7 +19,7 @@ public class MatchingActivity extends AppCompatActivity {
         match_pet2 = findViewById(R.id.match_pet2);
         match_pet3 = findViewById(R.id.match_pet3);
         vm_button_settings.setOnClickListener(v ->
-                startActivity(new Intent(this, UserInfoEditActivity.class))
+                startActivity(new Intent(this, UserInfoActivity.class))
         );
     }
 

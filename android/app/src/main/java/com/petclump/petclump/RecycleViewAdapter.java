@@ -35,16 +35,20 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.pet_matchview_label.setText("hey");
+        holder.pet_matchview_label.setText(pets.get(position).getName());
         holder.pet_matchview_image.setImageResource(R.drawable.dog_placeholder);
         holder.matchview_cardView.setOnClickListener(v->{
-            mContext.startActivity(new Intent(mContext, MatchingViewProfileActivity.class));
+            Intent intent = new Intent(mContext, MatchingViewProfileActivity.class);
+            intent.putExtra("Name", pets.get(position).getName());
+            intent.putExtra("Age", pets.get(position).getAge());
+            intent.putExtra("Bio", pets.get(position).getBio());
+            mContext.startActivity(intent);
         });
 }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return pets.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -56,7 +60,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             super(itemView);
 
             pet_matchview_image = itemView.findViewById(R.id.pet_matchview_image);
-            pet_matchview_label = itemView.findViewById(R.id.pet_matchview_image);
+            pet_matchview_label = itemView.findViewById(R.id.pet_matchview_label);
             matchview_cardView= itemView.findViewById(R.id.matchview_cardView);
         }
     }
