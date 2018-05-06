@@ -20,13 +20,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.petclump.petclump.DefaultMap;
 import com.petclump.petclump.ProfileDeletor;
 import com.petclump.petclump.ProfileDownloader;
 import com.petclump.petclump.ProfileUploader;
 
 import java.net.URL;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class PetProfile implements Profile{
@@ -116,26 +119,26 @@ public class PetProfile implements Profile{
             }
             if (snap == null)   { return; }
             if (!snap.exists()) { return; }
-            Map<String, Object> ref = snap.getData();
-            this.bio = ref.get("bio").toString();
-            this.age = ref.get("age").toString();
-            this.spe = ref.get("spe").toString();
-            this.name = ref.get("name").toString();
-            this.owner_id = ref.get("owner_id").toString();
-            this.sequence = Integer.parseInt(ref.get("sequence").toString());
-            this.main_profile_url = ref.get("main_url").toString();
-            this.pet_profile_url_1 = ref.get("pet_view_1").toString();
-            this.pet_profile_url_2 = ref.get("pet_view_2").toString();
-            this.pet_profile_url_3 = ref.get("pet_view_3").toString();
-            this.pet_profile_url_4 = ref.get("pet_view_4").toString();
-            this.pet_profile_url_5 = ref.get("pet_view_5").toString();
-            this.group_profile_url_1 = ref.get("group_view_1").toString();
-            this.group_profile_url_2 = ref.get("group_view_2").toString();
-            this.group_profile_url_3 = ref.get("group_view_3").toString();
-
+            DefaultMap<String, Object> ref = new DefaultMap<String, Object>(snap.getData());
+            this.bio = ref.getDefault("bio");
+            this.age = ref.getDefault("age");
+            this.spe = ref.getDefault("spe");
+            this.name = ref.getDefault("name");
+            this.owner_id = ref.getDefault("owner_id");
+            this.sequence = Integer.parseInt(ref.getDefault("sequence"));
+            this.main_profile_url = ref.getDefault("main_url");
+            this.pet_profile_url_1 = ref.getDefault("pet_view_1");
+            this.pet_profile_url_2 = ref.getDefault("pet_view_2");
+            this.pet_profile_url_3 = ref.getDefault("pet_view_3");
+            this.pet_profile_url_4 = ref.getDefault("pet_view_4");
+            this.pet_profile_url_5 = ref.getDefault("pet_view_5");
+            this.group_profile_url_1 = ref.getDefault("group_view_1");
+            this.group_profile_url_2 = ref.getDefault("group_view_2");
+            this.group_profile_url_3 = ref.getDefault("group_view_3");
             c.didCompleteDownload();
         });
     }
+
     public void delete(String id, ProfileDeletor c){
         if (Auth_pet.getCurrentUser() == null){
             Log.d(TAG, " Current User is none");
