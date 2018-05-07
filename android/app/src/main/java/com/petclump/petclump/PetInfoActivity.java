@@ -3,12 +3,14 @@ package com.petclump.petclump;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -77,38 +79,47 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             switch(code){
                 case 100:
                     t = pet_view_main;
+                    pet.deletePhoto("main_profile_url",()->{});
                     pet_view_main.setImageURI(imageUrl);
                     break;
                 case 101:
                     t = pet_view_1;
+                    pet.deletePhoto("pet_profile_url_1",()->{});
                     pet_view_1.setImageURI(imageUrl);
                     break;
                 case 102:
                     t = pet_view_2;
+                    pet.deletePhoto("pet_profile_url_2",()->{});
                     pet_view_2.setImageURI(imageUrl);
                     break;
                 case 103:
                     t = pet_view_3;
+                    pet.deletePhoto("pet_profile_url_3",()->{});
                     pet_view_3.setImageURI(imageUrl);
                     break;
                 case 104:
                     t = pet_view_4;
+                    pet.deletePhoto("pet_profile_url_4",()->{});
                     pet_view_4.setImageURI(imageUrl);
                     break;
                 case 105:
                     t = pet_view_5;
+                    pet.deletePhoto("pet_profile_url_5",()->{});
                     pet_view_5.setImageURI(imageUrl);
                     break;
                 case 111:
                     t = group_view_1;
+                    pet.deletePhoto("group_profile_url_1",()->{});
                     group_view_1.setImageURI(imageUrl);
                    break;
                 case 112:
                     t = group_view_2;
+                    pet.deletePhoto("group_profile_url_2",()->{});
                     group_view_2.setImageURI(imageUrl);
                     break;
                 case 113:
                     t = group_view_3;
+                    pet.deletePhoto("group_profile_url_3",()->{});
                     group_view_3.setImageURI(imageUrl);
                     break;
                 default: Log.w(TAG,"PHOTOT GALLERY RESULT called on unknown request code "+ code);
@@ -185,15 +196,15 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
 
             // setup picture URL
             String [] url = new String[]{
-                pet.getMain_profile_url(),
-                pet.getPet_profile_url_1(),
-                pet.getPet_profile_url_2(),
-                pet.getPet_profile_url_3(),
-                pet.getPet_profile_url_4(),
-                pet.getPet_profile_url_5(),
-                pet.getGroup_profile_url_1(),
-                pet.getGroup_profile_url_2(),
-                pet.getGroup_profile_url_3()};
+                pet.getUrl("main_profile_url"),
+                pet.getUrl("pet_profile_url_1"),
+                pet.getUrl("pet_profile_url_2"),
+                pet.getUrl("pet_profile_url_3"),
+                pet.getUrl("pet_profile_url_4"),
+                pet.getUrl("pet_profile_url_5"),
+                pet.getUrl("group_profile_url_1"),
+                pet.getUrl("group_profile_url_2"),
+                pet.getUrl("group_profile_url_3")};
             ImageView[] im = new ImageView[]{
                 pet_view_main,
                 pet_view_1,
@@ -207,10 +218,13 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             };
             // download the url
             for(int k=0; k<9; k++){
-                if(url[k].compareTo("") != 0){
+                if(url[k] != null && url[k].compareTo("") != 0){
                     new DownloadImageTask(im[k]).execute(url[k]);
                 }
             }
+/*           for(String x: url){
+                Log.d(TAG, "url list:" +x);
+            }*/
         });
 
         Button_to_quiz.setOnClickListener(v ->
@@ -219,9 +233,23 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         Button_return.setOnClickListener(v ->
                 finish()
         );
-        Button_delete.setOnClickListener(v-> new PetProfile().delete(user.getUid()+sequence,()->{
-            Toast.makeText(getApplicationContext(), "Delete successfully!",Toast.LENGTH_SHORT).show();
-        }) );
+        Button_delete.setOnClickListener(v->{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                .setTitle("Delete your pet?")
+                .setMessage("Are your sure you want to delete your pet?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes", (DialogInterface dialog, int which)->{
+                    pet.delete(user.getUid()+sequence,()->{
+                        Toast.makeText(this, "Delete Successfully!", Toast.LENGTH_SHORT).show();
+                    });
+                    finish();
+                })
+                .setNegativeButton("No", null).show();
+
+            });
+
+
 //        Button_edit.setOnClickListener(v->{
 //            Intent i = new Intent(this, PetInfoEditActivity.class);
 //            i.putExtra("sequence", sequence);
@@ -237,7 +265,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             pet.setSequence(sequence);
             pet.setSpe(Specie.specie_num(getSpinnerPosition(pet_specie, pet_specie.getSelectedItem())));
             pet.upload(user.getUid()+sequence,()->{
-                Toast.makeText(getApplicationContext(), "Upload Complete!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Upload Complete!", Toast.LENGTH_SHORT).show();
             });
         });
     }
@@ -251,40 +279,56 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
     // pet_photo settings
     @Override
     public void onClick(View v) {
+        //Put up the Yes/No message box
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("Set your picture")
+                .setMessage("Image profile setup")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Create", (DialogInterface dialog, int which)->{
+                    int code = INTIAL_CODE;
+                    switch(v.getTag().toString()){
+                        case "main_profile_url":
+                            code = 100;
+                            break;
+                        case "pet_profile_url_1":
+                            code = 101;
+                            break;
+                        case "pet_profile_url_2":
+                            code = 102;
+                            break;
+                        case "pet_profile_url_3":
+                            code = 103;
+                            break;
+                        case "pet_profile_url_4":
+                            code = 104;
+                            break;
+                        case "pet_profile_url_5":
+                            code = 105;
+                            break;
+                        case "group_profile_url_1":
+                            code = 111;
+                            break;
+                        case "group_profile_url_2":
+                            code = 112;
+                            break;
+                        case "group_profile_url_3":
+                            code = 113;
+                            break;
+                        default: Log.w(TAG,"PHOTOT GALLERY RESULT called on unknown tag ");
+                            return;
+                    }
+                    openGallery(code);
+                })
+                .setNegativeButton("Delete", (DialogInterface dialog, int which)->{
+                    pet.deletePhoto (v.getTag().toString(), ()->{
+                        Toast.makeText(getApplicationContext(),"Delete successfully! Press SAVE to confirm!",Toast.LENGTH_SHORT).show();
+                    });
+                })
+                .setNeutralButton("Cancel", null).show();
+
         // open gallery
-        int code = INTIAL_CODE;
-        switch(v.getTag().toString()){
-            case "main":
-                code = 100;
-                break;
-            case "p1":
-                code = 101;
-                break;
-            case "p2":
-                code = 102;
-                break;
-            case "p3":
-                code = 103;
-                break;
-            case "p4":
-                code = 104;
-                break;
-            case "p5":
-                code = 105;
-                break;
-            case "g1":
-                code = 111;
-                break;
-            case "g2":
-                code = 112;
-                break;
-            case "g3":
-                code = 113;
-                break;
-            default: Log.w(TAG,"PHOTOT GALLERY RESULT called on unknown tag ");
-                return;
-        }
-        openGallery(code);
+
     }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
         ImageView bmImage;

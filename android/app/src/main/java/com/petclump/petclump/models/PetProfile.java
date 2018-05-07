@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PetProfile implements Profile{
     private String bio = "PET_BIO";
@@ -53,7 +55,18 @@ public class PetProfile implements Profile{
     private byte[] group_profile_3;*/
 
     // pet photo url
-    private String main_profile_url = "";
+    private HashMap<String, String> url_map = new HashMap<String, String>(){{
+        put("main_profile_url","");
+        put("pet_profile_url_1","");
+        put("pet_profile_url_2","");
+        put("pet_profile_url_3","");
+        put("pet_profile_url_4","");
+        put("pet_profile_url_5","");
+        put("group_profile_url_1","");
+        put("group_profile_url_2","");
+        put("group_profile_url_3","");
+    }};
+/*    private String main_profile_url = "";
     private String pet_profile_url_1 = "";
     private String pet_profile_url_2 = "";
     private String pet_profile_url_3 = "";
@@ -62,13 +75,31 @@ public class PetProfile implements Profile{
 
     private String group_profile_url_1 = "";
     private String group_profile_url_2 = "";
-    private String group_profile_url_3 = "";
+    private String group_profile_url_3 = "";*/
 
     // firebase instance
     private FirebaseAuth Auth_pet = FirebaseAuth.getInstance();
     private FirebaseStorage Store_pet = FirebaseStorage.getInstance();
 
-    public PetProfile (){}
+    public PetProfile (){    }
+    public PetProfile(HashMap<String, Object> map){
+        DefaultMap data = new DefaultMap(map);
+        this.bio = data.getDefault("bio");
+        this.age = data.getDefault("age");
+        this.spe = data.getDefault("spe");
+        this.name = data.getDefault("name");
+        this.owner_id = data.getDefault("owner_id");
+        this.sequence = Integer.parseInt(data.getDefault("sequence"));
+        url_map.put("main_profile_url",data.getDefault("main_url"));
+        url_map.put("pet_profile_url_1",data.getDefault("pet_view_1"));
+        url_map.put("pet_profile_url_2",data.getDefault("pet_view_2"));
+        url_map.put("pet_profile_url_3",data.getDefault("pet_view_3"));
+        url_map.put("pet_profile_url_4",data.getDefault("pet_view_4"));
+        url_map.put("pet_profile_url_5",data.getDefault("pet_view_5"));
+        url_map.put("group_profile_url_1",data.getDefault("group_view_1"));
+        url_map.put("group_profile_url_2",data.getDefault("group_view_2"));
+        url_map.put("group_profile_url_3",data.getDefault("group_view_3"));
+    }
     public Map<String,Object> generateDictionary(){
         return new HashMap<String, Object>(){{
             put("bio", bio);
@@ -77,15 +108,15 @@ public class PetProfile implements Profile{
             put("name",name);
             put("owner_id",owner_id);
             put("sequence",sequence);
-            put("main_url", main_profile_url);
-            put("pet_view_1", pet_profile_url_1);
-            put("pet_view_2",pet_profile_url_2);
-            put("pet_view_3",pet_profile_url_3);
-            put("pet_view_4",pet_profile_url_4);
-            put("pet_view_5",pet_profile_url_5);
-            put("group_view_1",group_profile_url_1);
-            put("group_view_2",group_profile_url_2);
-            put("group_view_3",group_profile_url_3);
+            put("main_url", url_map.get("main_profile_url"));
+            put("pet_view_1", url_map.get("pet_profile_url_1"));
+            put("pet_view_2",url_map.get("pet_profile_url_2"));
+            put("pet_view_3",url_map.get("pet_profile_url_3"));
+            put("pet_view_4",url_map.get("pet_profile_url_4"));
+            put("pet_view_5",url_map.get("pet_profile_url_5"));
+            put("group_view_1",url_map.get("group_profile_url_1"));
+            put("group_view_2",url_map.get("group_profile_url_2"));
+            put("group_view_3",url_map.get("group_profile_url_3"));
         }};
     }
     public void upload(String id, ProfileUploader c){
@@ -99,6 +130,7 @@ public class PetProfile implements Profile{
             String message = "";
             if(task.isSuccessful()) {
                 message += "Upload successful for pet: " + this.name;
+                c.didCompleteUpload();
             }
             else {message += "Upload fails for pet " + this.name;}
             Log.d("Profile", "upload: " + message);
@@ -126,15 +158,16 @@ public class PetProfile implements Profile{
             this.name = ref.getDefault("name");
             this.owner_id = ref.getDefault("owner_id");
             this.sequence = Integer.parseInt(ref.getDefault("sequence"));
-            this.main_profile_url = ref.getDefault("main_url");
-            this.pet_profile_url_1 = ref.getDefault("pet_view_1");
-            this.pet_profile_url_2 = ref.getDefault("pet_view_2");
-            this.pet_profile_url_3 = ref.getDefault("pet_view_3");
-            this.pet_profile_url_4 = ref.getDefault("pet_view_4");
-            this.pet_profile_url_5 = ref.getDefault("pet_view_5");
-            this.group_profile_url_1 = ref.getDefault("group_view_1");
-            this.group_profile_url_2 = ref.getDefault("group_view_2");
-            this.group_profile_url_3 = ref.getDefault("group_view_3");
+            url_map.put("main_profile_url",ref.getDefault("main_url"));
+            url_map.put("pet_profile_url_1",ref.getDefault("pet_view_1"));
+            url_map.put("pet_profile_url_2",ref.getDefault("pet_view_2"));
+            url_map.put("pet_profile_url_3",ref.getDefault("pet_view_3"));
+            url_map.put("pet_profile_url_4",ref.getDefault("pet_view_4"));
+            url_map.put("pet_profile_url_5",ref.getDefault("pet_view_5"));
+            url_map.put("group_profile_url_1",ref.getDefault("group_view_1"));
+            url_map.put("group_profile_url_2",ref.getDefault("group_view_2"));
+            url_map.put("group_profile_url_3",ref.getDefault("group_view_3"));
+            //Log.d(TAG, "url_map\n"+url_map.toString());
             c.didCompleteDownload();
         });
     }
@@ -144,6 +177,16 @@ public class PetProfile implements Profile{
             Log.d(TAG, " Current User is none");
             return;
         }
+        //delete Photo
+        deletePhoto("main_profile_url", ()->{});
+        deletePhoto("pet_profile_url_1", ()->{});
+        deletePhoto("pet_profile_url_2", ()->{});
+        deletePhoto("pet_profile_url_3", ()->{});
+        deletePhoto("pet_profile_url_4", ()->{});
+        deletePhoto("pet_profile_url_5", ()->{});
+        deletePhoto("group_profile_url_1", ()->{});
+        deletePhoto("group_profile_url_2", ()->{});
+        deletePhoto("group_profile_url_3", ()->{});
         FirebaseFirestore.getInstance().collection("pets").document(id).delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -158,6 +201,28 @@ public class PetProfile implements Profile{
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });;
+    }
+    public void deletePhoto(String t, ProfileDeletor c){
+        String temp = url_map.get(t);
+        Log.d(TAG,"delete photo url " + temp);
+        if(temp.compareTo("") == 0){
+
+            return;
+        }
+
+        String path = "test/" + parseUrl(url_map.get(t));
+        // Create a storage reference from our app
+        Log.d(TAG,"path:"+path);
+        StorageReference storageRef = Store_pet.getReference(path);
+
+        // Delete the file
+        storageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                c.didCompleteDelete();
+            }
+        });
+        url_map.put(t,"");
     }
     public void setPhoto(String t, byte[] data, ProfileUploader c){
         String path = "test/" + UUID.randomUUID() + ".png";
@@ -178,39 +243,23 @@ public class PetProfile implements Profile{
         }).addOnCompleteListener((Task<Uri> task)->{
             String url = task.getResult().toString();
             Log.d(TAG,"URLTask:"+url);
-            switch(t){
-                case "main":
-                    this.main_profile_url = url;
-                    break;
-                case "p1":
-                    this.pet_profile_url_1 = url;
-                    break;
-                case "p2":
-                    this.pet_profile_url_2 = url;
-                    break;
-                case "p3":
-                    this.pet_profile_url_3 = url;
-                    break;
-                case "p4":
-                    this.pet_profile_url_4 = url;
-                    break;
-                case "p5":
-                    this.pet_profile_url_5 = url;
-                    break;
-                case "g1":
-                    this.group_profile_url_1 = url;
-                    break;
-                case "g2":
-                    this.group_profile_url_2 = url;
-                    break;
-                case "g3":
-                    this.group_profile_url_3 = url;
-                    break;
-                default: Log.w(TAG,"setPhoto called on unknown tag "+t);
-            }
+            url_map.put(t,url);
         });
 
         c.didCompleteUpload();
+    }
+    private String parseUrl(String url){
+
+        Pattern pattern = Pattern.compile(".*%2[fF](.*)\\?.*");
+        Matcher matcher = pattern.matcher(url);
+
+        if(matcher.matches()){
+            //Log.d(TAG,"filename:"+matcher.group(1));
+            return matcher.group(1);
+
+        }
+
+        return "";
     }
     public String getOwnerId() {
         return owner_id;
@@ -221,21 +270,15 @@ public class PetProfile implements Profile{
     public String getSpe(){return spe;}
     public String getBio(){return bio;}
     public String getAge(){return age;}
-    public String getMain_profile_url(){return main_profile_url;}
-    public String getPet_profile_url_1(){return pet_profile_url_1;}
-    public String getPet_profile_url_2(){return pet_profile_url_2;}
-    public String getPet_profile_url_3(){return pet_profile_url_3;}
-    public String getPet_profile_url_4(){return pet_profile_url_4;}
-    public String getPet_profile_url_5(){return pet_profile_url_5;}
-    public String getGroup_profile_url_1() {return group_profile_url_1;}
-    public String getGroup_profile_url_2() {return group_profile_url_2;}
-    public String getGroup_profile_url_3() {return group_profile_url_3;}
+    public String getUrl(String tag){return url_map.get(tag);}
     public void setOwner_id(String owner_id){this.owner_id = owner_id;}
     public void setName(String name){this.name = name;}
     public void setSpe(String spe){this.spe = spe;}
     public void setBio(String bio){this.bio = bio;}
     public void setAge(String age){this.age = age;}
     public void setSequence(int s){this.sequence = s;}
-
-
+    @Override
+    public String toString(){
+        return  generateDictionary().toString();
+    }
 }
