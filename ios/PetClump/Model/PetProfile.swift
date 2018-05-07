@@ -97,6 +97,23 @@ class PetProfile: Profile, Deletable{
         ]
     }
     
+    enum PetPhotoUrlKey {
+        case main, pet1, pet2, pet3, pet4, pet5, group1, group2, group3
+    }
+    func getPhotoUrl(key: PetPhotoUrlKey) -> String{
+        switch key {
+        case .main: return url_map["main_profile_url"] ?? ""
+        case .pet1: return url_map["pet_profile_url_1"] ?? ""
+        case .pet2: return url_map["pet_profile_url_2"] ?? ""
+        case .pet3: return url_map["pet_profile_url_3"] ?? ""
+        case .pet4: return url_map["pet_profile_url_4"] ?? ""
+        case .pet5: return url_map["pet_profile_url_5"] ?? ""
+        case .group1: return url_map["group_profile_url_1"] ?? ""
+        case .group2: return url_map["group_profile_url_2"] ?? ""
+        case .group3: return url_map["group_profile_url_3"] ?? ""
+        }
+    }
+    
     func upload(vc: QuickAlert?, completion: ProfileUploader?) {
         guard let uid = Auth.auth().currentUser?.uid else {
             guard vc != nil else { return }
