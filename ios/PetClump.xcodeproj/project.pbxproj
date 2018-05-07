@@ -42,6 +42,10 @@
 		847769B620969252002AF924 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AB20969252002AF924 /* ViewManager.swift */; };
 		847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AC20969252002AF924 /* ZLSwipeableView.swift */; };
 		847769B920969289002AF924 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769B820969289002AF924 /* CardView.swift */; };
+		84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2320A007BD00533D35 /* AMLineView.swift */; };
+		84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2420A007BD00533D35 /* AMTabButton.swift */; };
+		84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */; };
+		84CF6B2A20A0089A00533D35 /* MatchingTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2920A0089A00533D35 /* MatchingTabVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +99,10 @@
 		847769AC20969252002AF924 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
 		847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ZLSwipeableViewSwift.xcodeproj; sourceTree = "<group>"; };
 		847769B820969289002AF924 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		84CF6B2320A007BD00533D35 /* AMLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMLineView.swift; sourceTree = "<group>"; };
+		84CF6B2420A007BD00533D35 /* AMTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMTabButton.swift; sourceTree = "<group>"; };
+		84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPagerTabsViewController.swift; sourceTree = "<group>"; };
+		84CF6B2920A0089A00533D35 /* MatchingTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTabVC.swift; sourceTree = "<group>"; };
 		CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetClump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +132,7 @@
 		29053320209A2A100076A2AF /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				84CF6B2120A0078600533D35 /* AMPagerTabs */,
 				847769A720969252002AF924 /* ZLSwipeableViewSwift */,
 			);
 			path = lib;
@@ -153,6 +162,7 @@
 				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
 				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
 				298FEB66209394D70018F368 /* MatchingVC.swift */,
+				84CF6B2920A0089A00533D35 /* MatchingTabVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -268,6 +278,16 @@
 				847769B220969252002AF924 /* ZLSwipeableViewSwift.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		84CF6B2120A0078600533D35 /* AMPagerTabs */ = {
+			isa = PBXGroup;
+			children = (
+				84CF6B2320A007BD00533D35 /* AMLineView.swift */,
+				84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */,
+				84CF6B2420A007BD00533D35 /* AMTabButton.swift */,
+			);
+			path = AMPagerTabs;
 			sourceTree = "<group>";
 		};
 		B5B004EA17432DBFD1994CBE /* Frameworks */ = {
@@ -501,9 +521,12 @@
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
+				84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */,
+				84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */,
 				298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,
+				84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
 				298BCFFE2096E213007A6846 /* LimitTextViewInput.swift in Sources */,
 				29C1797D207EE97D002971C5 /* EntryPointVC.swift in Sources */,
@@ -521,6 +544,7 @@
 				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,
 				29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */,
 				847769B920969289002AF924 /* CardView.swift in Sources */,
+				84CF6B2A20A0089A00533D35 /* MatchingTabVC.swift in Sources */,
 				847769B320969252002AF924 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
