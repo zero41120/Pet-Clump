@@ -66,7 +66,7 @@ class PetProfile: Profile, Deletable{
             if let document = document, document.exists {
                 // Unwraps data object
                 let refObj = document.data()!
-                print("Document data: \(refObj.description)")
+                //print("Document data: \(refObj.description)")
                 
                 // Gets user information
                 self.fetchData(refObj: refObj)
@@ -97,16 +97,18 @@ class PetProfile: Profile, Deletable{
         ]
     }
     
-    func upload(vc: QuickAlert, completion: ProfileUploader?) {
+    func upload(vc: QuickAlert?, completion: ProfileUploader?) {
         guard let uid = Auth.auth().currentUser?.uid else {
-            vc.makeAlert(message: "User is not signed in!")
+            guard vc != nil else { return }
+            vc!.makeAlert(message: "User is not signed in!")
             return
         }
         let generatedId = "\(uid)\(sequence)"
         let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
         docRef.setData(self.generateDictionary()) { (err: Error?) in
             if let err = err{
-                vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
+                guard vc != nil else { return }
+                vc!.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
             }
             print("Uploaded successfully for pet " + generatedId)
             guard (completion != nil) else { return }

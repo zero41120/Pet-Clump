@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProfileDownloader{
+class PetDataViewVC: UIViewController, ProfileDownloader{
     //Title Labels
     @IBOutlet weak var nameTitleLabel:          UILabel!
     @IBOutlet weak var petAndOwnerTitleLabel:   UILabel!
@@ -49,81 +49,21 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var nameInputDelegate:  UITextFieldDelegate?
     var speciePickerDelegate: SpeciePicker?
     var remainingBioDelegate: UITextViewDelegate?
+    var imagePickerDelegate: ImagePicker?
     
     //variable for the image tag
     var imageTag = -1
     
-    func uploadImageToFirebaseStorage(data: NSData, tag: Int){
-        //upload to firebase
-        let fileName = NSUUID.init().uuidString + ".png"
-        let storageRef = Storage.storage().reference(withPath: "image/\(fileName)")
-        let uploadMetaData = StorageMetadata()
-        uploadMetaData.contentType =  "image/png"
-        storageRef.putData(data as Data, metadata: uploadMetaData) {
-            (metadata, error) in if (error != nil) {
-                print("I received an error! \(String(describing: error?.localizedDescription))")
-            } else {
-                storageRef.downloadURL(completion: { (url, error) in
-                    if error != nil {
-                        print("There is an error when uploading: \(error!)")
-                    } else {
-                        print("\(url!) for \(tag)")
-                        switch tag {
-                        case 0: self.petProfile!.url_map["main_profile_url"] = "\(url!)"
-                        case 1: self.petProfile!.url_map["pet_profile_url_1"] = "\(url!)"
-                        case 2: self.petProfile!.url_map["pet_profile_url_2"] = "\(url!)"
-                        case 3: self.petProfile!.url_map["pet_profile_url_3"] = "\(url!)"
-                        case 4: self.petProfile!.url_map["pet_profile_url_4"] = "\(url!)"
-                        case 5: self.petProfile!.url_map["pet_profile_url_5"] = "\(url!)"
-                        case 6: self.petProfile!.url_map["group_profile_url_1"] = "\(url!)"
-                        case 7: self.petProfile!.url_map["group_profile_url_2"] = "\(url!)"
-                        case 8: self.petProfile!.url_map["group_profile_url_3"] = "\(url!)"
-                        default: break
-                        }
-                    }
-                })
-            }
-        }
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let _: String = info[UIImagePickerControllerMediaType] as? String else {
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(originalImage, 0.8) {
-            uploadImageToFirebaseStorage(data: imageData as NSData, tag: self.imageTag)
-            switch self.imageTag {
-            case 0: self.bigPetPicture0.image   = originalImage
-            case 1: self.smallPetPicture1.image = originalImage
-            case 2: self.smallPetPicture2.image = originalImage
-            case 3: self.smallPetPicture3.image = originalImage
-            case 4: self.smallPetPicture4.image = originalImage
-            case 5: self.smallPetPicture5.image = originalImage
-            case 6: self.petAndOwnerPic6.image  = originalImage
-            case 7: self.petAndOwnerPic7.image  = originalImage
-            case 8: self.petAndOwnerPic8.image  = originalImage
-            default: break
-            }
-        }
-        dismiss(animated: true, completion: nil)
-        
-    }
-    
     @IBAction func tapToUploadImage(_ sender: UITapGestureRecognizer) {
+        self.imagePickerDelegate = ImagePicker(imageView: sender.view as! UIImageView, profile: self.petProfile!)
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         let image = sender.view
         self.imageTag = image!.tag
         print("\(imageTag)")
-        imagePicker.delegate = self
+        imagePicker.delegate = self.imagePickerDelegate!
         present(imagePicker, animated: true, completion: nil)
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,8 +98,6 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.petAndOwnerPic6.load(url: self.petProfile!.url_map["group_profile_url_1"] ?? "")
         self.petAndOwnerPic7.load(url: self.petProfile!.url_map["group_profile_url_2"] ?? "")
         self.petAndOwnerPic8.load(url: self.petProfile!.url_map["group_profile_url_3"] ?? "")
-        
-        
     }
     @objc private func deletePet(){
         confirmBeforeDelete(title: NSLocalizedString("Delete this pet?", comment: "This is the title on an alert when user clicks delete pet"), message: NSLocalizedString("Are you sure you want to delete this pet? This action cannot be undone.", comment: "This is the message when the user clicks delete pet"), toDelete: petProfile!)

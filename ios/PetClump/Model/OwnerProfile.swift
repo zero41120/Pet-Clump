@@ -21,13 +21,14 @@ import Firebase
  * - freeTime: this is a 7*3 bool matrix for free time. In the initlizer, it's a 21 character string with 1 mark as free.
  */
 class OwnerProfile: Profile{
-    func upload(vc: QuickAlert, completion: ProfileUploader?) {
+    func upload(vc: QuickAlert?, completion: ProfileUploader?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let docRef = Firestore.firestore().collection("users").document(uid)
         docRef.setData(self.generateDictionary()) { (err: Error?) in
             if let err = err{
-                vc.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
+                guard vc != nil else { return }
+                vc!.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
             }
             print("Uploaded successfully for user " + uid)
             guard (completion != nil) else { return }

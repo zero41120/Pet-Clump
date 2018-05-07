@@ -34,6 +34,7 @@
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
 		29F104F6209FD80B006E84E0 /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F5209FD80B006E84E0 /* Deletable.swift */; };
+		29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F820A0069E006E84E0 /* ImagePicker.swift */; };
 		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
 		84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */; };
@@ -87,6 +88,7 @@
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29F104F5209FD80B006E84E0 /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
+		29F104F820A0069E006E84E0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
 		84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				298BCFF42096998C007A6846 /* GenderPicker.swift */,
 				298BCFF820969EAB007A6846 /* SpeciePicker.swift */,
+				29F104F820A0069E006E84E0 /* ImagePicker.swift */,
 			);
 			path = pickers;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */,
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
+				29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
 				298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
