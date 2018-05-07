@@ -22,7 +22,7 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationContro
     
     func uploadImageToFirebaseStorage(originalImage: UIImage){
         //upload to firebase
-        let data = UIImagePNGRepresentation(originalImage)!
+        let data = compressImage(image: originalImage)
         let tag = imageView!.tag
         let fileName = NSUUID.init().uuidString + ".png"
         let storageRef = Storage.storage().reference(withPath: "image/\(fileName)")
@@ -55,6 +55,20 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationContro
                 })
             }
         }
+    }
+    
+    private func compressImage(image: UIImage) -> Data{
+        let kb = 1024;
+        let sizeLimitKb = 1000
+        var size = image.highestQualityJPEGNSData.count
+        if size < (sizeLimitKb * kb) { return image.highestQualityJPEGNSData }
+        size = image.highQualityJPEGNSData.count
+        if size < (sizeLimitKb * kb) { return image.highQualityJPEGNSData }
+        size = image.mediumQualityJPEGNSData.count
+        if size < (sizeLimitKb * kb) { return image.mediumQualityJPEGNSData }
+        size = image.lowQualityJPEGNSData.count
+        if size < (sizeLimitKb * kb) { return image.lowQualityJPEGNSData }
+        return image.lowestQualityJPEGNSData
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
