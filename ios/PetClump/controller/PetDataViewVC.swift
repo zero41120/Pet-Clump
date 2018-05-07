@@ -53,73 +53,61 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     //variable for the image tag
     var imageTag = -1
     
-    func uploadImageToFirebaseStorage(data: NSData){
+    func uploadImageToFirebaseStorage(data: NSData, tag: Int){
         //upload to firebase
         let fileName = NSUUID.init().uuidString + ".png"
         let storageRef = Storage.storage().reference(withPath: "test/\(fileName)")
         let uploadMetaData = StorageMetadata()
         uploadMetaData.contentType =  "image/png"
-        let uploadTask = storageRef.putData(data as Data, metadata: uploadMetaData) {
+        storageRef.putData(data as Data, metadata: uploadMetaData) {
             (metadata, error) in if (error != nil) {
                 print("I received an error! \(String(describing: error?.localizedDescription))")
             } else {
                 storageRef.downloadURL(completion: { (url, error) in
                     if error != nil {
-                        print("\(error)")
+                        print("There is an error when uploading: \(error!)")
                     } else {
-                        print("\(url) for \(self.imageTag)")
-                        if self.imageTag == 0 {
-                            self.bigPetPicture0.load(url: url!)
-                        }
-                        if self.imageTag == 1 {
-                            self.smallPetPicture1.load(url: url!)
-                        }
-                        if self.imageTag == 2 {
-                            self.smallPetPicture2.load(url: url!)
-                        }
-                        if self.imageTag == 3 {
-                            self.smallPetPicture3.load(url: url!)
-                        }
-                        if self.imageTag == 4 {
-                            self.smallPetPicture4.load(url: url!)
-                        }
-                        if self.imageTag == 5 {
-                            self.smallPetPicture5.load(url: url!)
-                        }
-                        if self.imageTag == 6 {
-                            self.petAndOwnerPic6.load(url: url!)
-                        }
-                        if self.imageTag == 7 {
-                            self.petAndOwnerPic7.load(url: url!)
-                        }
-                        if self.imageTag == 8 {
-                            self.petAndOwnerPic8.load(url: url!)
+                        print("\(url!) for \(tag)")
+                        switch tag {
+                        case 0: self.petProfile!.url_map["main_profile_url"] = "\(url!)"
+                        case 1: self.petProfile!.url_map["pet_profile_url_1"] = "\(url!)"
+                        case 2: self.petProfile!.url_map["pet_profile_url_2"] = "\(url!)"
+                        case 3: self.petProfile!.url_map["pet_profile_url_3"] = "\(url!)"
+                        case 4: self.petProfile!.url_map["pet_profile_url_4"] = "\(url!)"
+                        case 5: self.petProfile!.url_map["pet_profile_url_5"] = "\(url!)"
+                        case 6: self.petProfile!.url_map["group_profile_url_1"] = "\(url!)"
+                        case 7: self.petProfile!.url_map["group_profile_url_2"] = "\(url!)"
+                        case 8: self.petProfile!.url_map["group_profile_url_3"] = "\(url!)"
+                        default: break
                         }
                     }
                 })
             }
         }
-        /**
-        uploadTask.oberserveStatus(.progress) { [weak self] (snapshot) in
-            guard let strongSelf = self else { return }
-            guard let progress = snapshot.progress else { return }
-            strongSelf.progressView.progress = Float(progress.fractionCompleted)
-        }
- **/
- 
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let mediaType: String = info[UIImagePickerControllerMediaType] as? String else {
+        guard let _: String = info[UIImagePickerControllerMediaType] as? String else {
             dismiss(animated: true, completion: nil)
             return
         }
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(originalImage, 0.8) {
-            uploadImageToFirebaseStorage(data: imageData as NSData)
-            
+            uploadImageToFirebaseStorage(data: imageData as NSData, tag: self.imageTag)
+            switch self.imageTag {
+            case 0: self.bigPetPicture0.image   = originalImage
+            case 1: self.smallPetPicture1.image = originalImage
+            case 2: self.smallPetPicture2.image = originalImage
+            case 3: self.smallPetPicture3.image = originalImage
+            case 4: self.smallPetPicture4.image = originalImage
+            case 5: self.smallPetPicture5.image = originalImage
+            case 6: self.petAndOwnerPic6.image  = originalImage
+            case 7: self.petAndOwnerPic7.image  = originalImage
+            case 8: self.petAndOwnerPic8.image  = originalImage
+            default: break
+            }
         }
         dismiss(animated: true, completion: nil)
         
@@ -128,11 +116,6 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBAction func tapToUploadImage(_ sender: UITapGestureRecognizer) {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
-        //UIGestureRecognizer; *recognizer = (UIGestureRecognizer*)sender
-        //if let view = gestureRecogniser.view as? UIImageView{
-        //let imagePicked = view.tag
-        //}
-        //print("tapped view is view with tag: \(sender.view!!.tag)")
         let image = sender.view
         self.imageTag = image!.tag
         print("\(imageTag)")
@@ -166,6 +149,16 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.petSpeciesTextField.text   = petProfile!.specie
         self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(petProfile!.quiz.count)/100)", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
         self.deleteButton.addTarget(self, action: #selector(deletePet), for: .touchUpInside)
+        self.bigPetPicture0.load(url: self.petProfile!.url_map["main_profile_url"] ?? "")
+        self.smallPetPicture1.load(url: self.petProfile!.url_map["pet_profile_url_1"] ?? "")
+        self.smallPetPicture2.load(url: self.petProfile!.url_map["pet_profile_url_2"] ?? "")
+        self.smallPetPicture3.load(url: self.petProfile!.url_map["pet_profile_url_3"] ?? "")
+        self.smallPetPicture4.load(url: self.petProfile!.url_map["pet_profile_url_4"] ?? "")
+        self.smallPetPicture5.load(url: self.petProfile!.url_map["pet_profile_url_5"] ?? "")
+        self.petAndOwnerPic6.load(url: self.petProfile!.url_map["group_profile_url_1"] ?? "")
+        self.petAndOwnerPic7.load(url: self.petProfile!.url_map["group_profile_url_2"] ?? "")
+        self.petAndOwnerPic8.load(url: self.petProfile!.url_map["group_profile_url_3"] ?? "")
+        
         
     }
     @objc private func deletePet(){
