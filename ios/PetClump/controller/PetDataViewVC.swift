@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PetDataViewVC: UIViewController, ProfileDownloader{
+class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProfileDownloader{
     //Title Labels
     @IBOutlet weak var nameTitleLabel:          UILabel!
     @IBOutlet weak var petAndOwnerTitleLabel:   UILabel!
@@ -26,16 +26,16 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var petAgeTextField:     UITextField!
     @IBOutlet weak var petBioTextView:      UITextView!
     //Pet pictures display
-    @IBOutlet weak var bigPetPicture:    UIImageView!
+    @IBOutlet weak var bigPetPicture0:    UIImageView!
     @IBOutlet weak var smallPetPicture1: UIImageView!
     @IBOutlet weak var smallPetPicture2: UIImageView!
     @IBOutlet weak var smallPetPicture3: UIImageView!
     @IBOutlet weak var smallPetPicture4: UIImageView!
     @IBOutlet weak var smallPetPicture5: UIImageView!
     //Pet and Owner Pictures display
-    @IBOutlet weak var petAndOwnerPic1: UIImageView!
-    @IBOutlet weak var petAndOwnerPic2: UIImageView!
-    @IBOutlet weak var petAndOwnerPic3: UIImageView!
+    @IBOutlet weak var petAndOwnerPic6: UIImageView!
+    @IBOutlet weak var petAndOwnerPic7: UIImageView!
+    @IBOutlet weak var petAndOwnerPic8: UIImageView!
 
     @IBOutlet weak var quizButton: UIButton!
 
@@ -45,6 +45,69 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     var nameInputDelegate:  UITextFieldDelegate?
     var speciePickerDelegate: SpeciePicker?
     var remainingBioDelegate: UITextViewDelegate?
+    
+    //variable for the image tag
+    var imageTag = 0
+    
+    func uploadImageToFirebaseStorage(data: NSData){
+        //upload to firebase
+        let fileName = NSUUID.init().uuidString + ".png"
+        let storageRef = Storage.storage().reference(withPath: "test/\(fileName)")
+        let uploadMetaData = StorageMetadata()
+        uploadMetaData.contentType =  "image/png"
+        let uploadTask = storageRef.putData(data as Data, metadata: uploadMetaData) {
+            (metadata, error) in if (error != nil) {
+                print("I received an error! \(String(describing: error?.localizedDescription))")
+            } else {
+                storageRef.downloadURL(completion: { (url, error) in
+                    if error != nil {
+                        print("\(error)")
+                    } else {
+                        print("\(url)")
+                    }
+                })
+            }
+        }
+        /**
+        uploadTask.oberserveStatus(.progress) { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            guard let progress = snapshot.progress else { return }
+            strongSelf.progressView.progress = Float(progress.fractionCompleted)
+        }
+ **/
+ 
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let mediaType: String = info[UIImagePickerControllerMediaType] as? String else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(originalImage, 0.8) {
+            uploadImageToFirebaseStorage(data: imageData as NSData)
+            
+        }
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func tapToUploadImage(_ sender: UITapGestureRecognizer) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        //UIGestureRecognizer; *recognizer = (UIGestureRecognizer*)sender
+        //if let view = gestureRecogniser.view as? UIImageView{
+        //let imagePicked = view.tag
+        //}
+        //print("tapped view is view with tag: \(sender.view!!.tag)")
+        let image = sender.view
+        let imageTag = image?.tag
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
     
     
     override func viewDidLoad() {

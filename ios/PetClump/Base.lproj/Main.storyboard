@@ -838,33 +838,53 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xsk-cc-49C">
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xsk-cc-49C">
                                                 <rect key="frame" x="25" y="55" width="205" height="205"/>
                                                 <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="d06-T0-Y0z" appends="YES" id="2S3-EG-OZV"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ku7-oR-7bl">
+                                            <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ku7-oR-7bl">
                                                 <rect key="frame" x="25" y="265" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="kWq-3e-Ji6"/>
                                                     <constraint firstAttribute="width" constant="100" id="q5z-4F-xN8"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="82s-dD-plp" appends="YES" id="vqf-3s-A7m"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gGo-vH-Php">
+                                            <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gGo-vH-Php">
                                                 <rect key="frame" x="235" y="265" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="1no-Nu-88u" appends="YES" id="byh-o9-hBE"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Mk-8R-DfA">
+                                            <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Mk-8R-DfA">
                                                 <rect key="frame" x="130" y="265" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="dFh-Ri-E8W" appends="YES" id="nQP-2A-nNo"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uff-lh-A1i">
+                                            <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uff-lh-A1i">
                                                 <rect key="frame" x="235" y="55" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="WVs-j0-zzP"/>
                                                     <constraint firstAttribute="width" constant="100" id="mqi-CF-z8P"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="HMt-g2-1u1" appends="YES" id="Nwj-lA-GMq"/>
+                                                </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pet And I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbZ-vG-X2K">
                                                 <rect key="frame" x="25" y="365" width="324" height="21"/>
@@ -872,20 +892,32 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wlr-WQ-YcJ">
+                                            <imageView tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wlr-WQ-YcJ">
                                                 <rect key="frame" x="25" y="390" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="RT7-Gb-ZDC"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="oBY-2m-R4h" appends="YES" id="lwo-5v-e5a"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-TS-BDU">
+                                            <imageView tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-TS-BDU">
                                                 <rect key="frame" x="130" y="390" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="617-Cl-6wb" appends="YES" id="qWf-e3-Obr"/>
+                                                </connections>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="shY-nN-6a6">
+                                            <imageView tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="shY-nN-6a6">
                                                 <rect key="frame" x="235" y="390" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="rL2-9V-8fS" appends="YES" id="39b-nA-0Ob"/>
+                                                </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD5-yR-Byn">
                                                 <rect key="frame" x="25" y="500" width="325" height="45"/>
@@ -938,17 +970,21 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cmJ-qH-011">
+                                            <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cmJ-qH-011">
                                                 <rect key="frame" x="235" y="160" width="100" height="100"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="1mU-mD-2WR"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="qSm-t3-zlR" appends="YES" id="wdT-D6-8hy"/>
+                                                </connections>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4db-At-PxJ">
                                                 <rect key="frame" x="25" y="775" width="320" height="233"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -1065,15 +1101,15 @@
                     </view>
                     <size key="freeformSize" width="375" height="1200"/>
                     <connections>
-                        <outlet property="bigPetPicture" destination="Xsk-cc-49C" id="Gjl-No-2yl"/>
+                        <outlet property="bigPetPicture0" destination="Xsk-cc-49C" id="x7w-na-4YT"/>
                         <outlet property="bioRemainingLabel" destination="3h8-xj-ewM" id="FPZ-sm-N6Q"/>
                         <outlet property="infoTitleLabel" destination="gD5-yR-Byn" id="qC5-LL-xbX"/>
                         <outlet property="nameTitleLabel" destination="UbG-7g-raW" id="u1r-cT-dnD"/>
                         <outlet property="petAgeTextField" destination="CJB-qp-xsu" id="jft-Fe-zbx"/>
                         <outlet property="petAgeTitleLabel" destination="nhr-8f-TK9" id="maS-t0-py5"/>
-                        <outlet property="petAndOwnerPic1" destination="wlr-WQ-YcJ" id="H5c-oB-BIo"/>
-                        <outlet property="petAndOwnerPic2" destination="gj0-TS-BDU" id="HkX-S5-3D8"/>
-                        <outlet property="petAndOwnerPic3" destination="shY-nN-6a6" id="HiM-Kr-OA3"/>
+                        <outlet property="petAndOwnerPic6" destination="wlr-WQ-YcJ" id="GrO-4p-Hyu"/>
+                        <outlet property="petAndOwnerPic7" destination="gj0-TS-BDU" id="yac-Pd-OOj"/>
+                        <outlet property="petAndOwnerPic8" destination="shY-nN-6a6" id="QLV-0B-z1h"/>
                         <outlet property="petAndOwnerTitleLabel" destination="gbZ-vG-X2K" id="Qo6-74-P2U"/>
                         <outlet property="petBioTextView" destination="4db-At-PxJ" id="t8i-tc-fho"/>
                         <outlet property="petBioTitleLabel" destination="Yad-L6-9ui" id="4Ia-Wr-gIk"/>
@@ -1082,14 +1118,59 @@
                         <outlet property="petSpeciesLabel" destination="YT1-Sa-tAd" id="g1t-7L-aXp"/>
                         <outlet property="petSpeciesTextField" destination="xUI-G0-ONu" id="8ez-f9-onq"/>
                         <outlet property="quizButton" destination="xjx-Ap-wcG" id="DSb-ti-llh"/>
-                        <outlet property="smallPetPicture1" destination="uff-lh-A1i" id="U66-Vc-Efb"/>
-                        <outlet property="smallPetPicture2" destination="cmJ-qH-011" id="jSy-OZ-zKO"/>
-                        <outlet property="smallPetPicture3" destination="gGo-vH-Php" id="ob6-Il-v54"/>
-                        <outlet property="smallPetPicture4" destination="3Mk-8R-DfA" id="ICY-ah-0UD"/>
-                        <outlet property="smallPetPicture5" destination="Ku7-oR-7bl" id="iK6-7n-Ffq"/>
+                        <outlet property="smallPetPicture1" destination="uff-lh-A1i" id="zDk-Ms-dgd"/>
+                        <outlet property="smallPetPicture2" destination="cmJ-qH-011" id="cW3-wM-xE1"/>
+                        <outlet property="smallPetPicture3" destination="gGo-vH-Php" id="eEs-A8-RSe"/>
+                        <outlet property="smallPetPicture4" destination="3Mk-8R-DfA" id="RS4-10-RwO"/>
+                        <outlet property="smallPetPicture5" destination="Ku7-oR-7bl" id="z8c-4V-rXS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1AH-ff-BbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="d06-T0-Y0z">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="dy5-Lk-jqR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="HMt-g2-1u1">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="sCB-N8-cb8"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="qSm-t3-zlR">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="nLG-PX-5v1"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="1no-Nu-88u">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="4UY-WO-w7S"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="dFh-Ri-E8W">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="BHh-Bs-awl"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="82s-dD-plp">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="AcP-Ih-zwA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="rL2-9V-8fS">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="4hk-OC-cbP"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="617-Cl-6wb">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="jLC-fW-4jc"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="oBY-2m-R4h">
+                    <connections>
+                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="iOS-sG-9ci"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="788" y="173.64532019704436"/>
         </scene>
