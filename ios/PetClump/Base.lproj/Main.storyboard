@@ -563,7 +563,7 @@
                                     <navigationItem title="About me" id="ICD-El-Aep">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AE8-L6-gfp">
                                             <connections>
-                                                <action selector="topCancel:" destination="NHe-gv-fBJ" id="FXh-Rh-gFl"/>
+                                                <action selector="tapCancel:" destination="NHe-gv-fBJ" id="FXh-Rh-gFl"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="9Iq-Dn-49R">
