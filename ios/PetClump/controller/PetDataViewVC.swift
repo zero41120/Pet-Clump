@@ -131,6 +131,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         self.petBioTitleLabel.text      = NSLocalizedString("Bio", comment: "This is the title for specifying the Bio of the pet")
         self.petNameTitleLabel.text     = NSLocalizedString("Name", comment: "This is the title for specifying the name of the pet in the pet info section")
         self.petAndOwnerTitleLabel.text = NSLocalizedString("Pet And I", comment: "This is the title for the picture section of the pet and owner")
+        self.quizButton.titleLabel!.text = NSLocalizedString("Quiz All-Done", comment: "This is the title for the quiz button when the user finished all quiz questions")
     }
     
     private func setupDelegate(){
@@ -166,8 +167,9 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     }
     
     @IBAction func tapQuiz(_ sender: Any){
-        if petProfile!.quiz.count == 100 {
+        if petProfile!.quiz.count == QuizQuestion.getNumberOfAvaliableQuestions() {
             makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
+            return;
         }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let qvc = storyBoard.instantiateViewController(withIdentifier: "QuizVC") as! QuizVC

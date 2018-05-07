@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -53,10 +54,13 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".PetInfoEditActivity"
+        <activity
+            android:name=".PetInfoEditActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".MatchingActivity" />
-        <activity android:name=".QuizActivity"></activity>
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".MatchingViewActivity" />
+        <activity android:name=".MatchingViewProfileActivity"></activity>
     </application>
 
 </manifest>
