@@ -15,6 +15,7 @@
 
         <ImageView
             android:id="@+id/pet_main_profile"
+            android:tag="main_profile_url"
             android:layout_width="225dp"
             android:layout_height="225dp"
             android:layout_marginBottom="8dp"
@@ -64,6 +65,7 @@
 
         <ImageView
             android:id="@+id/pet_profile_1"
+            android:tag="pet_profile_url_1"
             android:layout_width="@dimen/profile_pet_size"
             android:layout_height="@dimen/profile_pet_size"
             android:layout_marginRight="28dp"
@@ -75,6 +77,7 @@
 
         <ImageView
             android:id="@+id/pet_profile_2"
+            android:tag="pet_profile_url_2"
             android:layout_width="@dimen/profile_pet_size"
             android:layout_height="@dimen/profile_pet_size"
             android:layout_marginEnd="27dp"
@@ -92,6 +95,7 @@
 
         <ImageView
             android:id="@+id/pet_profile_3"
+            android:tag="pet_profile_url_3"
             android:layout_width="@dimen/profile_pet_size"
             android:layout_height="@dimen/profile_pet_size"
             android:layout_marginBottom="77dp"
@@ -110,6 +114,7 @@
 
         <ImageView
             android:id="@+id/pet_profile_4"
+            android:tag="pet_profile_url_4"
             android:layout_width="@dimen/profile_pet_size"
             android:layout_height="@dimen/profile_pet_size"
             android:layout_marginLeft="24dp"
@@ -121,6 +126,7 @@
 
         <ImageView
             android:id="@+id/pet_profile_5"
+            android:tag="pet_profile_url_5"
             android:layout_width="@dimen/profile_pet_size"
             android:layout_height="@dimen/profile_pet_size"
             android:layout_marginEnd="24dp"
@@ -177,6 +183,7 @@
 
             <ImageView
                 android:id="@+id/PO_profile_1"
+                android:tag = "group_profile_url_1"
                 android:layout_width="@dimen/profile_pet_size"
                 android:layout_height="@dimen/profile_pet_size"
                 android:layout_weight="0.1"
@@ -184,6 +191,7 @@
 
             <ImageView
                 android:id="@+id/PO_profile_2"
+                android:tag = "group_profile_url_2"
                 android:layout_width="@dimen/profile_pet_size"
                 android:layout_height="@dimen/profile_pet_size"
                 android:layout_weight="0.1"
@@ -191,6 +199,7 @@
 
             <ImageView
                 android:id="@+id/PO_profile_3"
+                android:tag = "group_profile_url_3"
                 android:layout_width="@dimen/profile_pet_size"
                 android:layout_height="@dimen/profile_pet_size"
                 android:layout_weight="0.1"
@@ -347,6 +356,17 @@
             android:text="@string/Save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/Button_delete_pet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="8dp"
+            android:text="Delete"
+            app:layout_constraintStart_toEndOf="@+id/Label_pet_name"
+            app:layout_constraintTop_toBottomOf="@+id/button_save" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

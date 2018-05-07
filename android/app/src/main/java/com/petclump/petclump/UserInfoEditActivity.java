@@ -26,7 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileDownloader, ProfileUploader, View.OnClickListener {
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileDownloader, ProfileUploader, ImageView.OnClickListener {
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -41,7 +41,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     ConstraintSet constraintSet;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    Date birthday;
     private OwnerProfile profile;
     private static final int gray_id = 2131165335;
 

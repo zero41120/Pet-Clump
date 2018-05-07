@@ -63,7 +63,7 @@ public class MatchingViewActivity extends AppCompatActivity {
                 // Add whatever code is needed to append new items to the bottom of the list
                 downloadPetProfiles(page);
                 //Toast.makeText(this, "slide", Toast.LENGTH_SHORT).show();
-                Log.d(TAG,"SLIDE:"+"slide a little bit");
+                //Log.d(TAG,"SLIDE:"+"slide a little bit");
             }
         };
         recyclerView.addOnScrollListener(scrollListener);
