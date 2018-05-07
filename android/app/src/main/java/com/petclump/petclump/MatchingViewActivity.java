@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,7 +24,7 @@ import java.util.List;
  * * * *
  *******/
 public class MatchingViewActivity extends AppCompatActivity {
-    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 30;
+    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 6;
     private List<PetProfile> pets;
     private RecyclerView recyclerView;
     private RecycleViewAdapter recycleViewAdapter;
@@ -55,14 +56,17 @@ public class MatchingViewActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recycleViewAdapter);
-//        scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
-//            @Override
-//            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-//                // Triggered only when new data needs to be appended to the list
-//                // Add whatever code is needed to append new items to the bottom of the list
-//                downloadPetProfiles(page);
-//            }
-//        };
+        scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                downloadPetProfiles(page);
+                //Toast.makeText(this, "slide", Toast.LENGTH_SHORT).show();
+                Log.d(TAG,"SLIDE:"+"slide a little bit");
+            }
+        };
+        recyclerView.addOnScrollListener(scrollListener);
     }
 
     private void downloadPetProfiles(int offset){
@@ -70,6 +74,7 @@ public class MatchingViewActivity extends AppCompatActivity {
 //        petProfileQuery = db.collection("pets").limit(DEFAULT_DOWNLOAD_LIMIT);
 
         petProfileQuery.get().addOnSuccessListener(documentSnapshots -> {
+            if(documentSnapshots.size() -1 < 0){ return; }
             DocumentSnapshot lastVisible = documentSnapshots.getDocuments()
                     .get(documentSnapshots.size() -1);
             for (DocumentSnapshot doc: documentSnapshots.getDocuments()) {
@@ -86,8 +91,8 @@ public class MatchingViewActivity extends AppCompatActivity {
             petProfileQuery = db.collection("pets")
                     .startAfter(lastVisible)
                     .limit(DEFAULT_DOWNLOAD_LIMIT);
-            setRecyclerView();
-            recycleViewAdapter.notifyItemInserted(7);
+            //setRecyclerView();
+            recycleViewAdapter.notifyItemInserted(6);
             //Log.d(TAG, pets.toString());
 
         });

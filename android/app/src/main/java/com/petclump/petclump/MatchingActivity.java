@@ -28,7 +28,6 @@ public class MatchingActivity extends AppCompatActivity {
             startActivity(new Intent(this, UserInfoActivity.class));
         });
     }
-
     @Override
     protected void onResume() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
