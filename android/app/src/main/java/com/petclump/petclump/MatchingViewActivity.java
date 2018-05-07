@@ -27,38 +27,47 @@ public class MatchingViewActivity extends AppCompatActivity {
     private List<PetProfile> pets;
     private RecyclerView recyclerView;
     private RecycleViewAdapter recycleViewAdapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private EndlessRecyclerViewScrollListener scrollListener;
+    private GridLayoutManager gridLayoutManager;
+    private FirebaseFirestore db;
+
+
     private static final String TAG = "MatchingViewActivity";
     private PetProfile profile;
     private Query petProfileQuery;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matching_view);
-
+        db = FirebaseFirestore.getInstance();
+        petProfileQuery = db.collection("pets").limit(DEFAULT_DOWNLOAD_LIMIT);
         pets = new ArrayList<>();
-        downloadPetProfiles();
-//        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                recycleViewAdapter.notifyDataSetChanged();
-//                swipeRefreshLayout.setRefreshing(false);
-//            }
-//        });
-
+        downloadPetProfiles(6);
+        setRecyclerView();
+//
     }
+
     private void setRecyclerView(){
         recyclerView = findViewById(R.id.matchviewRecycle);
         recycleViewAdapter = new RecycleViewAdapter(this, pets);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        gridLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recycleViewAdapter);
+//        scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+//            @Override
+//            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+//                // Triggered only when new data needs to be appended to the list
+//                // Add whatever code is needed to append new items to the bottom of the list
+//                downloadPetProfiles(page);
+//            }
+//        };
     }
 
-    private void downloadPetProfiles(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        petProfileQuery = db.collection("pets").limit(DEFAULT_DOWNLOAD_LIMIT);
+    private void downloadPetProfiles(int offset){
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        petProfileQuery = db.collection("pets").limit(DEFAULT_DOWNLOAD_LIMIT);
 
         petProfileQuery.get().addOnSuccessListener(documentSnapshots -> {
             DocumentSnapshot lastVisible = documentSnapshots.getDocuments()
@@ -78,7 +87,9 @@ public class MatchingViewActivity extends AppCompatActivity {
                     .startAfter(lastVisible)
                     .limit(DEFAULT_DOWNLOAD_LIMIT);
             setRecyclerView();
-            Log.d(TAG, pets.toString());
+            recycleViewAdapter.notifyItemInserted(7);
+            //Log.d(TAG, pets.toString());
+
         });
     }
 

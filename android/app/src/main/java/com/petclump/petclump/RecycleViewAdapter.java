@@ -16,6 +16,11 @@ import com.petclump.petclump.models.Profile;
 import java.util.List;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
+    private final int VIEW_ITEM = 1;
+    private final int VIEW_PROG = 0;
+    private int visibleThreshold = 6;
+    private int lastVisibleItem, totalItemCount;
+    private boolean loading;
     private List<PetProfile> pets;
     private Context mContext;
 
@@ -66,4 +71,5 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             matchview_cardView= itemView.findViewById(R.id.matchview_cardView);
         }
     }
+
 }
