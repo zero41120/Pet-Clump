@@ -1136,47 +1136,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1AH-ff-BbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="d06-T0-Y0z">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="dy5-Lk-jqR"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="dy5-Lk-jqR"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="HMt-g2-1u1">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="sCB-N8-cb8"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="sCB-N8-cb8"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="qSm-t3-zlR">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="nLG-PX-5v1"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="nLG-PX-5v1"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="1no-Nu-88u">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="4UY-WO-w7S"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="4UY-WO-w7S"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="dFh-Ri-E8W">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="BHh-Bs-awl"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="BHh-Bs-awl"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="82s-dD-plp">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="AcP-Ih-zwA"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="AcP-Ih-zwA"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="rL2-9V-8fS">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="4hk-OC-cbP"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="4hk-OC-cbP"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="617-Cl-6wb">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="jLC-fW-4jc"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="jLC-fW-4jc"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="oBY-2m-R4h">
                     <connections>
-                        <action selector="tapToUploadImage:" destination="N3z-EC-o4p" id="iOS-sG-9ci"/>
+                        <action selector="tapOnImageView:" destination="N3z-EC-o4p" id="iOS-sG-9ci"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
