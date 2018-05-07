@@ -31,8 +31,6 @@ public class MatchingViewActivity extends AppCompatActivity {
     private EndlessRecyclerViewScrollListener scrollListener;
     private GridLayoutManager gridLayoutManager;
     private FirebaseFirestore db;
-
-
     private static final String TAG = "MatchingViewActivity";
     private PetProfile profile;
     private Query petProfileQuery;
@@ -85,13 +83,13 @@ public class MatchingViewActivity extends AppCompatActivity {
                     setName(doc.getData().get("name").toString());
                     setAge(doc.getData().get("age").toString());
                     setBio(doc.getData().get("bio").toString());
+                    setSpe(doc.getData().get("spe").toString());
                 }});
             }
 
             petProfileQuery = db.collection("pets")
                     .startAfter(lastVisible)
                     .limit(DEFAULT_DOWNLOAD_LIMIT);
-            //setRecyclerView();
             recycleViewAdapter.notifyItemInserted(6);
             //Log.d(TAG, pets.toString());
 
