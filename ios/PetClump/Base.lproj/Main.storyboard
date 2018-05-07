@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1110,6 +1110,7 @@
                         <outlet property="bioRemainingLabel" destination="3h8-xj-ewM" id="FPZ-sm-N6Q"/>
                         <outlet property="deleteButton" destination="18k-8o-LW2" id="LQP-Yt-qYM"/>
                         <outlet property="exitButton" destination="H0X-eS-RcM" id="WRD-CJ-klg"/>
+                        <outlet property="groupPhotoLabel" destination="gbZ-vG-X2K" id="Qo6-74-P2U"/>
                         <outlet property="infoTitleLabel" destination="gD5-yR-Byn" id="qC5-LL-xbX"/>
                         <outlet property="nameTitleLabel" destination="UbG-7g-raW" id="u1r-cT-dnD"/>
                         <outlet property="petAgeTextField" destination="CJB-qp-xsu" id="jft-Fe-zbx"/>
@@ -1117,7 +1118,6 @@
                         <outlet property="petAndOwnerPic6" destination="wlr-WQ-YcJ" id="GrO-4p-Hyu"/>
                         <outlet property="petAndOwnerPic7" destination="gj0-TS-BDU" id="yac-Pd-OOj"/>
                         <outlet property="petAndOwnerPic8" destination="shY-nN-6a6" id="QLV-0B-z1h"/>
-                        <outlet property="petAndOwnerTitleLabel" destination="gbZ-vG-X2K" id="Qo6-74-P2U"/>
                         <outlet property="petBioTextView" destination="4db-At-PxJ" id="t8i-tc-fho"/>
                         <outlet property="petBioTitleLabel" destination="Yad-L6-9ui" id="4Ia-Wr-gIk"/>
                         <outlet property="petNameTextField" destination="vKj-bC-k8t" id="GHv-a9-7C8"/>
