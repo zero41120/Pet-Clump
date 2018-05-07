@@ -47,7 +47,7 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var remainingBioDelegate: UITextViewDelegate?
     
     //variable for the image tag
-    var imageTag = 0
+    var imageTag = -1
     
     func uploadImageToFirebaseStorage(data: NSData){
         //upload to firebase
@@ -63,7 +63,34 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                     if error != nil {
                         print("\(error)")
                     } else {
-                        print("\(url)")
+                        print("\(url) for \(self.imageTag)")
+                        if self.imageTag == 0 {
+                            self.bigPetPicture0.load(url: url!)
+                        }
+                        if self.imageTag == 1 {
+                            self.smallPetPicture1.load(url: url!)
+                        }
+                        if self.imageTag == 2 {
+                            self.smallPetPicture2.load(url: url!)
+                        }
+                        if self.imageTag == 3 {
+                            self.smallPetPicture3.load(url: url!)
+                        }
+                        if self.imageTag == 4 {
+                            self.smallPetPicture4.load(url: url!)
+                        }
+                        if self.imageTag == 5 {
+                            self.smallPetPicture5.load(url: url!)
+                        }
+                        if self.imageTag == 6 {
+                            self.petAndOwnerPic6.load(url: url!)
+                        }
+                        if self.imageTag == 7 {
+                            self.petAndOwnerPic7.load(url: url!)
+                        }
+                        if self.imageTag == 8 {
+                            self.petAndOwnerPic8.load(url: url!)
+                        }
                     }
                 })
             }
@@ -103,7 +130,8 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         //}
         //print("tapped view is view with tag: \(sender.view!!.tag)")
         let image = sender.view
-        let imageTag = image?.tag
+        self.imageTag = image!.tag
+        print("\(imageTag)")
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
