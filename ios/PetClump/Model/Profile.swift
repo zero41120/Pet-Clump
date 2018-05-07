@@ -12,7 +12,7 @@ import Firebase
 
 protocol Profile {
     func generateDictionary() -> [String: Any]
-    func upload(vc: QuickAlert, completion: ProfileUploader?)
+    func upload(vc: QuickAlert?, completion: ProfileUploader?)
     func download(uid: String, completion: ProfileDownloader?)
 }
 

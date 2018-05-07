@@ -25,27 +25,65 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var petSpeciesTextField: UITextField!
     @IBOutlet weak var petAgeTextField:     UITextField!
     @IBOutlet weak var petBioTextView:      UITextView!
+    
     //Pet pictures display
-    @IBOutlet weak var bigPetPicture:    UIImageView!
+    @IBOutlet weak var bigPetPicture0:   UIImageView!
     @IBOutlet weak var smallPetPicture1: UIImageView!
     @IBOutlet weak var smallPetPicture2: UIImageView!
     @IBOutlet weak var smallPetPicture3: UIImageView!
     @IBOutlet weak var smallPetPicture4: UIImageView!
     @IBOutlet weak var smallPetPicture5: UIImageView!
+    
     //Pet and Owner Pictures display
-    @IBOutlet weak var petAndOwnerPic1: UIImageView!
-    @IBOutlet weak var petAndOwnerPic2: UIImageView!
-    @IBOutlet weak var petAndOwnerPic3: UIImageView!
+    @IBOutlet weak var petAndOwnerPic6: UIImageView!
+    @IBOutlet weak var petAndOwnerPic7: UIImageView!
+    @IBOutlet weak var petAndOwnerPic8: UIImageView!
 
+    // Buttons
     @IBOutlet weak var quizButton: UIButton!
-
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var exitButton: UIBarButtonItem!
+    
     var petProfile:     PetProfile?
     var speciePicker:   UIPickerView?
     var ageInputDelegate:   UITextFieldDelegate?
     var nameInputDelegate:  UITextFieldDelegate?
     var speciePickerDelegate: SpeciePicker?
     var remainingBioDelegate: UITextViewDelegate?
+    var imagePickerDelegate: ImagePicker?
     
+    @IBAction func tapOnImageView(_ sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let alert = UIAlertController(title: NSLocalizedString("Image Function", comment: "This is an alert title when user clicks on the image to upload or delete"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Upload a new image", comment: "This is a button to indicate user to upload a new image."), style: .default, handler: { (action: UIAlertAction!) in
+            self.imagePickerDelegate = ImagePicker(imageView: imageView, profile: self.petProfile!)
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self.imagePickerDelegate!
+            self.present(imagePicker, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
+            imageView.image = nil;
+            imageView.backgroundColor = UIImageView.getDefaultDeselectedColor()
+            switch imageView.tag {
+            case 0: self.petProfile!.url_map["main_profile_url"] = ""
+            case 1: self.petProfile!.url_map["pet_profile_url_1"] = ""
+            case 2: self.petProfile!.url_map["pet_profile_url_2"] = ""
+            case 3: self.petProfile!.url_map["pet_profile_url_3"] = ""
+            case 4: self.petProfile!.url_map["pet_profile_url_4"] = ""
+            case 5: self.petProfile!.url_map["pet_profile_url_5"] = ""
+            case 6: self.petProfile!.url_map["group_profile_url_1"] = ""
+            case 7: self.petProfile!.url_map["group_profile_url_2"] = ""
+            case 8: self.petProfile!.url_map["group_profile_url_3"] = ""
+            default: break
+            }
+            self.petProfile?.upload(vc: nil, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +107,20 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         self.petNameTextField.text      = petProfile!.name
         self.bioRemainingLabel.text     = "\(petProfile!.bio.count)/500"
         self.petSpeciesTextField.text   = petProfile!.specie
-        let allQuestion = QuizQuestion.getNumberOfAvaliableQuestions()
-        let answeredQuestion = petProfile!.quiz.count
-        self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(answeredQuestion)/\(allQuestion))", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+        self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(petProfile!.quiz.count)/100)", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+        self.deleteButton.addTarget(self, action: #selector(deletePet), for: .touchUpInside)
+        self.bigPetPicture0.load(url: self.petProfile!.url_map["main_profile_url"] ?? "")
+        self.smallPetPicture1.load(url: self.petProfile!.url_map["pet_profile_url_1"] ?? "")
+        self.smallPetPicture2.load(url: self.petProfile!.url_map["pet_profile_url_2"] ?? "")
+        self.smallPetPicture3.load(url: self.petProfile!.url_map["pet_profile_url_3"] ?? "")
+        self.smallPetPicture4.load(url: self.petProfile!.url_map["pet_profile_url_4"] ?? "")
+        self.smallPetPicture5.load(url: self.petProfile!.url_map["pet_profile_url_5"] ?? "")
+        self.petAndOwnerPic6.load(url: self.petProfile!.url_map["group_profile_url_1"] ?? "")
+        self.petAndOwnerPic7.load(url: self.petProfile!.url_map["group_profile_url_2"] ?? "")
+        self.petAndOwnerPic8.load(url: self.petProfile!.url_map["group_profile_url_3"] ?? "")
+    }
+    @objc private func deletePet(){
+        confirmBeforeDelete(title: NSLocalizedString("Delete this pet?", comment: "This is the title on an alert when user clicks delete pet"), message: NSLocalizedString("Are you sure you want to delete this pet? This action cannot be undone.", comment: "This is the message when the user clicks delete pet"), toDelete: petProfile!)
     }
     
     private func setupUI(){
