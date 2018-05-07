@@ -69,7 +69,9 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         self.petNameTextField.text      = petProfile!.name
         self.bioRemainingLabel.text     = "\(petProfile!.bio.count)/500"
         self.petSpeciesTextField.text   = petProfile!.specie
-        self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(petProfile!.quiz.count)/100)", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+        let allQuestion = QuizQuestion.getNumberOfAvaliableQuestions()
+        let answeredQuestion = petProfile!.quiz.count
+        self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(answeredQuestion)/\(allQuestion))", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
     }
     
     private func setupUI(){
@@ -80,6 +82,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         self.petBioTitleLabel.text      = NSLocalizedString("Bio", comment: "This is the title for specifying the Bio of the pet")
         self.petNameTitleLabel.text     = NSLocalizedString("Name", comment: "This is the title for specifying the name of the pet in the pet info section")
         self.petAndOwnerTitleLabel.text = NSLocalizedString("Pet And I", comment: "This is the title for the picture section of the pet and owner")
+        self.quizButton.titleLabel!.text = NSLocalizedString("Quiz All-Done", comment: "This is the title for the quiz button when the user finished all quiz questions")
     }
     
     private func setupDelegate(){
@@ -115,8 +118,9 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     }
     
     @IBAction func tapQuiz(_ sender: Any){
-        if petProfile!.quiz.count == 100 {
+        if petProfile!.quiz.count == QuizQuestion.getNumberOfAvaliableQuestions() {
             makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
+            return;
         }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let qvc = storyBoard.instantiateViewController(withIdentifier: "QuizVC") as! QuizVC

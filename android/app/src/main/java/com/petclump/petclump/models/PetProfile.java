@@ -20,21 +20,21 @@ public class PetProfile implements Profile{
     private String spe = "CAT";
     private String name = "Guko";
     private String owner_id = "null";
+    private String quiz = "";
     private Integer sequence = -1;
 
-
-    public PetProfile (){
-    }
+    public PetProfile (){}
 
     public Map<String,Object> generateDictionary(){
-        Map<String, Object> temp= new HashMap<>();
-        temp.put("bio", bio);
-        temp.put("age", age);
-        temp.put("spe", spe);
-        temp.put("name",name);
-        temp.put("owner_id",owner_id);
-        temp.put("sequence",sequence);
-        return temp;
+        return new HashMap<String, Object>(){{
+            put("bio", bio);
+            put("age", age);
+            put("spe", spe);
+            put("name", name);
+            put("quiz", quiz);
+            put("owner_id",owner_id);
+            put("sequence",sequence);
+        }};
     }
     public void upload(String id, ProfileUploader c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
@@ -69,6 +69,7 @@ public class PetProfile implements Profile{
             this.bio = ref.get("bio").toString();
             this.age = ref.get("age").toString();
             this.spe = ref.get("spe").toString();
+            this.quiz = ref.get("quiz").toString();
             this.name = ref.get("name").toString();
             this.owner_id = ref.get("owner_id").toString();
             this.sequence = Integer.parseInt(ref.get("sequence").toString());
@@ -86,11 +87,12 @@ public class PetProfile implements Profile{
     public String getSpe(){return spe;}
     public String getBio(){return bio;}
     public String getAge(){return age;}
+    public String getQuiz(){return quiz;}
     public void setOwner_id(String owner_id){this.owner_id = owner_id;}
     public void setName(String name){this.name = name;}
     public void setSpe(String spe){this.spe = spe;}
     public void setBio(String bio){this.bio = bio;}
     public void setAge(String age){this.age = age;}
     public void setSequence(int s){this.sequence = s;}
-
+    public void setQuiz(String quiz){ this.quiz = quiz; }
 }

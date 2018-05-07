@@ -11,8 +11,6 @@ import Firebase
 import UIColor_FlatColors
 import Cartography
 
-
-
 class QuizVC: UIViewController, ProfileDownloader, ProfileUploader{
 
     var petProfile: PetProfile?
@@ -63,7 +61,8 @@ class QuizVC: UIViewController, ProfileDownloader, ProfileUploader{
             view1.bottom == view2.bottom - 100
         }
         
-        self.questions = Array(QuizQuestion.defaultQuestions[0...10])
+        //give out the quiz questions to the user based their previously answered question index.
+        self.questions = QuizQuestion.getQuestion(quizString: (petProfile?.quiz)!, count: 10)
         
         swipeableView!.interpretDirection = {(topView: UIView, direction: ZLSwipeableViewDirection,
             views: [UIView], swipeableView: ZLSwipeableView) in
@@ -104,8 +103,10 @@ class QuizVC: UIViewController, ProfileDownloader, ProfileUploader{
         colorIndex += 1
         
         // TODO make the text larget and at the center of the card view
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-        label.center = CGPoint(x: 20, y: 30)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 70))
+        label.center = CGPoint(x: 125, y: 300)
+        label.numberOfLines = 0
+
         label.textAlignment = .center
         label.text = questions![colorIndex - 1]
         cardView.addSubview(label)
