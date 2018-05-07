@@ -206,11 +206,10 @@ public class PetProfile implements Profile{
         String temp = url_map.get(t);
         Log.d(TAG,"delete photo url " + temp);
         if(temp.compareTo("") == 0){
-
             return;
         }
 
-        String path = "test/" + parseUrl(url_map.get(t));
+        String path = "image/" + parseUrl(url_map.get(t));
         // Create a storage reference from our app
         Log.d(TAG,"path:"+path);
         StorageReference storageRef = Store_pet.getReference(path);
@@ -225,7 +224,7 @@ public class PetProfile implements Profile{
         url_map.put(t,"");
     }
     public void setPhoto(String t, byte[] data, ProfileUploader c){
-        String path = "test/" + UUID.randomUUID() + ".png";
+        String path = "image/" + UUID.randomUUID() + ".png";
         StorageReference storageRef = Store_pet.getReference(path);
         // upload the file
         UploadTask uploadTask = storageRef.putBytes(data);
