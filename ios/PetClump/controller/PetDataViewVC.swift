@@ -56,7 +56,7 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     func uploadImageToFirebaseStorage(data: NSData, tag: Int){
         //upload to firebase
         let fileName = NSUUID.init().uuidString + ".png"
-        let storageRef = Storage.storage().reference(withPath: "test/\(fileName)")
+        let storageRef = Storage.storage().reference(withPath: "image/\(fileName)")
         let uploadMetaData = StorageMetadata()
         uploadMetaData.contentType =  "image/png"
         storageRef.putData(data as Data, metadata: uploadMetaData) {
