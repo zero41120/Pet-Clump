@@ -96,6 +96,11 @@
     <string name="Fri">Fri</string>
     <string name="Sat">Sat</string>
     <string name="Sun">Sun</string>
+    <string name="View_match_as">View match as</string>
+    <string name="Best_match">Best match</string>
+    <string name="Best_location">Best location</string>
+    <string name="Friends">Friends</string>
+    <string name="Add_friend">Add friend</string>
 
     <string name="Do_you_like_to_answer_questions">Do you like to answer questions?</string>
     <string name="Do_you_spend_most_of_your_money_for_your_pet">Do you spend most of your money for your pet?</string>

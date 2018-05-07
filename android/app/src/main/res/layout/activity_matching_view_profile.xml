@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MatchingViewProfileActivity">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/matchviewprofile_viewPager"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/matchviewprofile_name"
+
+                android:layout_width="wrap_content"
+                style="@style/fontStyle4"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:text="Good old pig" />
+            <TextView
+                android:id="@+id/matchviewprofile_specie"
+
+                android:layout_width="wrap_content"
+                style="@style/fontStyle4"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/DOG" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/matchviewprofile_age"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            style="@style/fontStyle4"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:text="100 years old" />
+        <TextView
+            android:id="@+id/matchviewprofile_bio"
+            android:background="@color/lightYellow"
+            android:layout_width="match_parent"
+            style="@style/fontStyle4"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="100 years old pig that is so old even its grandma already die" />
+        <Button
+            android:id="@+id/button_add_friend"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/Add_friend"/>
+
+
+    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>
