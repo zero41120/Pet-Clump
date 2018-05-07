@@ -1001,6 +1001,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18k-8o-LW2">
+                                                <rect key="frame" x="305" y="507" width="45" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Delete"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1103,6 +1108,8 @@
                     <connections>
                         <outlet property="bigPetPicture0" destination="Xsk-cc-49C" id="x7w-na-4YT"/>
                         <outlet property="bioRemainingLabel" destination="3h8-xj-ewM" id="FPZ-sm-N6Q"/>
+                        <outlet property="deleteButton" destination="18k-8o-LW2" id="LQP-Yt-qYM"/>
+                        <outlet property="exitButton" destination="H0X-eS-RcM" id="WRD-CJ-klg"/>
                         <outlet property="infoTitleLabel" destination="gD5-yR-Byn" id="qC5-LL-xbX"/>
                         <outlet property="nameTitleLabel" destination="UbG-7g-raW" id="u1r-cT-dnD"/>
                         <outlet property="petAgeTextField" destination="CJB-qp-xsu" id="jft-Fe-zbx"/>
@@ -1118,6 +1125,7 @@
                         <outlet property="petSpeciesLabel" destination="YT1-Sa-tAd" id="g1t-7L-aXp"/>
                         <outlet property="petSpeciesTextField" destination="xUI-G0-ONu" id="8ez-f9-onq"/>
                         <outlet property="quizButton" destination="xjx-Ap-wcG" id="DSb-ti-llh"/>
+                        <outlet property="saveButton" destination="4L1-bn-lpm" id="Stm-cj-Lot"/>
                         <outlet property="smallPetPicture1" destination="uff-lh-A1i" id="zDk-Ms-dgd"/>
                         <outlet property="smallPetPicture2" destination="cmJ-qH-011" id="cW3-wM-xE1"/>
                         <outlet property="smallPetPicture3" destination="gGo-vH-Php" id="eEs-A8-RSe"/>

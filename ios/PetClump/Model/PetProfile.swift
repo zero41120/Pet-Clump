@@ -10,10 +10,8 @@ import Foundation
 import CoreLocation
 import Firebase
 
-class PetProfile: Profile{
+class PetProfile: Profile, Deletable{
 
-    
-    
     private let COLLECTION_NAME = "pets"
     var bio: String     = ""
     var age: String     = ""
@@ -89,5 +87,18 @@ class PetProfile: Profile{
             guard (completion != nil) else { return }
             completion!.didCompleteUpload()
         }
+    }
+    
+    func delete(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let petId = "\(uid)\(sequence)"
+        // TODO delete photos
+        Firestore.firestore().collection("pets").document(petId).delete(completion: { (error) in
+            if let err = error {
+                print(err)
+            } else {
+                print("Pet deleted :(\(petId)")
+            }
+        })
     }
 }
