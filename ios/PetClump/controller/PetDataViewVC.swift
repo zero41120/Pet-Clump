@@ -37,8 +37,12 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var petAndOwnerPic7: UIImageView!
     @IBOutlet weak var petAndOwnerPic8: UIImageView!
 
+    // Buttons
     @IBOutlet weak var quizButton: UIButton!
-
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var exitButton: UIBarButtonItem!
+    
     var petProfile:     PetProfile?
     var speciePicker:   UIPickerView?
     var ageInputDelegate:   UITextFieldDelegate?
@@ -133,6 +137,11 @@ class PetDataViewVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.bioRemainingLabel.text     = "\(petProfile!.bio.count)/500"
         self.petSpeciesTextField.text   = petProfile!.specie
         self.quizButton.titleLabel!.text = NSLocalizedString("Start Quiz (\(petProfile!.quiz.count)/100)", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+        self.deleteButton.addTarget(self, action: #selector(deletePet), for: .touchUpInside)
+        
+    }
+    @objc private func deletePet(){
+        confirmBeforeDelete(title: NSLocalizedString("Delete this pet?", comment: "This is the title on an alert when user clicks delete pet"), message: NSLocalizedString("Are you sure you want to delete this pet? This action cannot be undone.", comment: "This is the message when the user clicks delete pet"), toDelete: petProfile!)
     }
     
     private func setupUI(){
