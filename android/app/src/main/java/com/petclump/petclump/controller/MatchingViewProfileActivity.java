@@ -1,10 +1,13 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.petclump.petclump.R;
+import com.petclump.petclump.views.ImagePager;
 
 public class MatchingViewProfileActivity extends AppCompatActivity {
     private TextView matchviewprofile_name, matchviewprofile_age, matchviewprofile_specie,

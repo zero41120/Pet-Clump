@@ -33,6 +33,7 @@
 		29C17980207EE97D002971C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C1797E207EE97D002971C5 /* Main.storyboard */; };
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
+		29E0416120A129E3007B2F32 /* PetProfileImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */; };
 		29F104F6209FD80B006E84E0 /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F5209FD80B006E84E0 /* Deletable.swift */; };
 		29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F820A0069E006E84E0 /* ImagePicker.swift */; };
 		29F104FB20A00FB9006E84E0 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104FA20A00FB9006E84E0 /* ImageView.swift */; };
@@ -88,6 +89,7 @@
 		29C17981207EE97F002971C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileImageDownloader.swift; sourceTree = "<group>"; };
 		29F104F5209FD80B006E84E0 /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
 		29F104F820A0069E006E84E0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		29F104FA20A00FB9006E84E0 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				298BCFF0209693A7007A6846 /* PetProfile.swift */,
 				294C94C72097E35E00266533 /* QuizQuestion.swift */,
 				29F104F5209FD80B006E84E0 /* Deletable.swift */,
+				29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
 				29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
+				29E0416120A129E3007B2F32 /* PetProfileImageDownloader.swift in Sources */,
 				298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,

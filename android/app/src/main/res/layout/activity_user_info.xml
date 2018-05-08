@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".UserInfoActivity"
+    tools:context=".controller.UserInfoActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
@@ -82,8 +82,7 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:src="@drawable/dog_placeholder"
-        app:civ_border_color="#EEEEEE"
+        android:background="?attr/colorAccent"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
         app:civ_shadow_color="#0d80e5"
@@ -101,7 +100,7 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:src="@drawable/pig_placeholder"
+        android:background="?attr/colorAccent"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
@@ -110,8 +109,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profile_pet3"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/profile_pet1"
-        tools:layout_editor_absoluteY="455dp" />
+        app:layout_constraintStart_toEndOf="@+id/profile_pet1" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/profile_pet3"
@@ -120,8 +118,8 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:src="@drawable/ray"
 
+        android:background="?attr/colorAccent"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
@@ -130,8 +128,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/profile_pet2"
-        tools:layout_editor_absoluteY="455dp" />
+        app:layout_constraintStart_toEndOf="@+id/profile_pet2" />
 
     <TextView
         android:id="@+id/about_my_pet_label"

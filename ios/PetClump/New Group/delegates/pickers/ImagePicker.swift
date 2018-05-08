@@ -39,15 +39,15 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationContro
                         print("\(url!) for \(tag)")
                         self.imageView?.image = originalImage
                         switch tag {
-                        case 0: self.petProfile!.url_map["main_profile_url"] = "\(url!)"
-                        case 1: self.petProfile!.url_map["pet_profile_url_1"] = "\(url!)"
-                        case 2: self.petProfile!.url_map["pet_profile_url_2"] = "\(url!)"
-                        case 3: self.petProfile!.url_map["pet_profile_url_3"] = "\(url!)"
-                        case 4: self.petProfile!.url_map["pet_profile_url_4"] = "\(url!)"
-                        case 5: self.petProfile!.url_map["pet_profile_url_5"] = "\(url!)"
-                        case 6: self.petProfile!.url_map["group_profile_url_1"] = "\(url!)"
-                        case 7: self.petProfile!.url_map["group_profile_url_2"] = "\(url!)"
-                        case 8: self.petProfile!.url_map["group_profile_url_3"] = "\(url!)"
+                        case 0: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.main, url: "\(url!)")
+                        case 1: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet1, url: "\(url!)")
+                        case 2: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet2, url: "\(url!)")
+                        case 3: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet3, url: "\(url!)")
+                        case 4: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet4, url: "\(url!)")
+                        case 5: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet5, url: "\(url!)")
+                        case 6: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group1, url: "\(url!)")
+                        case 7: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group2, url: "\(url!)")
+                        case 8: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group3, url: "\(url!)")
                         default: break
                         }
                         self.petProfile?.upload(vc: nil, completion: nil)

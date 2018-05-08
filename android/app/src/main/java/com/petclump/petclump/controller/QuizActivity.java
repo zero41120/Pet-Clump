@@ -1,20 +1,17 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
-import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.QuizQuestion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,9 +1,4 @@
-package com.petclump.petclump.models;
-
-import android.content.Context;
-
-import com.petclump.petclump.ProfileDownloader;
-import com.petclump.petclump.ProfileUploader;
+package com.petclump.petclump.models.protocols;
 
 import java.util.Map;
 

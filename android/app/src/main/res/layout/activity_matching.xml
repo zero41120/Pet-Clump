@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MatchingActivity">
+    tools:context=".controller.MatchingActivity">
 
     <TextView
         android:id="@+id/Txt_view_match"

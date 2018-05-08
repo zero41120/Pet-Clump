@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.models.datastructures;
 
 import java.util.HashMap;
 import java.lang.String;
