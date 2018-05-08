@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.petclump.petclump.R;
 
 /*****
  * * *

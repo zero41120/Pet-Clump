@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.views;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.petclump.petclump.controller.MatchingViewActivity;
+import com.petclump.petclump.controller.MatchingViewProfileActivity;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
-import com.petclump.petclump.models.Profile;
 
 import java.util.List;
 

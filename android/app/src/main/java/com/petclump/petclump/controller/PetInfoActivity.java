@@ -1,7 +1,6 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,26 +19,18 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.petclump.petclump.models.OwnerProfile;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.QuizQuestion;
 import com.petclump.petclump.models.Specie;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 public class PetInfoActivity extends AppCompatActivity implements ImageView.OnClickListener{

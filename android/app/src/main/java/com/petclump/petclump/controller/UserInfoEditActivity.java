@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,8 +19,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.FreeSchedule;
 import com.petclump.petclump.models.OwnerProfile;
+import com.petclump.petclump.models.protocols.ProfileDownloader;
+import com.petclump.petclump.models.protocols.ProfileUploader;
 
 import java.util.Calendar;
 import java.util.Date;

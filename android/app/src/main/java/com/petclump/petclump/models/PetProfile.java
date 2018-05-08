@@ -1,40 +1,32 @@
 package com.petclump.petclump.models;
 
-import android.app.Activity;
-import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.petclump.petclump.DefaultMap;
-import com.petclump.petclump.ProfileDeletor;
-import com.petclump.petclump.ProfileDownloader;
-import com.petclump.petclump.ProfileUploader;
+import com.petclump.petclump.models.datastructures.DefaultMap;
+import com.petclump.petclump.models.protocols.Profile;
+import com.petclump.petclump.models.protocols.ProfileDeletor;
+import com.petclump.petclump.models.protocols.ProfileDownloader;
+import com.petclump.petclump.models.protocols.ProfileUploader;
 
-import java.net.URL;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PetProfile implements Profile{
+public class PetProfile implements Profile {
     private String bio = "PET_BIO";
     private String age = "0";
     private String spe = "CAT";

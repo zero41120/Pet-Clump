@@ -1,18 +1,18 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.petclump.petclump.views.EndlessRecyclerViewScrollListener;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
+import com.petclump.petclump.views.RecycleViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

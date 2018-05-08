@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.OwnerProfile;
+import com.petclump.petclump.views.Popup;
 
 import java.util.Calendar;
 import java.util.Date;

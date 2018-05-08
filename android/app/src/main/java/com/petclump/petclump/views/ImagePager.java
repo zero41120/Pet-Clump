@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.views;
 
 import android.content.Context;
 import android.media.Image;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.petclump.petclump.R;
 
 import java.util.zip.Inflater;
 
