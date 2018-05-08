@@ -49,5 +49,7 @@ public class MatchingActivity extends AppCompatActivity {
             i.putExtra("petId", uid + "2");
             startActivity(i);
         });
+
+        // TODO show pictures
     }
 }

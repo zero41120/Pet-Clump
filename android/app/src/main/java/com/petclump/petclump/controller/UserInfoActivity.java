@@ -15,25 +15,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.OwnerProfile;
+import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.views.Popup;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity implements ProfileDownloader{
     private static final String TAG = "User Info Activity";
-    private int number_of_pets = 1;
     private ImageButton button_add_pet, button_why;
     private CircularImageView profile_pet1, profile_pet2, profile_pet3;
-    private TextView name_pet1, name_pet2, name_pet3;
     private TextView name_label, gender_label, birthday_label, range_label;
     private Button edit_button;
     private Context c;
     private ConstraintLayout constraintLayout;
     private ConstraintSet constraintSet;
-    private Date birthday;
     private OwnerProfile profile;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -73,22 +72,6 @@ public class UserInfoActivity extends AppCompatActivity {
         // Enter Pet_info to create new pet
         edit_button.setOnClickListener(v-> startActivity(new Intent(c, UserInfoEditActivity.class)));
 
-        profile = new OwnerProfile();
-        profile.download(user.getUid(), ()->{
-                if(null == profile){
-                Log.d(TAG,"_update without setting up profile");
-            }
-            name_label.setText(profile.getName());
-            gender_label.setText(profile.getGender());
-            Calendar calendar = new GregorianCalendar();
-            calendar.setTime((Date) profile.getBirthday());
-            String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
-                    +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
-                    +String.valueOf(calendar.get(Calendar.YEAR));
-            birthday_label.setText(t);
-            range_label.setText(String.valueOf(profile.getDistancePerference()));
-        });
-
         Intent i = new Intent(c, PetInfoActivity.class);
         profile_pet1.setOnClickListener(v->{
             i.putExtra("sequence", 0);
@@ -103,6 +86,26 @@ public class UserInfoActivity extends AppCompatActivity {
             startActivity(i);
         });
 
+        profile = new OwnerProfile();
+        profile.download(user.getUid(), this);
+
+    }
+
+    @Override
+    public void didCompleteDownload() {
+        if(null == profile){
+            Log.d(TAG,"_update without setting up profile");
+            return;
+        }
+        name_label.setText(profile.getName());
+        gender_label.setText(profile.getGender());
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime((Date) profile.getBirthday());
+        String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
+                +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
+                +String.valueOf(calendar.get(Calendar.YEAR));
+        birthday_label.setText(t);
+        range_label.setText(String.valueOf(profile.getDistancePerference()));
     }
 }
 

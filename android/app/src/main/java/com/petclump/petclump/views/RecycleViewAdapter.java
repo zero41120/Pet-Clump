@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.petclump.petclump.controller.MatchingViewActivity;
 import com.petclump.petclump.controller.MatchingViewProfileActivity;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.MatchingProfile;
 import com.petclump.petclump.models.PetProfile;
 
 import java.util.List;
@@ -23,10 +24,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private int visibleThreshold = 6;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
-    private List<PetProfile> pets;
+    private List<MatchingProfile> pets;
     private Context mContext;
 
-    public RecycleViewAdapter(MatchingViewActivity matchingViewActivity, List<PetProfile> pets) {
+    public RecycleViewAdapter(MatchingViewActivity matchingViewActivity, List<MatchingProfile> pets) {
         this.mContext = matchingViewActivity;
         this.pets = pets;
     }
@@ -44,13 +45,17 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // User the position to get the profile to show a card
-        holder.pet_matchview_label.setText(pets.get(position).getName());
+        // TODO downloads the picture using pets.get().getPhotoUrl
+        String information = pets.get(position).getMatchingPercent() + "%";
+        holder.pet_matchview_label.setText(information);
         holder.pet_matchview_image.setImageResource(R.drawable.dog_placeholder);
         holder.matchview_cardView.setOnClickListener(v->{
             Intent intent = new Intent(mContext, MatchingViewProfileActivity.class);
             intent.putExtra("Name", pets.get(position).getName());
             intent.putExtra("Age", pets.get(position).getAge());
             intent.putExtra("Bio", pets.get(position).getBio());
+            intent.putExtra("Spe", pets.get(position).getSpe());
+            intent.putExtra("petId", pets.get(position).getPetId());
             mContext.startActivity(intent);
         });
 }
