@@ -103,15 +103,15 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         deleteButton.addTarget(self, action: #selector(deletePet), for: .touchUpInside)
         
         // Load pictures with url
-        bigPetPicture0.load(url:   petProfile!.url_map["main_profile_url"] ?? "")
-        smallPetPicture1.load(url: petProfile!.url_map["pet_profile_url_1"] ?? "")
-        smallPetPicture2.load(url: petProfile!.url_map["pet_profile_url_2"] ?? "")
-        smallPetPicture3.load(url: petProfile!.url_map["pet_profile_url_3"] ?? "")
-        smallPetPicture4.load(url: petProfile!.url_map["pet_profile_url_4"] ?? "")
-        smallPetPicture5.load(url: petProfile!.url_map["pet_profile_url_5"] ?? "")
-        petAndOwnerPic6.load(url:  petProfile!.url_map["group_profile_url_1"] ?? "")
-        petAndOwnerPic7.load(url:  petProfile!.url_map["group_profile_url_2"] ?? "")
-        petAndOwnerPic8.load(url:  petProfile!.url_map["group_profile_url_3"] ?? "")
+        bigPetPicture0.load(url:   petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+        smallPetPicture1.load(url: petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet1))
+        smallPetPicture2.load(url: petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet2))
+        smallPetPicture3.load(url: petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet3))
+        smallPetPicture4.load(url: petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet4))
+        smallPetPicture5.load(url: petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet5))
+        petAndOwnerPic6.load(url:  petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.group1))
+        petAndOwnerPic7.load(url:  petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.group2))
+        petAndOwnerPic8.load(url:  petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.group3))
     }
     
     @objc private func deletePet(){
@@ -138,15 +138,15 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
             imageView.image = nil;
             imageView.backgroundColor = UIImageView.getDefaultDeselectedColor()
             switch imageView.tag {
-            case 0: self.petProfile!.url_map["main_profile_url"] = ""
-            case 1: self.petProfile!.url_map["pet_profile_url_1"] = ""
-            case 2: self.petProfile!.url_map["pet_profile_url_2"] = ""
-            case 3: self.petProfile!.url_map["pet_profile_url_3"] = ""
-            case 4: self.petProfile!.url_map["pet_profile_url_4"] = ""
-            case 5: self.petProfile!.url_map["pet_profile_url_5"] = ""
-            case 6: self.petProfile!.url_map["group_profile_url_1"] = ""
-            case 7: self.petProfile!.url_map["group_profile_url_2"] = ""
-            case 8: self.petProfile!.url_map["group_profile_url_3"] = ""
+            case 0: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.main, url: "")
+            case 1: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet1, url: "")
+            case 2: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet2, url: "")
+            case 3: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet3, url: "")
+            case 4: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet4, url: "")
+            case 5: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet5, url: "")
+            case 6: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group1, url: "")
+            case 7: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group2, url: "")
+            case 8: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group3, url: "")
             default: break
             }
             self.petProfile?.upload(vc: nil, completion: nil)
