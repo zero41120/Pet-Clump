@@ -31,9 +31,6 @@ public class ImagePager extends PagerAdapter {
         "pet_profile_url_3",
         "pet_profile_url_4",
         "pet_profile_url_5",
-        "group_profile_url_1",
-        "group_profile_url_2",
-        "group_profile_url_3"
     };
 
     public ImagePager(String id, Context mContext) {
