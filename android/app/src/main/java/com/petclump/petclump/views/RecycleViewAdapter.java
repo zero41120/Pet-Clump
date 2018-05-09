@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.petclump.petclump.controller.MatchingViewActivity;
 import com.petclump.petclump.controller.MatchingViewProfileActivity;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.MatchingProfile;
 import com.petclump.petclump.models.PetProfile;
 
@@ -48,7 +49,13 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         // TODO downloads the picture using pets.get().getPhotoUrl
         String information = pets.get(position).getMatchingPercent() + "%";
         holder.pet_matchview_label.setText(information);
-        holder.pet_matchview_image.setImageResource(R.drawable.dog_placeholder);
+        String url = pets.get(position).getPhotoUrl();
+        if(url.compareTo("") != 0){
+            new DownloadImageTask(holder.pet_matchview_image).execute(url);
+        }else{
+            holder.pet_matchview_image.setImageResource(PetProfile.default_image);
+        }
+
         holder.matchview_cardView.setOnClickListener(v->{
             Intent intent = new Intent(mContext, MatchingViewProfileActivity.class);
             intent.putExtra("Name", pets.get(position).getName());
@@ -56,6 +63,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             intent.putExtra("Bio", pets.get(position).getBio());
             intent.putExtra("Spe", pets.get(position).getSpe());
             intent.putExtra("petId", pets.get(position).getPetId());
+            //intent.putExtra("main_url", pets.get(position).getPhotoUrl());
             mContext.startActivity(intent);
         });
 }

@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.views.ImagePager;
 
 public class MatchingViewProfileActivity extends AppCompatActivity {
@@ -30,7 +32,9 @@ public class MatchingViewProfileActivity extends AppCompatActivity {
         matchviewprofile_specie = findViewById(R.id.matchviewprofile_specie);
 
         matchviewprofile_viewPager = findViewById(R.id.matchviewprofile_viewPager);
-        ImagePager imagePager = new ImagePager(this);
+
+        ImagePager imagePager = new ImagePager(intent.getExtras().getString("petId"),this);
         matchviewprofile_viewPager.setAdapter(imagePager);
+        //new DownloadImageTask(matchviewprofile_viewPager).execute(intent.getExtras().getString("main_url"));
     }
 }

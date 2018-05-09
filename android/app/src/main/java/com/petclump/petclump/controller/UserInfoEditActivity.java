@@ -29,7 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ProfileDownloader, ProfileUploader, ImageView.OnClickListener {
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -96,7 +96,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         }
 
 
-
         // get pet_num by extra, sent from UserInfoActivity
         // Bundle extras = getIntent().getExtras();
         // if(extras != null){
@@ -136,6 +135,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+        setFreeScheduleListener();
         profile = new OwnerProfile();
         profile.download(user.getUid(),()->{
             user_name_editText.setText(profile.getName());
@@ -156,6 +156,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             user_match_range_seekbar.setProgress(stringToProgress(range));
             // setup free schedule
             FreeSchedule freeSchedule = profile.getFreeTime();
+            //Toast.makeText(this, "freetime:"+freeSchedule, Toast.LENGTH_SHORT).show();
             for(int i=1; i<8; i++) {
                 for(int j=1; j<4; j++) {
                     String imageID = "sch" + i + j;
@@ -168,14 +169,22 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
                         im.setTag(R.drawable.schedule_green);
                         im.setImageResource(R.drawable.schedule_green);
                     }
-                        im.setOnClickListener(this);
                 }
             }
         });
     }
-
-    public void didCompleteDownload(){}
-
+    // use this method in case the user is first time log in
+    private void setFreeScheduleListener(){
+        for(int i=1; i<8; i++) {
+            for(int j=1; j<4; j++) {
+                String imageID = "sch" + i + j;
+                int resID = getResources().getIdentifier(imageID, "id", getPackageName());
+                ImageView im = findViewById(resID);
+                im.setTag(R.drawable.schedule_gray);
+                im.setOnClickListener(this);
+            }
+        }
+    }
 
     private Integer getSpinnerPosition(Spinner spinner, Object item){
         return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
@@ -271,9 +280,11 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
                     freetime += "1";
             }
         }
-        //Log.d("freetime:",freetime);
+        Log.d("freetime:",freetime);
         profile.setFreeTime(freetime);
-        profile.upload(user.getUid(),this);
+        profile.upload(user.getUid(),()->{
+            Toast.makeText(this, "Upload successfully!", Toast.LENGTH_SHORT).show();
+        });
         finish();
     }
 
@@ -286,23 +297,18 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         // Another interface callback
     }
 
-
-    @Override
-    public void didCompleteUpload() {
-        Toast.makeText(c, "OwnerProfile.upload: User not signed in!\n", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void onClick(View v) {
+        //Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show();
         ImageView i = findViewById(v.getId());
         if((Integer)i.getTag() == gray_id){
             i.setTag(R.drawable.schedule_green);
             i.setImageResource(R.drawable.schedule_green);
-            //Log.d("ClickView to green",String.valueOf((Integer)i.getTag()));
+            Log.d("ClickView to green",String.valueOf((Integer)i.getTag()));
         }else{
             i.setTag(R.drawable.schedule_gray);
             i.setImageResource(R.drawable.schedule_gray);
-            //Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
+            Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
         }
     }
 }

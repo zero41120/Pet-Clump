@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,6 +18,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.OwnerProfile;
+import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.views.Popup;
 
@@ -64,8 +66,10 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         range_label     = findViewById(R.id.user_match_value);
 
         edit_button     = findViewById(R.id.edit_button);
-
         button_why = findViewById(R.id.button_why);
+        // initialize primary pet images
+        initializePrimaryPet();
+
         button_why.setOnClickListener(v ->
             startActivity(new Intent(c, Popup.class))
         );
@@ -106,6 +110,27 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
                 +String.valueOf(calendar.get(Calendar.YEAR));
         birthday_label.setText(t);
         range_label.setText(String.valueOf(profile.getDistancePerference()));
+    }
+    private void initializePrimaryPet(){
+        PetProfile thePet = new PetProfile();
+        //profile_pet1
+        thePet.download(user.getUid()+0,()->{
+            String url = thePet.getUrl("main_profile_url");
+            new DownloadImageTask(profile_pet1).execute(url);
+            //Toast.makeText(this, "1 set up", Toast.LENGTH_SHORT).show();
+        });
+        //profile_pet2
+        thePet.download(user.getUid()+1,()->{
+            String url = thePet.getUrl("main_profile_url");
+            new DownloadImageTask(profile_pet2).execute(url);
+            //Toast.makeText(this, "2 set up", Toast.LENGTH_SHORT).show();
+        });
+        //profile_pet3
+        thePet.download(user.getUid()+2,()->{
+            String url = thePet.getUrl("main_profile_url");
+            new DownloadImageTask(profile_pet3).execute(url);
+            //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
+        });
     }
 }
 

@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.DownloadImageTask;
+import com.petclump.petclump.models.PetProfile;
 
 /*****
  * * *
@@ -50,6 +53,28 @@ public class MatchingActivity extends AppCompatActivity {
             startActivity(i);
         });
 
-        // TODO show pictures
+        initializePrimaryPet();
+    }
+    private void initializePrimaryPet(){
+        PetProfile thePet = new PetProfile();
+        FirebaseAuth user = FirebaseAuth.getInstance();
+        //profile_pet1
+        thePet.download(user.getUid()+0,()->{
+            String url = thePet.getUrl("main_profile_url");
+            new DownloadImageTask(match_pet1).execute(url);
+            //Toast.makeText(this, "1 set up", Toast.LENGTH_SHORT).show();
+        });
+        //profile_pet2
+        thePet.download(user.getUid()+1,()->{
+            String url = thePet.getUrl("main_profile_url");
+            new DownloadImageTask(match_pet2).execute(url);
+            //Toast.makeText(this, "2 set up", Toast.LENGTH_SHORT).show();
+        });
+        //profile_pet3
+        thePet.download(user.getUid()+2,()->{
+            String url = thePet.getUrl("main_profile_url");
+            new DownloadImageTask(match_pet3).execute(url);
+            //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
+        });
     }
 }

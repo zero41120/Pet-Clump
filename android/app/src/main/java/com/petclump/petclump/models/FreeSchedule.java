@@ -32,5 +32,9 @@ public class FreeSchedule{
             if (manCounter == 0) { weekCounter += 1; }
         }
     }
+    @Override
+    public String toString(){
+        return this.freeString;
+    }
 
 }

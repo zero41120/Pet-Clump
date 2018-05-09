@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.datastructures.DefaultMap;
 import com.petclump.petclump.models.protocols.Profile;
 import com.petclump.petclump.models.protocols.ProfileDeletor;
@@ -35,6 +36,8 @@ public class PetProfile implements Profile {
     private String quiz = "";
     private Integer sequence = -1;
     private String TAG = "PetProfile";
+
+    public static final int default_image = R.drawable.dog_placeholder;
 
     // pet photo url
     private HashMap<String, String> url_map = new HashMap<String, String>(){{
