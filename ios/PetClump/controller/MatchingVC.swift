@@ -22,7 +22,6 @@ class MatchingVC: UIViewController{
             self.dismiss(animated: true, completion: nil)
             return
         }
-        
         for view in self.view.subviews {
             if let image = view as? UIImageView {
                 image.setRounded()

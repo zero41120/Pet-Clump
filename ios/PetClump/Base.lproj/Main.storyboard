@@ -1203,7 +1203,11 @@
                                                 <action selector="tapExit:" destination="pd9-Ar-iKx" id="xjc-3o-w59"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Setting" id="kjb-Kp-yIW"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Setting" id="kjb-Kp-yIW">
+                                            <connections>
+                                                <segue destination="WAf-Bi-FHO" kind="show" id="XA5-IB-wDa"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1259,15 +1263,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ltb-o6-bvh">
-                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ltb-o6-bvh">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MatchingCell" rowHeight="200" id="pn7-cx-Exj" customClass="MatchingCell" customModule="PetClump" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pn7-cx-Exj" id="AZo-rm-KgW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsS-rV-KaP">
@@ -1325,12 +1329,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-zX-frm">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="6FL-E9-ae2">
+                                        <barButtonItem key="leftBarButtonItem" title="Exit" id="30g-HS-Kom">
+                                            <connections>
+                                                <action selector="tapExit:" destination="3yQ-nY-HIz" id="3oQ-ya-44p"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="uqU-zX-frm" firstAttribute="top" secondItem="C83-x0-pho" secondAttribute="top" id="JbO-vk-bpM"/>
                             <constraint firstItem="ltb-o6-bvh" firstAttribute="trailing" secondItem="C83-x0-pho" secondAttribute="trailing" id="Uav-xJ-Bfu"/>
+                            <constraint firstItem="uqU-zX-frm" firstAttribute="leading" secondItem="C83-x0-pho" secondAttribute="leading" id="Z6o-JK-lpa"/>
                             <constraint firstItem="ltb-o6-bvh" firstAttribute="leading" secondItem="C83-x0-pho" secondAttribute="leading" id="boE-AB-3VQ"/>
-                            <constraint firstItem="ltb-o6-bvh" firstAttribute="top" secondItem="C83-x0-pho" secondAttribute="top" id="gou-9s-emz"/>
+                            <constraint firstItem="ltb-o6-bvh" firstAttribute="top" secondItem="uqU-zX-frm" secondAttribute="bottom" id="d4D-m1-aEH"/>
+                            <constraint firstItem="uqU-zX-frm" firstAttribute="trailing" secondItem="C83-x0-pho" secondAttribute="trailing" id="g4n-rW-ixz"/>
                             <constraint firstItem="C83-x0-pho" firstAttribute="bottom" secondItem="ltb-o6-bvh" secondAttribute="bottom" id="kVx-17-ree"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C83-x0-pho"/>
@@ -1549,4 +1568,7 @@
         <image name="gift" width="16" height="16"/>
         <image name="twtr-play.png" width="70" height="70"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XA5-IB-wDa"/>
+    </inferredMetricsTieBreakers>
 </document>

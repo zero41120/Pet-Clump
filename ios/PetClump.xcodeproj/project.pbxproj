@@ -18,6 +18,7 @@
 		295EC96820A40A0400F8D32F /* MatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96720A40A0400F8D32F /* MatchingCell.swift */; };
 		295EC96A20A40A9000F8D32F /* BestMatchingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96920A40A9000F8D32F /* BestMatchingVC.swift */; };
 		295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */; };
+		295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96D20A41A3100F8D32F /* MatchingProfile.swift */; };
 		298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFEC20969349007A6846 /* OwnerProfile.swift */; };
 		298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF0209693A7007A6846 /* PetProfile.swift */; };
 		298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF42096998C007A6846 /* GenderPicker.swift */; };
@@ -78,6 +79,7 @@
 		295EC96720A40A0400F8D32F /* MatchingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCell.swift; sourceTree = "<group>"; };
 		295EC96920A40A9000F8D32F /* BestMatchingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestMatchingVC.swift; sourceTree = "<group>"; };
 		295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTableDelegate.swift; sourceTree = "<group>"; };
+		295EC96D20A41A3100F8D32F /* MatchingProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingProfile.swift; sourceTree = "<group>"; };
 		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
 		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
 		298BCFF42096998C007A6846 /* GenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPicker.swift; sourceTree = "<group>"; };
@@ -207,7 +209,6 @@
 				298BCFFC2096DFD6007A6846 /* pickers */,
 				298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */,
 				298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */,
-				295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */,
 			);
 			path = delegates;
 			sourceTree = "<group>";
@@ -223,12 +224,14 @@
 		29B19362208D310D00A59783 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */,
 				29B19365208D31BB00A59783 /* Profile.swift */,
 				298BCFEC20969349007A6846 /* OwnerProfile.swift */,
 				298BCFF0209693A7007A6846 /* PetProfile.swift */,
 				294C94C72097E35E00266533 /* QuizQuestion.swift */,
 				29F104F5209FD80B006E84E0 /* Deletable.swift */,
 				29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */,
+				295EC96D20A41A3100F8D32F /* MatchingProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */,
 				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
+				295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */,
 				2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */,
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,
 				294C94C52097D74700266533 /* QuizVC.swift in Sources */,

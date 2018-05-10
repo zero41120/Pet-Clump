@@ -10,7 +10,7 @@ import UIKit
 
 class PetProfileImageDownloader: ProfileDownloader{
     private let imageView: UIImageView
-    private var petProfile: PetProfile?
+    var petProfile: PetProfile?
     private let uid: String
     private let sequence: Int
     
