@@ -60,7 +60,11 @@
         <activity android:name=".controller.MatchingActivity" />
         <activity android:name=".controller.QuizActivity" />
         <activity android:name=".controller.MatchingViewActivity" />
-        <activity android:name=".controller.MatchingViewProfileActivity"></activity>
+        <activity android:name=".controller.MatchingViewProfileActivity" />
+        <activity
+            android:name=".MatchingTab"
+            android:label="@string/title_activity_matching_tab"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

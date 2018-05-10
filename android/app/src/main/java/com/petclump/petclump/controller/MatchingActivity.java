@@ -8,6 +8,7 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.petclump.petclump.MatchingTab;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.PetProfile;
@@ -39,7 +40,7 @@ public class MatchingActivity extends AppCompatActivity {
         }
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         super.onResume();
-        Intent i = new Intent(this, MatchingViewActivity.class);
+        Intent i = new Intent(this, MatchingTab.class);
         match_pet1.setOnClickListener(v->{
             i.putExtra("petId", uid + "0");
             startActivity(i);

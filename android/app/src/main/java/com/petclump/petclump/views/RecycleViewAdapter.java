@@ -28,8 +28,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private List<MatchingProfile> pets;
     private Context mContext;
 
-    public RecycleViewAdapter(MatchingViewActivity matchingViewActivity, List<MatchingProfile> pets) {
-        this.mContext = matchingViewActivity;
+    public RecycleViewAdapter(Context c, List<MatchingProfile> pets) {
+        this.mContext = c;
         this.pets = pets;
     }
 
