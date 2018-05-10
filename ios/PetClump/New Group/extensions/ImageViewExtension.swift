@@ -24,6 +24,7 @@ extension UIImageView {
     
     func load(url: String){
         if url == "" {
+            self.image = nil
             return
         }
         load(url: URL(string: url)!)

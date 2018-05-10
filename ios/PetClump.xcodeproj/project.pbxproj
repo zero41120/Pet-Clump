@@ -15,6 +15,10 @@
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
 		294C94C52097D74700266533 /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C94C42097D74700266533 /* QuizVC.swift */; };
 		294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C94C72097E35E00266533 /* QuizQuestion.swift */; };
+		295EC96820A40A0400F8D32F /* MatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96720A40A0400F8D32F /* MatchingCell.swift */; };
+		295EC96A20A40A9000F8D32F /* BestMatchingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96920A40A9000F8D32F /* BestMatchingVC.swift */; };
+		295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */; };
+		295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96D20A41A3100F8D32F /* MatchingProfile.swift */; };
 		298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFEC20969349007A6846 /* OwnerProfile.swift */; };
 		298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF0209693A7007A6846 /* PetProfile.swift */; };
 		298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF42096998C007A6846 /* GenderPicker.swift */; };
@@ -49,7 +53,6 @@
 		84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2320A007BD00533D35 /* AMLineView.swift */; };
 		84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2420A007BD00533D35 /* AMTabButton.swift */; };
 		84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */; };
-		84CF6B2A20A0089A00533D35 /* MatchingTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2920A0089A00533D35 /* MatchingTabVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,10 @@
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
 		294C94C42097D74700266533 /* QuizVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuizVC.swift; path = PetClump/controller/QuizVC.swift; sourceTree = SOURCE_ROOT; };
 		294C94C72097E35E00266533 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		295EC96720A40A0400F8D32F /* MatchingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCell.swift; sourceTree = "<group>"; };
+		295EC96920A40A9000F8D32F /* BestMatchingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestMatchingVC.swift; sourceTree = "<group>"; };
+		295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTableDelegate.swift; sourceTree = "<group>"; };
+		295EC96D20A41A3100F8D32F /* MatchingProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingProfile.swift; sourceTree = "<group>"; };
 		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
 		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
 		298BCFF42096998C007A6846 /* GenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPicker.swift; sourceTree = "<group>"; };
@@ -110,7 +117,6 @@
 		84CF6B2320A007BD00533D35 /* AMLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMLineView.swift; sourceTree = "<group>"; };
 		84CF6B2420A007BD00533D35 /* AMTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMTabButton.swift; sourceTree = "<group>"; };
 		84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPagerTabsViewController.swift; sourceTree = "<group>"; };
-		84CF6B2920A0089A00533D35 /* MatchingTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTabVC.swift; sourceTree = "<group>"; };
 		CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetClump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -155,6 +161,7 @@
 				298BD0002096E8CF007A6846 /* delegates */,
 				298BCFFF2096E8B8007A6846 /* extensions */,
 				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
+				295EC96720A40A0400F8D32F /* MatchingCell.swift */,
 			);
 			name = view;
 			path = "New Group";
@@ -170,7 +177,7 @@
 				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
 				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
 				298FEB66209394D70018F368 /* MatchingVC.swift */,
-				84CF6B2920A0089A00533D35 /* MatchingTabVC.swift */,
+				295EC96920A40A9000F8D32F /* BestMatchingVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -217,12 +224,14 @@
 		29B19362208D310D00A59783 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */,
 				29B19365208D31BB00A59783 /* Profile.swift */,
 				298BCFEC20969349007A6846 /* OwnerProfile.swift */,
 				298BCFF0209693A7007A6846 /* PetProfile.swift */,
 				294C94C72097E35E00266533 /* QuizQuestion.swift */,
 				29F104F5209FD80B006E84E0 /* Deletable.swift */,
 				29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */,
+				295EC96D20A41A3100F8D32F /* MatchingProfile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -533,6 +542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295EC96820A40A0400F8D32F /* MatchingCell.swift in Sources */,
 				298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */,
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
@@ -540,6 +550,7 @@
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
 				84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */,
 				84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */,
+				295EC96A20A40A9000F8D32F /* BestMatchingVC.swift in Sources */,
 				29E0416120A129E3007B2F32 /* PetProfileImageDownloader.swift in Sources */,
 				298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
@@ -555,16 +566,17 @@
 				29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */,
 				29A90B80208DA16F0024ECF7 /* UserDataSettingVC.swift in Sources */,
 				84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */,
+				295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */,
 				298FEB67209394D70018F368 /* MatchingVC.swift in Sources */,
+				295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */,
 				2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */,
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,
 				294C94C52097D74700266533 /* QuizVC.swift in Sources */,
 				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,
 				29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */,
 				847769B920969289002AF924 /* CardView.swift in Sources */,
-				84CF6B2A20A0089A00533D35 /* MatchingTabVC.swift in Sources */,
 				847769B320969252002AF924 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
