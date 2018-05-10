@@ -4,6 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MatchingActivity">
+    tools:context=".controller.MatchingActivity">
 
+    <TextView
+        android:id="@+id/Txt_view_match"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="149dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/View_match_as"
+        style="@style/fontStyle4"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="395dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="39dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/vm_button_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Txt_view_match">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/match_pet1"
+            android:layout_width="@dimen/profile_pet_size"
+            android:layout_height="@dimen/profile_pet_size"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/dog_placeholder"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#0d80e5"
+            app:civ_shadow_radius="10" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/match_pet2"
+            android:layout_width="@dimen/profile_pet_size"
+            android:layout_height="@dimen/profile_pet_size"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/pig_placeholder"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#0d80e5"
+            app:civ_shadow_radius="10" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/match_pet3"
+            android:layout_width="@dimen/profile_pet_size"
+            android:layout_height="@dimen/profile_pet_size"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ray"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="4dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#0d80e5"
+            app:civ_shadow_radius="10" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/vm_button_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="173dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginRight="173dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="34dp"
+        android:text="@string/settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 </android.support.constraint.ConstraintLayout>

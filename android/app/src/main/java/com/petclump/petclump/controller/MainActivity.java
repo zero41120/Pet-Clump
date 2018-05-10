@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +30,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.Specie;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {

@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.views;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.Window;
+
+import com.petclump.petclump.R;
 
 public class Popup extends AppCompatActivity {
     @Override

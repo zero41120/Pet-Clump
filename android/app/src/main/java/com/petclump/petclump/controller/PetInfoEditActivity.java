@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
 

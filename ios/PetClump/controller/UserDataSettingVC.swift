@@ -10,9 +10,6 @@ import Firebase
 
 class UserDataSettingVC: UIViewController, ProfileDownloader{
 
-    // Profile from UserDataViewVC
-    var profile: OwnerProfile = OwnerProfile()
-    
     // View UI
     @IBOutlet weak var aboutMeNavBar: UINavigationBar!
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -27,23 +24,40 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var matchSlider: UISlider!
 
     // Genreated UI
-    var datePicker: UIDatePicker?
+    var profile:      OwnerProfile = OwnerProfile()
+    var datePicker:   UIDatePicker?
     var genderPicker: UIPickerView?
     var genderPickerDelegate: GenderInput?
     var nameInputDelegate: LimitTextFieldInput?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let uid = Auth.auth().currentUser?.uid {
-            self.setupUI()
-            profile.download(uid: uid, completion: self)
-        } else {
+        guard let uid = Auth.auth().currentUser?.uid else {
             self.dismiss(animated: true, completion: nil)
+            return
         }
+        hideKeyboardWhenTappedAround()
+        
+        // Set up delegate to limit user input to 20 characters
+        nameInputDelegate = LimitTextFieldInput(count: 20)
+        nameTextField.delegate = nameInputDelegate
+        
+        // Set up datepicker responder
+        datePicker = UIDatePicker()
+        datePicker!.datePickerMode = .date
+        birthdayTextField.inputView = datePicker
+        
+        // Set up genderpicker responder
+        genderPicker = UIPickerView()
+        genderPicker!.frame      = CGRect(0,0,self.view.bounds.width, 280.0)
+        genderPicker!.delegate   = genderPickerDelegate
+        genderPicker!.dataSource = genderPickerDelegate
+        genderPickerDelegate     = GenderInput(textField: genderTextField)
+        genderTextField.delegate = genderPickerDelegate
+        genderTextField.inputView = genderPicker
+        profile.download(uid: uid, completion: self)
     }
     
-    
-    // This method downloads the user data from Firestore
     func didCompleteDownload() {
         // Gets user information
         self.nameTextField.text = profile.name
@@ -77,41 +91,14 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
     }
     
     @objc private func toggleImageColor(tapGestureRecognizer: UITapGestureRecognizer){
-        
         let imageView = tapGestureRecognizer.view as! UIImageView
-        if imageView.backgroundColor == UIImageView.getDefaultSelectedColor() {
-            imageView.backgroundColor = UIImageView.getDefaultDeselectedColor()
-            print("\(imageView.tag) is deselected!")
-        } else {
-            imageView.backgroundColor = UIImageView.getDefaultSelectedColor();
-            print("\(imageView.tag) is selected!")
-        }
+        imageView.backgroundColor =
+                imageView.backgroundColor == UIImageView.getDefaultSelectedColor() ?
+                UIImageView.getDefaultDeselectedColor() :
+                UIImageView.getDefaultSelectedColor()
     }
     
-    func setupUI(){
-        // Hide keyboard when touch
-        self.hideKeyboardWhenTappedAround()
-        
-        // Set up delegate to limit user input to 20 characters
-        self.nameInputDelegate = LimitTextFieldInput(count: 20)
-        self.nameTextField.delegate = self.nameInputDelegate
-
-        // Set up datepicker responder
-        datePicker = UIDatePicker()
-        datePicker!.datePickerMode = .date
-        birthdayTextField.inputView = datePicker
-        
-        
-        // Set up genderpicker responder
-        genderPicker = UIPickerView()
-        genderPickerDelegate = GenderInput(textField: genderTextField)
-        genderPicker!.delegate = genderPickerDelegate
-        genderPicker!.dataSource = genderPickerDelegate
-        genderPicker!.frame = CGRect(0,0,self.view.bounds.width, 280.0)
-        genderTextField.delegate = genderPickerDelegate
-        genderTextField.inputView = genderPicker
-    }
-    @IBAction func topCancel(_ sender: Any) {
+    @IBAction func tapCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -124,19 +111,18 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
             let d = self.datePicker!.date
             birthdayTextField.text = dateFormatter.string(from: d)
         }
-        
         self.view.endEditing(true);
     }
     
     @IBAction func slidedMatchRange(_ sender: Any) {
         updateMatchRangeLabel()
     }
+    
     func updateMatchRangeLabel(){
         let range = Int(self.matchSlider.value)
         self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
     }
     
-
     @IBAction func tapUploadProfile(_ sender: Any) {
         guard (Auth.auth().currentUser != nil) else { return }
         
@@ -152,7 +138,6 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
         
         for view in self.view.subviews as [UIView] {
             if let imageView = view as? UIImageView {
-        
                 let week = imageView.tag / 10
                 let part = imageView.tag % 10
                 let num = ( week - 1 ) * 3 + part-1
@@ -168,12 +153,9 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
         let freeString = someArray.joined(separator: "")
         profile.freeTime = FreeSchedule(freeString: freeString)
         
-        
         // Uploads the profile with empty completed action
         profile.upload(vc: self, completion: nil)
-        // Exit edit view
         self.dismiss(animated: true, completion: nil)
-        
     }
 }
 

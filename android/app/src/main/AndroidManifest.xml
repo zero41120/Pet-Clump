@@ -17,20 +17,20 @@
         android:theme="@style/AppTheme">
 
         <!-- Pet Clump Activities -->
-        <activity android:name=".MainActivity">
+        <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PetInfoActivity" />
+        <activity android:name=".controller.PetInfoActivity" />
         <activity
-            android:name=".UserInfoEditActivity"
+            android:name=".controller.UserInfoEditActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".UploadPhotoActivity" />
+        <activity android:name=".controller.UploadPhotoActivity" />
         <activity
-            android:name=".UserInfoActivity"
+            android:name=".controller.UserInfoActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <!-- Facebook -->
@@ -54,10 +54,13 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".PetInfoEditActivity"
+        <activity
+            android:name=".controller.PetInfoEditActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".MatchingActivity" />
-        <activity android:name=".QuizActivity"></activity>
+        <activity android:name=".controller.MatchingActivity" />
+        <activity android:name=".controller.QuizActivity" />
+        <activity android:name=".controller.MatchingViewActivity" />
+        <activity android:name=".controller.MatchingViewProfileActivity"></activity>
     </application>
 
 </manifest>
