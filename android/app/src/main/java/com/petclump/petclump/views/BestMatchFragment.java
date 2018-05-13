@@ -24,47 +24,56 @@ import javax.annotation.Nullable;
 
 
 public class BestMatchFragment extends Fragment implements ProfileDownloader {
+    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 30;
+    private static final String TAG = "Matching View Activity";
     View v;
     private RecyclerView recyclerView;
-    private List<MatchingProfile> pets;
+    private RecycleViewAdapter recycleViewAdapter;
+    private List<MatchingProfile> profiles;
     private PetProfile profile;
+    private EndlessRecyclerViewScrollListener scrollListener;
     private GridLayoutManager gridLayoutManager;
     private MatchingProfileDownloader md;
+    private BestMatchFragment self;
     public BestMatchFragment(){
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
         v = inflater.inflate(R.layout.fragment_best_match, container, false);
         recyclerView = v.findViewById(R.id.bestMatchRecycle);
-//        String petId = this.getActivity().getIntent().getStringExtra("petId");
-//        pets = new ArrayList<>();
-//        profile = new PetProfile();
-//        profile.download(petId, ()->{
-//            // Make sure profile is downloaded before requesting profile
-//            md = new MatchingProfileDownloader(profile, 30);
-//            md.downloadMore(pets, this);
-//            RecycleViewAdapter recycleViewAdapter = new RecycleViewAdapter(getContext(), pets);
-//            gridLayoutManager = new GridLayoutManager(getContext(), 2);
-//            recyclerView.setLayoutManager(gridLayoutManager);
-//            recyclerView.setAdapter(recycleViewAdapter);
-//
-//        });
+        self = this;
+        profiles = new ArrayList<>();
 
+        String petId = getActivity().getIntent().getStringExtra("petId");
+        profile = new PetProfile();
+        profile.download(petId, ()->{
+            // Make sure profile is downloaded before requesting profile
+            md = new MatchingProfileDownloader(profile, DEFAULT_DOWNLOAD_LIMIT);
+            setRecyclerView();
+        });
         return super.onCreateView(inflater, container, saveInstanceState);
 
     }
 
-
-    @Override
-    public void onCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
+    private void setRecyclerView(){
+        recycleViewAdapter = new RecycleViewAdapter(this.getContext(), profiles);
+        gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(recycleViewAdapter);
+        md.downloadMore(profiles, this);
+        scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                md.downloadMore(profiles, self);
+            }
+        };
+        recyclerView.addOnScrollListener(scrollListener);
     }
 
     @Override
     public void didCompleteDownload() {
-        Log.d("hey", "didCompleteDownload: "+ pets);
-
+        Integer lastSize = profiles.size();
+        Log.d(TAG, "didCompleteDownload: "+ profiles);
+        recycleViewAdapter.notifyItemInserted(lastSize);
     }
 }
