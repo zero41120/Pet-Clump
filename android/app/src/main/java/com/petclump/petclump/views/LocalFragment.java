@@ -26,6 +26,7 @@ public class LocalFragment extends Fragment {
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState){
+
         return super.onCreateView(inflater, container, saveInstanceState);
     }
 }

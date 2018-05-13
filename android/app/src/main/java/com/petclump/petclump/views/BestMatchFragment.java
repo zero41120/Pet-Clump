@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 
 
 public class BestMatchFragment extends Fragment implements ProfileDownloader {
-    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 30;
+    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 3;
     private static final String TAG = "Matching View Activity";
     View v;
     private RecyclerView recyclerView;
@@ -44,6 +44,14 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
         self = this;
         profiles = new ArrayList<>();
 
+
+        return v;
+
+    }
+
+    @Override
+    public void onCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         String petId = getActivity().getIntent().getStringExtra("petId");
         profile = new PetProfile();
         profile.download(petId, ()->{
@@ -51,10 +59,7 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
             md = new MatchingProfileDownloader(profile, DEFAULT_DOWNLOAD_LIMIT);
             setRecyclerView();
         });
-        return super.onCreateView(inflater, container, saveInstanceState);
-
     }
-
     private void setRecyclerView(){
         recycleViewAdapter = new RecycleViewAdapter(this.getContext(), profiles);
         gridLayoutManager = new GridLayoutManager(this.getContext(), 2);

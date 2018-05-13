@@ -58,7 +58,7 @@ public class MatchingViewActivity extends AppCompatActivity implements ProfileDo
     private void setRecyclerView(){
         recyclerView = findViewById(R.id.matchviewRecycle);
         recycleViewAdapter = new RecycleViewAdapter(this, profiles);
-        gridLayoutManager = new GridLayoutManager(this, 2);
+        gridLayoutManager = new GridLayoutManager(self, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recycleViewAdapter);
         md.downloadMore(profiles, this);
