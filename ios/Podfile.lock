@@ -1,4 +1,5 @@
 PODS:
+  - AZPeerToPeerConnection (0.1.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -162,6 +163,7 @@ PODS:
   - ZLSwipeableViewSwift (0.0.8)
 
 DEPENDENCIES:
+  - AZPeerToPeerConnection
   - Cartography
   - FacebookCore
   - FacebookLogin
@@ -179,6 +181,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - AZPeerToPeerConnection
     - Bolts
     - BoringSSL
     - Cartography
@@ -224,6 +227,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/zhxnlai/ZLSwipeableViewSwift.git
 
 SPEC CHECKSUMS:
+  AZPeerToPeerConnection: 05ae4e73f288771c4c96c0900e747046b80cf75e
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: 60dd24df4af296bf41d78e5841dbb95d75f88c0d
   Cartography: f8c899bb0f5cf20758644a8eea59a75e98a03a5d
@@ -259,6 +263,6 @@ SPEC CHECKSUMS:
   "UIColor+FlatColors": 6c699df7a575281794c688c64cee6c44fd1f93b4
   ZLSwipeableViewSwift: 488041f77089bfc03fe1419579ef32e976709f5d
 
-PODFILE CHECKSUM: bcba61d3d00b23f77c9577d421884b8f99c7ceea
+PODFILE CHECKSUM: c5e31e7f1712c93c88fd56f5463c662ba8df9b1f
 
 COCOAPODS: 1.5.0
