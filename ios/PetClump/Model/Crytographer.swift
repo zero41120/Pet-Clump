@@ -7,12 +7,18 @@
 //
 
 import Foundation
+import CryptoSwift
+
 
 class Cryptographer{
     private static let instance = Cryptographer()
     private init() { }
     
     static func getInstance() -> Cryptographer{
+        let data = Data(bytes: [0x01, 0x02, 0x03])
+        
+        let hash = data.md5()
+        print("Crypto : \(hash)")
         return self.instance
     }
     

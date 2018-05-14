@@ -26,8 +26,13 @@ class EntryPointVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDeleg
     
     let debugMode = true
     
+    func unitTest(){
+        let cG = Cryptographer.getInstance()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        unitTest()
         
         // Handels Google sign-in
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID

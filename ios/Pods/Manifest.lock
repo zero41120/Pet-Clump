@@ -13,6 +13,7 @@ PODS:
     - BoringSSL/Interface (= 10.0.2)
   - BoringSSL/Interface (10.0.2)
   - Cartography (3.0.1)
+  - CryptoSwift (0.9.0)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.27)
@@ -164,6 +165,7 @@ PODS:
 DEPENDENCIES:
   - AZPeerToPeerConnection
   - Cartography
+  - CryptoSwift
   - FacebookCore
   - FacebookLogin
   - FacebookShare
@@ -183,6 +185,7 @@ SPEC REPOS:
     - Bolts
     - BoringSSL
     - Cartography
+    - CryptoSwift
     - FacebookCore
     - FacebookLogin
     - FacebookShare
@@ -219,6 +222,7 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   BoringSSL: 60dd24df4af296bf41d78e5841dbb95d75f88c0d
   Cartography: f8c899bb0f5cf20758644a8eea59a75e98a03a5d
+  CryptoSwift: bca8c5b653dcc2d9734409242a070ff53bafac86
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
   FacebookShare: 0469964297ebd75f052be2c5083389a4208e82b7
@@ -250,6 +254,6 @@ SPEC CHECKSUMS:
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
   "UIColor+FlatColors": 6c699df7a575281794c688c64cee6c44fd1f93b4
 
-PODFILE CHECKSUM: 044e07d2788ee3abfa50239205e76f3fba3fa5f6
+PODFILE CHECKSUM: 7dbca063b4fc1aa8333dcd57023189cff9b88e1f
 
 COCOAPODS: 1.5.0
