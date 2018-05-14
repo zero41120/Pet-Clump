@@ -39,6 +39,7 @@ class MatchingViewVC: UIViewController{
         specieLabel.text = petProfile!.specie
         ageLabel.text = petProfile!.age
         bioTextField.text = petProfile!.bio
+        
         self.setupImage()
     }
     
@@ -53,20 +54,23 @@ class MatchingViewVC: UIViewController{
                 print("image in")
                 self.images.append(image)
             }
+            DispatchQueue.main.async {
+                self.imageScroller.delegate = self
+                self.imageScroller.scrollView.bounces = false
+                self.imageScroller.setupScrollerWithImages(images: self.images)
+            }
         }
         
         
-        imageScroller.delegate = self
-        imageScroller.isAutoScrollEnabled = false
-        imageScroller.scrollView.bounces = false
+       
         
 
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(swipeRight)
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
+//        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+//        self.view.addGestureRecognizer(swipeRight)
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
+//        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+//        self.view.addGestureRecognizer(swipeLeft)
         
     }
     
