@@ -16,7 +16,6 @@ target 'PetClump' do
   pod 'FirebaseUI/Facebook'
   platform :ios, '11.0'
   pod 'FBSDKLoginKit'
-  pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git', :commit => '59826e2'
   pod 'UIColor+FlatColors'
   pod 'Cartography'
   use_frameworks!

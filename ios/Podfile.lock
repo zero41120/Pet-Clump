@@ -160,7 +160,6 @@ PODS:
   - TwitterKit (3.3.0):
     - TwitterCore (>= 3.1.0)
   - "UIColor+FlatColors (0.0.2)"
-  - ZLSwipeableViewSwift (0.0.8)
 
 DEPENDENCIES:
   - AZPeerToPeerConnection
@@ -177,7 +176,6 @@ DEPENDENCIES:
   - FirebaseUI/Google
   - GoogleSignIn
   - "UIColor+FlatColors"
-  - ZLSwipeableViewSwift (from `https://github.com/zhxnlai/ZLSwipeableViewSwift.git`, commit `59826e2`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -216,16 +214,6 @@ SPEC REPOS:
     - TwitterKit
     - "UIColor+FlatColors"
 
-EXTERNAL SOURCES:
-  ZLSwipeableViewSwift:
-    :commit: '59826e2'
-    :git: https://github.com/zhxnlai/ZLSwipeableViewSwift.git
-
-CHECKOUT OPTIONS:
-  ZLSwipeableViewSwift:
-    :commit: '59826e2'
-    :git: https://github.com/zhxnlai/ZLSwipeableViewSwift.git
-
 SPEC CHECKSUMS:
   AZPeerToPeerConnection: 05ae4e73f288771c4c96c0900e747046b80cf75e
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -261,8 +249,7 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
   "UIColor+FlatColors": 6c699df7a575281794c688c64cee6c44fd1f93b4
-  ZLSwipeableViewSwift: 488041f77089bfc03fe1419579ef32e976709f5d
 
-PODFILE CHECKSUM: c5e31e7f1712c93c88fd56f5463c662ba8df9b1f
+PODFILE CHECKSUM: 044e07d2788ee3abfa50239205e76f3fba3fa5f6
 
 COCOAPODS: 1.5.0

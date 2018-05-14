@@ -45,7 +45,6 @@
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
 		84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */; };
 		847769B320969252002AF924 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769A820969252002AF924 /* Direction.swift */; };
-		847769B420969252002AF924 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 847769A920969252002AF924 /* Info.plist */; };
 		847769B520969252002AF924 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AA20969252002AF924 /* Scheduler.swift */; };
 		847769B620969252002AF924 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AB20969252002AF924 /* ViewManager.swift */; };
 		847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AC20969252002AF924 /* ZLSwipeableView.swift */; };
@@ -57,16 +56,6 @@
 		84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2420A007BD00533D35 /* AMTabButton.swift */; };
 		84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		847769B120969252002AF924 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 460B72511B76D3E600BB5ED8;
-			remoteInfo = ZLSwipeableViewSwift;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,11 +100,9 @@
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
 		84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableViewController.swift; sourceTree = "<group>"; };
 		847769A820969252002AF924 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
-		847769A920969252002AF924 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847769AA20969252002AF924 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		847769AB20969252002AF924 /* ViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		847769AC20969252002AF924 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
-		847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ZLSwipeableViewSwift.xcodeproj; sourceTree = "<group>"; };
 		847769B820969289002AF924 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8496347720A8DEC900719162 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		8496347A20A8E60900719162 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -293,21 +280,11 @@
 			children = (
 				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
 				847769A820969252002AF924 /* Direction.swift */,
-				847769A920969252002AF924 /* Info.plist */,
 				847769AA20969252002AF924 /* Scheduler.swift */,
 				847769AB20969252002AF924 /* ViewManager.swift */,
 				847769AC20969252002AF924 /* ZLSwipeableView.swift */,
-				847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */,
 			);
 			path = ZLSwipeableViewSwift;
-			sourceTree = "<group>";
-		};
-		847769AE20969252002AF924 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				847769B220969252002AF924 /* ZLSwipeableViewSwift.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		84CF6B2120A0078600533D35 /* AMPagerTabs */ = {
@@ -389,28 +366,12 @@
 			mainGroup = 29C1796E207EE97D002971C5;
 			productRefGroup = 29C17978207EE97D002971C5 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 847769AE20969252002AF924 /* Products */;
-					ProjectRef = 847769AD20969252002AF924 /* ZLSwipeableViewSwift.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				29C17976207EE97D002971C5 /* PetClump */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		847769B220969252002AF924 /* ZLSwipeableViewSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZLSwipeableViewSwift.framework;
-			remoteRef = 847769B120969252002AF924 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		29C17975207EE97D002971C5 /* Resources */ = {
@@ -423,7 +384,6 @@
 				29C17982207EE97F002971C5 /* Assets.xcassets in Resources */,
 				292E24CE208AB0BA005311F1 /* button_icon.png in Resources */,
 				29C17980207EE97D002971C5 /* Main.storyboard in Resources */,
-				847769B420969252002AF924 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +415,6 @@
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor+FlatColors/UIColor_FlatColors.framework",
-				"${BUILT_PRODUCTS_DIR}/ZLSwipeableViewSwift/ZLSwipeableViewSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -483,7 +442,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_FlatColors.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZLSwipeableViewSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
