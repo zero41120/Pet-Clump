@@ -43,6 +43,30 @@ class ImageScroller: UIView {
        
     }
     
+    func setupScrollerWithImages(images : [UIImage]) {
+        scrollView.frame = self.frame
+        scrollView.delegate = self
+        var x : CGFloat = 0.0
+        let y : CGFloat = 0.0
+        var index : CGFloat = 0
+        self.scrollView.showsHorizontalScrollIndicator = false
+        self.scrollView.isPagingEnabled = true
+        self.scrollView.contentSize = CGSize(width: CGFloat(images.count) * self.frame.size.width, height: self.frame.height)
+        for image in images{
+            let imageView = UIImageView(frame: CGRect(x: x, y: y, width: self.frame.width, height: self.frame.height))
+            imageView.image = image
+            self.scrollView.addSubview(imageView)
+            index = index + 1
+            x = self.scrollView.frame.width * index
+        }
+        self.addSubview(scrollView)
+        
+        if isAutoScrollEnabled{
+            Timer.scheduledTimer(timeInterval: scrollTimeInterval, target: self, selector: #selector(autoscroll), userInfo: nil, repeats: true)
+        }
+        
+    }
+    
     @objc func autoscroll() {
         if isAutoScrollEnabled{
         let contentWidth = self.scrollView.contentSize.width
