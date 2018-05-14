@@ -23,6 +23,7 @@ public class ChattingActivity extends AppCompatActivity {
     private List<BaseMessage> baseMessageList;
     private Button chatview_send;
     private EditText chatview_editText;
+    private LinearLayoutManager linearLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +49,17 @@ public class ChattingActivity extends AppCompatActivity {
     }
     public void setRecyclerView(){
         chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        linearLayoutManager = new LinearLayoutManager(this);
+        //linearLayoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(chatRecycleViewAdapter);
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Call smooth scroll
+                recyclerView.smoothScrollToPosition(chatRecycleViewAdapter.getItemCount()-1);
+            }
+        });
     }
     public void messsageUpdate(){
         String tempMessage = chatview_editText.getText().toString();
@@ -62,6 +72,7 @@ public class ChattingActivity extends AppCompatActivity {
                        INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
                 getCurrentFocus().getWindowToken(), 0);
+
 
     }
 
