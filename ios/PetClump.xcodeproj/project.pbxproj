@@ -38,6 +38,7 @@
 		29C17980207EE97D002971C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C1797E207EE97D002971C5 /* Main.storyboard */; };
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
+		29D1342320A9E609005A72EA /* MatchingViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D1342220A9E609005A72EA /* MatchingViewVC.swift */; };
 		29E0416120A129E3007B2F32 /* PetProfileImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */; };
 		29F104F6209FD80B006E84E0 /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F5209FD80B006E84E0 /* Deletable.swift */; };
 		29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F820A0069E006E84E0 /* ImagePicker.swift */; };
@@ -105,6 +106,7 @@
 		29C17981207EE97F002971C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29D1342220A9E609005A72EA /* MatchingViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewVC.swift; sourceTree = "<group>"; };
 		29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileImageDownloader.swift; sourceTree = "<group>"; };
 		29F104F5209FD80B006E84E0 /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
 		29F104F820A0069E006E84E0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -168,7 +170,6 @@
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
-				847769B820969289002AF924 /* CardView.swift */,
 				29B1936D208D4CD000A59783 /* image */,
 				29A6E5B5208EB851006352CF /* font */,
 				298BD0002096E8CF007A6846 /* delegates */,
@@ -189,11 +190,12 @@
 				29A90B7F208DA16F0024ECF7 /* UserDataSettingVC.swift */,
 				29A6E5B3208EA86A006352CF /* UserDataViewVC.swift */,
 				298FEB62209393C30018F368 /* PetDataViewVC.swift */,
-				298FEB66209394D70018F368 /* MatchingVC.swift */,
-				295EC96920A40A9000F8D32F /* BestMatchingVC.swift */,
 				8496347720A8DEC900719162 /* ChatVC.swift */,
 				8496347C20A8E69800719162 /* PeerTableViewCell.swift */,
 				8496347A20A8E60900719162 /* ChatTableViewCell.swift */,
+				298FEB66209394D70018F368 /* MatchingVC.swift */,
+				295EC96920A40A9000F8D32F /* BestMatchingVC.swift */,
+				29D1342220A9E609005A72EA /* MatchingViewVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -300,6 +302,7 @@
 		847769A720969252002AF924 /* ZLSwipeableViewSwift */ = {
 			isa = PBXGroup;
 			children = (
+				847769B820969289002AF924 /* CardView.swift */,
 				84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */,
 				847769A820969252002AF924 /* Direction.swift */,
 				847769AA20969252002AF924 /* Scheduler.swift */,
@@ -580,6 +583,7 @@
 				29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */,
 				8496347B20A8E60900719162 /* ChatTableViewCell.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* UserDataViewVC.swift in Sources */,
+				29D1342320A9E609005A72EA /* MatchingViewVC.swift in Sources */,
 				84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */,
 				84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */,
 				295EC96A20A40A9000F8D32F /* BestMatchingVC.swift in Sources */,

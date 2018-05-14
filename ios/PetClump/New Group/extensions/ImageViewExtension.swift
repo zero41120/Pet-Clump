@@ -22,20 +22,36 @@ extension UIImageView {
         self.layer.masksToBounds = true
     }
     
+    func setShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.25
+        layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        layer.shadowRadius = 4.0
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+    }
+    
     func load(url: String){
         if url == "" {
             self.image = nil
             return
         }
-        load(url: URL(string: url)!)
+        load(url: url, completion: nil)
     }
     
-    func load(url: URL) {
+    func load(url: String, completion: (()-> Void)?) {
+        load(url: URL(string: url)!, completion: completion)
+    }
+    
+    func load(url: URL, completion: (()-> Void)? ) {
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.image = image
+                        if completion != nil {
+                            completion!()
+                        }
                     }
                 }
             }

@@ -33,6 +33,8 @@ class MatchingProfile{
         return profile.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
     }
     
+    
+    func getProfile() -> PetProfile { return self.profile }
     func getName() -> String{ return profile.name }
     func getAge() -> String{ return profile.age }
     func getBio() -> String{ return profile.bio }

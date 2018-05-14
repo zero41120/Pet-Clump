@@ -34,10 +34,21 @@ class PetProfile: Profile, Deletable{
         "group_view_3":""
     ]
     
-    public init() {}
-    public init(refObj: [String : Any]){
+    init() {}
+    convenience init(refObj: [String : Any]){
+        self.init()
         fetchData(refObj: refObj)
     }
+    convenience init(copyFromProfile: PetProfile){
+        self.init()
+        self.copy(FromProfile: copyFromProfile)
+    }
+    
+    func copy(FromProfile: PetProfile){
+        self.fetchData(refObj: FromProfile.generateDictionary())
+    }
+    
+    
     
     private func fetchData(refObj: [String : Any]){
         self.age     = refObj["age"]  as? String ?? ""
@@ -114,6 +125,20 @@ class PetProfile: Profile, Deletable{
         case .group2: return url_map["group_view_2"] ?? ""
         case .group3: return url_map["group_view_3"] ?? ""
         }
+    }
+    
+    func getPhotoUrls(isPulic: Bool) -> [String] {
+        var urls: [String] = []
+        for (key, value) in url_map {
+            if isPulic && key.range(of: "group") != nil {
+                continue
+            }
+            if value == "" {
+                continue
+            }
+            urls.append(value)
+        }
+        return urls
     }
     
     func setPhotoUrl(key: PetPhotoUrlKey, url: String){
