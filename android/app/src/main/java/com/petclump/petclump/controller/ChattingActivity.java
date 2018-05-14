@@ -1,8 +1,6 @@
 package com.petclump.petclump.controller;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,7 +33,6 @@ public class ChattingActivity extends AppCompatActivity {
         baseMessageList = new ArrayList<>();
         Intent intent = getIntent();
         name = intent.getExtras().getString("Name");
-        setActionBar(name);
         BaseMessage message1 = new BaseMessage(1, "Hey What's up", "me");
 //        BaseMessage message2 = new BaseMessage(2, "Not much and you?", "10:09");
 //        BaseMessage message3 = new BaseMessage(1, "I'm just about to eat", "10:09");
@@ -90,19 +87,6 @@ public class ChattingActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(
                 getCurrentFocus().getWindowToken(), 0);
 
-
-    }
-
-    public void setActionBar(String heading) {
-        // TODO Auto-generated method stub
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
-        actionBar.setTitle(heading);
-        actionBar.show();
 
     }
 
