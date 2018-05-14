@@ -1488,10 +1488,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zt5-79-ljC">
-                                <rect key="frame" x="0.0" y="88" width="375" height="275"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ayj-me-f0r">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -1534,6 +1530,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deF-sd-FZQ">
+                                <rect key="frame" x="0.0" y="88" width="375" height="274"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="TKM-sw-iTd"/>
@@ -1541,14 +1542,14 @@
                     <connections>
                         <outlet property="ageLabel" destination="dgc-ay-VrF" id="ChB-qd-9Zi"/>
                         <outlet property="bioTextField" destination="CTT-6H-a41" id="vAW-W8-5a2"/>
-                        <outlet property="imageView" destination="zt5-79-ljC" id="QsH-v3-VFh"/>
+                        <outlet property="imageScroller" destination="deF-sd-FZQ" id="AAt-YM-h16"/>
                         <outlet property="nameLabel" destination="nd4-6v-9f8" id="loz-4N-Qvl"/>
                         <outlet property="specieLabel" destination="wyb-8G-Rjb" id="jtg-Pp-QO7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3n-U3-sUj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1774" y="1937"/>
+            <point key="canvasLocation" x="1773.5999999999999" y="1936.6995073891626"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="A7D-Po-VFU">
