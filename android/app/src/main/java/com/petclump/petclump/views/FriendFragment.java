@@ -42,15 +42,15 @@ public class FriendFragment extends Fragment {
         FriendProfile profile1 = new FriendProfile("Wang Chai", "Hey what's up", "13:09");
         FriendProfile profile2 = new FriendProfile("Funk", "Wanna go for walk?", "16:09");
         FriendProfile profile3 = new FriendProfile("Nei Nei", "Yo Yo", "2:09");
-        FriendProfile profile4 = new FriendProfile("Sueanne Li", "Yo Yo", "8:19");
-        FriendProfile profile5 = new FriendProfile("Shay Wang", "想吃花椰菜", "12:09");
-        FriendProfile profile6 = new FriendProfile("Wendy Wang", "......", "1:09");
+//        FriendProfile profile4 = new FriendProfile("Sueanne Li", "Yo Yo", "8:19");
+//        FriendProfile profile5 = new FriendProfile("Shay Wang", "想吃花椰菜", "12:09");
+//        FriendProfile profile6 = new FriendProfile("Wendy Wang", "......", "1:09");
         friendProfileList.add(profile1);
         friendProfileList.add(profile2);
         friendProfileList.add(profile3);
-        friendProfileList.add(profile4);
-        friendProfileList.add(profile5);
-        friendProfileList.add(profile6);
+//        friendProfileList.add(profile4);
+//        friendProfileList.add(profile5);
+//        friendProfileList.add(profile6);
 
         friendRecycleViewAdapter = new FriendRecycleViewAdapter(this.getContext(), friendProfileList);
         linearLayoutManager = new LinearLayoutManager(this.getContext());

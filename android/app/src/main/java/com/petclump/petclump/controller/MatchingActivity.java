@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.storage.FirebaseStorage;
 import com.mikhaellopez.circularimageview.CircularImageView;
-import com.petclump.petclump.MatchingTab;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.PetProfile;

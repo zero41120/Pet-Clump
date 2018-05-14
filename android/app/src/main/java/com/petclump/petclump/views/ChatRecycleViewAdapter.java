@@ -1,6 +1,8 @@
 package com.petclump.petclump.views;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,10 @@ import android.widget.TextView;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.BaseMessage;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
@@ -57,7 +63,7 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
     // Passes the message object to a ViewHolder so that the contents can be bound to UI.
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        String message = MessageList.get(position).getMessage();
+        BaseMessage message = MessageList.get(position);
 
         switch (holder.getItemViewType()) {
             case VIEW_TYPE_MESSAGE_SENT:
@@ -78,11 +84,13 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             timeText = (TextView) itemView.findViewById(R.id.chatview_sent_time);
         }
 
-        void bind(String message) {
-            messageText.setText(message);
-
+        void bind(BaseMessage message) {
+            messageText.setText(message.getMessage());
+            Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            String time = timeFormat.format(currentTime);
             // Format the stored timestamp into a readable String using method.
-            timeText.setText("12:00");
+            timeText.setText(time);
         }
     }
 
@@ -99,13 +107,15 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             profileImage = (ImageView) itemView.findViewById(R.id.chatview_receive_image);
         }
 
-        void bind(String message) {
-            messageText.setText(message);
+        void bind(BaseMessage message) {
+            messageText.setText(message.getMessage());
 
             // Format the stored timestamp into a readable String using method.
-            timeText.setText("13:00");
-
-            nameText.setText("Gucci");
+            Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+            String time = timeFormat.format(currentTime);
+            timeText.setText(time);
+            nameText.setText(message.getUser());
 
             // Insert the profile image from the URL into the ImageView.
             profileImage.setImageResource(R.drawable.dog_placeholder);

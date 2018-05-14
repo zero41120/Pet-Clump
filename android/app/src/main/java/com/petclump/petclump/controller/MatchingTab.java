@@ -1,4 +1,4 @@
-package com.petclump.petclump;
+package com.petclump.petclump.controller;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.petclump.petclump.R;
 import com.petclump.petclump.views.BestMatchFragment;
 import com.petclump.petclump.views.FriendFragment;
 import com.petclump.petclump.views.LocalFragment;

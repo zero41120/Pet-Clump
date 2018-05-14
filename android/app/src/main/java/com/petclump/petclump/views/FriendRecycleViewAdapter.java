@@ -46,6 +46,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
 
         holder.friendview_cardView.setOnClickListener(v->{
             Intent intent = new Intent(mContext, ChattingActivity.class);
+            intent.putExtra("Name", name);
             mContext.startActivity(intent);
         });
 
