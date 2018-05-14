@@ -3,7 +3,8 @@
 
 target 'PetClump' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+ source 'https://github.com/CocoaPods/Specs.git'
+ use_frameworks!
 
   # Pods for PetClump
   pod 'Firebase/Core'
@@ -15,11 +16,10 @@ target 'PetClump' do
   pod 'FirebaseUI/Facebook'
   platform :ios, '11.0'
   pod 'FBSDKLoginKit'
-  pod 'ZLSwipeableViewSwift', :git => 'https://github.com/zhxnlai/ZLSwipeableViewSwift.git', :commit => '59826e2'
   pod 'UIColor+FlatColors'
   pod 'Cartography'
   use_frameworks!
-
+  pod 'AZPeerToPeerConnection' 
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'

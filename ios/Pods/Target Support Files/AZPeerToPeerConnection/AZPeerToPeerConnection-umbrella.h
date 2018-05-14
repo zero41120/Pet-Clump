@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ZLSwipeableViewSwiftVersionNumber;
-FOUNDATION_EXPORT const unsigned char ZLSwipeableViewSwiftVersionString[];
+FOUNDATION_EXPORT double AZPeerToPeerConnectionVersionNumber;
+FOUNDATION_EXPORT const unsigned char AZPeerToPeerConnectionVersionString[];
 
