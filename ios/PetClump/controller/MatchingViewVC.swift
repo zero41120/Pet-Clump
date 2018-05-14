@@ -38,12 +38,12 @@ class MatchingViewVC: UIViewController{
         specieLabel.text = petProfile!.specie
         ageLabel.text = petProfile!.age
         bioTextField.text = petProfile!.bio
-        self.loadImages()
+        self.setupImage()
     }
     
     // https://stackoverflow.com/questions/38529775/how-to-create-a-side-swiping-photo-gallery-in-swift-ios
     // https://stackoverflow.com/questions/26898955/adding-image-transition-animation-in-swift
-    func loadImages(){
+    func setupImage(){
         imageUrls = petProfile!.getPhotoUrls(isPulic: true)
         imageView.load(url: imageUrls[imageIndex]) {
             self.images.append(self.imageView.image!)
@@ -59,36 +59,36 @@ class MatchingViewVC: UIViewController{
     
     @objc func swipeOnImage(sender: UIGestureRecognizer){
         if let swipeGesture = sender as? UISwipeGestureRecognizer {
-            switch swipeGesture.direction {
-                case UISwipeGestureRecognizerDirection.left:
-                    if imageIndex == imageUrls.count - 1 {
-                        imageIndex = 0
-                    } else {
-                        imageIndex += 1
-                    }
-                    if images.indices.contains(imageIndex){
-                        imageView.image = images[imageIndex]
-                    } else {
-                        imageView.load(url: imageUrls[imageIndex]) {
-                            self.images.append(self.imageView.image!)
-                        }
-                    }
-                
-                case UISwipeGestureRecognizerDirection.right:
-                    if imageIndex == 0 {
-                        imageIndex = imageUrls.count - 1
-                    }else{
-                        imageIndex -= 1
-                    }
-                    if images.indices.contains(imageIndex){
-                        imageView.image = images[imageIndex]
-                    } else {
-                        imageView.load(url: imageUrls[imageIndex]) {
-                            self.images.append(self.imageView.image!)
-                        }
-                    }
-                default: break
-            }
+                recalculateIndex(direction: swipeGesture.direction)
+                loadImage(imageIndex: imageIndex)
         }
+    }
+    
+    
+    func recalculateIndex(direction: UISwipeGestureRecognizerDirection){
+        switch direction {
+        case UISwipeGestureRecognizerDirection.left:
+            imageIndex =
+                imageIndex == imageUrls.count - 1 ?
+                0 :
+                imageIndex + 1
+            
+            
+        case UISwipeGestureRecognizerDirection.right:
+            imageIndex =
+                imageIndex == imageUrls.count - 1 ?
+                0 :
+                imageIndex - 1
+        default:
+            break
+        }
+    }
+    
+    func loadImage(imageIndex: Int){
+        if !images.indices.contains(imageIndex){
+            imageView.load(url: imageUrls[imageIndex]) {
+                self.images.append(self.imageView.image!)
+            }
+        }        
     }
 }
