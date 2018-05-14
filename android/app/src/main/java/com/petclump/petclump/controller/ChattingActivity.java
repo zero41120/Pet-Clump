@@ -38,7 +38,7 @@ public class ChattingActivity extends AppCompatActivity {
 //        BaseMessage message3 = new BaseMessage(1, "I'm just about to eat", "10:09");
 //        BaseMessage message4 = new BaseMessage(2, "What are you gonna eat?", "10:09");
 //        BaseMessage message5 = new BaseMessage(2, "對了", "10:09");
-        BaseMessage message6 = new BaseMessage(2, "米耳耳朵都是米^_^", name);
+        BaseMessage message6 = new BaseMessage(2, "I'm a bot.", name);
 //        BaseMessage message7 = new BaseMessage(2, "不要突然講中文啦", "10:10");
         baseMessageList.add(message1);
 //        baseMessageList.add(message2);
@@ -76,7 +76,7 @@ public class ChattingActivity extends AppCompatActivity {
     public void messsageUpdate(){
         String tempMessage = chatview_editText.getText().toString();
         BaseMessage message1 = new BaseMessage(1, tempMessage, "me");
-        BaseMessage message2 = new BaseMessage(2, "耳多都是米", name);
+        BaseMessage message2 = new BaseMessage(2, "I'm a bot.", name);
         baseMessageList.add(message1);
         baseMessageList.add(message2);
         chatview_editText.getText().clear();
