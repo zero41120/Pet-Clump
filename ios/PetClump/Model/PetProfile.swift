@@ -129,7 +129,9 @@ class PetProfile: Profile, Deletable{
     
     func getPhotoUrls(isPulic: Bool) -> [String] {
         var urls: [String] = []
-        for (key, value) in url_map {
+        let keys = Array(url_map.keys).sorted()
+        for key in keys {
+            let value = url_map[key] ?? ""
             if isPulic && key.range(of: "group") != nil {
                 continue
             }
