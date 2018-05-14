@@ -39,7 +39,6 @@
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
 		29D1342320A9E609005A72EA /* MatchingViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D1342220A9E609005A72EA /* MatchingViewVC.swift */; };
-		29D1342920AA3C20005A72EA /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D1342820AA3C20005A72EA /* ImageDownloader.swift */; };
 		29E0416120A129E3007B2F32 /* PetProfileImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */; };
 		29F104F6209FD80B006E84E0 /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F5209FD80B006E84E0 /* Deletable.swift */; };
 		29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F820A0069E006E84E0 /* ImagePicker.swift */; };
@@ -108,7 +107,6 @@
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D1342220A9E609005A72EA /* MatchingViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewVC.swift; sourceTree = "<group>"; };
-		29D1342820AA3C20005A72EA /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileImageDownloader.swift; sourceTree = "<group>"; };
 		29F104F5209FD80B006E84E0 /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
 		29F104F820A0069E006E84E0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */,
 				295EC96D20A41A3100F8D32F /* MatchingProfile.swift */,
 				2926C2F120A9332500DB6A3C /* Crytographer.swift */,
-				29D1342820AA3C20005A72EA /* ImageDownloader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -459,7 +456,6 @@
 				"${BUILT_PRODUCTS_DIR}/AZPeerToPeerConnection/AZPeerToPeerConnection.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/BubblePictures/BubblePictures.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -488,7 +484,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AZPeerToPeerConnection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BubblePictures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
@@ -597,7 +592,6 @@
 				8496347820A8DEC900719162 /* ChatVC.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,
-				29D1342920AA3C20005A72EA /* ImageDownloader.swift in Sources */,
 				2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */,
 				8496347D20A8E69800719162 /* PeerTableViewCell.swift in Sources */,
 				84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */,

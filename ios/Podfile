@@ -18,7 +18,6 @@ target 'PetClump' do
   pod 'FBSDKLoginKit'
   pod 'UIColor+FlatColors'
   pod 'Cartography'
-  pod "BubblePictures"
   use_frameworks!
   pod 'AZPeerToPeerConnection' 
   pod 'FacebookCore'

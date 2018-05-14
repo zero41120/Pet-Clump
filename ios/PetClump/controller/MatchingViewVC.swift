@@ -15,7 +15,7 @@ class MatchingViewVC: UIViewController{
     // Assigned by caller view
     var petProfile: PetProfile?
     
-    @IBOutlet weak var imageCollection: UICollectionView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var specieLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
@@ -122,7 +122,16 @@ extension MatchingViewVC: BPDelegate {
         print("Selected truncated bubble")
     }
     
+<<<<<<< HEAD
     func didSelectBubble(at index: Int) {
         print(index)
+=======
+    func loadImage(imageIndex: Int){
+        if !images.indices.contains(imageIndex){
+            imageView.load(url: imageUrls[imageIndex]) {
+                self.images.append(self.imageView.image!)
+            }
+        }        
+>>>>>>> parent of 6f0f952... Adds BP pic swipe lib
     }
 }
