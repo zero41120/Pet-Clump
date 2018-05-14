@@ -5,12 +5,18 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -22,6 +28,7 @@ import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -51,6 +58,9 @@ public class PetProfile implements Profile {
         put("group_profile_url_2","");
         put("group_profile_url_3","");
     }};
+
+    // pet friend map
+    private HashMap<String, String> friend_map = new HashMap<String, String>();
 
     // firebase instance
     private FirebaseAuth Auth_pet = FirebaseAuth.getInstance();
@@ -98,6 +108,9 @@ public class PetProfile implements Profile {
             put("group_view_3",url_map.get("group_profile_url_3"));
         }};
     }
+/*    private Map<String, Object> generateFriendRequest(){
+
+    }*/
 
     public void upload(String id, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
@@ -117,12 +130,55 @@ public class PetProfile implements Profile {
         });
     }
 
+    public void download_friendList(String receiver_id, ProfileDownloader c){
+        if (Auth_pet.getCurrentUser() == null){
+            Log.d(TAG, "download_friendList:"+" Current user is none");
+            return;
+        }
+        CollectionReference friends = FirebaseFirestore.getInstance().collection("friends");
+
+        friends.whereEqualTo("pending", 1)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "dowload successfully");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+/*        Query pending_friends = friends.whereEqualTo("pending", "0");
+        Query blocked_friends = friends.whereEqualTo("pending", "2");*/
+    }
+    public void upload_friend_request(String sender_id, String receiver_id, ProfileUploader c){
+        if (Auth_pet.getCurrentUser() == null){
+            Log.w(TAG, "User is null! Cannot update.");
+            return;
+        }
+        // upload documents
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("friends").document();
+        docRef.set(generateDictionary()).addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                c.didCompleteUpload();
+            }
+            else {
+                Log.d(TAG, "upload failed.");
+            }
+        });
+    }
     @Override
     public void download(String id, ProfileDownloader c){
         if (Auth_pet.getCurrentUser() == null){
-            Log.d(TAG, " Current User is none");
+            Log.d(TAG, "download:"+" Current user is none");
             return;
         }
+        download_friendList(null,null);
         DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("pets").document(id);
 
         mDocRef.addSnapshotListener((snap, error) -> {
