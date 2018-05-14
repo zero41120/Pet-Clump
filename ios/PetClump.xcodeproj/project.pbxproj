@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905331E209915F50076A2AF /* TextViewExtension.swift */; };
+		2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926C2F120A9332500DB6A3C /* Crytographer.swift */; };
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
@@ -57,9 +58,21 @@
 		84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2926C2EC20A9316600DB6A3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29C1796F207EE97D002971C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29C17976207EE97D002971C5;
+			remoteInfo = PetClump;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
 		2905331E209915F50076A2AF /* TextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewExtension.swift; sourceTree = "<group>"; };
+		2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetClumpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2926C2F120A9332500DB6A3C /* Crytographer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crytographer.swift; sourceTree = "<group>"; };
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
 		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +127,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2926C2E420A9316600DB6A3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29C17974207EE97D002971C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,6 +248,7 @@
 				29F104F5209FD80B006E84E0 /* Deletable.swift */,
 				29E0416020A129E3007B2F32 /* PetProfileImageDownloader.swift */,
 				295EC96D20A41A3100F8D32F /* MatchingProfile.swift */,
+				2926C2F120A9332500DB6A3C /* Crytographer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				29C17977207EE97D002971C5 /* PetClump.app */,
+				2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -310,6 +332,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2926C2E620A9316600DB6A3C /* PetClumpTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2926C2EE20A9316600DB6A3C /* Build configuration list for PBXNativeTarget "PetClumpTests" */;
+			buildPhases = (
+				2926C2E320A9316600DB6A3C /* Sources */,
+				2926C2E420A9316600DB6A3C /* Frameworks */,
+				2926C2E520A9316600DB6A3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2926C2ED20A9316600DB6A3C /* PBXTargetDependency */,
+			);
+			name = PetClumpTests;
+			productName = PetClumpTests;
+			productReference = 2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		29C17976207EE97D002971C5 /* PetClump */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29C17989207EE97F002971C5 /* Build configuration list for PBXNativeTarget "PetClump" */;
@@ -344,6 +384,11 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = PetClump;
 				TargetAttributes = {
+					2926C2E620A9316600DB6A3C = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 29C17976207EE97D002971C5;
+					};
 					29C17976207EE97D002971C5 = {
 						CreatedOnToolsVersion = 9.3;
 						ProvisioningStyle = Automatic;
@@ -369,11 +414,19 @@
 			projectRoot = "";
 			targets = (
 				29C17976207EE97D002971C5 /* PetClump */,
+				2926C2E620A9316600DB6A3C /* PetClumpTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2926C2E520A9316600DB6A3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29C17975207EE97D002971C5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +454,7 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -428,6 +482,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -507,6 +562,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2926C2E320A9316600DB6A3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		29C17973207EE97D002971C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -526,6 +588,7 @@
 				8496347820A8DEC900719162 /* ChatVC.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,
+				2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */,
 				8496347D20A8E69800719162 /* PeerTableViewCell.swift in Sources */,
 				84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
@@ -555,6 +618,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2926C2ED20A9316600DB6A3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29C17976207EE97D002971C5 /* PetClump */;
+			targetProxy = 2926C2EC20A9316600DB6A3C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		29C1797E207EE97D002971C5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -575,6 +646,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2926C2EF20A9316600DB6A3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PetClumpTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClumpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetClump.app/PetClump";
+			};
+			name = Debug;
+		};
+		2926C2F020A9316600DB6A3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PetClumpTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.petclump.PetClumpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetClump.app/PetClump";
+			};
+			name = Release;
+		};
 		29C17987207EE97F002971C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -727,6 +828,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2926C2EE20A9316600DB6A3C /* Build configuration list for PBXNativeTarget "PetClumpTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2926C2EF20A9316600DB6A3C /* Debug */,
+				2926C2F020A9316600DB6A3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		29C17972207EE97D002971C5 /* Build configuration list for PBXProject "PetClump" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
