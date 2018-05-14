@@ -9,18 +9,22 @@
 import UIKit
 
 class ImageDownloader {
-    func download(url: URL, completion: (()-> Void)? ) {
+    func download(urls: [String], completion: @escaping ([UIImage])-> Void ) {
         DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                        if completion != nil {
-                            completion!()
+            var images: [UIImage] = []
+            for url in urls{
+                print("\(url) start")
+                if let data = try? Data(contentsOf: URL(string: url)!) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            print("\(url) done")
+                            images.append(image)
                         }
                     }
                 }
             }
+            print("going to call complete")
+            completion(images)
         }
     }
 }

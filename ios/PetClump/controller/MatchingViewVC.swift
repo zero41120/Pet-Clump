@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import BubblePictures
 
 class MatchingViewVC: UIViewController{
     
@@ -20,9 +21,13 @@ class MatchingViewVC: UIViewController{
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioTextField: UITextView!
     
+    
     var imageIndex = 0
     var imageUrls: [String] = []
     var images: [UIImage] = []
+    var configs: [BPCellConfigFile] = []
+    private var bubblePictures: BubblePictures!
+
     
     @IBAction func tapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -30,7 +35,7 @@ class MatchingViewVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let _ = Auth.auth().currentUser?.uid else {
             self.dismiss(animated: true, completion: nil)
             return
         }
@@ -44,23 +49,50 @@ class MatchingViewVC: UIViewController{
     // https://stackoverflow.com/questions/38529775/how-to-create-a-side-swiping-photo-gallery-in-swift-ios
     // https://stackoverflow.com/questions/26898955/adding-image-transition-animation-in-swift
     func setupImage(){
+        let layoutConfigurator = BPLayoutConfigurator(
+            backgroundColorForTruncatedBubble: UIColor.gray,
+            fontForBubbleTitles: UIFont(name: "HelveticaNeue-Light", size: 16.0)!,
+            colorForBubbleBorders: UIColor.white,
+            colorForBubbleTitles: UIColor.white,
+            maxCharactersForBubbleTitles: 2,
+            maxNumberOfBubbles: 2,
+            direction: .leftToRight,
+            alignment: .center)
+        
         imageUrls = petProfile!.getPhotoUrls(isPulic: true)
-        imageView.load(url: imageUrls[imageIndex]) {
-            self.images.append(self.imageView.image!)
+        for url in imageUrls {
+            var config = BPCellConfigFile(imageType: BPImageType.URL(URL(string: url)!), title: "x")
+            self.configs.append(config)
         }
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(swipeRight)
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
+//        ImageDownloader().download(urls: imageUrls) { (images) in
+//            for image in images {
+//                print("image in")
+//                self.images.append(image)
+//                self.configs.append(BPCellConfigFile(imageType: BPImageType.image(image), title: ""))
+//            }
+//
+//        }
+        
+        bubblePictures = BubblePictures(collectionView: imageCollection, configFiles: configs, layoutConfigurator: layoutConfigurator)
+        bubblePictures.delegate = self
+
+        
+        
+//
+//
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
+//        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+//        self.view.addGestureRecognizer(swipeRight)
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeOnImage(sender:)))
+//        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+//        self.view.addGestureRecognizer(swipeLeft)
         
     }
     
     @objc func swipeOnImage(sender: UIGestureRecognizer){
         if let swipeGesture = sender as? UISwipeGestureRecognizer {
                 recalculateIndex(direction: swipeGesture.direction)
-                loadImage(imageIndex: imageIndex)
+                print("\(swipeGesture.direction)")
         }
     }
     
@@ -83,12 +115,14 @@ class MatchingViewVC: UIViewController{
             break
         }
     }
+}
+
+extension MatchingViewVC: BPDelegate {
+    func didSelectTruncatedBubble() {
+        print("Selected truncated bubble")
+    }
     
-    func loadImage(imageIndex: Int){
-        if !images.indices.contains(imageIndex){
-            UIImageView().load(url: imageUrls[imageIndex]) {
-                self.images.append(self.imageView.image!)
-            }
-        }        
+    func didSelectBubble(at index: Int) {
+        print(index)
     }
 }
