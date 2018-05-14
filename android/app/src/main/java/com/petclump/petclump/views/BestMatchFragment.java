@@ -43,8 +43,6 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
         recyclerView = v.findViewById(R.id.bestMatchRecycle);
         self = this;
         profiles = new ArrayList<>();
-
-
         return v;
 
     }
