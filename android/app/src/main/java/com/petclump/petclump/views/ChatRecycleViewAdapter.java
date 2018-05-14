@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.petclump.petclump.R;
+import com.petclump.petclump.controller.MatchingViewProfileActivity;
 import com.petclump.petclump.models.BaseMessage;
 
 import java.sql.Time;
@@ -37,7 +38,6 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
     // Determines the appropriate ViewType according to the sender of the message.
     @Override
     public int getItemViewType(int position) {
-        String message = MessageList.get(position).getMessage();
         int sender = MessageList.get(position).getWhich_side();
         return sender ;
     }
@@ -101,10 +101,14 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
         ReceivedMessageHolder(View itemView) {
             super(itemView);
 
-            messageText = (TextView) itemView.findViewById(R.id.chatview_receive_message);
-            timeText = (TextView) itemView.findViewById(R.id.chatview_receive_time);
-            nameText = (TextView) itemView.findViewById(R.id.chatview_receive_name);
-            profileImage = (ImageView) itemView.findViewById(R.id.chatview_receive_image);
+            messageText = itemView.findViewById(R.id.chatview_receive_message);
+            timeText = itemView.findViewById(R.id.chatview_receive_time);
+            nameText = itemView.findViewById(R.id.chatview_receive_name);
+            profileImage =  itemView.findViewById(R.id.chatview_receive_image);
+//            profileImage.setOnClickListener(v->{
+//                Intent intent = new Intent(mContext, MatchingViewProfileActivity.class);
+//                mContext.startActivity(intent);
+//            });
         }
 
         void bind(BaseMessage message) {
