@@ -14,7 +14,7 @@ class MatchingViewVC: UIViewController{
     // Assigned by caller view
     var petProfile: PetProfile?
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageCollection: UICollectionView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var specieLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
@@ -86,7 +86,7 @@ class MatchingViewVC: UIViewController{
     
     func loadImage(imageIndex: Int){
         if !images.indices.contains(imageIndex){
-            imageView.load(url: imageUrls[imageIndex]) {
+            UIImageView().load(url: imageUrls[imageIndex]) {
                 self.images.append(self.imageView.image!)
             }
         }        
