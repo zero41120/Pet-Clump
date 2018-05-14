@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.petclump.petclump.R;
-import com.petclump.petclump.controller.ChatingActivity;
+import com.petclump.petclump.controller.ChattingActivity;
 import com.petclump.petclump.models.FriendProfile;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         holder.friendview_history.setText(history);
 
         holder.friendview_cardView.setOnClickListener(v->{
-            Intent intent = new Intent(mContext, ChatingActivity.class);
+            Intent intent = new Intent(mContext, ChattingActivity.class);
             mContext.startActivity(intent);
         });
 

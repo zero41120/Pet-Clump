@@ -65,7 +65,8 @@
             android:name=".MatchingTab"
             android:label="@string/title_activity_matching_tab"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.ChatingActivity"></activity>
+        <activity android:name=".controller.ChatingActivity" />
+        <activity android:name=".controller.ChattingActivity"></activity>
     </application>
 
 </manifest>
