@@ -21,6 +21,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     sourceSets { main { java.srcDirs = ['src/main/java', 'src/main/java/datePicker'] } }
 }
 
@@ -31,7 +34,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:multidex:1.0.3'
-
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.9'
 
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
     implementation 'com.google.firebase:firebase-storage:15.0.2'
