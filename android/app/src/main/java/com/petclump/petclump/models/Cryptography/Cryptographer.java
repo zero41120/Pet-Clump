@@ -2,13 +2,11 @@ package com.petclump.petclump.models.Cryptography;
 
 import org.apache.commons.codec.binary.Base64;
 
-import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
-import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -20,7 +18,7 @@ public class Cryptographer {
 
     private static final String  CIPHER_ALGRO   = "AES/CBC/PKCS5PADDING";
     private static final Integer KEY_BITS       = 128;
-    private static final Integer IV_BITS        = 16;
+    private static final Integer IV_BYTES       = 16;
 
     /**
      * This is a singleton class.
@@ -54,7 +52,7 @@ public class Cryptographer {
      * @return a byte array of the IV
      */
     public final byte[] generateInitializationVector(){
-        byte initVector[]      = new byte[IV_BITS];
+        byte initVector[]      = new byte[IV_BYTES];
         SecureRandom secRandom = new SecureRandom();
         secRandom.nextBytes(initVector);
         return initVector;
