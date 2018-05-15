@@ -182,6 +182,7 @@
                     android:text="@android:string/cancel"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/cancel_button_background"
                     android:textColor="@color/white" />
                 <TextView
@@ -191,8 +192,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginRight="80dp"
                     android:text="@string/info" />
                 <Button
                     android:id="@+id/button_save"
@@ -200,6 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="30dp"
                     android:text="@string/Save"
                     android:layout_gravity="end"
                     android:background="@drawable/chat_bubble_purple"

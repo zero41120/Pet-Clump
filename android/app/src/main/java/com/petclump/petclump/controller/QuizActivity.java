@@ -3,6 +3,8 @@ package com.petclump.petclump.controller;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.TextView;
@@ -11,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.QuizQuestion;
+import com.petclump.petclump.views.QuizRecycleViewAdapter;
 
 import java.util.List;
 
@@ -31,6 +34,7 @@ public class QuizActivity extends AppCompatActivity {
     private Context c;
     private PetProfile profile;
     private String petId;
+    private RecyclerView recyclerView;
     Integer sequence = 0;
 
     private Boolean isQuizReady() {
@@ -48,7 +52,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        TextView quizView = (TextView) findViewById(R.id.quizView);
+        //TextView quizView = (TextView) findViewById(R.id.quizView);
         c = getApplicationContext();
         index = -1;
         sequence = getIntent().getIntExtra("sequence", 0);
@@ -56,11 +60,18 @@ public class QuizActivity extends AppCompatActivity {
         profile = new PetProfile() {{
             download(petId, () -> {
                 listOfQuestions = QuizQuestion.getQuestion(c, profile.getQuiz(), 10);
+                Log.d(TAG, listOfQuestions.get(0));
                 answers = profile.getQuiz();
                 Log.d(TAG, "instance initializer: " + answers);
                 index = 0;
             });
         }};
+        recyclerView = findViewById(R.id.quizView_recycle);
+        QuizRecycleViewAdapter quizRecycleViewAdapter = new QuizRecycleViewAdapter(this, listOfQuestions);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(quizRecycleViewAdapter);
+
 
     }
 
@@ -70,7 +81,7 @@ public class QuizActivity extends AppCompatActivity {
         if (!isQuizReady()) {
             return super.onTouchEvent(event);
         }
-        TextView viewQuiz = findViewById(R.id.quizView);
+        //TextView viewQuiz = findViewById(R.id.quizView);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 x1 = event.getX();
@@ -102,10 +113,10 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 }
                 if (index == 10) {
-                    viewQuiz.setText(R.string.All_done);
+                    //viewQuiz.setText(R.string.All_done);
                     break;
                 } else {
-                    viewQuiz.setText(listOfQuestions.get(index));
+                    //viewQuiz.setText(listOfQuestions.get(index));
                 }
         }
         return super.onTouchEvent(event);
