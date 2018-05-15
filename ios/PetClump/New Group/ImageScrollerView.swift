@@ -12,19 +12,25 @@ import UIKit
 
 class ImageScrollerView: UIScrollView {
     
-    func setupScrollerWithImages(images : [UIImage]) {
-        var x : CGFloat = 0.0
-        let y : CGFloat = 0.0
-        var index : CGFloat = 0
+    func setupScrollerWith(urls: [String]){
         self.showsHorizontalScrollIndicator = false
         self.isPagingEnabled = true
-        self.contentSize = CGSize(width: CGFloat(images.count) * self.frame.size.width, height: self.frame.height)
-        for image in images{
-            let imageView = UIImageView(frame: CGRect(x: x, y: y, width: self.frame.width, height: self.frame.height))
-            imageView.image = image
+        
+        let width = self.frame.width
+        let scrollWidth = CGFloat(urls.count) * width
+        let height = self.frame.height
+
+        self.contentSize = CGSize(width: scrollWidth, height: height)
+        
+        var x : CGFloat = 0.0
+        let y : CGFloat = 0.0
+        let imageSize = CGSize(width: width, height: height)
+        for (index, url) in urls.enumerated() {
+            x = self.frame.width * CGFloat(index)
+            let imageView = UIImageView(frame: CGRect(x: x, y: y, width: width, height: height))
+            imageView.load(url: url)
+            imageView.image = imageView.image?.crop(to: imageSize)
             self.addSubview(imageView)
-            index = index + 1
-            x = self.frame.width * index
         }
     }
 }
