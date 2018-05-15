@@ -14,12 +14,13 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
+        <ImageView
             android:id="@+id/friendview_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="10dp"
-            android:src="@drawable/pig_placeholder" />
+
+            android:src="@drawable/dog_placeholder" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/friendview_name"
-                    android:layout_width="200dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="20dp"
