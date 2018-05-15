@@ -62,7 +62,6 @@ public class QuizActivity extends AppCompatActivity {
         profile = new PetProfile() {{
             download(petId, () -> {
                 listOfQuestions = QuizQuestion.getQuestion(c, profile.getQuiz(), 10);
-                Log.d(TAG, listOfQuestions.get(0));
                 answers = profile.getQuiz();
                 Log.d(TAG, "instance initializer: " + answers);
                 index = 0;
