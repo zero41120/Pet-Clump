@@ -5,29 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.QuizActivity">
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/quizView_recycle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>
-    <!--<TextView-->
-        <!--android:id="@+id/quizView"-->
-        <!--android:layout_width="369dp"-->
-        <!--android:layout_height="493dp"-->
-        <!--android:layout_marginBottom="66dp"-->
-        <!--android:layout_marginEnd="43dp"-->
-        <!--android:layout_marginLeft="43dp"-->
-        <!--android:layout_marginRight="43dp"-->
-        <!--android:layout_marginStart="43dp"-->
-        <!--android:layout_marginTop="66dp"-->
-        <!--android:gravity="center"-->
-        <!--android:text="Quiz!"-->
-        <!--android:textSize="30sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/quiz_card_stack_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="32dp"
+        android:paddingBottom="32dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:clipToPadding="false"
+        app:visibleCount="3"
+        app:swipeThreshold="0.75"
+        app:translationDiff="12"
+        app:scaleDiff="0.02"
+        app:stackFrom="top"
+        app:elevationEnabled="true"
+        app:swipeEnabled="true"
+        app:swipeDirection="freedom_no_bottom"
+        app:leftOverlay="@layout/overlay_left"
+        app:rightOverlay="@layout/overlay_right"
+        app:topOverlay="@layout/overlay_top" />
+    <TextView
+        android:id="@+id/quizView"
+        android:layout_width="369dp"
+        android:layout_height="493dp"
+        android:layout_marginBottom="66dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="43dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="66dp"
+        android:gravity="center"
+        android:text="Quiz!"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--<TextView-->
         <!--android:id="@+id/textView2"-->

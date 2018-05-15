@@ -236,6 +236,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             } else {
                 startActivity(new Intent(this, QuizActivity.class) {{
                     putExtra("sequence", sequence);
+                    Log.d(TAG, String.valueOf(sequence));
                 }});
             }
         });

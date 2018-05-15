@@ -14,6 +14,8 @@ import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.QuizQuestion;
 import com.petclump.petclump.views.QuizRecycleViewAdapter;
+import com.yuyakaido.android.cardstackview.CardStackView;
+import com.yuyakaido.android.cardstackview.SwipeDirection;
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     private Context c;
     private PetProfile profile;
     private String petId;
-    private RecyclerView recyclerView;
+    private CardStackView cardStackView;
     Integer sequence = 0;
 
     private Boolean isQuizReady() {
@@ -64,26 +66,76 @@ public class QuizActivity extends AppCompatActivity {
                 answers = profile.getQuiz();
                 Log.d(TAG, "instance initializer: " + answers);
                 index = 0;
+                setUpChatview();
             });
         }};
-        recyclerView = findViewById(R.id.quizView_recycle);
-        QuizRecycleViewAdapter quizRecycleViewAdapter = new QuizRecycleViewAdapter(this, listOfQuestions);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(quizRecycleViewAdapter);
+
 
 
     }
+    public void setUpChatview(){
 
+        QuizRecycleViewAdapter quizRecycleViewAdapter = new QuizRecycleViewAdapter(this);
+        quizRecycleViewAdapter.addAll(listOfQuestions);
+        cardStackView = (CardStackView) findViewById(R.id.quiz_card_stack_view);
+        cardStackView.setAdapter(quizRecycleViewAdapter);
+        cardStackView.setCardEventListener(new CardStackView.CardEventListener() {
+            @Override
+            public void onCardDragging(float percentX, float percentY) {
+                Log.d("CardStackView", "onCardDragging");
+            }
+
+            @Override
+            public void onCardSwiped(SwipeDirection direction) {
+                Log.d("CardStackView", "onCardSwiped: " + direction.toString());
+                Log.d("CardStackView", "topIndex: " + cardStackView.getTopIndex());
+                if (cardStackView.getTopIndex() == quizRecycleViewAdapter.getCount() - 5) {
+                    Log.d("CardStackView", "Paginate: " + cardStackView.getTopIndex());
+                }
+                if (direction.toString()=="Right"){
+                    answers += QuizQuestion.YES;
+                    index += 1;
+                    Log.d(TAG, "right");
+                }else if (direction.toString()=="Left"){
+                    answers += QuizQuestion.NO;
+                    index += 1;
+                    Log.d(TAG, "left");
+                }
+                else if (direction.toString()=="Top"){
+                    answers += QuizQuestion.SKIP;
+                    index += 1;
+                }
+                if (!isQuizReady()){
+                    return;
+                };
+            }
+
+            @Override
+            public void onCardReversed() {
+                Log.d("CardStackView", "onCardReversed");
+            }
+
+            @Override
+            public void onCardMovedToOrigin() {
+                Log.d("CardStackView", "onCardMovedToOrigin");
+            }
+
+            @Override
+            public void onCardClicked(int index) {
+                Log.d("CardStackView", "onCardClicked: " + index);
+            }
+        });
+    }
 
     //function listens for screen touches and does things based on gesture
     public boolean onTouchEvent(MotionEvent event) {
         if (!isQuizReady()) {
             return super.onTouchEvent(event);
         }
-        //TextView viewQuiz = findViewById(R.id.quizView);
+        TextView viewQuiz = findViewById(R.id.quizView);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+
                 x1 = event.getX();
                 y1 = event.getY();
                 break;
@@ -95,11 +147,13 @@ public class QuizActivity extends AppCompatActivity {
                 if (Math.abs(deltaX) > MIN_DISTANCE & Math.abs(deltaY) < MIN_DISTANCE) {
                     // Right
                     if (x2 > x1) {
+                        Log.d(TAG, "right");
                         answers += QuizQuestion.YES;
                         index += 1;
                     }
                     // Left
                     else {
+                        Log.d(TAG, "left");
                         answers += QuizQuestion.NO;
                         index += 1;
                     }
@@ -113,10 +167,10 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 }
                 if (index == 10) {
-                    //viewQuiz.setText(R.string.All_done);
+                    viewQuiz.setText(R.string.All_done);
                     break;
                 } else {
-                    //viewQuiz.setText(listOfQuestions.get(index));
+                    viewQuiz.setText(listOfQuestions.get(index));
                 }
         }
         return super.onTouchEvent(event);
