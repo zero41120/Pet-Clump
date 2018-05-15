@@ -20,13 +20,14 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     var query: Query
     
     let table: UITableView
-    
+    let callerView: UIViewController
 
     
-    init(myPet: PetProfile, downloadLimit: Int, table: UITableView){
+    init(myPet: PetProfile, downloadLimit: Int, table: UITableView, callerView: UIViewController){
         self.profile = myPet
         self.downloadLimit = downloadLimit
         self.table = table
+        self.callerView = callerView
         query = db.collection("pets").limit(to: self.downloadLimit)
         super.init()
         self.downloadMore()
@@ -59,22 +60,48 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Setups for cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "MatchingCell") as! MatchingCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        hideCell(cell: cell)
+        let tapl = UITapGestureRecognizer(target: self, action: #selector(viewMatching(sender:)))
+        let tapr = UITapGestureRecognizer(target: self, action: #selector(viewMatching(sender:)))
         let index = indexPath.row * 2
+
+        // Set required cell
         let left = element[index]
+        cell.imageLeft.tag = index
         cell.labelLeft.text = left.getMatchPercent()
         cell.imageLeft.load(url: left.getPhotoUrl())
-        if element.indices.contains(index + 1) {
-            cell.labelRight.layer.isHidden = false
-            cell.imageRight.layer.isHidden = false
-            let right =  element[index + 1]
-            cell.labelRight.text = right.getMatchPercent()
-            cell.imageRight.load(url: right.getPhotoUrl())
+        cell.imageLeft.isUserInteractionEnabled = true
+        cell.imageLeft.addGestureRecognizer(tapl)
+
+        // Finish setup if optional is empty
+        if !element.indices.contains(index + 1) {
+            cell.labelRight.layer.isHidden = true
+            cell.imageRight.layer.isHidden = true
+            return cell
         }
         
+        // Set optional cell
+        let right =  element[index + 1]
+        cell.imageRight.tag = index + 1
+        cell.labelRight.text = right.getMatchPercent()
+        cell.imageRight.load(url: right.getPhotoUrl())
+        cell.imageRight.isUserInteractionEnabled = true
+        cell.imageRight.addGestureRecognizer(tapr)
+        cell.labelRight.layer.isHidden = false
+        cell.imageRight.layer.isHidden = false
         return cell
+    }
+    
+    @objc func viewMatching(sender: UITapGestureRecognizer){
+        print("tapped")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchingViewVC
+        let index = sender.view!.tag
+        pdv.petProfile = PetProfile()
+        pdv.petProfile!.copy(FromProfile: element[index].getProfile())
+        callerView.present(pdv, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,10 +113,5 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
         if indexPath.row == last {
             self.downloadMore()
         }
-    }
-    
-    func hideCell(cell: MatchingCell){
-        cell.labelRight.layer.isHidden = true
-        cell.imageRight.layer.isHidden = true
     }
 }

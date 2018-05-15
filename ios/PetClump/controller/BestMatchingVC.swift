@@ -28,7 +28,7 @@ class BestMatchingVC: UIViewController, ProfileDownloader{
     }
     
     func didCompleteDownload() {
-        matchingDelegate = MatchingTableDelegate(myPet: petProfile!, downloadLimit: 30, table: matchingTable)
+        matchingDelegate = MatchingTableDelegate(myPet: petProfile!, downloadLimit: 30, table: matchingTable, callerView: self)
         matchingTable.delegate = matchingDelegate
         matchingTable.dataSource = matchingDelegate
     }

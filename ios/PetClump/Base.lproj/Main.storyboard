@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -110,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="375.19999999999999" y="45.812807881773402"/>
+            <point key="canvasLocation" x="-756" y="108"/>
         </scene>
         <!--User Data ViewVC-->
         <scene sceneID="J6j-EU-Tek">
@@ -1261,7 +1262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJF-RG-KqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="779.55665024630548"/>
+            <point key="canvasLocation" x="-12" y="1937"/>
         </scene>
         <!--Best-->
         <scene sceneID="agz-v0-3UP">
@@ -1446,62 +1447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZF-l2-2Ro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1826" y="1706"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="cts-t2-OFa">
-            <objects>
-                <viewController id="KDn-PN-pCI" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mFz-sc-3QJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lV9-F3-Czl">
-                                <rect key="frame" x="67" y="159" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name:" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T1k-37-ljx">
-                                <rect key="frame" x="67" y="302" width="82" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dog" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="86E-wO-KPB">
-                                <rect key="frame" x="234" y="302" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" Years old" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" background="gift" translatesAutoresizingMaskIntoConstraints="NO" id="NIk-Wp-WdJ">
-                                <rect key="frame" x="67" y="416" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="In the house" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AmW-8A-hRh">
-                                <rect key="frame" x="67" y="474" width="104" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rF-ui-bhB">
-                                <rect key="frame" x="150" y="684" width="75" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Friend"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="6uI-OZ-l82"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jf6-Fq-T6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2836" y="1000"/>
+            <point key="canvasLocation" x="1775" y="1184"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="iAs-Kj-kzB">
@@ -1534,6 +1480,137 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wCR-64-1E0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4553" y="2589"/>
+        </scene>
+        <!--Matching ViewVC-->
+        <scene sceneID="JIM-3w-2ca">
+            <objects>
+                <viewController storyboardIdentifier="MatchingViewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z42-vT-1sh" customClass="MatchingViewVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0JX-jb-K2z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yx-Oe-7dS" userLabel="Top DIvider">
+                                <rect key="frame" x="0.0" y="403" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Aag-SP-9Zm"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ayj-me-f0r">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="fex-Rb-NGW">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="5fF-fL-WRt">
+                                            <connections>
+                                                <action selector="tapExit:" destination="Z42-vT-1sh" id="YuO-98-xc4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nd4-6v-9f8">
+                                <rect key="frame" x="15" y="412" width="345" height="36.333333333333314"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Name">
+                                        <attributes>
+                                            <font key="NSFont" size="30" name="VarelaRound"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyb-8G-Rjb">
+                                <rect key="frame" x="20" y="477" width="340" height="20.666666666666686"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Species">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ay-VrF">
+                                <rect key="frame" x="20" y="453.33333333333331" width="340" height="20.666666666666686"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Age">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uss-Ct-Npa" customClass="ImageScrollerView" customModule="PetClump" customModuleProvider="target">
+                                <rect key="frame" x="30" y="88" width="315" height="315"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uss-Ct-Npa" secondAttribute="height" multiplier="1:1" id="WRv-QQ-ZhR"/>
+                                </constraints>
+                            </scrollView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CTT-6H-a41">
+                                <rect key="frame" x="15" y="514.66666666666663" width="345" height="266.66666666666663"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">BioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioas</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Eo-8Y-1Fk" userLabel="Bot Divider">
+                                <rect key="frame" x="0.0" y="505.66666666666669" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="KRW-Mc-5vb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wyb-8G-Rjb" firstAttribute="leading" secondItem="TKM-sw-iTd" secondAttribute="leading" constant="20" id="1GL-VQ-R5Q"/>
+                            <constraint firstAttribute="trailing" secondItem="9yx-Oe-7dS" secondAttribute="trailing" id="38D-kP-3sp"/>
+                            <constraint firstItem="TKM-sw-iTd" firstAttribute="trailing" secondItem="dgc-ay-VrF" secondAttribute="trailing" constant="15" id="6Qp-Ht-4Rp"/>
+                            <constraint firstItem="0Eo-8Y-1Fk" firstAttribute="leading" secondItem="0JX-jb-K2z" secondAttribute="leading" id="6gd-ip-VaP"/>
+                            <constraint firstItem="CTT-6H-a41" firstAttribute="top" secondItem="0Eo-8Y-1Fk" secondAttribute="bottom" constant="8" id="8j9-KC-eho"/>
+                            <constraint firstItem="9yx-Oe-7dS" firstAttribute="top" secondItem="uss-Ct-Npa" secondAttribute="bottom" id="9ur-kZ-Tsq"/>
+                            <constraint firstItem="uss-Ct-Npa" firstAttribute="leading" secondItem="TKM-sw-iTd" secondAttribute="leading" constant="30" id="MnQ-wh-kUF"/>
+                            <constraint firstItem="nd4-6v-9f8" firstAttribute="leading" secondItem="TKM-sw-iTd" secondAttribute="leading" constant="15" id="UNj-dH-9sW"/>
+                            <constraint firstItem="Ayj-me-f0r" firstAttribute="trailing" secondItem="TKM-sw-iTd" secondAttribute="trailing" id="Una-6w-WG1"/>
+                            <constraint firstItem="nd4-6v-9f8" firstAttribute="top" secondItem="9yx-Oe-7dS" secondAttribute="bottom" constant="8" id="VnQ-NI-CpD"/>
+                            <constraint firstItem="TKM-sw-iTd" firstAttribute="trailing" secondItem="wyb-8G-Rjb" secondAttribute="trailing" constant="15" id="Xmu-Gw-VfR"/>
+                            <constraint firstItem="dgc-ay-VrF" firstAttribute="leading" secondItem="TKM-sw-iTd" secondAttribute="leading" constant="20" id="cbc-v3-Yay"/>
+                            <constraint firstItem="TKM-sw-iTd" firstAttribute="trailing" secondItem="nd4-6v-9f8" secondAttribute="trailing" constant="15" id="ccr-rm-4VX"/>
+                            <constraint firstItem="wyb-8G-Rjb" firstAttribute="top" secondItem="dgc-ay-VrF" secondAttribute="bottom" constant="3" id="d7T-8f-XKI"/>
+                            <constraint firstItem="0Eo-8Y-1Fk" firstAttribute="top" secondItem="wyb-8G-Rjb" secondAttribute="bottom" constant="8" id="gF0-Yn-Pg8"/>
+                            <constraint firstItem="Ayj-me-f0r" firstAttribute="top" secondItem="TKM-sw-iTd" secondAttribute="top" id="iVn-5T-taH"/>
+                            <constraint firstAttribute="trailing" secondItem="uss-Ct-Npa" secondAttribute="trailing" constant="30" id="jZ9-oV-V5e"/>
+                            <constraint firstItem="TKM-sw-iTd" firstAttribute="trailing" secondItem="CTT-6H-a41" secondAttribute="trailing" constant="15" id="mCl-sR-2he"/>
+                            <constraint firstItem="dgc-ay-VrF" firstAttribute="top" secondItem="nd4-6v-9f8" secondAttribute="bottom" constant="5" id="nHG-9L-jPK"/>
+                            <constraint firstItem="9yx-Oe-7dS" firstAttribute="leading" secondItem="0JX-jb-K2z" secondAttribute="leading" id="onF-T2-5zj"/>
+                            <constraint firstItem="uss-Ct-Npa" firstAttribute="top" secondItem="Ayj-me-f0r" secondAttribute="bottom" id="ubb-j8-MR1"/>
+                            <constraint firstAttribute="trailing" secondItem="0Eo-8Y-1Fk" secondAttribute="trailing" id="wml-f2-jG9"/>
+                            <constraint firstItem="CTT-6H-a41" firstAttribute="leading" secondItem="TKM-sw-iTd" secondAttribute="leading" constant="15" id="xkN-6K-ba0"/>
+                            <constraint firstItem="Ayj-me-f0r" firstAttribute="leading" secondItem="TKM-sw-iTd" secondAttribute="leading" id="y2s-iy-TgS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TKM-sw-iTd"/>
+                    </view>
+                    <connections>
+                        <outlet property="ageLabel" destination="dgc-ay-VrF" id="ChB-qd-9Zi"/>
+                        <outlet property="bioTextField" destination="CTT-6H-a41" id="vAW-W8-5a2"/>
+                        <outlet property="imageScroller" destination="uss-Ct-Npa" id="Gu1-2v-7yy"/>
+                        <outlet property="nameLabel" destination="nd4-6v-9f8" id="loz-4N-Qvl"/>
+                        <outlet property="specieLabel" destination="wyb-8G-Rjb" id="jtg-Pp-QO7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U3n-U3-sUj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1773.5999999999999" y="1936.6995073891626"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="A7D-Po-VFU">
@@ -1743,11 +1820,10 @@
                     </items>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="-607" y="281"/>
+            <point key="canvasLocation" x="-756" y="780"/>
         </scene>
     </scenes>
     <resources>
-        <image name="gift" width="16" height="16"/>
         <image name="twtr-play.png" width="70" height="70"/>
     </resources>
     <inferredMetricsTieBreakers>

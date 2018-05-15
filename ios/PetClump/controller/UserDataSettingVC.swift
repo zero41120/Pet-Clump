@@ -49,10 +49,10 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
         
         // Set up genderpicker responder
         genderPicker = UIPickerView()
+        genderPickerDelegate     = GenderInput(textField: genderTextField)
         genderPicker!.frame      = CGRect(0,0,self.view.bounds.width, 280.0)
         genderPicker!.delegate   = genderPickerDelegate
         genderPicker!.dataSource = genderPickerDelegate
-        genderPickerDelegate     = GenderInput(textField: genderTextField)
         genderTextField.delegate = genderPickerDelegate
         genderTextField.inputView = genderPicker
         profile.download(uid: uid, completion: self)

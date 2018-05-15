@@ -14,15 +14,12 @@ class MatchingCell: UITableViewCell {
     @IBOutlet weak var imageLeft: UIImageView!
     @IBOutlet weak var labelRight: UILabel!
     @IBOutlet weak var labelLeft: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }
