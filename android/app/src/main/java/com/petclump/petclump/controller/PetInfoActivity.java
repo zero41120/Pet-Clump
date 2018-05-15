@@ -143,7 +143,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
     private void setupUI() {
 
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
-        Button_return = findViewById(R.id.Button_return);
+        //Button_return = findViewById(R.id.Button_return);
         Button_save = findViewById(R.id.button_save);
         Button_delete = findViewById(R.id.Button_delete_pet);
 
@@ -181,8 +181,8 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             i += 1;
         }
         ArrayAdapter<String> adapter_specie = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, specie_array_string);
-        adapter_specie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.spinner_item, specie_array_string);
+        adapter_specie.setDropDownViewResource(android.R.layout.simple_spinner_item);
         pet_specie.setAdapter(adapter_specie);
 
         pet_primary_name = findViewById(R.id.title_pet_name);
@@ -236,12 +236,13 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             } else {
                 startActivity(new Intent(this, QuizActivity.class) {{
                     putExtra("sequence", sequence);
+                    Log.d(TAG, String.valueOf(sequence));
                 }});
             }
         });
-        Button_return.setOnClickListener(v ->
-                finish()
-        );
+//        Button_return.setOnClickListener(v ->
+//                finish()
+//        );
 
         Button_delete.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

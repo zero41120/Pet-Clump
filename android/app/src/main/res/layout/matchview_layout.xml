@@ -16,7 +16,8 @@
             android:id="@+id/pet_matchview_image"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:background="@color/grey"/>
+            android:background="@color/grey"
+            />
         <TextView
             android:id="@+id/pet_matchview_label"
             android:layout_width="match_parent"

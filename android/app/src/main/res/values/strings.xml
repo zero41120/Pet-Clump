@@ -96,7 +96,7 @@
     <string name="Fri">Fri</string>
     <string name="Sat">Sat</string>
     <string name="Sun">Sun</string>
-    <string name="View_match_as">View match as</string>
+    <string name="View_match_as">View match as...</string>
     <string name="Best_match">Best match</string>
     <string name="Best_location">Best location</string>
     <string name="Friends">Friends</string>
@@ -173,5 +173,16 @@
     <string name="Can_you_bear_your_pet_to_date_with_other_pets_and_make_you_lonely">Can you bear your pet to date with other pets and make you lonely?</string>
     <string name="All_done">All done!</string>
     <string name="You_have_answered_all_questions">You have answered all questions!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_matching_tab">MatchingTab</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="Local">Local</string>
+    <string name="Report_profile">Report profile</string>
 
 </resources>

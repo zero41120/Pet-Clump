@@ -20,7 +20,7 @@
         android:text="@string/Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:text="@string/Gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_label" />
 
     <TextView
@@ -51,7 +51,7 @@
         android:text="@string/Date_of_birth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender_label" />
 
 
@@ -82,11 +82,11 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="?attr/colorAccent"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
         app:civ_shadow_color="#0d80e5"
         app:civ_shadow_radius="10"
+        android:src="@drawable/photo_placeholder3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profile_pet2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -100,12 +100,12 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="?attr/colorAccent"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
         app:civ_shadow_color="#0d80e5"
         app:civ_shadow_radius="10"
+        android:src="@drawable/photo_placeholder3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profile_pet3"
         app:layout_constraintHorizontal_bias="0.5"
@@ -119,12 +119,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
 
-        android:background="?attr/colorAccent"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
         app:civ_shadow_color="#0d80e5"
         app:civ_shadow_radius="10"
+        android:src="@drawable/photo_placeholder3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -169,13 +169,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.079" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="390dp" />
-
     <TextView
         android:id="@+id/title_match_range_label"
         android:layout_width="wrap_content"
@@ -188,7 +181,7 @@
         android:text="@string/Match_range"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthday_label" />
 
     <TextView
@@ -197,14 +190,14 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
-        android:text="@string/Within_100_miles"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_match_range_label" />
 
     <TextView
@@ -213,15 +206,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
-        android:maxLength="20"
-        android:text="Hey boy"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pet_name_label" />
 
     <TextView
@@ -230,14 +222,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
-        android:text="Woman"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pet_specie_label" />
 
     <TextView
@@ -246,14 +238,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
-        android:text="May 19 1997"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
-        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pet_age" />
 
     <ImageButton

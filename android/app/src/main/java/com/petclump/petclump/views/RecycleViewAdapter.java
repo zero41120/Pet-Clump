@@ -20,16 +20,11 @@ import com.petclump.petclump.models.PetProfile;
 import java.util.List;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
-    private int visibleThreshold = 6;
-    private int lastVisibleItem, totalItemCount;
-    private boolean loading;
     private List<MatchingProfile> pets;
     private Context mContext;
 
-    public RecycleViewAdapter(MatchingViewActivity matchingViewActivity, List<MatchingProfile> pets) {
-        this.mContext = matchingViewActivity;
+    public RecycleViewAdapter(Context c, List<MatchingProfile> pets) {
+        this.mContext = c;
         this.pets = pets;
     }
 

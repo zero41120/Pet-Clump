@@ -37,11 +37,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:text="@string/Gender"
-            app:layout_constraintTop_toBottomOf="@id/user_name_editText"
-
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintHorizontal_bias="0.071"
-            app:layout_constraintStart_toEndOf="@id/guideline1" />
+            app:layout_constraintStart_toEndOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/user_name_editText" />
 
         <TextView
             android:id="@+id/pet_age"
@@ -133,14 +133,14 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/user_dob_month"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.348" />
+            app:layout_constraintVertical_bias="0.357" />
 
         <Spinner
             android:id="@+id/user_dob_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="410dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="410dp"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -183,12 +183,11 @@
             android:layout_marginLeft="60dp"
             android:layout_marginRight="130dp"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="24dp"
+            android:gravity="center"
             android:text="@string/No_preferred_range"
             android:textAlignment="center"
-            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@+id/user_match_value_seekbar" />
 
