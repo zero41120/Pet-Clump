@@ -24,12 +24,10 @@ class ImageScrollerView: UIScrollView {
         
         var x : CGFloat = 0.0
         let y : CGFloat = 0.0
-        let imageSize = CGSize(width: width, height: height)
         for (index, url) in urls.enumerated() {
             x = self.frame.width * CGFloat(index)
             let imageView = UIImageView(frame: CGRect(x: x, y: y, width: width, height: height))
             imageView.load(url: url)
-            imageView.image = imageView.image?.crop(to: imageSize)
             self.addSubview(imageView)
         }
     }
