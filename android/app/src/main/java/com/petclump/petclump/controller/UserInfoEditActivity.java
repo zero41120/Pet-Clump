@@ -29,7 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,View.OnClickListener {
+public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,ImageView.OnClickListener {
     private static final String TAG = "EditUser";
     String day_array_string[], year_array_string[];
     private int year;
@@ -156,7 +156,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             user_match_range_seekbar.setProgress(stringToProgress(range));
             // setup free schedule
             FreeSchedule freeSchedule = profile.getFreeTime();
-            //Toast.makeText(this, "freetime:"+freeSchedule, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "freetime:"+freeSchedule, Toast.LENGTH_SHORT).show();
             for(int i=1; i<8; i++) {
                 for(int j=1; j<4; j++) {
                     String imageID = "sch" + i + j;
@@ -274,13 +274,13 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
                 String imageID = "sch" + i + j;
                 int resID = getResources().getIdentifier(imageID, "id", getPackageName());
                 ImageView t = findViewById(resID);
-                if((Integer)t.getTag() == gray_id)
+                if((Integer)t.getTag() == R.drawable.schedule_gray)
                     freetime += "0";
                 else
                     freetime += "1";
             }
         }
-        Log.d("freetime:",freetime);
+        Toast.makeText(this, "freetime:"+freetime, Toast.LENGTH_SHORT).show();
         profile.setFreeTime(freetime);
         profile.upload(user.getUid(),()->{
             Toast.makeText(this, "Upload successfully!", Toast.LENGTH_SHORT).show();
@@ -299,9 +299,9 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onClick(View v) {
-        //Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show();
         ImageView i = findViewById(v.getId());
-        if((Integer)i.getTag() == gray_id){
+        if((Integer)i.getTag() == R.drawable.schedule_gray){
             i.setTag(R.drawable.schedule_green);
             i.setImageResource(R.drawable.schedule_green);
             Log.d("ClickView to green",String.valueOf((Integer)i.getTag()));
