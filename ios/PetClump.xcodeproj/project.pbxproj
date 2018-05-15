@@ -12,7 +12,7 @@
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
 		29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1F20855EB70059E2E4 /* Bolts.framework */; };
-		2934864520AA4E1600143474 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864420AA4E1600143474 /* ImageDownloader.swift */; };
+		2934864520AA4E1600143474 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864420AA4E1600143474 /* CachedImage.swift */; };
 		2934864820AA510900143474 /* ImageScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864720AA510900143474 /* ImageScroller.swift */; };
 		2934864A20AA511600143474 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864920AA511600143474 /* ShadowView.swift */; };
 		2934864C20AA59A300143474 /* ImageScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864B20AA59A300143474 /* ImageScrollerView.swift */; };
@@ -81,7 +81,7 @@
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
 		29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29309A1F20855EB70059E2E4 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2934864420AA4E1600143474 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		2934864420AA4E1600143474 /* CachedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 		2934864720AA510900143474 /* ImageScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScroller.swift; sourceTree = "<group>"; };
 		2934864920AA511600143474 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		2934864B20AA59A300143474 /* ImageScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 				295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */,
 				29B19365208D31BB00A59783 /* Profile.swift */,
 				298BCFEC20969349007A6846 /* OwnerProfile.swift */,
-				2934864420AA4E1600143474 /* ImageDownloader.swift */,
+				2934864420AA4E1600143474 /* CachedImage.swift */,
 				298BCFF0209693A7007A6846 /* PetProfile.swift */,
 				294C94C72097E35E00266533 /* QuizQuestion.swift */,
 				29F104F5209FD80B006E84E0 /* Deletable.swift */,
@@ -613,7 +613,7 @@
 				8496347820A8DEC900719162 /* ChatVC.swift in Sources */,
 				298FEB63209393C30018F368 /* PetDataViewVC.swift in Sources */,
 				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,
-				2934864520AA4E1600143474 /* ImageDownloader.swift in Sources */,
+				2934864520AA4E1600143474 /* CachedImage.swift in Sources */,
 				2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */,
 				8496347D20A8E69800719162 /* PeerTableViewCell.swift in Sources */,
 				84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */,

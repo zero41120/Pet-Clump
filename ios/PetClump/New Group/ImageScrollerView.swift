@@ -16,17 +16,15 @@ class ImageScrollerView: UIScrollView {
         self.showsHorizontalScrollIndicator = false
         self.isPagingEnabled = true
         
+        let height = self.frame.height
         let width = self.frame.width
         let scrollWidth = CGFloat(urls.count) * width
-        let height = self.frame.height
 
         self.contentSize = CGSize(width: scrollWidth, height: height)
         
-        var x : CGFloat = 0.0
-        let y : CGFloat = 0.0
         for (index, url) in urls.enumerated() {
-            x = self.frame.width * CGFloat(index)
-            let imageView = UIImageView(frame: CGRect(x: x, y: y, width: width, height: height))
+            let x = self.frame.width * CGFloat(index)
+            let imageView = UIImageView(frame: CGRect(x: x, y: 0.0, width: width, height: height))
             imageView.load(url: url)
             self.addSubview(imageView)
         }

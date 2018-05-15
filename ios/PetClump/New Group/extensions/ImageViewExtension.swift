@@ -32,28 +32,22 @@ extension UIImageView {
     }
     
     func load(url: String){
+        print("Called load with url \(url)")
         if url == "" {
             self.image = nil
             return
         }
-        load(url: url, completion: nil)
+        CachedImage.getInstance().download(url: url) { (image) in
+            self.image = image
+        }
     }
     
     func load(url: String, completion: (()-> Void)?) {
-        load(url: URL(string: url)!, completion: completion)
-    }
-    
-    func load(url: URL, completion: (()-> Void)? ) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                        if completion != nil {
-                            completion!()
-                        }
-                    }
-                }
+        print("Called load")
+        CachedImage.getInstance().download(url: url) { (image) in
+            self.image = image
+            if completion != nil{
+                completion!()
             }
         }
     }
