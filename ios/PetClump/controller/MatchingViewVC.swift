@@ -18,7 +18,7 @@ class MatchingViewVC: UIViewController{
     @IBOutlet weak var specieLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var bioTextField: UITextView!
-    @IBOutlet weak var imageScroller: ImageScroller!
+    @IBOutlet weak var imageScroller: ImageScrollerView!
     
     
     var imageIndex = 0
@@ -55,9 +55,9 @@ class MatchingViewVC: UIViewController{
                 self.images.append(image)
             }
             DispatchQueue.main.async {
-                self.imageScroller.delegate = self
-                self.imageScroller.scrollView.bounces = false
                 self.imageScroller.setupScrollerWithImages(images: self.images)
+                print(self.view.frame)
+                print(self.imageScroller.frame)
             }
         }
         
