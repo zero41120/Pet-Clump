@@ -16,8 +16,6 @@ import com.petclump.petclump.R;
 import java.util.List;
 //Thanks to the library provider! https://github.com/yuyakaido/CardStackView
 public class QuizRecycleViewAdapter extends ArrayAdapter<String> {
-    private List<String> quizQuestions;
-    private Context mContext;
 
     public QuizRecycleViewAdapter(Context c) {
         super(c, 0);
