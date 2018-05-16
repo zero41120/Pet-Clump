@@ -22,7 +22,6 @@ import Firebase
  */
 class OwnerProfile: Profile{
     
-    private static let cache = NSCache<NSString, OwnerProfile>()
     private static let COLLECTION_NAME = "users"
     
     var id = ""
@@ -58,12 +57,6 @@ class OwnerProfile: Profile{
     
     func download(completion: (() -> Void)?) {
         guard let _ = Auth.auth().currentUser?.uid else { return }
-        if let profile = OwnerProfile.cache.object(forKey: NSString(string: self.id)){
-            self.fetchData(refObj: profile.generateDictionary())
-            guard (completion != nil) else { return }
-            completion!()
-            return
-        }
         
         let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(self.id)
         docRef.getDocument { (document, error) in
@@ -84,7 +77,6 @@ class OwnerProfile: Profile{
                 self.distancePerference = refObj["distancePerference"] as? Int ?? 25
                 self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
             }
-            OwnerProfile.cache.setObject(self, forKey: NSString(string: self.id))
             guard (completion != nil) else { return }
             completion!()
         }
