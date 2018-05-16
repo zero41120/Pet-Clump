@@ -56,18 +56,13 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".controller.PetInfoEditActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".controller.MatchingActivity" />
         <activity android:name=".controller.QuizActivity" />
-        <activity android:name=".controller.MatchingViewActivity" />
         <activity android:name=".controller.MatchingViewProfileActivity" />
         <activity
             android:name=".controller.MatchingTab"
             android:label="@string/title_activity_matching_tab"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.ChatingActivity" />
         <activity android:name=".controller.ChattingActivity"></activity>
     </application>
 

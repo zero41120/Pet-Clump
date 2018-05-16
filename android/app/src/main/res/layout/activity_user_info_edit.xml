@@ -12,87 +12,124 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         tools:context=".controller.UserInfoEditActivity">
-
-        <TextView
-            android:id="@+id/pet_name_label"
-            style="@style/fontStyle4"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/Name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.071"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.086" />
+            android:orientation="vertical"
+            android:id="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@id/about_my_pet_label">
+            <TextView
+                android:id="@+id/pet_name_label"
+                style="@style/fontStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Name" />
+            <EditText
+                android:id="@+id/user_name_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:maxLength="20"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:background="@drawable/pet_info_background"/>
+            <TextView
+                android:id="@+id/pet_specie_label"
+                style="@style/fontStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Gender" />
+            <RelativeLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="@drawable/pet_info_background">
+            <Spinner
+                android:id="@+id/user_select_gender"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" /></RelativeLayout>
+            <TextView
+                android:id="@+id/pet_age"
+                style="@style/fontStyle4"
+                android:text="@string/Date_of_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp">
+                <Spinner
+                    android:id="@+id/user_dob_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/pet_specie_label"
-            style="@style/fontStyle4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/Gender"
-            app:layout_constraintEnd_toEndOf="parent"
+                <Spinner
+                    android:id="@+id/user_dob_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            app:layout_constraintHorizontal_bias="0.071"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/user_name_editText" />
-
-        <TextView
-            android:id="@+id/pet_age"
-            style="@style/fontStyle4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/Date_of_birth"
-            app:layout_constraintBottom_toTopOf="@+id/user_dob_month"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.088"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/user_select_gender" />
-
-        <TextView
-            android:id="@+id/pet_bio_label"
-            style="@style/fontStyle4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/Match_range"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.089"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/user_dob_day"
-            app:layout_constraintVertical_bias="0.038" />
-
-
-        <RadioGroup
-            android:id="@+id/radio_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/pet_specie_label"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.328">
-
-
-        </RadioGroup>
-
+                <Spinner
+                    android:id="@+id/user_dob_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/pet_bio_label"
+                style="@style/fontStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Match_range" />
+            <SeekBar
+                android:id="@+id/user_match_value_seekbar"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="300dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:max="3"
+                android:progress="3" />
+            <TextView
+                android:id="@+id/user_match_value"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/navy"
+                android:layout_marginLeft="64dp"
+                android:layout_marginStart="64dp"
+                android:text="@string/No_preferred_range"
+                android:textAlignment="center" />
+            <TextView
+                android:id="@+id/free_schedule_label"
+                style="@style/fontStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Free_schedule" />
+        </LinearLayout>
         <TextView
             android:id="@+id/about_my_pet_label"
             android:layout_width="wrap_content"
@@ -110,87 +147,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/user_dob_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="410dp"
-            app:layout_constraintEnd_toStartOf="@+id/user_dob_day"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/user_dob_year"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Spinner
-            android:id="@+id/user_dob_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/user_dob_month"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.357" />
-
-        <Spinner
-            android:id="@+id/user_dob_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="410dp"
-            app:layout_constraintStart_toEndOf="@id/guideline1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <SeekBar
-            android:id="@+id/user_match_value_seekbar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="300dp"
-            android:layout_height="38dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:max="3"
-            android:progress="3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.234"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/pet_bio_label"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Spinner
-            android:id="@+id/user_select_gender"
-            android:layout_width="250dp"
-            android:layout_height="23dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="@id/pet_specie_label"
-            app:layout_constraintTop_toBottomOf="@id/pet_specie_label"
-
-            />
-
-        <TextView
-            android:id="@+id/user_match_value"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="130dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="130dp"
-            android:layout_marginStart="60dp"
-            android:gravity="center"
-            android:text="@string/No_preferred_range"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/user_match_value_seekbar" />
-
         <Button
             android:id="@+id/save_button"
             android:layout_width="69dp"
@@ -198,7 +154,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:background="@color/grey"
+            android:background="@drawable/chat_bubble_purple"
             android:text="@string/Save"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -217,7 +173,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background="@color/grey"
+            android:background="@drawable/cancel_button_background"
             android:text="@string/Cancel"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -228,38 +184,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.007" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="21dp" />
 
-        <EditText
-            android:id="@+id/user_name_editText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:maxLength="20"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.236"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pet_name_label" />
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="373dp"
             android:layout_height="504dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_match_value">
+            app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -549,19 +483,7 @@
                 android:layout_height="match_parent" />
         </TableLayout>
 
-        <TextView
-            android:id="@+id/free_schedule_label"
-            style="@style/fontStyle4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="52dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="13dp"
-            android:text="@string/Free_schedule"
-            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_match_value"
-            app:layout_constraintVertical_bias="0.695" />
+
 
 
     </android.support.constraint.ConstraintLayout>

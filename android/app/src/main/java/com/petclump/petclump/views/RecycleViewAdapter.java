@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.petclump.petclump.controller.MatchingViewActivity;
 import com.petclump.petclump.controller.MatchingViewProfileActivity;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.DownloadImageTask;

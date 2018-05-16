@@ -7,12 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.QuizQuestion;
+import com.petclump.petclump.models.protocols.ProfileUploader;
 import com.petclump.petclump.views.QuizRecycleViewAdapter;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.SwipeDirection;
@@ -24,7 +26,7 @@ import java.util.List;
  * also passed integer number of total questions to be/have been answered with key "questions"
  * ex) first time is passed 10, second time passed 20 ect
  */
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements ProfileUploader {
 
     //declarations
     private static final String TAG = "QuizActivity";
@@ -38,15 +40,20 @@ public class QuizActivity extends AppCompatActivity {
     private String petId;
     private CardStackView cardStackView;
     Integer sequence = 0;
+    TextView quizview;
 
     private Boolean isQuizReady() {
         // When download complete, index will be set to 0
         Log.d(TAG, "isQuizReady: " + index);
         if (index == 10) {
             profile.setQuiz(answers);
-            profile.upload(petId, this::finish);// Finish doesn't work, I don't know why.
-            finish();
+            profile.upload(petId, this);// Finish doesn't work, I don't know why.
+            quizview.setVisibility(View.VISIBLE);
+            cardStackView.setVisibility(View.GONE);
+            quizview.setOnClickListener(v->finish());
+
         }
+
         return index > -1 && index < 10;
     }
 
@@ -54,7 +61,9 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        //TextView quizView = (TextView) findViewById(R.id.quizView);
+        quizview = (TextView) findViewById(R.id.quizView);
+        cardStackView = (CardStackView) findViewById(R.id.quiz_card_stack_view);
+        quizview.setVisibility(View.GONE);
         c = getApplicationContext();
         index = -1;
         sequence = getIntent().getIntExtra("sequence", 0);
@@ -76,7 +85,7 @@ public class QuizActivity extends AppCompatActivity {
 
         QuizRecycleViewAdapter quizRecycleViewAdapter = new QuizRecycleViewAdapter(this);
         quizRecycleViewAdapter.addAll(listOfQuestions);
-        cardStackView = (CardStackView) findViewById(R.id.quiz_card_stack_view);
+        //cardStackView = (CardStackView) findViewById(R.id.quiz_card_stack_view);
         cardStackView.setAdapter(quizRecycleViewAdapter);
         cardStackView.setCardEventListener(new CardStackView.CardEventListener() {
             @Override
@@ -126,52 +135,57 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
-    //function listens for screen touches and does things based on gesture
-    public boolean onTouchEvent(MotionEvent event) {
-        if (!isQuizReady()) {
-            return super.onTouchEvent(event);
-        }
-        TextView viewQuiz = findViewById(R.id.quizView);
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
+    @Override
+    public void didCompleteUpload() {
 
-                x1 = event.getX();
-                y1 = event.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = event.getX();
-                y2 = event.getY();
-                float deltaX = x2 - x1, deltaY = y2 - y1;
-
-                if (Math.abs(deltaX) > MIN_DISTANCE & Math.abs(deltaY) < MIN_DISTANCE) {
-                    // Right
-                    if (x2 > x1) {
-                        Log.d(TAG, "right");
-                        answers += QuizQuestion.YES;
-                        index += 1;
-                    }
-                    // Left
-                    else {
-                        Log.d(TAG, "left");
-                        answers += QuizQuestion.NO;
-                        index += 1;
-                    }
-                } else {
-                    // UP
-                    if (Math.abs(deltaY) > MIN_DISTANCE & Math.abs(deltaX) < MIN_DISTANCE) {
-                        if (y1 > y2) {
-                            answers += QuizQuestion.SKIP;
-                            index += 1;
-                        }
-                    }
-                }
-                if (index == 10) {
-                    viewQuiz.setText(R.string.All_done);
-                    break;
-                } else {
-                    viewQuiz.setText(listOfQuestions.get(index));
-                }
-        }
-        return super.onTouchEvent(event);
     }
+
+//    //function listens for screen touches and does things based on gesture
+//    public boolean onTouchEvent(MotionEvent event) {
+//        if (!isQuizReady()) {
+//            return super.onTouchEvent(event);
+//        }
+//        TextView viewQuiz = findViewById(R.id.quizView);
+//        switch (event.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//
+//                x1 = event.getX();
+//                y1 = event.getY();
+//                break;
+//            case MotionEvent.ACTION_UP:
+//                x2 = event.getX();
+//                y2 = event.getY();
+//                float deltaX = x2 - x1, deltaY = y2 - y1;
+//
+//                if (Math.abs(deltaX) > MIN_DISTANCE & Math.abs(deltaY) < MIN_DISTANCE) {
+//                    // Right
+//                    if (x2 > x1) {
+//                        Log.d(TAG, "right");
+//                        answers += QuizQuestion.YES;
+//                        index += 1;
+//                    }
+//                    // Left
+//                    else {
+//                        Log.d(TAG, "left");
+//                        answers += QuizQuestion.NO;
+//                        index += 1;
+//                    }
+//                } else {
+//                    // UP
+//                    if (Math.abs(deltaY) > MIN_DISTANCE & Math.abs(deltaX) < MIN_DISTANCE) {
+//                        if (y1 > y2) {
+//                            answers += QuizQuestion.SKIP;
+//                            index += 1;
+//                        }
+//                    }
+//                }
+//                if (index == 10) {
+//                    viewQuiz.setText(R.string.All_done);
+//                    break;
+//                } else {
+//                    viewQuiz.setText(listOfQuestions.get(index));
+//                }
+//        }
+//        return super.onTouchEvent(event);
+//    }
 }

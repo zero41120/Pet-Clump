@@ -261,11 +261,6 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         });
 
 
-//        Button_edit.setOnClickListener(v->{
-//            Intent i = new Intent(this, PetInfoEditActivity.class);
-//            i.putExtra("sequence", sequence);
-//            startActivity(i);
-//        });
         // upload pet information
         Button_save.setOnClickListener(v -> {
             pet.setBio(pet_bio.getText().toString());
