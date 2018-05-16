@@ -92,6 +92,10 @@ class QuizQuestion {
         return defaultQuestions.count
     }
     
+    static func isAllDone(quiz: String) -> Bool {
+        return (quiz.count + 5) > QuizQuestion.getNumberOfAvaliableQuestions()
+    }
+    
     static func  getQuestion(quizString: String, count: Int) -> [String]?{
         let beginIndex = quizString.count
         let endingIndex = beginIndex + count

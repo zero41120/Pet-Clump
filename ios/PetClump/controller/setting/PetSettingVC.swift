@@ -125,8 +125,11 @@ class PetSettingVC: UIViewController{
         petNameTextField.text       = petProfile!.name
         bioRemainingLabel.text      = "\(petProfile!.bio.count)/500"
         petSpeciesTextField.text    = petProfile!.specie
-        print("Quiz should print: (\(petProfile!.quiz.count)/100)")
-        let quizText = NSLocalizedString("Quiz (\(petProfile!.quiz.count)/\(QuizQuestion.getNumberOfAvaliableQuestions()))", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+        
+        let quizText =
+            QuizQuestion.isAllDone(quiz: petProfile!.quiz) ?
+                NSLocalizedString("All Quiz Done", comment: "This is the button that takes the user to quiz view. It shows all quiz completed for this particular pet") :
+                NSLocalizedString("Quiz (\(petProfile!.quiz.count)/\(QuizQuestion.getNumberOfAvaliableQuestions()))", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
         quizButton.setTitle(quizText, for: UIControlState.normal)
         deleteButton.addTarget(self, action: #selector(deletePet), for: .touchUpInside)
         
@@ -198,8 +201,9 @@ class PetSettingVC: UIViewController{
     
     @IBAction func tapQuiz(_ sender: Any){
         guard let uid = Auth.auth().currentUser?.uid else { return }
-
-        if petProfile!.quiz.count + 1 == QuizQuestion.getNumberOfAvaliableQuestions(){
+        
+        // Hack, since normal user can only update 10 question at a time, so add 5 will remove the array index issue.
+        if QuizQuestion.isAllDone(quiz: petProfile!.quiz){
             makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
             return;
         }
