@@ -28,3 +28,7 @@ protocol Profile {
     func download(completion: ( ()->Void )?)
 }
 
+protocol Deletable {
+    func delete()
+}
+

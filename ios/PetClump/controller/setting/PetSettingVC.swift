@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PetDataViewVC: UIViewController{
+class PetSettingVC: UIViewController{
     //Title Labels
     @IBOutlet weak var nameTitleLabel:    UILabel!
     @IBOutlet weak var infoTitleLabel:    UILabel!
@@ -49,9 +49,9 @@ class PetDataViewVC: UIViewController{
     var speciePicker:       UIPickerView?
     var ageInputDelegate:   UITextFieldDelegate?
     var nameInputDelegate:  UITextFieldDelegate?
-    var speciePickerDelegate: SpeciePicker?
+    var speciePickerDelegate: SpecieInputDelegate?
     var remainingBioDelegate: UITextViewDelegate?
-    var imagePickerDelegate:  ImagePicker?
+    var imagePickerDelegate:  ImageInputDelegate?
     
     
     @objc func keyboardWillShow(notification:NSNotification){
@@ -95,16 +95,16 @@ class PetDataViewVC: UIViewController{
     
         // Specie picker
         speciePicker = UIPickerView()
-        speciePickerDelegate = SpeciePicker(textField: petSpeciesTextField)
+        speciePickerDelegate = SpecieInputDelegate(textField: petSpeciesTextField)
         speciePicker!.delegate = speciePickerDelegate
         speciePicker!.dataSource = speciePickerDelegate
         petSpeciesTextField.delegate = speciePickerDelegate
         petSpeciesTextField.inputView = speciePicker
         
         // Text fields and textview delegates
-        nameInputDelegate = LimitTextFieldInput(count: 20)
-        ageInputDelegate  = LimitTextFieldInput(count: 50)
-        remainingBioDelegate = LimitTextViewInput(count: 500, remainingLable: bioRemainingLabel)
+        nameInputDelegate = LimitTextFieldDelegate(count: 20)
+        ageInputDelegate  = LimitTextFieldDelegate(count: 50)
+        remainingBioDelegate = LimitTextViewDelegate(count: 500, remainingLable: bioRemainingLabel)
         petBioTextView.makeTextField(delegate: remainingBioDelegate!)
         petNameTextField.delegate = nameInputDelegate
         petAgeTextField.delegate  = ageInputDelegate
@@ -153,7 +153,7 @@ class PetDataViewVC: UIViewController{
         let alert = UIAlertController(title: NSLocalizedString("Image Function", comment: "This is an alert title when user clicks on the image to upload or delete"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         // Upload image
         alert.addAction(UIAlertAction(title: NSLocalizedString("Upload a new image", comment: "This is a button to indicate user to upload a new image."), style: .default, handler: { (action: UIAlertAction!) in
-            self.imagePickerDelegate = ImagePicker(imageView: imageView, profile: self.petProfile!)
+            self.imagePickerDelegate = ImageInputDelegate(imageView: imageView, profile: self.petProfile!)
             let imagePicker = UIImagePickerController()
             imagePicker.sourceType = .photoLibrary
             imagePicker.delegate = self.imagePickerDelegate!

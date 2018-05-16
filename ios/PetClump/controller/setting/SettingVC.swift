@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataViewVC: UIViewController{
+class SettingVC: UIViewController{
     
     // Title Labels
     @IBOutlet weak var titleNameLabel:       UILabel!
@@ -87,7 +87,7 @@ class UserDataViewVC: UIViewController{
         // Present Pet data view
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetSettingVC
         pdv.petProfile = PetProfile()
         pdv.petProfile!.ownerId = uid
         pdv.petProfile!.sequence = sender.view!.tag

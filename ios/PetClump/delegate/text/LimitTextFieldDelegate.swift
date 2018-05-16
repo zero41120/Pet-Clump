@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LimitTextFieldInput: NSObject, UITextFieldDelegate {
+class LimitTextFieldDelegate: NSObject, UITextFieldDelegate {
     private let limitCount: Int
     init(count: Int){
         self.limitCount = count

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenderInput: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+class GenderInputDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     // Data for picker
     let genderPickerData: [String] = [
