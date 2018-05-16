@@ -32,7 +32,6 @@ extension UIImageView {
     }
     
     func load(url: String){
-        print("Called load with url \(url)")
         if url == "" {
             self.image = nil
             return
@@ -43,7 +42,6 @@ extension UIImageView {
     }
     
     func load(url: String, completion: (()-> Void)?) {
-        print("Called load")
         CachedImage.getInstance().download(url: url) { (image) in
             self.image = image
             if completion != nil{

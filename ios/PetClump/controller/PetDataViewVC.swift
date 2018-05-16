@@ -21,6 +21,7 @@ class PetDataViewVC: UIViewController{
     @IBOutlet weak var groupPhotoLabel:   UILabel!
 
     //Information display
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var petBioTextView:      UITextView!
     @IBOutlet weak var petAgeTextField:     UITextField!
     @IBOutlet weak var petNameTextField:    UITextField!
@@ -52,14 +53,37 @@ class PetDataViewVC: UIViewController{
     var remainingBioDelegate: UITextViewDelegate?
     var imagePickerDelegate:  ImagePicker?
     
+    
+    @objc func keyboardWillShow(notification:NSNotification){
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
+
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification){
+        
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.scrollView.contentInset = contentInset
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard (Auth.auth().currentUser != nil) else {
             self.dismiss(animated: true, completion: nil)
             return
         }
+        hideKeyboardWhenTappedAround()
         
         // Static UI
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         nameTitleLabel.text        = NSLocalizedString("Pet Name", comment: "This is the title for specifying the name of the pet")
         infoTitleLabel.text        = NSLocalizedString("INFO", comment: "This is the title for the section of the pet information")
         petSpeciesLabel.text       = NSLocalizedString("Species", comment: "This is the title for specifying the species of the pet")

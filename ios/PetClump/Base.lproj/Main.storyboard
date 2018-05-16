@@ -1139,6 +1139,7 @@
                         <outlet property="petSpeciesTextField" destination="xUI-G0-ONu" id="8ez-f9-onq"/>
                         <outlet property="quizButton" destination="xjx-Ap-wcG" id="DSb-ti-llh"/>
                         <outlet property="saveButton" destination="4L1-bn-lpm" id="Stm-cj-Lot"/>
+                        <outlet property="scrollView" destination="mdq-iv-DR5" id="pSw-xL-Zfw"/>
                         <outlet property="smallPetPicture1" destination="uff-lh-A1i" id="zDk-Ms-dgd"/>
                         <outlet property="smallPetPicture2" destination="cmJ-qH-011" id="cW3-wM-xE1"/>
                         <outlet property="smallPetPicture3" destination="gGo-vH-Php" id="eEs-A8-RSe"/>

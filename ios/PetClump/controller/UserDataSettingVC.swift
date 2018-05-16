@@ -31,6 +31,7 @@ class UserDataSettingVC: UIViewController{
     var genderPickerDelegate: GenderInput?
     var nameInputDelegate: LimitTextFieldInput?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let uid = Auth.auth().currentUser?.uid else {
