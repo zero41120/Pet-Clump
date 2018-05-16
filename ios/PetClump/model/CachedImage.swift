@@ -47,7 +47,7 @@ class CachedImage {
     
     private func writeToDisk(image: UIImage, url: String){
         do {
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
             let fileURL = documentsURL.appendingPathComponent(url.urlEscape())
             if let pngImageData = UIImagePNGRepresentation(image) {
                 try pngImageData.write(to: fileURL, options: .atomic)
@@ -56,7 +56,7 @@ class CachedImage {
     }
     
     private func readFromDick(url: String) -> UIImage?{
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
         let filePath = documentsURL.appendingPathComponent(url.urlEscape()).path
         if FileManager.default.fileExists(atPath: filePath) {
             return UIImage(contentsOfFile: filePath)
