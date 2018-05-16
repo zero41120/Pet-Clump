@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class ImageInputDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     var imageView: UIImageView?
     var petProfile: PetProfile?

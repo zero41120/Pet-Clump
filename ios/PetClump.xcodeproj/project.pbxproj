@@ -27,10 +27,10 @@
 		295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96D20A41A3100F8D32F /* MatchingProfile.swift */; };
 		298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFEC20969349007A6846 /* OwnerProfile.swift */; };
 		298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF0209693A7007A6846 /* PetProfile.swift */; };
-		298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF42096998C007A6846 /* GenderPicker.swift */; };
-		298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */; };
-		298BCFF920969EAB007A6846 /* SpeciePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF820969EAB007A6846 /* SpeciePicker.swift */; };
-		298BCFFE2096E213007A6846 /* LimitTextViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */; };
+		298BCFF52096998C007A6846 /* GenderInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF42096998C007A6846 /* GenderInputDelegate.swift */; };
+		298BCFF7209699B9007A6846 /* LimitTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF6209699B9007A6846 /* LimitTextFieldDelegate.swift */; };
+		298BCFF920969EAB007A6846 /* SpecieInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF820969EAB007A6846 /* SpecieInputDelegate.swift */; };
+		298BCFFE2096E213007A6846 /* LimitTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFFD2096E213007A6846 /* LimitTextViewDelegate.swift */; };
 		298FEB63209393C30018F368 /* PetSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB62209393C30018F368 /* PetSettingVC.swift */; };
 		298FEB67209394D70018F368 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FEB66209394D70018F368 /* WelcomeVC.swift */; };
 		29A6E5B4208EA86A006352CF /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A6E5B3208EA86A006352CF /* SettingVC.swift */; };
@@ -44,7 +44,7 @@
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
 		29D1342320A9E609005A72EA /* MatchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D1342220A9E609005A72EA /* MatchDetailVC.swift */; };
-		29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F820A0069E006E84E0 /* ImagePicker.swift */; };
+		29F104F920A0069E006E84E0 /* ImageInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F820A0069E006E84E0 /* ImageInputDelegate.swift */; };
 		29F104FB20A00FB9006E84E0 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104FA20A00FB9006E84E0 /* ImageExtension.swift */; };
 		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
@@ -96,10 +96,10 @@
 		295EC96D20A41A3100F8D32F /* MatchingProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingProfile.swift; sourceTree = "<group>"; };
 		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
 		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
-		298BCFF42096998C007A6846 /* GenderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderPicker.swift; sourceTree = "<group>"; };
-		298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTextFieldInput.swift; sourceTree = "<group>"; };
-		298BCFF820969EAB007A6846 /* SpeciePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeciePicker.swift; sourceTree = "<group>"; };
-		298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTextViewInput.swift; sourceTree = "<group>"; };
+		298BCFF42096998C007A6846 /* GenderInputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderInputDelegate.swift; sourceTree = "<group>"; };
+		298BCFF6209699B9007A6846 /* LimitTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTextFieldDelegate.swift; sourceTree = "<group>"; };
+		298BCFF820969EAB007A6846 /* SpecieInputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieInputDelegate.swift; sourceTree = "<group>"; };
+		298BCFFD2096E213007A6846 /* LimitTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitTextViewDelegate.swift; sourceTree = "<group>"; };
 		298FEB62209393C30018F368 /* PetSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSettingVC.swift; sourceTree = "<group>"; };
 		298FEB66209394D70018F368 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		29A6E5B3208EA86A006352CF /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D1342220A9E609005A72EA /* MatchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailVC.swift; sourceTree = "<group>"; };
-		29F104F820A0069E006E84E0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		29F104F820A0069E006E84E0 /* ImageInputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInputDelegate.swift; sourceTree = "<group>"; };
 		29F104FA20A00FB9006E84E0 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
@@ -217,8 +217,8 @@
 		294C94C62097E13B00266533 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				29C1797C207EE97D002971C5 /* LoginVC.swift */,
 				298FEB66209394D70018F368 /* WelcomeVC.swift */,
+				29C1797C207EE97D002971C5 /* LoginVC.swift */,
 				296FD5B820AC26C800FEA664 /* matching */,
 				296FD5B720AC26B000FEA664 /* setting */,
 				296FD5B920AC26D400FEA664 /* chatting */,
@@ -260,8 +260,8 @@
 		296FD5BA20AC289600FEA664 /* text */ = {
 			isa = PBXGroup;
 			children = (
-				298BCFF6209699B9007A6846 /* LimitTextFieldInput.swift */,
-				298BCFFD2096E213007A6846 /* LimitTextViewInput.swift */,
+				298BCFF6209699B9007A6846 /* LimitTextFieldDelegate.swift */,
+				298BCFFD2096E213007A6846 /* LimitTextViewDelegate.swift */,
 			);
 			path = text;
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 		298BCFFC2096DFD6007A6846 /* picker */ = {
 			isa = PBXGroup;
 			children = (
-				298BCFF42096998C007A6846 /* GenderPicker.swift */,
-				298BCFF820969EAB007A6846 /* SpeciePicker.swift */,
-				29F104F820A0069E006E84E0 /* ImagePicker.swift */,
+				298BCFF42096998C007A6846 /* GenderInputDelegate.swift */,
+				298BCFF820969EAB007A6846 /* SpecieInputDelegate.swift */,
+				29F104F820A0069E006E84E0 /* ImageInputDelegate.swift */,
 			);
 			path = picker;
 			sourceTree = "<group>";
@@ -650,10 +650,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				295EC96820A40A0400F8D32F /* MatchingTableViewCell.swift in Sources */,
-				298BCFF52096998C007A6846 /* GenderPicker.swift in Sources */,
+				298BCFF52096998C007A6846 /* GenderInputDelegate.swift in Sources */,
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
-				29F104F920A0069E006E84E0 /* ImagePicker.swift in Sources */,
+				29F104F920A0069E006E84E0 /* ImageInputDelegate.swift in Sources */,
 				8496347B20A8E60900719162 /* ChatTableViewCell.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* SettingVC.swift in Sources */,
 				29D1342320A9E609005A72EA /* MatchDetailVC.swift in Sources */,
@@ -670,17 +670,17 @@
 				8496347D20A8E69800719162 /* PeerTableViewCell.swift in Sources */,
 				84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
-				298BCFFE2096E213007A6846 /* LimitTextViewInput.swift in Sources */,
+				298BCFFE2096E213007A6846 /* LimitTextViewDelegate.swift in Sources */,
 				29C1797D207EE97D002971C5 /* LoginVC.swift in Sources */,
 				29F104FB20A00FB9006E84E0 /* ImageExtension.swift in Sources */,
-				298BCFF920969EAB007A6846 /* SpeciePicker.swift in Sources */,
+				298BCFF920969EAB007A6846 /* SpecieInputDelegate.swift in Sources */,
 				298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */,
 				29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */,
 				29A90B80208DA16F0024ECF7 /* OwnerSettingVC.swift in Sources */,
 				84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */,
 				295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
-				298BCFF7209699B9007A6846 /* LimitTextFieldInput.swift in Sources */,
+				298BCFF7209699B9007A6846 /* LimitTextFieldDelegate.swift in Sources */,
 				298FEB67209394D70018F368 /* WelcomeVC.swift in Sources */,
 				2934864820AA510900143474 /* ImageScroller.swift in Sources */,
 				295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */,

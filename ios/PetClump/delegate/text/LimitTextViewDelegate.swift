@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LimitTextViewInput: NSObject, UITextViewDelegate {
+class LimitTextViewDelegate: NSObject, UITextViewDelegate {
     private let limitCount: Int
     private let remainingLable: UILabel
 

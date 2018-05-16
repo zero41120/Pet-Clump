@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class SpeciePicker: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+class SpecieInputDelegate: NSObject, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
     
     // Data for picker
     let speciePickerData: [String] = [

@@ -28,8 +28,8 @@ class OwnerSettingVC: UIViewController{
     var profile:      OwnerProfile?
     var datePicker:   UIDatePicker?
     var genderPicker: UIPickerView?
-    var genderPickerDelegate: GenderInput?
-    var nameInputDelegate: LimitTextFieldInput?
+    var genderPickerDelegate: GenderInputDelegate?
+    var nameInputDelegate: LimitTextFieldDelegate?
     
     
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class OwnerSettingVC: UIViewController{
         hideKeyboardWhenTappedAround()
         
         // Set up delegate to limit user input to 20 characters
-        nameInputDelegate = LimitTextFieldInput(count: 20)
+        nameInputDelegate = LimitTextFieldDelegate(count: 20)
         nameTextField.delegate = nameInputDelegate
         
         // Set up datepicker responder
@@ -51,7 +51,7 @@ class OwnerSettingVC: UIViewController{
         
         // Set up genderpicker responder
         genderPicker = UIPickerView()
-        genderPickerDelegate     = GenderInput(textField: genderTextField)
+        genderPickerDelegate     = GenderInputDelegate(textField: genderTextField)
         genderPicker!.frame      = CGRect(0,0,self.view.bounds.width, 280.0)
         genderPicker!.delegate   = genderPickerDelegate
         genderPicker!.dataSource = genderPickerDelegate
