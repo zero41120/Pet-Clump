@@ -52,7 +52,7 @@ public class ImagePager extends PagerAdapter {
         ImageView imageView = new ImageView(mContext);
         //String url = "";
         PetProfile pet = new PetProfile();
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(300,300);
         imageView.setLayoutParams(layoutParams);
         pet.download(this.pet_id, ()->{

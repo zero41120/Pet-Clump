@@ -18,7 +18,7 @@
             android:id="@+id/pet_main_profile"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/pet_info_background"
+            android:background="@color/white"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
             android:scaleType="fitCenter"
