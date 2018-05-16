@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PetProfileImageDownloader: ProfileDownloader{
+class PetProfileImagexDownloader{
     private let imageView: UIImageView
     var petProfile: PetProfile?
     private let uid: String
@@ -21,17 +21,13 @@ class PetProfileImageDownloader: ProfileDownloader{
     }
     
     func download(){
-        petProfile = PetProfile()
-        petProfile!.sequence = self.sequence
-        petProfile!.download(uid: self.uid, completion: self)
-    }
-    
-    func didCompleteDownload() {
-        let url = petProfile!.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
-        if url == ""{
-            imageView.backgroundColor = UIImageView.getDefaultSelectedColor()
-        } else {
-            imageView.load(url: url)
+        petProfile = PetProfile(uid: uid, sequence: sequence) { profile in
+            let url = profile.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
+            if url == ""{
+                self.imageView.backgroundColor = UIImageView.getDefaultDeselectedColor()
+            } else {
+                self.imageView.load(url: url)
+            }
         }
     }
 }

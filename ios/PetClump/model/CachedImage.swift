@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class CachedImage {
-    static let cache = NSCache<NSString, UIImage>()
+    static private let cache = NSCache<NSString, UIImage>()
     static private let instance = CachedImage()
     private init() { }
     

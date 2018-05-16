@@ -95,7 +95,6 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     @objc func viewMatching(sender: UITapGestureRecognizer){
-        print("tapped")
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchingViewVC
         let index = sender.view!.tag

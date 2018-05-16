@@ -25,18 +25,22 @@ class MatchingVC: UIViewController{
         for view in self.view.subviews {
             if let image = view as? UIImageView {
                 image.setRounded()
-                PetProfileImageDownloader.init(uid: uid, sequence: image.tag, imageView: image).download()
-                let tap = UITapGestureRecognizer(target: self, action: #selector(startMatching(sender:)))
-                image.isUserInteractionEnabled = true
-                image.addGestureRecognizer(tap)
+                let _ = PetProfile.init(uid: uid, sequence: image.tag) { (myPet) in
+                    image.load(url: myPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.startMatching(sender:)))
+                    image.isUserInteractionEnabled = true
+                    image.addGestureRecognizer(tap)
+                }
             }
         }
     }
     
     @objc func startMatching(sender: UITapGestureRecognizer){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "BestMatchingVC") as! BestMatchingVC
         pdv.petProfile = PetProfile()
+        pdv.petProfile!.ownerId = uid
         pdv.petProfile!.sequence = sender.view!.tag
         self.present(pdv, animated: true, completion: nil)
     }

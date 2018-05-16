@@ -11,15 +11,16 @@ import CoreLocation
 import Firebase
 
 class PetProfile: Profile, Deletable{
+    private static let COLLECTION_NAME = "pets"
+    private static let cache = NSCache<NSString, PetProfile>()
 
-    private let COLLECTION_NAME = "pets"
     var bio: String     = ""
     var age: String     = ""
     var name: String    = ""
     var quiz: String    = ""
     var specie: String  = "Other"
     var ownerId: String = "error_id"
-    var sequence: Int   = 0
+    var sequence: Int   = -1
     
     // Image
     private var url_map = [
@@ -43,12 +44,19 @@ class PetProfile: Profile, Deletable{
         self.init()
         self.copy(FromProfile: copyFromProfile)
     }
+    convenience init(uid: String, sequence: Int, completion: ( (PetProfile)->Void )?){
+        self.init()
+        self.ownerId = uid
+        self.sequence = sequence
+        download {
+            guard completion != nil else { return }
+            completion!(self)
+        }
+    }
     
     func copy(FromProfile: PetProfile){
         self.fetchData(refObj: FromProfile.generateDictionary())
     }
-    
-    
     
     private func fetchData(refObj: [String : Any]){
         self.age     = refObj["age"]  as? String ?? ""
@@ -68,10 +76,20 @@ class PetProfile: Profile, Deletable{
         self.url_map["group_view_3"] = refObj["group_view_3"] as? String ?? ""
     }
 
-    func download(uid: String, completion: ProfileDownloader?) {
+    func download(completion: (() -> Void)?) {
         // Opens document
-        let generatedId = "\(uid)\(sequence)"
-        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
+        guard self.ownerId != "", self.sequence != -1 else {
+            print("Attemp to download a pet profile without owner id and sequence number!")
+            return
+        }
+        let generatedId = "\(self.ownerId)\(self.sequence)"
+        if let profile = PetProfile.cache.object(forKey: NSString(string: generatedId)){
+            self.fetchData(refObj: profile.generateDictionary())
+            guard (completion != nil) else { return }
+            completion!()
+            return
+        }
+        let docRef =  Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(generatedId)
         docRef.getDocument { (document, error) in
             if let e = error{ print(e) }
             if let document = document, document.exists {
@@ -83,8 +101,9 @@ class PetProfile: Profile, Deletable{
                 self.fetchData(refObj: refObj)
                 print("Dic: \(self.generateDictionary())")
             }
+            PetProfile.cache.setObject(self, forKey: NSString(string: generatedId))
             guard (completion != nil) else { return }
-            completion!.didCompleteDownload()
+            completion!()
         }
     }
     
@@ -157,14 +176,14 @@ class PetProfile: Profile, Deletable{
         }
     }
     
-    func upload(vc: QuickAlert?, completion: ProfileUploader?) {
+    func upload(vc: QuickAlert?, completion: (() -> Void)?) {
         guard let uid = Auth.auth().currentUser?.uid else {
             guard vc != nil else { return }
             vc!.makeAlert(message: "User is not signed in!")
             return
         }
         let generatedId = "\(uid)\(sequence)"
-        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(generatedId)
+        let docRef =  Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(generatedId)
         docRef.setData(self.generateDictionary()) { (err: Error?) in
             print("Before upload: \(self.generateDictionary())")
             if let err = err{
@@ -173,7 +192,7 @@ class PetProfile: Profile, Deletable{
             }
             print("Uploaded successfully for pet " + generatedId)
             guard (completion != nil) else { return }
-            completion!.didCompleteUpload()
+            completion!()
         }
     }
     
@@ -181,7 +200,7 @@ class PetProfile: Profile, Deletable{
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let petId = "\(uid)\(sequence)"
         // TODO delete photos
-        Firestore.firestore().collection(COLLECTION_NAME).document(petId).delete(completion: { (error) in
+        Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(petId).delete(completion: { (error) in
             if let err = error {
                 print(err)
             } else {

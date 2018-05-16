@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PetDataViewVC: UIViewController, ProfileDownloader{
+class PetDataViewVC: UIViewController{
     //Title Labels
     @IBOutlet weak var nameTitleLabel:    UILabel!
     @IBOutlet weak var infoTitleLabel:    UILabel!
@@ -43,6 +43,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var exitButton:   UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIButton!
     
+    // Assigned by caller view
     var petProfile:         PetProfile?
     var speciePicker:       UIPickerView?
     var ageInputDelegate:   UITextFieldDelegate?
@@ -87,9 +88,10 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         // Sequence of pet is set by the UserDataView
-        petProfile!.download(uid: uid, completion: self)
+        petProfile!.download {
+            self.didCompleteDownload()
+        }
     }
     
     func didCompleteDownload() {
@@ -169,6 +171,8 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     }
     
     @IBAction func tapQuiz(_ sender: Any){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
         if petProfile!.quiz.count == QuizQuestion.getNumberOfAvaliableQuestions() {
             makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
             return;
@@ -179,6 +183,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         let qvc = storyBoard.instantiateViewController(withIdentifier: "QuizVC") as! QuizVC
         // Send petprofile to quiz view
         qvc.petProfile = PetProfile()
+        qvc.petProfile!.ownerId = uid
         qvc.petProfile!.sequence = self.petProfile!.sequence
         self.present(qvc, animated: true, completion: nil)
     }
