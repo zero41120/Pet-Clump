@@ -34,6 +34,7 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     func downloadMore(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         query.addSnapshotListener{(snap, err) in
             guard let snap = snap else {
                 print("Error loding matches")
@@ -45,6 +46,9 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
             var toSort: [MatchingProfile] = []
             for doc in snap.documents{
                 let petProfile = PetProfile(refObj: doc.data())
+                if petProfile.ownerId == uid {
+                    continue
+                }
                 let newMatchProfile = MatchingProfile(quizResult: quizResult, petProfile: petProfile)
                 toSort.append(newMatchProfile)
             }
