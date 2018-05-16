@@ -33,7 +33,7 @@ import java.io.ByteArrayOutputStream;
 
 public class PetInfoActivity extends AppCompatActivity implements ImageView.OnClickListener {
     private static final String TAG = "Pet Info Activity";
-    private TextView pet_name, pet_age, pet_bio, pet_primary_name, pet_and_I_name;
+    private TextView pet_name, pet_age, pet_bio, pet_primary_name, pet_and_I_name, Quiz_number;
     private Spinner pet_specie;
     private String[] specie_array_string;
     private int sequence = -1;
@@ -146,6 +146,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         //Button_return = findViewById(R.id.Button_return);
         Button_save = findViewById(R.id.button_save);
         Button_delete = findViewById(R.id.Button_delete_pet);
+        Quiz_number = findViewById(R.id.Quiz_number);
 
         pet_view_main = findViewById(R.id.pet_main_profile);
         pet_view_1 = findViewById(R.id.pet_profile_1);
@@ -195,6 +196,9 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             pet_bio.setText(pet.getBio());
             pet_specie.setSelection(Specie.num_specie(pet.getSpe().toString()));
             pet_name.setText(pet.getName());
+            String quiz = pet.getQuiz();
+            Integer quiz_num = quiz.length();
+            Quiz_number.setText("Completed questions: " + quiz_num.toString() + "/100");
 
             // setup picture URL
             String[] url = new String[]{

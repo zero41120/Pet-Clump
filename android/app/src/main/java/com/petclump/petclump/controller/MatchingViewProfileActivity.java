@@ -35,13 +35,12 @@ public class MatchingViewProfileActivity extends AppCompatActivity {
         matchviewprofile_specie = findViewById(R.id.matchviewprofile_specie);
         String Spe = intent.getExtras().getString("Spe");
         matchviewprofile_specie.setText(Spe);
-        matchviewprofile_viewPager = findViewById(R.id.matchviewprofile_viewPager);
 
+        matchviewprofile_viewPager = findViewById(R.id.matchviewprofile_viewPager);
         ImagePager imagePager = new ImagePager(intent.getExtras().getString("petId"),this);
         matchviewprofile_viewPager.setAdapter(imagePager);
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(matchviewprofile_viewPager);
-        imagePager.registerDataSetObserver(indicator.getDataSetObserver());
         //new DownloadImageTask(matchviewprofile_viewPager).execute(intent.getExtras().getString("main_url"));
     }
 }

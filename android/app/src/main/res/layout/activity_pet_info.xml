@@ -262,6 +262,15 @@
                 android:maxLength="500"
                 android:textSize="20dp"
                 android:background="@drawable/pet_info_background"/>
+            <TextView
+                android:id="@+id/Quiz_number"
+                style="@style/fontStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Available_Quiz" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
