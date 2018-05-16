@@ -81,6 +81,14 @@
                                     <segue destination="27N-dt-3Pj" kind="show" id="eeF-Dr-Vmf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmy-fF-NI3">
+                                <rect key="frame" x="155" y="754" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="FriendList"/>
+                                <connections>
+                                    <segue destination="Ixg-eg-kci" kind="show" id="qE2-2J-rQ7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -809,6 +817,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVn-3o-Wc3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1492" y="-667.24137931034488"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2QH-yG-PgV">
+            <objects>
+                <viewController id="Ixg-eg-kci" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sDw-lc-KCN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Pka-cV-yfR"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vbz-iQ-tBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-745" y="-477"/>
         </scene>
         <!--Pet Data ViewVC-->
         <scene sceneID="tku-3l-9Nf">
@@ -1751,6 +1774,6 @@
         <image name="twtr-play.png" width="70" height="70"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ezP-bb-XVp"/>
+        <segue reference="XA5-IB-wDa"/>
     </inferredMetricsTieBreakers>
 </document>
