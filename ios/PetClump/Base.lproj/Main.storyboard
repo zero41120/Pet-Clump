@@ -1916,7 +1916,7 @@
                             <constraint firstItem="Lyn-rW-Qlf" firstAttribute="leading" secondItem="xqd-Ls-NaM" secondAttribute="leading" id="obO-ud-2cr"/>
                             <constraint firstItem="ldg-GX-g5M" firstAttribute="leading" secondItem="xqd-Ls-NaM" secondAttribute="leading" id="tvr-ZF-9ZO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vOE-Kx-WFR"/>
+                        <viewLayoutGuide key="safeArea" id="9LB-NB-fVY"/>
                     </view>
                     <navigationItem key="navigationItem" id="15x-ur-bpP">
                         <barButtonItem key="rightBarButtonItem" title="Connect to Peer" id="5aA-jb-TAp">
@@ -1936,16 +1936,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ise-eS-dWV"/>
                         <barButtonItem style="plain" id="QdL-8r-Ce6">
                             <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Here" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="m5K-dX-fgi">
-                                <rect key="frame" x="16" y="18.666666666666671" width="279" height="30"/>
+                                <rect key="frame" x="32.333333333333343" y="18.666666666666671" width="279" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ise-eS-dWV"/>
                         <barButtonItem title="Send" id="Jt0-9e-u4C">
                             <connections>
                                 <action selector="sendText:" destination="27N-dt-3Pj" id="9mZ-Iu-qNB"/>
