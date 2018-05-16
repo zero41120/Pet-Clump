@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class BestMatchingVC: UIViewController, ProfileDownloader{
+class BestMatchingVC: UIViewController{
 
     
     @IBOutlet weak var matchingTable: UITableView!
@@ -20,17 +20,17 @@ class BestMatchingVC: UIViewController, ProfileDownloader{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let _ = Auth.auth().currentUser?.uid else {
             dismiss(animated: true, completion: nil)
             return
         }
-        petProfile?.download(uid: uid, completion: self)
-    }
-    
-    func didCompleteDownload() {
-        matchingDelegate = MatchingTableDelegate(myPet: petProfile!, downloadLimit: 30, table: matchingTable, callerView: self)
-        matchingTable.delegate = matchingDelegate
-        matchingTable.dataSource = matchingDelegate
+
+        petProfile!.download {
+            print("\(self.petProfile!.generateDictionary())")
+            self.matchingDelegate = MatchingTableDelegate(myPet: self.petProfile!, downloadLimit: 30, table: self.matchingTable, callerView: self)
+            self.matchingTable.delegate = self.matchingDelegate
+            self.matchingTable.dataSource = self.matchingDelegate
+        }
     }
 
     @IBAction func tapExit(_ sender: Any) {

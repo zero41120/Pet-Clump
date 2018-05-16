@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PetDataViewVC: UIViewController, ProfileDownloader{
+class PetDataViewVC: UIViewController{
     //Title Labels
     @IBOutlet weak var nameTitleLabel:    UILabel!
     @IBOutlet weak var infoTitleLabel:    UILabel!
@@ -21,6 +21,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var groupPhotoLabel:   UILabel!
 
     //Information display
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var petBioTextView:      UITextView!
     @IBOutlet weak var petAgeTextField:     UITextField!
     @IBOutlet weak var petNameTextField:    UITextField!
@@ -43,6 +44,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var exitButton:   UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIButton!
     
+    // Assigned by caller view
     var petProfile:         PetProfile?
     var speciePicker:       UIPickerView?
     var ageInputDelegate:   UITextFieldDelegate?
@@ -51,14 +53,37 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     var remainingBioDelegate: UITextViewDelegate?
     var imagePickerDelegate:  ImagePicker?
     
+    
+    @objc func keyboardWillShow(notification:NSNotification){
+        
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.scrollView.contentInset = contentInset
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardFrame.height, 0)
+
+    }
+    
+    @objc func keyboardWillHide(notification:NSNotification){
+        
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.scrollView.contentInset = contentInset
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard (Auth.auth().currentUser != nil) else {
             self.dismiss(animated: true, completion: nil)
             return
         }
+        hideKeyboardWhenTappedAround()
         
         // Static UI
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
         nameTitleLabel.text        = NSLocalizedString("Pet Name", comment: "This is the title for specifying the name of the pet")
         infoTitleLabel.text        = NSLocalizedString("INFO", comment: "This is the title for the section of the pet information")
         petSpeciesLabel.text       = NSLocalizedString("Species", comment: "This is the title for specifying the species of the pet")
@@ -87,9 +112,10 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         // Sequence of pet is set by the UserDataView
-        petProfile!.download(uid: uid, completion: self)
+        petProfile!.download {
+            self.didCompleteDownload()
+        }
     }
     
     func didCompleteDownload() {
@@ -169,6 +195,8 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
     }
     
     @IBAction func tapQuiz(_ sender: Any){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
         if petProfile!.quiz.count == QuizQuestion.getNumberOfAvaliableQuestions() {
             makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
             return;
@@ -179,6 +207,7 @@ class PetDataViewVC: UIViewController, ProfileDownloader{
         let qvc = storyBoard.instantiateViewController(withIdentifier: "QuizVC") as! QuizVC
         // Send petprofile to quiz view
         qvc.petProfile = PetProfile()
+        qvc.petProfile!.ownerId = uid
         qvc.petProfile!.sequence = self.petProfile!.sequence
         self.present(qvc, animated: true, completion: nil)
     }

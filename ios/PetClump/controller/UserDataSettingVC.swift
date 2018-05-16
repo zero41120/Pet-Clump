@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataSettingVC: UIViewController, ProfileDownloader{
+class UserDataSettingVC: UIViewController{
 
     // View UI
     @IBOutlet weak var aboutMeNavBar: UINavigationBar!
@@ -24,11 +24,13 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var matchSlider: UISlider!
 
     // Genreated UI
-    var profile:      OwnerProfile = OwnerProfile()
+    
+    var profile:      OwnerProfile?
     var datePicker:   UIDatePicker?
     var genderPicker: UIPickerView?
     var genderPickerDelegate: GenderInput?
     var nameInputDelegate: LimitTextFieldInput?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +57,13 @@ class UserDataSettingVC: UIViewController, ProfileDownloader{
         genderPicker!.dataSource = genderPickerDelegate
         genderTextField.delegate = genderPickerDelegate
         genderTextField.inputView = genderPicker
-        profile.download(uid: uid, completion: self)
+        // Assigned by UserDataView
+        self.profile = OwnerProfile(id: uid) { profile in
+            self.didCompleteDownload(profile: profile)
+        }
     }
     
-    func didCompleteDownload() {
+    func didCompleteDownload(profile: OwnerProfile) {
         // Gets user information
         self.nameTextField.text = profile.name
         self.genderTextField.text = profile.gender

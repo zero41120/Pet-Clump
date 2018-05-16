@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataViewVC: UIViewController, ProfileDownloader{
+class UserDataViewVC: UIViewController{
     
     // Title Labels
     @IBOutlet weak var titleNameLabel:       UILabel!
@@ -28,20 +28,42 @@ class UserDataViewVC: UIViewController, ProfileDownloader{
     @IBOutlet weak var matchSlider: UISlider!
     @IBOutlet weak var birthdayLabel: UILabel!
     
-    var profile: OwnerProfile = OwnerProfile()
+    var profile: OwnerProfile?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let _ = Auth.auth().currentUser?.uid else {
             self.dismiss(animated: true, completion: nil)
             return
         }
         setupUI()
-        profile.download(uid: uid, completion: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.fetchPetImage()
+        guard let uid = Auth.auth().currentUser?.uid else {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        profile = OwnerProfile(id: uid) { profile in
+            // Gets user information
+            self.nameLabel.text = profile.name
+            self.genderLabel.text = profile.gender
+            self.birthdayLabel.text = profile.getBirthdayString()
+            
+            // Gets match perference and updates the slider
+            self.matchSlider.setValue(Float(profile.distancePerference), animated: true)
+            let range = Int(self.matchSlider.value)
+            self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
+        }
+        let _ = PetProfile(uid: uid, sequence: 0) { (pet) in
+            self.pet0ImageView.load(url: pet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+        }
+        let _ = PetProfile(uid: uid, sequence: 1) { (pet) in
+            self.pet1ImageView.load(url: pet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+        }
+        let _ = PetProfile(uid: uid, sequence: 2) { (pet) in
+            self.pet2ImageView.load(url: pet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+        }
     }
     
     func setupUI(){
@@ -63,36 +85,14 @@ class UserDataViewVC: UIViewController, ProfileDownloader{
     
     @objc private func enterPetView(sender: UITapGestureRecognizer){
         // Present Pet data view
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "PetDataViewVC") as! PetDataViewVC
         pdv.petProfile = PetProfile()
+        pdv.petProfile!.ownerId = uid
         pdv.petProfile!.sequence = sender.view!.tag
         self.present(pdv, animated: true, completion: nil)
     }
-    
-    private func fetchPetImage(){
-        if let uid = Auth.auth().currentUser?.uid{
-            profile.download(uid: uid, completion: self)
-            let image0 = PetProfileImageDownloader.init(uid: uid, sequence: 0, imageView: pet0ImageView)
-            let image1 = PetProfileImageDownloader.init(uid: uid, sequence: 1, imageView: pet1ImageView)
-            let image2 = PetProfileImageDownloader.init(uid: uid, sequence: 2, imageView: pet2ImageView)
-            image0.download(); image1.download(); image2.download()
-        }
-    }
-    
-    // This method downloads the user data from Firestore
-    func didCompleteDownload() {
-        // Gets user information
-        self.nameLabel.text = profile.name
-        self.genderLabel.text = profile.gender
-        self.birthdayLabel.text = profile.getBirthdayString()
- 
-        // Gets match perference and updates the slider
-        self.matchSlider.setValue(Float(profile.distancePerference), animated: true)
-        let range = Int(self.matchSlider.value)
-        self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
-    }
-    
     
     // Dismisses the view
     @IBAction func tapCancel(_ sender: Any) {

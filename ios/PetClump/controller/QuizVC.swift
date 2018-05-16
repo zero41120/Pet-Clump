@@ -11,8 +11,9 @@ import Firebase
 import UIColor_FlatColors
 import Cartography
 
-class QuizVC: UIViewController, ProfileDownloader, ProfileUploader{
+class QuizVC: UIViewController{
 
+    // Assigned by caller
     var petProfile: PetProfile?
     var swipeableView: ZLSwipeableView?
     
@@ -23,9 +24,11 @@ class QuizVC: UIViewController, ProfileDownloader, ProfileUploader{
     var colorIndex = 0
    
     override func viewDidLoad() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let _ = Auth.auth().currentUser?.uid else { return }
         super.viewDidLoad()
-        petProfile!.download(uid: uid, completion: self)
+        petProfile!.download {
+            self.didCompleteDownload()
+        }
         // didCompleteDownloader will setup quiz action
     }
     
@@ -50,7 +53,9 @@ class QuizVC: UIViewController, ProfileDownloader, ProfileUploader{
             if self.answers.count == 10 {
                 print("User did finish quiz")
                 self.petProfile!.quiz += self.answers.joined(separator: "")
-                self.petProfile!.upload(vc: self, completion: self)
+                self.petProfile!.upload(vc: self){
+                    self.didCompleteUpload()
+                }
             }
         }
     

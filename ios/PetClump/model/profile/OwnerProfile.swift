@@ -21,60 +21,87 @@ import Firebase
  * - freeTime: this is a 7*3 bool matrix for free time. In the initlizer, it's a 21 character string with 1 mark as free.
  */
 class OwnerProfile: Profile{
-    func upload(vc: QuickAlert?, completion: ProfileUploader?) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        let docRef = Firestore.firestore().collection("users").document(uid)
-        docRef.setData(self.generateDictionary()) { (err: Error?) in
-            if let err = err{
-                guard vc != nil else { return }
-                vc!.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
-            }
-            print("Uploaded successfully for user " + uid)
-            guard (completion != nil) else { return }
-            completion!.didCompleteUpload()
+    
+    private static let cache = NSCache<NSString, OwnerProfile>()
+    private static let COLLECTION_NAME = "users"
+    
+    var id = ""
+    var name = "No name"
+    var gender = "Man"
+    var birthday = Date()
+    var distancePerference = 5
+    var lat = 0.0, lon = 0.0
+    var freeTime = FreeSchedule(freeString: "")
+
+    init() {}
+    convenience init(id: String, completion: @escaping ( (OwnerProfile)-> Void) ){
+        self.init()
+        self.id = id
+        self.download {
+            completion(self)
         }
     }
     
-    func download(uid: String, completion: ProfileDownloader?) {
-        // Opens document
-        let docRef =  Firestore.firestore().collection(COLLECTION_NAME).document(uid)
+    func upload(vc: QuickAlert?, completion: (() -> Void)?) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(uid)
+        docRef.setData(self.generateDictionary()) { (err) in
+            if err != nil, vc != nil{
+                vc!.makeAlert(message: "Upload failed, reason:" + err!.localizedDescription)
+                return
+            }
+            guard (completion != nil) else { return }
+            completion!()
+        }
+    }
+    
+    func download(completion: (() -> Void)?) {
+        guard let _ = Auth.auth().currentUser?.uid else { return }
+        if let profile = OwnerProfile.cache.object(forKey: NSString(string: self.id)){
+            self.fetchData(refObj: profile.generateDictionary())
+            guard (completion != nil) else { return }
+            completion!()
+            return
+        }
+        
+        let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(self.id)
         docRef.getDocument { (document, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
             if let document = document, document.exists {
                 // Unwraps data object
                 let refObj = document.data()!
-                print("Document data: \(refObj.description)")
                 
                 // Gets user information
                 self.name = refObj["name"] as? String ?? ""
                 self.gender = refObj["gender"] as? String ?? ""
-                
-                // Gets user birthdat and parse it
                 if let bd = refObj["birthday"] as? Timestamp{
                     self.birthday = bd.dateValue()
                 }
-                
-                // Gets match perference and updates the slider
                 self.distancePerference = refObj["distancePerference"] as? Int ?? 25
-                
-                // Gets Freetime and convert to Free schedule
                 self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
             }
+            OwnerProfile.cache.setObject(self, forKey: NSString(string: self.id))
             guard (completion != nil) else { return }
-            completion!.didCompleteDownload()
+            completion!()
         }
     }
     
-    
-    private let COLLECTION_NAME:String = "users"
-    var name: String = "No name"
-    var birthday: Date = Date()
-    var gender: String = "Apache"
-    var distancePerference: Int = 5
-    var lat: Double = 0.0
-    var lon: Double = 0.0
-    var freeTime = FreeSchedule(freeString: "")
-
+    private func fetchData(refObj: [String : Any]){
+//        self.lon     = refObj["lon"]  as? String ?? ""
+//        self.lat     = refObj["lat"]  as? String ?? ""
+        self.name    = refObj["name"] as? String ?? ""
+        self.gender  = refObj["gender"] as? String ?? ""
+        self.freeTime = FreeSchedule(freeString: refObj["freeTime"]  as? String ?? "")
+        if let bd = refObj["birthday"] as? Timestamp{
+            self.birthday = bd.dateValue()
+        }
+        self.distancePerference = refObj["distancePerference"] as? Int ?? 25
+      
+    }
     
     func generateDictionary() -> [String : Any] {
         return [
