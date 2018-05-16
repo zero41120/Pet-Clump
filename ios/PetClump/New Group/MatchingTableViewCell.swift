@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MatchingCell: UITableViewCell {
+class MatchingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imageRight: UIImageView!
     @IBOutlet weak var imageLeft: UIImageView!

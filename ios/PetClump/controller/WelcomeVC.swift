@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 
-class MatchingVC: UIViewController{
+class WelcomeVC: UIViewController{
     
     @IBAction func tapExit(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -38,7 +38,7 @@ class MatchingVC: UIViewController{
     @objc func startMatching(sender: UITapGestureRecognizer){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "BestMatchingVC") as! BestMatchingVC
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "BestMatchingVC") as! MatchBestVC
         pdv.petProfile = PetProfile()
         pdv.petProfile!.ownerId = uid
         pdv.petProfile!.sequence = sender.view!.tag

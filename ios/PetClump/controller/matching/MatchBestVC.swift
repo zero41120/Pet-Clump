@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class BestMatchingVC: UIViewController{
+class MatchBestVC: UIViewController{
 
     
     @IBOutlet weak var matchingTable: UITableView!

@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class MatchingViewVC: UIViewController{
+class MatchDetailVC: UIViewController{
     
     // Assigned by caller view
     var petProfile: PetProfile?

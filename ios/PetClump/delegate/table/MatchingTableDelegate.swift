@@ -61,7 +61,7 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Setups for cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MatchingCell") as! MatchingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MatchingCell") as! MatchingTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         let tapl = UITapGestureRecognizer(target: self, action: #selector(viewMatching(sender:)))
         let tapr = UITapGestureRecognizer(target: self, action: #selector(viewMatching(sender:)))
@@ -96,7 +96,7 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     
     @objc func viewMatching(sender: UITapGestureRecognizer){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchingViewVC
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
         let index = sender.view!.tag
         pdv.petProfile = PetProfile()
         pdv.petProfile!.copy(FromProfile: element[index].getProfile())

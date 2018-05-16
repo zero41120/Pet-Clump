@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class UserDataSettingVC: UIViewController{
+class OwnerSettingVC: UIViewController{
 
     // View UI
     @IBOutlet weak var aboutMeNavBar: UINavigationBar!

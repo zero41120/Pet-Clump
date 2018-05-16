@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Entry PointVC-->
+        <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="EntryPointVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,7 +75,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zIP-Ee-g76">
-                                <rect key="frame" x="25" y="763" width="86" height="21"/>
+                                <rect key="frame" x="25" y="751" width="86" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Messaging"/>
                                 <connections>
@@ -113,10 +113,10 @@
             </objects>
             <point key="canvasLocation" x="-756" y="108"/>
         </scene>
-        <!--User Data ViewVC-->
+        <!--SettingVC-->
         <scene sceneID="J6j-EU-Tek">
             <objects>
-                <viewController id="WAf-Bi-FHO" customClass="UserDataViewVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WAf-Bi-FHO" customClass="SettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPt-bm-ql5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="About me" id="nHV-n4-rZy">
+                                    <navigationItem title="About us" id="nHV-n4-rZy">
                                         <barButtonItem key="leftBarButtonItem" title="Exit" id="7Us-0Z-54J">
                                             <connections>
                                                 <action selector="tapCancel:" destination="WAf-Bi-FHO" id="fEE-uG-HmA"/>
@@ -475,10 +475,10 @@
             </objects>
             <point key="canvasLocation" x="1812" y="315.51724137931035"/>
         </scene>
-        <!--User Data SettingVC-->
+        <!--Owner SettingVC-->
         <scene sceneID="6kg-iQ-QI8">
             <objects>
-                <viewController id="NHe-gv-fBJ" customClass="UserDataSettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NHe-gv-fBJ" customClass="OwnerSettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VvJ-4q-iHG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -573,7 +573,7 @@
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="About me" id="ICD-El-Aep">
+                                    <navigationItem title="Edit me" id="ICD-El-Aep">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="AE8-L6-gfp">
                                             <connections>
                                                 <action selector="tapCancel:" destination="NHe-gv-fBJ" id="FXh-Rh-gFl"/>
@@ -811,10 +811,10 @@
             </objects>
             <point key="canvasLocation" x="1492" y="-667.24137931034488"/>
         </scene>
-        <!--Pet Data ViewVC-->
+        <!--Pet SettingVC-->
         <scene sceneID="tku-3l-9Nf">
             <objects>
-                <viewController storyboardIdentifier="PetDataViewVC" id="N3z-EC-o4p" customClass="PetDataViewVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PetDataViewVC" id="N3z-EC-o4p" customClass="PetSettingVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yA-b3-KnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -825,7 +825,7 @@
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="About Pet" id="6No-NO-3ud">
+                                    <navigationItem title="Edit Pet" id="6No-NO-3ud">
                                         <barButtonItem key="leftBarButtonItem" title="Exit" id="H0X-eS-RcM">
                                             <connections>
                                                 <action selector="tapExit:" destination="N3z-EC-o4p" id="W28-No-est"/>
@@ -1196,10 +1196,10 @@
             </objects>
             <point key="canvasLocation" x="1130.4000000000001" y="173.64532019704436"/>
         </scene>
-        <!--MatchingVC-->
+        <!--WelcomeVC-->
         <scene sceneID="0zg-02-5nt">
             <objects>
-                <viewController id="pd9-Ar-iKx" customClass="MatchingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pd9-Ar-iKx" customClass="WelcomeVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rqS-8g-UbA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1207,7 +1207,8 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAR-Su-IvY">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="lkN-tw-IO2">
+                                    <navigationItem title="Start Matching" id="lkN-tw-IO2">
+                                        <barButtonItem key="backBarButtonItem" title="Back" id="VH2-4S-xQv"/>
                                         <barButtonItem key="leftBarButtonItem" title="Exit" id="QRM-fi-7L0">
                                             <connections>
                                                 <action selector="tapExit:" destination="pd9-Ar-iKx" id="xjc-3o-w59"/>
@@ -1268,7 +1269,7 @@
         <!--Best-->
         <scene sceneID="agz-v0-3UP">
             <objects>
-                <viewController storyboardIdentifier="BestMatchingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3yQ-nY-HIz" customClass="BestMatchingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BestMatchingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3yQ-nY-HIz" customClass="MatchBestVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XmI-1K-UUo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1277,7 +1278,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MatchingCell" rowHeight="200" id="pn7-cx-Exj" customClass="MatchingCell" customModule="PetClump" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MatchingCell" rowHeight="200" id="pn7-cx-Exj" customClass="MatchingTableViewCell" customModule="PetClump" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pn7-cx-Exj" id="AZo-rm-KgW">
@@ -1342,7 +1343,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-zX-frm">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="6FL-E9-ae2">
+                                    <navigationItem title="Your matches" id="6FL-E9-ae2">
                                         <barButtonItem key="leftBarButtonItem" title="Exit" id="30g-HS-Kom">
                                             <connections>
                                                 <action selector="tapExit:" destination="3yQ-nY-HIz" id="3oQ-ya-44p"/>
@@ -1482,10 +1483,10 @@
             </objects>
             <point key="canvasLocation" x="4553" y="2589"/>
         </scene>
-        <!--Matching ViewVC-->
+        <!--Match DetailVC-->
         <scene sceneID="JIM-3w-2ca">
             <objects>
-                <viewController storyboardIdentifier="MatchingViewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z42-vT-1sh" customClass="MatchingViewVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MatchingViewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z42-vT-1sh" customClass="MatchDetailVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0JX-jb-K2z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1500,7 +1501,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ayj-me-f0r">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="fex-Rb-NGW">
+                                    <navigationItem id="fex-Rb-NGW">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="5fF-fL-WRt">
                                             <connections>
                                                 <action selector="tapExit:" destination="Z42-vT-1sh" id="YuO-98-xc4"/>
