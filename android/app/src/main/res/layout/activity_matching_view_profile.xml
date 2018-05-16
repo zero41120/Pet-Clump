@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".controller.MatchingViewProfileActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -11,94 +12,102 @@
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"
         android:padding="10dp">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <android.support.v4.view.ViewPager
-            android:id="@+id/matchviewprofile_viewPager"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            />
-           <View
-               android:layout_width="match_parent"
-               android:layout_height="4dp"
-               android:background="@color/colorAccent">
 
-           </View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/matchviewprofile_viewPager"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey">
+
+            </View>
+
             <TextView
                 android:id="@+id/matchviewprofile_name"
 
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
-                android:textSize="32dp"
-                android:textColor="@color/navy"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
-                android:text="Good old pig" />
+                android:layout_weight="1"
+                android:text="Good old pig"
+                android:textColor="@color/navy"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/matchviewprofile_specie"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 android:layout_weight="1"
-                android:text="@string/DOG" />
+                android:text="@string/DOG"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/matchviewprofile_age"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginBottom="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="100 years old" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/colorAccent">
+            <TextView
+                android:id="@+id/matchviewprofile_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="100 years old"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
-        </View>
-        <TextView
-            android:id="@+id/matchviewprofile_bio"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:textSize="24dp"
-            android:layout_margin="24dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="100 years old pig that is so old even its grandma already die" />
-        <Button
-            android:id="@+id/button_add_friend"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="@string/Add_friend"
-            android:textColor="@color/white"
-            android:background="@drawable/chat_bubble_purple"/>
-        <Button
-            android:id="@+id/button_report"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="@string/Report_profile"
-            android:textColor="@color/white"
-            android:background="@drawable/cancel_button_background"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/colorAccent">
+
+            </View>
+
+            <TextView
+                android:id="@+id/matchviewprofile_bio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:layout_weight="1"
+                android:text="100 years old pig that is so old even its grandma already die"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/button_add_friend"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/chat_bubble_purple"
+                android:text="@string/Add_friend"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/button_report"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/cancel_button_background"
+                android:text="@string/Report_profile"
+                android:textColor="@color/white" />
 
 
-    </LinearLayout>
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 
