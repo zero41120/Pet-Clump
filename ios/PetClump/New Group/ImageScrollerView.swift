@@ -13,7 +13,7 @@ import UIKit
 class ImageScrollerView: UIScrollView {
     
     func setupScrollerWith(urls: [String]){
-        self.showsHorizontalScrollIndicator = false
+        self.showsHorizontalScrollIndicator = true
         self.isPagingEnabled = true
         
         let height = self.frame.height
