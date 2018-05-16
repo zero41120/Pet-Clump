@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 
 
 public class BestMatchFragment extends Fragment implements ProfileDownloader {
-    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 3;
+    private static final Integer DEFAULT_DOWNLOAD_LIMIT = 30;
     private static final String TAG = "Matching View Activity";
     View v;
     private RecyclerView recyclerView;

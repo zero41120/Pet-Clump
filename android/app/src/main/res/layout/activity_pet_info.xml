@@ -18,10 +18,11 @@
             android:id="@+id/pet_main_profile"
             android:layout_width="200dp"
             android:layout_height="200dp"
-
+            android:background="@color/white"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
-            android:background="@color/grey"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             android:src="@drawable/photo_placeholder"
             android:tag="main_profile_url"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +37,7 @@
             android:layout_width="@dimen/profile_pet_size2"
             android:layout_height="@dimen/profile_pet_size2"
             android:tag="pet_profile_url_1"
-            android:background="@color/grey"
+            android:background="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/pet_profile_2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pet_main_profile"
@@ -47,8 +48,8 @@
             android:id="@+id/pet_profile_2"
             android:layout_width="@dimen/profile_pet_size2"
             android:layout_height="@dimen/profile_pet_size2"
+            android:background="@color/white"
             android:tag="pet_profile_url_2"
-            android:background="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/pet_main_profile"
@@ -59,18 +60,18 @@
             android:id="@+id/pet_profile_3"
             android:layout_width="@dimen/profile_pet_size2"
             android:layout_height="@dimen/profile_pet_size2"
+            android:background="@color/white"
+            android:src="@drawable/photo_placeholder"
             android:tag="pet_profile_url_3"
-            android:background="@color/grey"
             app:layout_constraintStart_toEndOf="@+id/pet_profile_4"
-            app:layout_constraintTop_toBottomOf="@+id/pet_profile_2"
-            android:src="@drawable/photo_placeholder" />
+            app:layout_constraintTop_toBottomOf="@+id/pet_profile_2" />
 
         <ImageView
             android:id="@+id/pet_profile_4"
             android:layout_width="@dimen/profile_pet_size2"
             android:layout_height="@dimen/profile_pet_size2"
+            android:background="@color/white"
             android:tag="pet_profile_url_4"
-            android:background="@color/grey"
             app:layout_constraintEnd_toStartOf="@+id/pet_profile_3"
             app:layout_constraintStart_toEndOf="@+id/pet_profile_5"
             app:layout_constraintTop_toBottomOf="@+id/pet_main_profile"
@@ -80,10 +81,10 @@
             android:id="@+id/pet_profile_5"
             android:layout_width="@dimen/profile_pet_size2"
             android:layout_height="@dimen/profile_pet_size2"
+            android:background="@color/white"
             android:layout_marginBottom="46dp"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
-            android:background="@color/grey"
             android:src="@drawable/photo_placeholder"
             android:tag="pet_profile_url_5"
             app:layout_constraintBottom_toTopOf="@+id/Txt_my_pet_and_I"
@@ -170,41 +171,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp">
-                <Button
-                    android:id="@+id/button_cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@android:string/cancel"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/cancel_button_background"
-                    android:textColor="@color/white" />
-                <TextView
-                    android:id="@+id/info_label"
-                    style="@style/fontStyle3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/info" />
-                <Button
-                    android:id="@+id/button_save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:text="@string/Save"
-                    android:layout_gravity="end"
-                    android:background="@drawable/chat_bubble_purple"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+
 
 
             <TextView
@@ -295,7 +262,42 @@
                 android:maxLength="500"
                 android:textSize="20dp"
                 android:background="@drawable/pet_info_background"/>
-
+            <TextView
+                android:id="@+id/Quiz_number"
+                style="@style/fontStyle4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Available_Quiz" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:id="@+id/button_cancel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@android:string/cancel"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/cancel_button_background"
+                    android:textColor="@color/white" />
+                <Button
+                    android:id="@+id/button_save"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginStart="100dp"
+                    android:text="@string/Save"
+                    android:layout_gravity="center"
+                    android:background="@drawable/chat_bubble_purple"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/Button_to_quiz"

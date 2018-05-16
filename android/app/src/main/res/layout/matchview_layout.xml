@@ -6,6 +6,7 @@
     android:clickable="true"
     android:id="@+id/matchview_cardView"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="10dp"
     android:layout_margin="20dp"
     app:cardCornerRadius="4dp">
     <LinearLayout
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="match rate"
+            android:textStyle="bold"
             android:gravity="center"/>
     </LinearLayout>
 

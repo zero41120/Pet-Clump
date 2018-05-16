@@ -184,5 +184,7 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="Local">Local</string>
     <string name="Report_profile">Report profile</string>
+    <string name="Quiz_Finish">You\'ve finished 10 quizzes! Click to exit</string>
+    <string name="Available_Quiz">Avaliable Quiz</string>
 
 </resources>

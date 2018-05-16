@@ -108,13 +108,13 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_month = ArrayAdapter.createFromResource(this,
-                R.array.month_array, android.R.layout.simple_spinner_item);
+                R.array.month_array, R.layout.spinner_item);
         ArrayAdapter<String> adapter_day = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, day_array_string);
+                R.layout.spinner_item, day_array_string);
         ArrayAdapter<String> adapter_year = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, year_array_string);
+                R.layout.spinner_item, year_array_string);
         ArrayAdapter<CharSequence> adapter_gender = ArrayAdapter.createFromResource(this,
-                R.array.gender_array, android.R.layout.simple_spinner_item);
+                R.array.gender_array, R.layout.spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter_month.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
