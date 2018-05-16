@@ -46,6 +46,7 @@ class ChatVC: UIViewController {
         cellIdentifier = CellIdetifier.sender.rawValue
         let index = IndexPath(row: messages.count - 1, section: 0)
         tableView.insertRows(at: [index], with: .automatic)
+        textField.text = "";
     }
 }
 extension ChatVC: P2PServiceHandlerDelegate {
