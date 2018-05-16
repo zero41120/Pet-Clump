@@ -3,6 +3,9 @@ package com.petclump.petclump.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,13 +26,13 @@ public class MatchingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matching);
-        vm_button_settings = findViewById(R.id.vm_button_settings);
+        //vm_button_settings = findViewById(R.id.vm_button_settings);
         match_pet1 = findViewById(R.id.match_pet1);
         match_pet2 = findViewById(R.id.match_pet2);
         match_pet3 = findViewById(R.id.match_pet3);
-        vm_button_settings.setOnClickListener(v -> {
-            startActivity(new Intent(this, UserInfoActivity.class));
-        });
+//        vm_button_settings.setOnClickListener(v -> {
+//            startActivity(new Intent(this, UserInfoActivity.class));
+//        });
     }
     @Override
     protected void onResume() {
@@ -75,5 +78,34 @@ public class MatchingActivity extends AppCompatActivity {
             new DownloadImageTask(match_pet3).execute(url);
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
         });
+    }
+    // This method will just show the menu item (which is our button "ADD")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        // the menu being referenced here is the menu.xml from res/menu/menu.xml
+        inflater.inflate(R.menu.menu_settings, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    /* Here is the event handler for the menu button that I forgot in class.
+    The value returned by item.getItemID() is
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_favorite:
+                /*the R.id.action_favorite is the ID of our button (defined in strings.xml).
+                Change Activity here (if that's what you're intending to do, which is probably is).
+                 */
+                Intent i = new Intent(this, UserInfoActivity.class);
+                startActivity(i);
+            default:
+                super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }
