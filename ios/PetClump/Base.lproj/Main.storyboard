@@ -488,6 +488,34 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.59999999999999998" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="NO" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zea-pG-nmf">
+                                <rect key="frame" x="0.0" y="391" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="YES" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TjQ-VJ-2KP">
+                                <rect key="frame" x="331" y="391" width="44" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SKIP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dwc-bf-2uo">
+                                <rect key="frame" x="164" y="88" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SKIP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rkP-zM-C23">
+                                <rect key="frame" x="161" y="748" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1585,22 +1613,22 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nd4-6v-9f8">
-                                <rect key="frame" x="15" y="412" width="345" height="36.333333333333314"/>
+                                <rect key="frame" x="15" y="412" width="345" height="35"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Name">
                                         <attributes>
-                                            <font key="NSFont" size="30" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="30"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyb-8G-Rjb">
-                                <rect key="frame" x="20" y="477" width="340" height="20.666666666666686"/>
+                                <rect key="frame" x="20" y="475.66666666666669" width="340" height="20.666666666666686"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Species">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -1608,11 +1636,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgc-ay-VrF">
-                                <rect key="frame" x="20" y="453.33333333333331" width="340" height="20.666666666666686"/>
+                                <rect key="frame" x="20" y="452" width="340" height="20.666666666666686"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Age">
                                         <attributes>
-                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -1626,13 +1654,13 @@
                                 </constraints>
                             </scrollView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CTT-6H-a41">
-                                <rect key="frame" x="15" y="514.66666666666663" width="345" height="266.66666666666663"/>
+                                <rect key="frame" x="15" y="513.33333333333337" width="345" height="245.33333333333337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">BioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioasBioas</string>
                                         <attributes>
-                                            <font key="NSFont" size="16" name="VarelaRound"/>
+                                            <font key="NSFont" metaFont="system" size="16"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -1640,7 +1668,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Eo-8Y-1Fk" userLabel="Bot Divider">
-                                <rect key="frame" x="0.0" y="505.66666666666669" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="504.33333333333331" width="375" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="KRW-Mc-5vb"/>
