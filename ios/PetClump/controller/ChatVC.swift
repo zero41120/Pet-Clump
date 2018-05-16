@@ -25,7 +25,7 @@ class ChatVC: UIViewController {
         connection.delegate = self
         connection.setupConnection(serviceName: "AZP2Ptest")
         
-        tableView.estimatedRowHeight = 50
+        tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
         textField.delegate = self
         
