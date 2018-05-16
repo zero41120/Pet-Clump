@@ -56,7 +56,7 @@ public class MatchingActivity extends AppCompatActivity {
         initializePrimaryPet();
     }
     private void initializePrimaryPet(){
-        PetProfile thePet = new PetProfile();
+        PetProfile thePet = PetProfile.getInstance();
         FirebaseAuth user = FirebaseAuth.getInstance();
         //profile_pet1
         thePet.download(user.getUid()+0,()->{

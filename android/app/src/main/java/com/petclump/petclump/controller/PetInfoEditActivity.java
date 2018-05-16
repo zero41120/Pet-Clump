@@ -62,7 +62,7 @@ public class PetInfoEditActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, specie_array_string);
         adapter_specie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pet_specie.setAdapter(adapter_specie);
-        PetProfile pet = new PetProfile();
+        PetProfile pet = PetProfile.getInstance();
         pet.download(user.getUid()+sequence, ()->{
             pet_name_editText.setText(pet.getName());
             pet_age_editText.setText(pet.getAge());

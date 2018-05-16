@@ -30,8 +30,13 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.Chat;
 import com.petclump.petclump.models.Specie;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -62,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         c = getApplicationContext();
         uidText = findViewById(R.id.uidText);
         animalText = findViewById(R.id.animalText);
-        Button pickButton = findViewById(R.id.button_go_upload_photo);
+        Button pickButton = findViewById(R.id.main_button_upload);
         Button settingsButton = findViewById(R.id.button_settings);
         Button matchingButton = findViewById(R.id.matching_button);
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -78,10 +83,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             );
             FirebaseAuth.getInstance().signOut();
         });
+        /*Chat s = new Chat(FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
+        s.connectServer(null);*/
 
         // Upload photo activity
         pickButton.setOnClickListener(v ->
-            startActivity(new Intent(c, UploadPhotoActivity.class))
+            {
+                //s.sendToServer(new Date().getTime(),null);
+            }
         );
 
         // Setting page activity

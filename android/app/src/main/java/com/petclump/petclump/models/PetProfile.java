@@ -27,6 +27,7 @@ import com.petclump.petclump.models.protocols.ProfileDeletor;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,13 +62,20 @@ public class PetProfile implements Profile {
 
     // pet friend map
     private HashMap<String, String> friend_map = new HashMap<String, String>();
+    private ArrayList<FriendNode> friendList = new ArrayList<>();
+    private ArrayList<FriendNode> friendRequestList = new ArrayList<>();
 
     // firebase instance
     private FirebaseAuth Auth_pet = FirebaseAuth.getInstance();
     private FirebaseStorage Store_pet = FirebaseStorage.getInstance();
 
+    // singleton
+    private PetProfile(){}
+    private static PetProfile obj = new PetProfile();
+    public static PetProfile getInstance(){
+        return obj;
+    }
 
-    public PetProfile(){    }
     public PetProfile(Map<String, Object> map){
         DefaultMap data = new DefaultMap(map);
         this.bio = data.getDefault("bio");
@@ -108,9 +116,14 @@ public class PetProfile implements Profile {
             put("group_view_3",url_map.get("group_profile_url_3"));
         }};
     }
-/*    private Map<String, Object> generateFriendRequest(){
 
-    }*/
+    private Map<String, Object> generateFriendRequest(String pending, String receiver_id, String sender_id){
+        return new HashMap<String, Object>(){{
+            put("pending", pending);
+            put("receiver_id", receiver_id);
+            put("sender_id",sender_id);
+        }};
+    }
 
     public void upload(String id, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
@@ -136,8 +149,8 @@ public class PetProfile implements Profile {
             return;
         }
         CollectionReference friends = FirebaseFirestore.getInstance().collection("friends");
-
-        friends.whereEqualTo("pending", 1)
+        //setup friend list
+        friends.whereEqualTo("pending", "1")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -145,6 +158,8 @@ public class PetProfile implements Profile {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "dowload successfully");
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                friendList.add(
+                                        new FriendNode("1",document.getData().get("receiver_id").toString(), document.getData().get("sender_id").toString()));
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
@@ -152,9 +167,24 @@ public class PetProfile implements Profile {
                         }
                     }
                 });
-
-/*        Query pending_friends = friends.whereEqualTo("pending", "0");
-        Query blocked_friends = friends.whereEqualTo("pending", "2");*/
+        //setup request list
+        friends.whereEqualTo("pending", "0")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "dowload successfully");
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                friendRequestList.add(
+                                        new FriendNode("0",document.getData().get("receiver_id").toString(), document.getData().get("sender_id").toString()));
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
     public void upload_friend_request(String sender_id, String receiver_id, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
@@ -163,7 +193,7 @@ public class PetProfile implements Profile {
         }
         // upload documents
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("friends").document();
-        docRef.set(generateDictionary()).addOnCompleteListener(task -> {
+        docRef.set(generateFriendRequest(sender_id, receiver_id, sender_id)).addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 c.didCompleteUpload();
             }

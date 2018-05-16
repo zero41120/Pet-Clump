@@ -47,7 +47,7 @@ public class MatchingViewActivity extends AppCompatActivity implements ProfileDo
         profiles = new ArrayList<>();
 
         String petId = this.getIntent().getStringExtra("petId");
-        profile = new PetProfile();
+        profile = PetProfile.getInstance();
         profile.download(petId, ()->{
             // Make sure profile is downloaded before requesting profile
             md = new MatchingProfileDownloader(profile, DEFAULT_DOWNLOAD_LIMIT);

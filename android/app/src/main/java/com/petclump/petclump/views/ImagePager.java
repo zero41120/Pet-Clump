@@ -51,7 +51,7 @@ public class ImagePager extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView imageView = new ImageView(mContext);
         //String url = "";
-        PetProfile pet = new PetProfile();
+        PetProfile pet = PetProfile.getInstance();
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         pet.download(this.pet_id, ()->{
             String url = pet.getUrl(imagesId[position]);

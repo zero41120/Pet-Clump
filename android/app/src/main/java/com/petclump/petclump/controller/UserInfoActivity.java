@@ -35,7 +35,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
     private Context c;
     private ConstraintLayout constraintLayout;
     private ConstraintSet constraintSet;
-    private OwnerProfile profile;
+    private OwnerProfile profile = OwnerProfile.getInstance();
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -90,7 +90,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             startActivity(i);
         });
 
-        profile = new OwnerProfile();
         profile.download(user.getUid(), this);
 
     }
@@ -112,7 +111,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         range_label.setText(String.valueOf(profile.getDistancePerference()));
     }
     private void initializePrimaryPet(){
-        PetProfile thePet = new PetProfile();
+        PetProfile thePet = PetProfile.getInstance();
         //profile_pet1
         thePet.download(user.getUid()+0,()->{
             String url = thePet.getUrl("main_profile_url");

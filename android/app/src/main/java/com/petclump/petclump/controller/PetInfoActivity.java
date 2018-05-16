@@ -40,11 +40,11 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
     private ImageView pet_view_main, pet_view_1, pet_view_2, pet_view_3, pet_view_4, pet_view_5,
             group_view_1, group_view_2, group_view_3;
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
 
     Button Button_to_quiz, Button_return, Button_save, Button_delete;
-    private PetProfile pet = new PetProfile();
+    private PetProfile pet = PetProfile.getInstance();
     private static final int INTIAL_CODE = 99;
 
     @Override
