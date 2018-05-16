@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".controller.QuizActivity">
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/quiz_card_stack_view"
@@ -36,8 +37,11 @@
         android:layout_marginStart="43dp"
         android:layout_marginTop="66dp"
         android:gravity="center"
-        android:text="Quiz!"
-        android:textSize="30sp"
+        android:text="@string/Quiz_Finish"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

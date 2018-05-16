@@ -5,14 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="#88000000"
-    app:cardCornerRadius="8dp"
+    app:cardBackgroundColor="@color/red"
+    app:cardCornerRadius="24dp"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="true">
 
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:text="NO"
+        android:textSize="125dp"
+        android:textColor="@color/lightYellow"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        />
 
 </android.support.v7.widget.CardView>
