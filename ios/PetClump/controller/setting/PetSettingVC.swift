@@ -91,7 +91,7 @@ class PetSettingVC: UIViewController{
         petBioTitleLabel.text      = NSLocalizedString("Bio", comment: "This is the title for specifying the Bio of the pet")
         petNameTitleLabel.text     = NSLocalizedString("Name", comment: "This is the title for specifying the name of the pet in the pet info section")
         groupPhotoLabel.text = NSLocalizedString("Pet And I", comment: "This is the title for the picture section of the pet and owner")
-        quizButton.titleLabel!.text = NSLocalizedString("Quiz All-Done", comment: "This is the title for the quiz button when the user finished all quiz questions")
+        quizButton.titleLabel!.text = NSLocalizedString("Start Quiz", comment: "This is the title for the quiz button when the user finished all quiz questions")
     
         // Specie picker
         speciePicker = UIPickerView()
@@ -125,7 +125,9 @@ class PetSettingVC: UIViewController{
         petNameTextField.text       = petProfile!.name
         bioRemainingLabel.text      = "\(petProfile!.bio.count)/500"
         petSpeciesTextField.text    = petProfile!.specie
-        quizButton.titleLabel!.text = NSLocalizedString("Quiz (\(petProfile!.quiz.count)/100)", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+        print("Quiz should print: (\(petProfile!.quiz.count)/100)")
+        let quizText = NSLocalizedString("Quiz (\(petProfile!.quiz.count)/\(QuizQuestion.getNumberOfAvaliableQuestions()))", comment: "This is the button that takes the user to quiz view. It shows how many quiz this user has complete for this particular pet")
+        quizButton.setTitle(quizText, for: UIControlState.normal)
         deleteButton.addTarget(self, action: #selector(deletePet), for: .touchUpInside)
         
         // Load pictures with url
@@ -197,7 +199,7 @@ class PetSettingVC: UIViewController{
     @IBAction func tapQuiz(_ sender: Any){
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
-        if petProfile!.quiz.count == QuizQuestion.getNumberOfAvaliableQuestions() {
+        if petProfile!.quiz.count + 1 == QuizQuestion.getNumberOfAvaliableQuestions(){
             makeAlert(message: NSLocalizedString("You have complete all the questions!", comment: "This is an alert message when the user clicks the Start Quiz button but have finished all 100 questions"))
             return;
         }

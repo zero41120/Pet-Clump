@@ -12,7 +12,6 @@ import Firebase
 
 class PetProfile: Profile, Deletable{
     private static let COLLECTION_NAME = "pets"
-    private static let cache = NSCache<NSString, PetProfile>()
 
     var bio: String     = ""
     var age: String     = ""
@@ -83,12 +82,6 @@ class PetProfile: Profile, Deletable{
             return
         }
         let generatedId = "\(self.ownerId)\(self.sequence)"
-        if let profile = PetProfile.cache.object(forKey: NSString(string: generatedId)){
-            self.fetchData(refObj: profile.generateDictionary())
-            guard (completion != nil) else { return }
-            completion!()
-            return
-        }
         let docRef =  Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(generatedId)
         docRef.getDocument { (document, error) in
             if let e = error{ print(e) }
@@ -101,7 +94,6 @@ class PetProfile: Profile, Deletable{
                 self.fetchData(refObj: refObj)
                 print("Dic: \(self.generateDictionary())")
             }
-            PetProfile.cache.setObject(self, forKey: NSString(string: generatedId))
             guard (completion != nil) else { return }
             completion!()
         }

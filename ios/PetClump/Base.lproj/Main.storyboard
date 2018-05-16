@@ -851,7 +851,7 @@
         <!--Pet SettingVC-->
         <scene sceneID="tku-3l-9Nf">
             <objects>
-                <viewController storyboardIdentifier="PetDataViewVC" id="N3z-EC-o4p" customClass="PetSettingVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PetSettingVC" id="N3z-EC-o4p" customClass="PetSettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yA-b3-KnD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
