@@ -221,7 +221,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             // download the url
             for (int k = 0; k < 9; k++) {
                 if (url[k] != null && url[k].compareTo("") != 0) {
-                    new DownloadImageTask(im[k]).execute(url[k]);
+                    new DownloadImageTask(im[k],this).execute(url[k]);
                 }
             }
 /*           for(String x: url){

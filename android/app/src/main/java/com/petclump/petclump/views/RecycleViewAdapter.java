@@ -51,7 +51,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.pet_matchview_label.setText(information);
         String url = pets.get(position).getPhotoUrl();
         if(url.compareTo("") != 0){
-            new DownloadImageTask(holder.pet_matchview_image).execute(url);
+            new DownloadImageTask(holder.pet_matchview_image,mContext).execute(url);
         }else{
             holder.pet_matchview_image.setImageResource(PetProfile.default_image);
         }

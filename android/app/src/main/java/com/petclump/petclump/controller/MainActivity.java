@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -33,6 +34,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.Chat;
+import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
 
 import java.text.DateFormat;
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // Upload photo activity
         pickButton.setOnClickListener(v ->
             {
-                //s.sendToServer(new Date().getTime(),null);
+                //Toast.makeText(this, PetProfile.parseUrlToCache("http:/sldkfj/sdf&%%%/asb.txt"), Toast.LENGTH_SHORT).show();
             }
         );
 

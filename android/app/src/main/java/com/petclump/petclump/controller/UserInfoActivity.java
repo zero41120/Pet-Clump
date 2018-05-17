@@ -22,6 +22,7 @@ import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.views.Popup;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -112,22 +113,23 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
     }
     private void initializePrimaryPet(){
         PetProfile thePet = PetProfile.getInstance();
+
         //profile_pet1
         thePet.download(user.getUid()+0,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet1).execute(url);
-            //Toast.makeText(this, "1 set up", Toast.LENGTH_SHORT).show();
+            new DownloadImageTask(profile_pet1, this).execute(url);
+            //Toast.makeText(this, "1 set up"+url, Toast.LENGTH_SHORT).show();
         });
         //profile_pet2
         thePet.download(user.getUid()+1,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet2).execute(url);
+            new DownloadImageTask(profile_pet2, this).execute(url);
             //Toast.makeText(this, "2 set up", Toast.LENGTH_SHORT).show();
         });
         //profile_pet3
         thePet.download(user.getUid()+2,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet3).execute(url);
+            new DownloadImageTask(profile_pet3, this).execute(url);
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
         });
     }

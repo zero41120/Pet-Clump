@@ -27,6 +27,7 @@ import com.petclump.petclump.models.protocols.ProfileDeletor;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -371,6 +372,14 @@ public class PetProfile implements Profile {
             case group3: return url_map.get("group_profile_url_3");
         }
         return url_map.get("main_profile_url");
+    }
+    public static String parseUrlToCache(String url){
+        StringBuilder newstr = new StringBuilder();
+        for(int i=0; i<url.length();i++){
+            if(url.charAt(i) != '/')
+                newstr.append(url.charAt(i));
+        }
+        return newstr.toString();
     }
 
 }
