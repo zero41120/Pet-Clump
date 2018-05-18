@@ -89,9 +89,22 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         s.connectServer(null);*/
 
         // Upload photo activity
+/*        PetProfile.getInstance().listenToFriendList("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",()->{
+            Toast.makeText(this, "Listener online!", Toast.LENGTH_SHORT).show();
+        });*/
         pickButton.setOnClickListener(v ->
             {
-                //Toast.makeText(this, PetProfile.parseUrlToCache("http:/sldkfj/sdf&%%%/asb.txt"), Toast.LENGTH_SHORT).show();
+                /*//Toast.makeText(this, PetProfile.parseUrlToCache("http:/sldkfj/sdf&%%%/asb.txt"), Toast.LENGTH_SHORT).show();
+                //PetProfile.getInstance().listenToFriendList(FirebaseAuth.getInstance().getCurrentUser().getUid(), ()->{});
+                PetProfile.getInstance().new_friend_request("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",
+                        "94OeeGargpPOI5RuQU9N9zb2qvD30", ()->{
+                            Toast.makeText(this, "Request has been sent!", Toast.LENGTH_SHORT).show();
+                        }
+                        );*/
+              /*  PetProfile.getInstance().friend_delete("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",
+                        "94OeeGargpPOI5RuQU9N9zb2qvD30", ()->{
+                            Toast.makeText(this, "Request has been sent!", Toast.LENGTH_SHORT).show();
+                        });*/
             }
         );
 
