@@ -147,7 +147,13 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RXE-LY-OFD">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Friend" id="Hx1-31-EjH"/>
+                                    <navigationItem title="Friend" id="Hx1-31-EjH">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="aFv-D7-ekl">
+                                            <connections>
+                                                <action selector="tapBack:" destination="rSz-Qs-OwU" id="uc9-L7-NF1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5Z-2P-21O">

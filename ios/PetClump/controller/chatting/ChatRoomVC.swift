@@ -23,6 +23,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     var friendPetProfile: PetProfile?
     var myPetProfile: PetProfile?
     var messages: [Message] = []
+    var messenger: Messenger?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +33,34 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         tableView.dataSource = self
         
         // Download Message
-        let messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
-        messenger.download(count: 5) { (retMessages) in
+        messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
+        messenger!.download(count: 5) { (retMessages) in
             messages = retMessages
             tableView.reloadData()
         }
     }
     
     @objc func handleSend() {
-        // Connect firebase
+        
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+
+        let last = messages.count
+        if indexPath.row == last - 1 {
+            messenger!.download(count: 10) { (retMessages) in
+                if retMessages.count < 1 {
+                    return
+                }
+                messages = messages + retMessages
+                tableView.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                    let indexPath = IndexPath(row: self.messages.count-1, section: 0)
+                    print("\(self.messages.count-1)")
+                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -77,7 +97,6 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         // Time
         let hour = Calendar.current.component(.hour, from: time.dateValue())
         let minute = Calendar.current.component(.minute, from: time.dateValue())
-        print("\(hour)\(minute)")
         cell.timeLabel.text = "\(hour)\(minute)"
         
         return cell
@@ -96,5 +115,10 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         }
         return CGRect(x: 0, y: 0, width: 200, height: height)
     }
+    @IBAction func tapBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+       
 }
 

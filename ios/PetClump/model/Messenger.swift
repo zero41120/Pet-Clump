@@ -33,7 +33,6 @@ class Messenger {
         self.chatRoomId = myId > friendId ? "\(myId)\(friendId)" : "\(friendId)\(myId)"
     }
     
-    
     func download(count: Int, completion: (([Message]) -> Void)){
         // Download from firebase
         var messages: [Message] = [
@@ -47,7 +46,17 @@ class Messenger {
             Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 7"]),
             Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 8"]),
             Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 9"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 10"])
+            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 10"]),
+            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 11"]),
+            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 12"]),
+            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 13"]),
+            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 14"]),
+            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 15"]),
+            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 16"]),
+            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 17"]),
+            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 18"]),
+            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 19"]),
+            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 20"])
         ]
         if index == -1 {
             index = messages.count
@@ -55,9 +64,13 @@ class Messenger {
         let subMessage = messages[..<index]
         var retMessage: [Message] = []
         var c = count
-        for m in subMessage {
+        for m in subMessage.reversed() {
             retMessage.append(m)
             c = c - 1
+            index = index - 1
+            if index == 0{
+                break;
+            }
             if c == 0 {
                 break;
             }
