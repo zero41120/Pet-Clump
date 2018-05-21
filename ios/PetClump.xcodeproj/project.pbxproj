@@ -48,6 +48,8 @@
 		29F104FB20A00FB9006E84E0 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104FA20A00FB9006E84E0 /* ImageExtension.swift */; };
 		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
+		778663CD20B24CAB008DD4F9 /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CC20B24CAB008DD4F9 /* FriendListTableViewCell.swift */; };
+		77ACD7A720B23F4D00B000DF /* FrinedListViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ACD7A620B23F4D00B000DF /* FrinedListViewVC.swift */; };
 		84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */; };
 		847769B320969252002AF924 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769A820969252002AF924 /* Direction.swift */; };
 		847769B520969252002AF924 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AA20969252002AF924 /* Scheduler.swift */; };
@@ -119,6 +121,8 @@
 		29F104FA20A00FB9006E84E0 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
+		778663CC20B24CAB008DD4F9 /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		77ACD7A620B23F4D00B000DF /* FrinedListViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrinedListViewVC.swift; sourceTree = "<group>"; };
 		84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableViewController.swift; sourceTree = "<group>"; };
 		847769A820969252002AF924 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		847769AA20969252002AF924 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 				8496347720A8DEC900719162 /* ChatVC.swift */,
 				8496347C20A8E69800719162 /* PeerTableViewCell.swift */,
 				8496347A20A8E60900719162 /* ChatTableViewCell.swift */,
+				77ACD7A620B23F4D00B000DF /* FrinedListViewVC.swift */,
+				778663CC20B24CAB008DD4F9 /* FriendListTableViewCell.swift */,
 			);
 			path = chatting;
 			sourceTree = "<group>";
@@ -669,6 +675,7 @@
 				2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */,
 				8496347D20A8E69800719162 /* PeerTableViewCell.swift in Sources */,
 				84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */,
+				77ACD7A720B23F4D00B000DF /* FrinedListViewVC.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
 				298BCFFE2096E213007A6846 /* LimitTextViewDelegate.swift in Sources */,
 				29C1797D207EE97D002971C5 /* LoginVC.swift in Sources */,
@@ -687,7 +694,7 @@
 				2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */,
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,
 				294C94C52097D74700266533 /* QuizVC.swift in Sources */,
-				2934864C20AA59A300143474 /* ImageScrollerView.swift in Sources */,
+
 				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,
 				29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */,
 				847769B920969289002AF924 /* CardView.swift in Sources */,
