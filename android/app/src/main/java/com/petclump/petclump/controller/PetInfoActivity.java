@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,8 +56,9 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         Bundle extras = getIntent().getExtras();
         sequence = (Integer) extras.get("sequence");
         Log.d(TAG, "sequence:" + sequence);
-
+        setActionBar(String.valueOf(getText(R.string.Pet_info)));
         setupUI();
+
     }
 
     @Override
@@ -343,5 +345,15 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
 
         // open gallery
 
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
     }
 }

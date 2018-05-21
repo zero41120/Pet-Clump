@@ -55,7 +55,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             finish();
         }
         setupUI();
-
+        setActionBar(String.valueOf(getText(R.string.About_me)));
     }
 
 
@@ -310,5 +310,15 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             i.setImageResource(R.drawable.schedule_gray);
             Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
         }
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
     }
 }

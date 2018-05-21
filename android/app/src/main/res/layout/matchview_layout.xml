@@ -25,7 +25,8 @@
             android:layout_height="30dp"
             android:text="match rate"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:fontFamily="@font/varela_round"/>
     </LinearLayout>
 
 

@@ -103,7 +103,7 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
 
             messageText = (TextView) itemView.findViewById(R.id.chatview_receive_message);
             timeText = (TextView) itemView.findViewById(R.id.chatview_receive_time);
-            nameText = (TextView) itemView.findViewById(R.id.chatview_receive_name);
+
             profileImage = (ImageView) itemView.findViewById(R.id.chatview_receive_image);
         }
 
@@ -115,7 +115,7 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
             String time = timeFormat.format(currentTime);
             timeText.setText(time);
-            nameText.setText(message.getUser());
+            //nameText.setText(message.getUser());
 
             // Insert the profile image from the URL into the ImageView.
             profileImage.setImageResource(R.drawable.dog_placeholder);

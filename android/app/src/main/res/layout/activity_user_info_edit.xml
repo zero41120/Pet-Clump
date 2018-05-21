@@ -26,7 +26,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:text="@string/Name" />
+                android:text="@string/Name"
+                android:fontFamily="@font/varela_round"/>
             <EditText
                 android:id="@+id/user_name_editText"
                 android:layout_width="wrap_content"
@@ -39,7 +40,8 @@
                 android:padding="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:background="@drawable/pet_info_background"/>
+                android:background="@drawable/pet_info_background"
+                android:fontFamily="@font/varela_round"/>
             <TextView
                 android:id="@+id/pet_specie_label"
                 style="@style/fontStyle4"
@@ -48,7 +50,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:text="@string/Gender" />
+                android:text="@string/Gender"
+                android:fontFamily="@font/varela_round"/>
             <RelativeLayout
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
@@ -68,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp" />
+                android:layout_marginLeft="24dp"
+                android:fontFamily="@font/varela_round"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,7 +103,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:text="@string/Match_range" />
+                android:text="@string/Match_range"
+                android:fontFamily="@font/varela_round"/>
             <SeekBar
                 android:id="@+id/user_match_value_seekbar"
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -119,7 +124,8 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginStart="64dp"
                 android:text="@string/No_preferred_range"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:fontFamily="@font/varela_round"/>
             <TextView
                 android:id="@+id/free_schedule_label"
                 style="@style/fontStyle4"
@@ -128,7 +134,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:text="@string/Free_schedule" />
+                android:text="@string/Free_schedule"
+                android:fontFamily="@font/varela_round"/>
         </LinearLayout>
         <TextView
             android:id="@+id/about_my_pet_label"
@@ -145,7 +152,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/varela_round"/>
 
         <Button
             android:id="@+id/save_button"
@@ -161,7 +169,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/cancel_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            android:fontFamily="@font/varela_round"/>
 
         <Button
             android:id="@+id/cancel_button"
@@ -182,7 +191,8 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.007" />
+            app:layout_constraintVertical_bias="0.007"
+            android:fontFamily="@font/varela_round"/>
 
 
 

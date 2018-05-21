@@ -1,12 +1,14 @@
 package com.petclump.petclump.controller;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -33,6 +35,7 @@ public class MatchingActivity extends AppCompatActivity {
 //        vm_button_settings.setOnClickListener(v -> {
 //            startActivity(new Intent(this, UserInfoActivity.class));
 //        });
+        setActionBar(String.valueOf(getText(R.string.View_Match_As)));
     }
     @Override
     protected void onResume() {
@@ -107,5 +110,15 @@ public class MatchingActivity extends AppCompatActivity {
                 super.onOptionsItemSelected(item);
         }
         return true;
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
     }
 }
