@@ -53,11 +53,7 @@ public class KeyExchanger {
     private void loadOrGenerateSecret(String fdId){
         if (mySecret == null){
             // TODO: Load from file for fdPublic, use a fix seed of fdId for now
-            long seed = 0;
-            for (char c : fdId.toCharArray()) {
-                seed = 31L*seed + c;
-            }
-            mySecret = new BigInteger(500, new Random(seed));
+            mySecret = new BigInteger(500, new Random());
         }
     }
 
