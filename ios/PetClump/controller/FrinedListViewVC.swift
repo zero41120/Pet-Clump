@@ -58,7 +58,13 @@ class FrinedListViewVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         return cell
     }
-
+    
+    // Dismisses the view
+    @IBAction func tapCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
 }
 
 

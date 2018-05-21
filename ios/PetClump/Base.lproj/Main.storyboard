@@ -346,7 +346,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="My Friend" id="3UY-B0-6h4">
-                                        <barButtonItem key="leftBarButtonItem" title="Exit" id="hSh-b0-fGs"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Exit" id="hSh-b0-fGs">
+                                            <connections>
+                                                <action selector="tapCancel:" destination="pyx-Da-5lv" id="QBr-sq-tgQ"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" id="XgS-om-sUx"/>
                                     </navigationItem>
                                 </items>
