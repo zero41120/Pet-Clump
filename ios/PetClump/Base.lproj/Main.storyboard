@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1145" y="58"/>
+            <point key="canvasLocation" x="-1138" y="30"/>
         </scene>
         <!--SettingVC-->
         <scene sceneID="J6j-EU-Tek">
@@ -528,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGx-hO-KY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1812" y="315.51724137931035"/>
+            <point key="canvasLocation" x="1492" y="30"/>
         </scene>
         <!--Owner SettingVC-->
         <scene sceneID="6kg-iQ-QI8">
@@ -1269,7 +1269,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1130.4000000000001" y="173.64532019704436"/>
+            <point key="canvasLocation" x="791" y="173"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="0zg-02-5nt">
@@ -1351,7 +1351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJF-RG-KqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="1936.6995073891626"/>
+            <point key="canvasLocation" x="33" y="30"/>
         </scene>
         <!--Best-->
         <scene sceneID="agz-v0-3UP">
@@ -1474,115 +1474,6 @@
             </objects>
             <point key="canvasLocation" x="888.79999999999995" y="1936.6995073891626"/>
         </scene>
-        <!--Local-->
-        <scene sceneID="GTz-0A-oVh">
-            <objects>
-                <viewController id="HdJ-Ph-z3l" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ehq-y4-TzX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twtr-play.png" translatesAutoresizingMaskIntoConstraints="NO" id="AGl-JF-4MP">
-                                <rect key="frame" x="30" y="135" width="138" height="131"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rf-L8-knr">
-                                <rect key="frame" x="28" y="134" width="138" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twtr-play.png" translatesAutoresizingMaskIntoConstraints="NO" id="2HM-fk-90X">
-                                <rect key="frame" x="209" y="134" width="138" height="131"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twtr-play.png" translatesAutoresizingMaskIntoConstraints="NO" id="KRn-te-hI7">
-                                <rect key="frame" x="209" y="320" width="138" height="131"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Nr-Ai-hK7">
-                                <rect key="frame" x="209" y="317" width="138" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41F-Pw-eKd">
-                                <rect key="frame" x="209" y="133" width="138" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j38-vG-Tjm">
-                                <rect key="frame" x="30" y="321" width="138" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twtr-play.png" translatesAutoresizingMaskIntoConstraints="NO" id="EO0-MN-qb5">
-                                <rect key="frame" x="30" y="321" width="138" height="131"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZoP-pS-oS4">
-                                <rect key="frame" x="30" y="322" width="138" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1p5-nP-dZq">
-                                <rect key="frame" x="209" y="510" width="138" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twtr-play.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZYw-qs-NUp">
-                                <rect key="frame" x="30" y="510" width="138" height="131"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z95-sd-2wQ">
-                                <rect key="frame" x="30" y="511" width="138" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="twtr-play.png" translatesAutoresizingMaskIntoConstraints="NO" id="tkv-SB-BAb">
-                                <rect key="frame" x="209" y="509" width="138" height="131"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="SSD-dL-rlQ"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Local" id="tpY-cQ-wAk"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wZF-l2-2Ro" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1775" y="1184"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="iAs-Kj-kzB">
-            <objects>
-                <viewController id="1c4-sH-hyi" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7FT-Cf-l7f">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="dDE-DA-6b7"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="lCp-yT-35Z"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q8e-6f-6Bi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4553" y="3239"/>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="dtz-cG-jdk">
-            <objects>
-                <viewController id="JW0-ln-grJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ImI-Fp-Dqh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="SFy-se-COp"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="c91-co-gwH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wCR-64-1E0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4553" y="2589"/>
-        </scene>
         <!--Match DetailVC-->
         <scene sceneID="JIM-3w-2ca">
             <objects>
@@ -1607,6 +1498,11 @@
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="5fF-fL-WRt">
                                             <connections>
                                                 <action selector="tapExit:" destination="Z42-vT-1sh" id="YuO-98-xc4"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Add Friend" id="sF9-SA-u95">
+                                            <connections>
+                                                <action selector="tapAddFriend:" destination="Z42-vT-1sh" id="o1k-RS-y03"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1727,24 +1623,6 @@
             <point key="canvasLocation" x="1773.5999999999999" y="1936.6995073891626"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="A7D-Po-VFU">
-            <objects>
-                <tabBarController id="OKo-bP-GZ9" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YoP-v3-3Ks">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="JW0-ln-grJ" kind="relationship" relationship="viewControllers" id="fq6-za-ZCZ"/>
-                        <segue destination="1c4-sH-hyi" kind="relationship" relationship="viewControllers" id="sFT-Mo-gHs"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="33c-F5-ACj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3606" y="2908"/>
-        </scene>
-        <!--Tab Bar Controller-->
         <scene sceneID="2Z8-dn-TEF">
             <objects>
                 <tabBarController id="Wfe-8Q-Hm8" sceneMemberID="viewController">
@@ -1755,7 +1633,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="3yQ-nY-HIz" kind="relationship" relationship="viewControllers" id="NWP-9Y-qwY"/>
-                        <segue destination="HdJ-Ph-z3l" kind="relationship" relationship="viewControllers" id="8Hg-Vs-XbE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWk-ag-UvC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1957,10 +1834,7 @@
             <point key="canvasLocation" x="-1239" y="1015"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="twtr-play.png" width="70" height="70"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ezP-bb-XVp"/>
+        <segue reference="XA5-IB-wDa"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,6 +24,12 @@ class MatchDetailVC: UIViewController{
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func tapAddFriend(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
+        self.present(pdv, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let _ = Auth.auth().currentUser?.uid else {
