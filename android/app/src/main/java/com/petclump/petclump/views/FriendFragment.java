@@ -39,14 +39,15 @@ public class FriendFragment extends Fragment implements ProfileDownloader {
     private PetProfile pet = new PetProfile();
     private String pet_id = "";
     private Map<String,String> Friend_list = null;
-    private FriendListDownloader downloader;
     public FriendFragment(){}
-    private ArrayList<String> download_list;
 
     @Override
     public void didCompleteDownload() {
-        friendProfileList.add(new FriendProfile(pet.getName(), "what's up", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main)));
-        friendRecycleViewAdapter.notifyDataSetChanged();
+        FriendProfile t = new FriendProfile(pet.getName(), "what's up", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main));
+        if (!friendProfileList.contains(t)){
+            friendProfileList.add(t);
+            friendRecycleViewAdapter.notifyDataSetChanged();
+        }
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState) {
@@ -54,18 +55,6 @@ public class FriendFragment extends Fragment implements ProfileDownloader {
         recyclerView = v.findViewById(R.id.friendview_recycle);
         linearLayoutManager = new LinearLayoutManager(this.getContext());
         friendProfileList = new ArrayList<>();
-
-       /* FriendProfile profile1 = new FriendProfile("Wang Chai", "Hey what's up", "13:09");
-        FriendProfile profile2 = new FriendProfile("Funk", "Wanna go for walk?", "16:09");
-        FriendProfile profile3 = new FriendProfile("Nei Nei", "Yo Yo", "2:09");
-        FriendProfile profile4 = new FriendProfile("Sueanne Li", "Yo Yo", "8:19");
-        FriendProfile profile5 = new FriendProfile("Shay Wang", "想吃花椰菜", "12:09");
-        FriendProfile profile6 = new FriendProfile("Wendy Wang", "......", "1:09");
-
-        friendProfileList.add(profile4);
-        friendProfileList.add(profile5);
-        friendProfileList.add(profile6);*/
-        //Log.d(TAG,"要他妈的return啦");
         return v;
     }
     private void setRecyclerView(){
@@ -84,16 +73,19 @@ public class FriendFragment extends Fragment implements ProfileDownloader {
                     .setPositiveButton("Yes", (DialogInterface dialog, int which) -> {
                         pet.new_friend_change(sender_id, pet_id, PetProfile.friend_change_type.ADD_UNREAD_FRIEND, ()->{
                             Toast.makeText(getActivity(), "Successfully add the friend!", Toast.LENGTH_SHORT).show();
+                            friendRecycleViewAdapter.notifyDataSetChanged();
                         });
                     })
                     .setNegativeButton("Block", (DialogInterface dialog, int which) -> {
                         pet.new_friend_change(sender_id, pet_id, PetProfile.friend_change_type.BLOCK_FRIEND, ()->{
                             Toast.makeText(getActivity(), "Successfully block the request!", Toast.LENGTH_SHORT).show();
+                            friendRecycleViewAdapter.notifyDataSetChanged();
                         });
                     })
                     .setNeutralButton("Refuse", (DialogInterface dialog, int which) -> {
                         pet.friend_delete(sender_id, pet_id, ()->{
                             Toast.makeText(getActivity(), "Successfully refuse the request!", Toast.LENGTH_SHORT).show();
+                            friendRecycleViewAdapter.notifyDataSetChanged();
                         });
                     } ).show();
         });

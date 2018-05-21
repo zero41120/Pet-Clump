@@ -50,33 +50,12 @@ public class MatchingViewProfileActivity extends AppCompatActivity {
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(matchviewprofile_viewPager);
         //new DownloadImageTask(matchviewprofile_viewPager).execute(intent.getExtras().getString("main_url"));
-        String sender_id = intent.getExtras().getString("MainPetId");
-        String receiver_id = intent.getExtras().getString("petId");
-        //check if blocked or already in the friendlist
+        String main_pet_id = intent.getExtras().getString("MainPetId");
+        String the_pet_id = intent.getExtras().getString("petId");
         PetProfile pet = new PetProfile();
-        pet.download(sender_id,()->{});
-        Map<String,String> pet_list = pet.getRelation_list();
-        matchviewprofile_add_friend.setOnClickListener(v->{
-            if(pet_list.get(receiver_id)!= null){
-                switch(pet_list.get(receiver_id)){
-                    case "1":
-                        Toast.makeText(getApplicationContext(), "Already your friend!", Toast.LENGTH_SHORT).show();
-                        return;
-                    case "2":
-                        Toast.makeText(getApplicationContext(), "You have blocked it.", Toast.LENGTH_SHORT).show();
-                        return;
-                    case "3":
-                        Toast.makeText(getApplicationContext(), "Your friend request has been sent.", Toast.LENGTH_SHORT).show();
-                        return;
-                    case "0":
-                        Toast.makeText(getApplicationContext(), "Plese enter into your friend list to handle your new friend requests.", Toast.LENGTH_SHORT).show();
-                        return;
-                }
-            }
-            pet.new_friend_change(sender_id,receiver_id,PetProfile.friend_change_type.NEW_FRIEND,()->{
-                Toast.makeText(this, "send successfully!", Toast.LENGTH_SHORT).show();
-                matchviewprofile_add_friend.setClickable(false);
-            });
+        pet.new_friend_change(main_pet_id,the_pet_id,PetProfile.friend_change_type.NEW_FRIEND,()->{
+            Toast.makeText(this, "send successfully!", Toast.LENGTH_SHORT).show();
+            matchviewprofile_add_friend.setClickable(false);
         });
     }
 }

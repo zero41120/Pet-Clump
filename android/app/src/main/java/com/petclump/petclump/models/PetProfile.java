@@ -178,21 +178,6 @@ public class PetProfile implements Profile {
     }
     synchronized public void friend_delete (String sender_id, String receiver_id, ProfileDeletor c){
 
-   /* FirebaseFirestore.getInstance().collection("pets")
-            .document(sender_id)
-            .collection("friends").whereEqualTo("item_id", receiver_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    for(Object x: queryDocumentSnapshots.getDocuments()){
-                        ((DocumentSnapshot)x).getReference().delete().addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.d(TAG, "failed delete receiver:" + receiver_id);
-                            }
-                        });
-                    }
-                }
-            });*/
         // delete receiver from sender
         FirebaseFirestore.getInstance().collection("pets")
                 .document(sender_id)
@@ -223,26 +208,6 @@ public class PetProfile implements Profile {
                 }
             }
         });
-    /*FirebaseFirestore.getInstance().collection("pets")
-            .document(receiver_id)
-            .collection("friends").whereEqualTo("item_id", sender_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-        @Override
-        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-            for(Object x: queryDocumentSnapshots.getDocuments()){
-                ((DocumentSnapshot)x).getReference().delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        c.didCompleteDelete();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "failed delete sender:" + sender_id);
-                    }
-                });
-            }
-        }
-    });*/
     }
     synchronized public void listenToFriendList(String pet_id, ProfileDownloader c){
 
