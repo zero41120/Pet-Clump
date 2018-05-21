@@ -27,6 +27,32 @@ class Messenger {
     let friendId: String
     let chatRoomId: String
     var index: Int = -1
+    
+    var messages: [Message] = [
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 0"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 1"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 2"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 3"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 4"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 5"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 6"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 7"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 8"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 9"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 10"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 11"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 12"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 13"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 14"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 15"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 16"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 17"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 18"]),
+        Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 19"]),
+        Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 20"])
+    ]
+    
+    
     init(myPet: PetProfile, friendPet: PetProfile) {
         self.myId = myPet.getId()
         self.friendId = friendPet.getId()
@@ -35,29 +61,7 @@ class Messenger {
     
     func download(count: Int, completion: (([Message]) -> Void)){
         // Download from firebase
-        var messages: [Message] = [
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 0"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 1"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 2"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 3"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 4"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 5"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 6"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 7"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 8"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 9"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 10"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 11"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 12"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 13"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 14"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 15"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 16"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 17"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 18"]),
-            Message(refObject: ["senderId":"94OeeGargpPOI5RuQU9N9zb2qvD30", "time": Timestamp(), "message": "Example Text 19"]),
-            Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "Example Text 20"])
-        ]
+        
         if index == -1 {
             index = messages.count
         }
@@ -76,5 +80,11 @@ class Messenger {
             }
         }
         completion(retMessage)
+    }
+    
+    func upload(message: String, completion: (([Message]) -> Void)){
+        let msg = Message(refObject: ["senderId":myId, "time": Timestamp(), "message": message])
+        messages.append(msg)
+        completion([msg])
     }
 }

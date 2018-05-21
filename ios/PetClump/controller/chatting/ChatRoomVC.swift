@@ -18,19 +18,27 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var inputField: UITextField!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // Assign by caller
     var friendPetProfile: PetProfile?
     var myPetProfile: PetProfile?
+    
     var messages: [Message] = []
     var messenger: Messenger?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupKeyboardObservers()
+        hideKeyboardWhenTappedAround()
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorColor = UIColor.clear
         tableView.delegate = self
         tableView.dataSource = self
+        
+        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        inputField.delegate = self
         
         // Download Message
         messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
@@ -40,12 +48,39 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         }
     }
     
+    func setupKeyboardObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            bottomConstraint.constant -= (keyboardSize.height + 4)
+            self.view.layoutIfNeeded()
+            self.scrollBottom()
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            bottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            self.scrollBottom()
+        }
+    }
+    
     @objc func handleSend() {
+        guard self.inputField!.text != ""  else { return }
+        messenger?.upload(message: self.inputField!.text!, completion: { (message) in
+            self.inputField!.text = ""
+            messages = messages + message
+            tableView.reloadData()
+            self.scrollBottom()
+        })
         
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
         let last = messages.count
         if indexPath.row == last - 1 {
             messenger!.download(count: 10) { (retMessages) in
@@ -54,11 +89,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
                 }
                 messages = messages + retMessages
                 tableView.reloadData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                    let indexPath = IndexPath(row: self.messages.count-1, section: 0)
-                    print("\(self.messages.count-1)")
-                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                }
+                self.scrollBottom()
             }
         }
     }
@@ -119,6 +150,13 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         self.dismiss(animated: true, completion: nil)
     }
     
+    private func scrollBottom(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
+            print("\(self.messages.count-1)")
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+    }
        
 }
 

@@ -156,52 +156,63 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5Z-2P-21O">
-                                <rect key="frame" x="295" y="623" width="80" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="7xh-LN-rqW"/>
-                                    <constraint firstAttribute="height" constant="44" id="txO-3M-I5m"/>
-                                </constraints>
-                                <state key="normal" title="Send"/>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZP-Je-Et1">
                                 <rect key="frame" x="0.0" y="622" width="375" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="l7N-JT-qXr"/>
+                                    <constraint firstAttribute="height" constant="1" id="CNh-xx-S2p"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Message... " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52y-yU-5B5">
-                                <rect key="frame" x="8" y="623" width="279" height="44"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrl-fN-Cxb">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Message... " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52y-yU-5B5">
+                                        <rect key="frame" x="8" y="0.0" width="279" height="44"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5Z-2P-21O">
+                                        <rect key="frame" x="295" y="0.0" width="80" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="dFC-pE-LC8"/>
+                                        </constraints>
+                                        <state key="normal" title="Send"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="dKK-AY-zmM"/>
+                                    <constraint firstItem="52y-yU-5B5" firstAttribute="leading" secondItem="xrl-fN-Cxb" secondAttribute="leading" constant="8" id="0GO-zn-wuz"/>
+                                    <constraint firstAttribute="trailing" secondItem="p5Z-2P-21O" secondAttribute="trailing" id="6rr-SN-FAR"/>
+                                    <constraint firstItem="52y-yU-5B5" firstAttribute="top" secondItem="xrl-fN-Cxb" secondAttribute="top" id="G3T-8b-oCK"/>
+                                    <constraint firstAttribute="bottom" secondItem="52y-yU-5B5" secondAttribute="bottom" id="KEP-2F-GUR"/>
+                                    <constraint firstAttribute="height" constant="44" id="bby-bR-WcF"/>
+                                    <constraint firstItem="p5Z-2P-21O" firstAttribute="top" secondItem="xrl-fN-Cxb" secondAttribute="top" id="dGs-06-ITK"/>
+                                    <constraint firstItem="p5Z-2P-21O" firstAttribute="leading" secondItem="52y-yU-5B5" secondAttribute="trailing" constant="8" id="rgt-XP-JJg"/>
+                                    <constraint firstAttribute="bottom" secondItem="p5Z-2P-21O" secondAttribute="bottom" id="tRY-Nz-kyZ"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="52y-yU-5B5" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" constant="8" id="04s-ND-4rw"/>
-                            <constraint firstItem="RXE-LY-OFD" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="0Yc-Lt-vbx"/>
-                            <constraint firstItem="bCU-ZZ-F68" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="2HP-ox-d6L"/>
-                            <constraint firstItem="RXE-LY-OFD" firstAttribute="trailing" secondItem="htU-BV-OK9" secondAttribute="trailing" id="Nn4-ZT-39P"/>
-                            <constraint firstItem="SZP-Je-Et1" firstAttribute="top" secondItem="bCU-ZZ-F68" secondAttribute="bottom" id="VSe-iD-xta"/>
-                            <constraint firstItem="htU-BV-OK9" firstAttribute="trailing" secondItem="p5Z-2P-21O" secondAttribute="trailing" id="XXR-Ll-hrP"/>
-                            <constraint firstItem="bCU-ZZ-F68" firstAttribute="top" secondItem="RXE-LY-OFD" secondAttribute="bottom" id="XxC-eM-voP"/>
-                            <constraint firstAttribute="trailing" secondItem="SZP-Je-Et1" secondAttribute="trailing" id="Y1b-7n-zBP"/>
-                            <constraint firstItem="p5Z-2P-21O" firstAttribute="bottom" secondItem="htU-BV-OK9" secondAttribute="bottom" id="dzX-PH-1z4"/>
-                            <constraint firstItem="52y-yU-5B5" firstAttribute="bottom" secondItem="htU-BV-OK9" secondAttribute="bottom" id="h7a-lU-3uQ"/>
-                            <constraint firstItem="p5Z-2P-21O" firstAttribute="leading" secondItem="52y-yU-5B5" secondAttribute="trailing" constant="8" id="jVm-jx-XtE"/>
-                            <constraint firstItem="p5Z-2P-21O" firstAttribute="top" secondItem="SZP-Je-Et1" secondAttribute="bottom" id="rv3-ey-RnB"/>
-                            <constraint firstItem="RXE-LY-OFD" firstAttribute="top" secondItem="htU-BV-OK9" secondAttribute="top" id="u9q-HQ-KsH"/>
-                            <constraint firstItem="SZP-Je-Et1" firstAttribute="leading" secondItem="uHB-bw-hOw" secondAttribute="leading" id="wUS-8U-bLq"/>
-                            <constraint firstItem="bCU-ZZ-F68" firstAttribute="trailing" secondItem="htU-BV-OK9" secondAttribute="trailing" id="wYp-0I-98G"/>
+                            <constraint firstItem="xrl-fN-Cxb" firstAttribute="bottom" secondItem="htU-BV-OK9" secondAttribute="bottom" id="7di-pC-2yJ"/>
+                            <constraint firstItem="RXE-LY-OFD" firstAttribute="top" secondItem="htU-BV-OK9" secondAttribute="top" id="Dgn-8V-9vK"/>
+                            <constraint firstItem="SZP-Je-Et1" firstAttribute="top" secondItem="bCU-ZZ-F68" secondAttribute="bottom" id="HRM-Vl-FWH"/>
+                            <constraint firstItem="RXE-LY-OFD" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="MKZ-O0-Nso"/>
+                            <constraint firstItem="bCU-ZZ-F68" firstAttribute="trailing" secondItem="htU-BV-OK9" secondAttribute="trailing" id="NKX-O4-k2c"/>
+                            <constraint firstAttribute="trailing" secondItem="SZP-Je-Et1" secondAttribute="trailing" id="P9b-TZ-1Vk"/>
+                            <constraint firstItem="xrl-fN-Cxb" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="TUk-GH-deX"/>
+                            <constraint firstItem="bCU-ZZ-F68" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="fwf-tg-RQA"/>
+                            <constraint firstItem="xrl-fN-Cxb" firstAttribute="top" secondItem="SZP-Je-Et1" secondAttribute="bottom" id="hUB-oY-EkV"/>
+                            <constraint firstItem="bCU-ZZ-F68" firstAttribute="top" secondItem="RXE-LY-OFD" secondAttribute="bottom" id="lCE-KX-ht6"/>
+                            <constraint firstItem="SZP-Je-Et1" firstAttribute="leading" secondItem="uHB-bw-hOw" secondAttribute="leading" id="nds-Ou-UCJ"/>
+                            <constraint firstItem="xrl-fN-Cxb" firstAttribute="trailing" secondItem="htU-BV-OK9" secondAttribute="trailing" id="vhH-ks-Mc6"/>
+                            <constraint firstItem="RXE-LY-OFD" firstAttribute="trailing" secondItem="htU-BV-OK9" secondAttribute="trailing" id="x93-dh-myC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="htU-BV-OK9"/>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="7di-pC-2yJ" id="f2C-t1-cSM"/>
                         <outlet property="inputField" destination="52y-yU-5B5" id="wR5-Ih-dga"/>
                         <outlet property="navBar" destination="RXE-LY-OFD" id="ajK-rG-EHJ"/>
                         <outlet property="sendButton" destination="p5Z-2P-21O" id="U7J-jw-PPt"/>
