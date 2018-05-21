@@ -198,4 +198,8 @@ class PetProfile: Profile, Deletable{
             }
         })
     }
+    
+    func getId() -> String{
+        return "\(ownerId)\(sequence)"
+    }
 }

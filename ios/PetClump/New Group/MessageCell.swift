@@ -13,7 +13,9 @@ class MessageCell: UITableViewCell{
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var petImage: UIImageView!
-    static let cellId = "MessageCell"
+    @IBOutlet weak var timeLabel: UILabel!
+    static let friendCellId = "FriendMessageCell"
+    static let myCellId = "MyMessageCell"
   
     func makeBubble(backColor: UIColor, textColor: UIColor){
         textField.layer.cornerRadius = 16

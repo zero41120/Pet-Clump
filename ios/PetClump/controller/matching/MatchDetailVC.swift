@@ -12,7 +12,8 @@ import FirebaseAuth
 class MatchDetailVC: UIViewController{
     
     // Assigned by caller view
-    var petProfile: PetProfile?
+    var friendProfile: PetProfile?
+    var myProfile: PetProfile?
     
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -27,6 +28,8 @@ class MatchDetailVC: UIViewController{
     @IBAction func tapAddFriend(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
+        pdv.friendPetProfile = friendProfile!
+        pdv.myPetProfile = myProfile!
         self.present(pdv, animated: true, completion: nil)
     }
     
@@ -36,11 +39,11 @@ class MatchDetailVC: UIViewController{
             self.dismiss(animated: true, completion: nil)
             return
         }
-        ageLabel.text = petProfile!.age
-        nameLabel.text = petProfile!.name
-        specieLabel.text = petProfile!.specie
-        bioTextField.text = petProfile!.bio
-        let imageUrls = petProfile!.getPhotoUrls(isPulic: true)
+        ageLabel.text = friendProfile!.age
+        nameLabel.text = friendProfile!.name
+        specieLabel.text = friendProfile!.specie
+        bioTextField.text = friendProfile!.bio
+        let imageUrls = friendProfile!.getPhotoUrls(isPulic: true)
         self.imageScroller.setupScrollerWith(urls: imageUrls)
     }
 }

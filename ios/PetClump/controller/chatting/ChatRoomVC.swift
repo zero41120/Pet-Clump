@@ -9,25 +9,34 @@
 import UIKit
 import Firebase
 
-class ChatRoomVC: UIViewController, UITextFieldDelegate {
+class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    private static let MAX_WIDTH = 200
+    private static let MIN_HEIGHT = 96
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var inputField: UITextField!
     
-    var messageDelegate: PetMessageTableDelegate?
-    
-    
+    // Assign by caller
+    var friendPetProfile: PetProfile?
+    var myPetProfile: PetProfile?
+    var messages: [Message] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageDelegate = PetMessageTableDelegate()
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorColor = UIColor.clear
-        tableView.delegate = messageDelegate
-        tableView.dataSource = messageDelegate
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Download Message
+        let messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
+        messenger.download(count: 5) { (retMessages) in
+            messages = retMessages
+            tableView.reloadData()
+        }
     }
     
     @objc func handleSend() {
@@ -38,55 +47,54 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate {
         handleSend()
         return true
     }
-}
-
-class PetMessageTableDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
-    var messages: [Message] = [
-        Message(refObject: ["":""]),Message(refObject: ["":""]),Message(refObject: ["":""])
-    ]
-    
-    var width = CGFloat(200)
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MessageCell = tableView.dequeueReusableCell(withIdentifier: MessageCell.cellId) as! MessageCell
-        
+        let time = messages[indexPath.row].time
         let message = messages[indexPath.row].message
+        let senderId = messages[indexPath.row].senderId
+        let senderCellId = senderId == myPetProfile?.getId() ? MessageCell.myCellId : MessageCell.friendCellId
+        let senderImageUrl =
+            senderId == myPetProfile?.getId() ?
+            myPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main) :
+            friendPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
+        let cell = tableView.dequeueReusableCell(withIdentifier: senderCellId) as! MessageCell
+        
+        // Text field
         cell.textField.text = message
-        width = cell.textField.frame.width
-        cell.textField.frame = estimateFrameForText(text: message, width: width)
+        cell.textField.frame = estimateFrameForText(text: message)
         cell.textField.topAnchor.constraint(equalTo: cell.containerView.topAnchor, constant: 8)
         cell.textField.rightAnchor.constraint(equalTo: cell.petImage.rightAnchor, constant: 8)
+        cell.textField.contentInset = UIEdgeInsetsMake(1, 8, 1, 8);
         cell.makeBubble(backColor: UIColor(red: 0, green: 137/255, blue: 249/255, alpha: 1), textColor: UIColor.white)
-        cell.textField.contentInset = UIEdgeInsetsMake(1, 1, 1, 1);
-
-        cell.petImage.backgroundColor = UIColor.red
+        
+        // Image
+        cell.petImage.load(url: senderImageUrl!)
+        
+        // Time
+        let hour = Calendar.current.component(.hour, from: time.dateValue())
+        let minute = Calendar.current.component(.minute, from: time.dateValue())
+        print("\(hour)\(minute)")
+        cell.timeLabel.text = "\(hour)\(minute)"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let message = messages[indexPath.row].message
-        return estimateFrameForText(text: message, width: self.width).height
+        return estimateFrameForText(text: message).height
     }
     
-    private func estimateFrameForText(text: String, width: CGFloat) -> CGRect {
-        let size = CGSize(width: width, height: 1000)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)], context: nil)
+    private func estimateFrameForText(text: String) -> CGRect {
+        let width = text.estimateWidth(usingFont: UIFont.systemFont(ofSize: 16))
+        let height = text.estimateHeight(usingFont: UIFont.systemFont(ofSize: 16))
+        if (height < 96) {
+            return CGRect(x: 0, y: 0, width: width, height: 96)
+        }
+        return CGRect(x: 0, y: 0, width: 200, height: height)
     }
 }
 
-class Message{
-    let senderId: String
-    let time: Timestamp
-    let message: String
-    init(refObject: [String: Any]){
-        senderId = "No id"
-        time = Timestamp()
-        message = "哈囉你好嗎？衷心感謝，珍重再見，期待再相逢！哈囉你好嗎？衷心感謝，珍重再見，期待再相逢！"
-    }
-}

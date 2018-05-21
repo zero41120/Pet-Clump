@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2901B3BD20B229B30058DC1C /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2901B3BC20B229B30058DC1C /* Message.storyboard */; };
 		2901B3C320B234F30058DC1C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2901B3C220B234F30058DC1C /* MessageCell.swift */; };
+		2901B3C720B250850058DC1C /* Messenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2901B3C620B250850058DC1C /* Messenger.swift */; };
 		2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905331E209915F50076A2AF /* TextViewExtension.swift */; };
 		2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926C2F120A9332500DB6A3C /* Crytographer.swift */; };
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
@@ -79,6 +80,7 @@
 		1ABD750C1AD364543A6D1485 /* Pods-PetClump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.release.xcconfig"; sourceTree = "<group>"; };
 		2901B3BC20B229B30058DC1C /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		2901B3C220B234F30058DC1C /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		2901B3C620B250850058DC1C /* Messenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messenger.swift; sourceTree = "<group>"; };
 		2905331E209915F50076A2AF /* TextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewExtension.swift; sourceTree = "<group>"; };
 		2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetClumpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926C2F120A9332500DB6A3C /* Crytographer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crytographer.swift; sourceTree = "<group>"; };
@@ -225,12 +227,12 @@
 			isa = PBXGroup;
 			children = (
 				298FEB66209394D70018F368 /* WelcomeVC.swift */,
-				29C1797C207EE97D002971C5 /* LoginVC.swift */,
-				296FD5B820AC26C800FEA664 /* matching */,
-				29FC3FDB20AF44760045AA65 /* friending */,
-				296FD5B720AC26B000FEA664 /* setting */,
-				296FD5B920AC26D400FEA664 /* chatting */,
 				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
+				29C1797C207EE97D002971C5 /* LoginVC.swift */,
+				296FD5B720AC26B000FEA664 /* setting */,
+				29FC3FDB20AF44760045AA65 /* friending */,
+				296FD5B820AC26C800FEA664 /* matching */,
+				296FD5B920AC26D400FEA664 /* chatting */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -331,6 +333,7 @@
 				2934865020AB8E1800143474 /* message */,
 				2934864F20AB8DBA00143474 /* profile */,
 				294C94C72097E35E00266533 /* QuizQuestion.swift */,
+				2901B3C620B250850058DC1C /* Messenger.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				29FC3FD720AF2F950045AA65 /* ChatRoomVC.swift in Sources */,
 				29D1342320A9E609005A72EA /* MatchDetailVC.swift in Sources */,
 				84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */,
+				2901B3C720B250850058DC1C /* Messenger.swift in Sources */,
 				84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */,
 				295EC96A20A40A9000F8D32F /* MatchBestVC.swift in Sources */,
 				2934864A20AA511600143474 /* ShadowView.swift in Sources */,
