@@ -58,7 +58,6 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         Log.d(TAG, "sequence:" + sequence);
         setActionBar(String.valueOf(getText(R.string.Pet_info)));
         setupUI();
-
     }
 
     @Override

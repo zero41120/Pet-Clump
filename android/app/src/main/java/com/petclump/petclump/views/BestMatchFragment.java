@@ -64,11 +64,11 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
         gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recycleViewAdapter);
-        md.downloadMore(profiles, this);
+        md.downloadMore(profiles, petId,this);
         scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                md.downloadMore(profiles, self);
+                md.downloadMore(profiles,petId, self);
             }
         };
         recyclerView.addOnScrollListener(scrollListener);
