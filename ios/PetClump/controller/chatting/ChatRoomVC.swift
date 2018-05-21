@@ -56,14 +56,14 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            bottomConstraint.constant -= (keyboardSize.height + 4)
+            self.bottomConstraint.constant = -(keyboardSize.height + 88)
             self.view.layoutIfNeeded()
             self.scrollBottom()
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             bottomConstraint.constant = 0
             self.view.layoutIfNeeded()
             self.scrollBottom()
@@ -105,17 +105,14 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let time = messages[indexPath.row].time
-        let message = messages[indexPath.row].message
+        
+        // Cell
         let senderId = messages[indexPath.row].senderId
         let senderCellId = senderId == myPetProfile?.getId() ? MessageCell.myCellId : MessageCell.friendCellId
-        let senderImageUrl =
-            senderId == myPetProfile?.getId() ?
-            myPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main) :
-            friendPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
         let cell = tableView.dequeueReusableCell(withIdentifier: senderCellId) as! MessageCell
         
         // Text field
+        let message = messages[indexPath.row].message
         cell.textField.text = message
         cell.textField.frame = estimateFrameForText(text: message)
         cell.textField.topAnchor.constraint(equalTo: cell.containerView.topAnchor, constant: 8)
@@ -124,12 +121,17 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         cell.makeBubble(backColor: UIColor(red: 0, green: 137/255, blue: 249/255, alpha: 1), textColor: UIColor.white)
         
         // Image
+        let senderImageUrl =
+            senderId == myPetProfile?.getId() ?
+            myPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main) :
+            friendPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
         cell.petImage.load(url: senderImageUrl!)
         
         // Time
-        let hour = Calendar.current.component(.hour, from: time.dateValue())
-        let minute = Calendar.current.component(.minute, from: time.dateValue())
-        cell.timeLabel.text = "\(hour)\(minute)"
+        let time = messages[indexPath.row].time
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm"
+        cell.timeLabel.text = dateFormatter.string(from: time.dateValue())
         
         return cell
     }
