@@ -4,5 +4,5 @@
     <dimen name="font_size">25sp</dimen>
     <dimen name="profile_pet_size">100dp</dimen>
     <dimen name="profile_pet_size2">100dp</dimen>
-    <dimen name="schedule_size">50dp</dimen>
+    <dimen name="schedule_size">40dp</dimen>
 </resources>

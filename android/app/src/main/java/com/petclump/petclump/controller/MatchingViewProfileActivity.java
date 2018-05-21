@@ -56,6 +56,7 @@ public class MatchingViewProfileActivity extends AppCompatActivity {
         pet.new_friend_change(main_pet_id,the_pet_id,PetProfile.friend_change_type.NEW_FRIEND,()->{
             Toast.makeText(this, "send successfully!", Toast.LENGTH_SHORT).show();
             matchviewprofile_add_friend.setClickable(false);
+            matchviewprofile_add_friend.setText("Already sent");
         });
     }
 }
