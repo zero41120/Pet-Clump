@@ -15,7 +15,6 @@
 		2934864520AA4E1600143474 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864420AA4E1600143474 /* CachedImage.swift */; };
 		2934864820AA510900143474 /* ImageScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864720AA510900143474 /* ImageScroller.swift */; };
 		2934864A20AA511600143474 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864920AA511600143474 /* ShadowView.swift */; };
-		2934864C20AA59A300143474 /* ImageScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864B20AA59A300143474 /* ImageScrollerView.swift */; };
 		2934865420AC206400143474 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934865320AC206400143474 /* StringExtension.swift */; };
 		2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
@@ -48,6 +47,9 @@
 		29F104FB20A00FB9006E84E0 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104FA20A00FB9006E84E0 /* ImageExtension.swift */; };
 		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
+		778663D020B267C2008DD4F9 /* FrinedListViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CE20B267C2008DD4F9 /* FrinedListViewVC.swift */; };
+		778663D120B267C2008DD4F9 /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CF20B267C2008DD4F9 /* FriendListTableViewCell.swift */; };
+		778663D320B2689B008DD4F9 /* ImageScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663D220B2689A008DD4F9 /* ImageScrollerView.swift */; };
 		84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */; };
 		847769B320969252002AF924 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769A820969252002AF924 /* Direction.swift */; };
 		847769B520969252002AF924 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AA20969252002AF924 /* Scheduler.swift */; };
@@ -119,6 +121,9 @@
 		29F104FA20A00FB9006E84E0 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
+		778663CE20B267C2008DD4F9 /* FrinedListViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrinedListViewVC.swift; sourceTree = "<group>"; };
+		778663CF20B267C2008DD4F9 /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		778663D220B2689A008DD4F9 /* ImageScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
 		84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableViewController.swift; sourceTree = "<group>"; };
 		847769A820969252002AF924 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		847769AA20969252002AF924 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				778663D220B2689A008DD4F9 /* ImageScrollerView.swift */,
 				29B1936D208D4CD000A59783 /* image */,
 				29A6E5B5208EB851006352CF /* font */,
 				295EC96720A40A0400F8D32F /* MatchingTableViewCell.swift */,
@@ -219,6 +225,8 @@
 			children = (
 				298FEB66209394D70018F368 /* WelcomeVC.swift */,
 				29C1797C207EE97D002971C5 /* LoginVC.swift */,
+				778663CF20B267C2008DD4F9 /* FriendListTableViewCell.swift */,
+				778663CE20B267C2008DD4F9 /* FrinedListViewVC.swift */,
 				296FD5B820AC26C800FEA664 /* matching */,
 				296FD5B720AC26B000FEA664 /* setting */,
 				296FD5B920AC26D400FEA664 /* chatting */,
@@ -653,6 +661,7 @@
 				298BCFF52096998C007A6846 /* GenderInputDelegate.swift in Sources */,
 				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
+				778663D320B2689B008DD4F9 /* ImageScrollerView.swift in Sources */,
 				29F104F920A0069E006E84E0 /* ImageInputDelegate.swift in Sources */,
 				8496347B20A8E60900719162 /* ChatTableViewCell.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* SettingVC.swift in Sources */,
@@ -687,11 +696,12 @@
 				2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */,
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,
 				294C94C52097D74700266533 /* QuizVC.swift in Sources */,
-				2934864C20AA59A300143474 /* ImageScrollerView.swift in Sources */,
 				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,
 				29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */,
 				847769B920969289002AF924 /* CardView.swift in Sources */,
+				778663D020B267C2008DD4F9 /* FrinedListViewVC.swift in Sources */,
 				2934865420AC206400143474 /* StringExtension.swift in Sources */,
+				778663D120B267C2008DD4F9 /* FriendListTableViewCell.swift in Sources */,
 				847769B320969252002AF924 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
