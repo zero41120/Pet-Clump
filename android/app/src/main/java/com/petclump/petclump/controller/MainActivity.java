@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -30,8 +31,14 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.Chat;
+import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -62,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         c = getApplicationContext();
         uidText = findViewById(R.id.uidText);
         animalText = findViewById(R.id.animalText);
-        Button pickButton = findViewById(R.id.button_go_upload_photo);
+        Button pickButton = findViewById(R.id.main_button_upload);
         Button settingsButton = findViewById(R.id.button_settings);
         Button matchingButton = findViewById(R.id.matching_button);
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -78,10 +85,27 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             );
             FirebaseAuth.getInstance().signOut();
         });
+        /*Chat s = new Chat(FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
+        s.connectServer(null);*/
 
         // Upload photo activity
+       /* PetProfile.getInstance().listenToFriendList("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",()->{
+            Log.d(TAG,PetProfile.getInstance().getRelation_list().toString());
+        });*/
         pickButton.setOnClickListener(v ->
-            startActivity(new Intent(c, UploadPhotoActivity.class))
+            {
+                //Toast.makeText(this, PetProfile.parseUrlToCache("http:/sldkfj/sdf&%%%/asb.txt"), Toast.LENGTH_SHORT).show();
+                //PetProfile.getInstance().listenToFriendList(FirebaseAuth.getInstance().getCurrentUser().getUid(), ()->{});
+                /*PetProfile.getInstance().new_friend_change("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",
+                        "94OeeGargpPOI5RuQU9N9zb2qvD30", PetProfile.friend_change_type.NEW_FRIEND,()->{
+                            Toast.makeText(this, "Request has been sent!", Toast.LENGTH_SHORT).show();
+                        }
+                        );*/
+              /*PetProfile.getInstance().friend_delete("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",
+                        "94OeeGargpPOI5RuQU9N9zb2qvD30", ()->{
+                            Toast.makeText(this, "Request has been sent!", Toast.LENGTH_SHORT).show();
+                        });*/
+            }
         );
 
         // Setting page activity

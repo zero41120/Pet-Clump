@@ -4,12 +4,14 @@ public class FriendProfile {
     String name;
     String lastMessage;
     String time;
+    String url;
 
 
-    public FriendProfile(String name, String lastMessage, String time) {
+    public FriendProfile(String name, String lastMessage, String time, String url) {
         this.name = name;
         this.lastMessage = lastMessage;
         this.time = time;
+        this.url = url;
 
     }
 
@@ -24,5 +26,7 @@ public class FriendProfile {
     public String getTime() {
         return time;
     }
+
+    public String getUrl(){return url;}
 
 }

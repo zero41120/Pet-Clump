@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -24,6 +26,7 @@ public class MatchingProfileDownloader {
     private Integer downloadLimit = 2;
     private Query petProfileQuery;
     private PetProfile pet;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public MatchingProfileDownloader(PetProfile myPet, Integer downloadLimit){
         this.downloadLimit = downloadLimit;
@@ -38,6 +41,9 @@ public class MatchingProfileDownloader {
             DocumentSnapshot lastVisible = documentSnapshots.getDocuments()
                     .get(documentSnapshots.size() -1);
             for (DocumentSnapshot doc: documentSnapshots.getDocuments()) {
+                // if should block pet
+                if(block_pets(doc.getId()))
+                    continue;
                 PetProfile petInfo = new PetProfile(doc.getData());
                 MatchingProfile match = new MatchingProfile(this.pet.getQuiz(), petInfo);
                 profiles.add(match);
@@ -49,6 +55,10 @@ public class MatchingProfileDownloader {
             toAppend.addAll(profiles);
             c.didCompleteDownload();
         });
+    }
+    private boolean block_pets(String pet_id){
+        String id = user.getUid();
+        return pet_id.substring(0,pet_id.length()-1).equals(id);
     }
 }
 

@@ -60,19 +60,19 @@ public class MatchingActivity extends AppCompatActivity {
         //profile_pet1
         thePet.download(user.getUid()+0,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(match_pet1).execute(url);
+            new DownloadImageTask(match_pet1, this).execute(url);
             //Toast.makeText(this, "1 set up", Toast.LENGTH_SHORT).show();
         });
         //profile_pet2
         thePet.download(user.getUid()+1,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(match_pet2).execute(url);
+            new DownloadImageTask(match_pet2, this).execute(url);
             //Toast.makeText(this, "2 set up", Toast.LENGTH_SHORT).show();
         });
         //profile_pet3
         thePet.download(user.getUid()+2,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(match_pet3).execute(url);
+            new DownloadImageTask(match_pet3, this).execute(url);
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
         });
     }

@@ -45,7 +45,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private OwnerProfile profile;
-    private static final int gray_id = 2131165335;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +135,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
         setFreeScheduleListener();
-        profile = new OwnerProfile();
+        profile = OwnerProfile.getInstance();
         profile.download(user.getUid(),()->{
             user_name_editText.setText(profile.getName());
             int index = getSpinnerPosition(user_select_gender, profile.getGender());
@@ -251,7 +250,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void saveData() {
-        OwnerProfile profile = new OwnerProfile();
+        OwnerProfile profile = OwnerProfile.getInstance();
         profile.setGender(user_select_gender.getSelectedItem().toString());
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
@@ -299,7 +298,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Clicked!", Toast.LENGTH_SHORT).show();
         ImageView i = findViewById(v.getId());
         if((Integer)i.getTag() == R.drawable.schedule_gray){
             i.setTag(R.drawable.schedule_green);

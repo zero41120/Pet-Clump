@@ -36,22 +36,22 @@ public class QuizActivity extends AppCompatActivity implements ProfileUploader {
     private List<String> listOfQuestions;
     final int MIN_DISTANCE = 150;
     private Context c;
-    private PetProfile profile;
     private String petId;
     private CardStackView cardStackView;
     Integer sequence = 0;
     TextView quizview;
+    private PetProfile pet = new PetProfile();
 
     private Boolean isQuizReady() {
         // When download complete, index will be set to 0
         Log.d(TAG, "isQuizReady: " + index);
         if (index == 10) {
-            profile.setQuiz(answers);
-            profile.upload(petId, this);// Finish doesn't work, I don't know why.
+
+            pet.setQuiz(answers);
+            pet.upload(petId, this::finish);// Finish doesn't work, I don't know why.
             quizview.setVisibility(View.VISIBLE);
             cardStackView.setVisibility(View.GONE);
             quizview.setOnClickListener(v->finish());
-
         }
 
         return index > -1 && index < 10;
@@ -68,15 +68,14 @@ public class QuizActivity extends AppCompatActivity implements ProfileUploader {
         index = -1;
         sequence = getIntent().getIntExtra("sequence", 0);
         petId = FirebaseAuth.getInstance().getUid() + sequence;
-        profile = new PetProfile() {{
+        pet.
             download(petId, () -> {
-                listOfQuestions = QuizQuestion.getQuestion(c, profile.getQuiz(), 10);
-                answers = profile.getQuiz();
+                listOfQuestions = QuizQuestion.getQuestion(c, pet.getQuiz(), 10);
+                answers = pet.getQuiz();
                 Log.d(TAG, "instance initializer: " + answers);
                 index = 0;
                 setUpChatview();
             });
-        }};
 
 
 
