@@ -23,6 +23,7 @@ import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.views.Popup;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -36,7 +37,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
     private Context c;
     private ConstraintLayout constraintLayout;
     private ConstraintSet constraintSet;
-    private OwnerProfile profile;
+    private OwnerProfile profile = OwnerProfile.getInstance();
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -48,6 +49,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             finish();
         }
         setupUI();
+        setActionBar(String.valueOf(getText(R.string.About_me)));
     }
 
     private void setupUI(){
@@ -91,7 +93,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             startActivity(i);
         });
 
-        profile = new OwnerProfile();
         profile.download(user.getUid(), this);
 
     }
@@ -114,24 +115,35 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
     }
     private void initializePrimaryPet(){
         PetProfile thePet = new PetProfile();
+
         //profile_pet1
         thePet.download(user.getUid()+0,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet1).execute(url);
-            //Toast.makeText(this, "1 set up", Toast.LENGTH_SHORT).show();
+            new DownloadImageTask(profile_pet1, this).execute(url);
+            //Toast.makeText(this, "1 set up"+url, Toast.LENGTH_SHORT).show();
         });
         //profile_pet2
         thePet.download(user.getUid()+1,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet2).execute(url);
+            new DownloadImageTask(profile_pet2, this).execute(url);
             //Toast.makeText(this, "2 set up", Toast.LENGTH_SHORT).show();
         });
         //profile_pet3
         thePet.download(user.getUid()+2,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet3).execute(url);
+            new DownloadImageTask(profile_pet3, this).execute(url);
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
         });
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
     }
 }
 

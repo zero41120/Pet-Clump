@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ import java.io.ByteArrayOutputStream;
 
 
 public class PetInfoActivity extends AppCompatActivity implements ImageView.OnClickListener {
-    private static final String TAG = "Pet Info Activity";
+    private static final String TAG = "PetInfoActivity";
     private TextView pet_name, pet_age, pet_bio, pet_primary_name, pet_and_I_name, Quiz_number;
     private Spinner pet_specie;
     private String[] specie_array_string;
@@ -40,10 +41,10 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
     private ImageView pet_view_main, pet_view_1, pet_view_2, pet_view_3, pet_view_4, pet_view_5,
             group_view_1, group_view_2, group_view_3;
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
 
-    Button Button_to_quiz, Button_return, Button_save, Button_delete;
+    Button Button_to_quiz, Button_cancel, Button_save, Button_delete;
     private PetProfile pet = new PetProfile();
     private static final int INTIAL_CODE = 99;
 
@@ -55,7 +56,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         Bundle extras = getIntent().getExtras();
         sequence = (Integer) extras.get("sequence");
         Log.d(TAG, "sequence:" + sequence);
-
+        setActionBar(String.valueOf(getText(R.string.Pet_info)));
         setupUI();
     }
 
@@ -146,6 +147,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         //Button_return = findViewById(R.id.Button_return);
         Button_save = findViewById(R.id.button_save);
         Button_delete = findViewById(R.id.Button_delete_pet);
+        Button_cancel = findViewById(R.id.button_cancel);
         Quiz_number = findViewById(R.id.Quiz_number);
 
         pet_view_main = findViewById(R.id.pet_main_profile);
@@ -225,7 +227,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             // download the url
             for (int k = 0; k < 9; k++) {
                 if (url[k] != null && url[k].compareTo("") != 0) {
-                    new DownloadImageTask(im[k]).execute(url[k]);
+                    new DownloadImageTask(im[k],this).execute(url[k]);
                 }
             }
 /*           for(String x: url){
@@ -244,9 +246,10 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
                 }});
             }
         });
-//        Button_return.setOnClickListener(v ->
-//                finish()
-//        );
+
+        Button_cancel.setOnClickListener(v ->
+               finish()
+        );
 
         Button_delete.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -343,5 +346,15 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
 
         // open gallery
 
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
     }
 }

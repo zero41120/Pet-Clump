@@ -48,7 +48,7 @@
 
             <TextView
                 android:id="@+id/matchviewprofile_name"
-
+                android:fontFamily="@font/varela_round"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -67,6 +67,7 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/varela_round"
                 android:text="@string/DOG"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -78,6 +79,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginStart="24dp"
+                android:fontFamily="@font/varela_round"
                 android:text="100 years old"
                 android:textSize="16dp"
                 android:textStyle="bold" />
@@ -95,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/varela_round"
                 android:text="100 years old pig that is so old even its grandma already die"
                 android:textSize="24dp"
                 android:textStyle="bold" />
@@ -108,6 +111,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/chat_bubble_purple"
                 android:text="@string/Add_friend"
+                android:fontFamily="@font/varela_round"
                 android:textColor="@color/white" />
 
             <Button
@@ -119,6 +123,7 @@
                 android:layout_marginTop="0dp"
                 android:background="@drawable/cancel_button_background"
                 android:text="@string/Report_profile"
+                android:fontFamily="@font/varela_round"
                 android:textColor="@color/white" />
 
 

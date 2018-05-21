@@ -35,6 +35,7 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
     private GridLayoutManager gridLayoutManager;
     private MatchingProfileDownloader md;
     private BestMatchFragment self;
+    private String petId = "";
     public BestMatchFragment(){
     }
 
@@ -50,7 +51,7 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
     @Override
     public void onCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String petId = getActivity().getIntent().getStringExtra("petId");
+        petId = getActivity().getIntent().getStringExtra("petId");
         profile = new PetProfile();
         profile.download(petId, ()->{
             // Make sure profile is downloaded before requesting profile
@@ -59,20 +60,19 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
         });
     }
     private void setRecyclerView(){
-        recycleViewAdapter = new RecycleViewAdapter(this.getContext(), profiles);
+        recycleViewAdapter = new RecycleViewAdapter(this.getContext(), profiles, petId);
         gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(recycleViewAdapter);
-        md.downloadMore(profiles, this);
+        md.downloadMore(profiles, petId,this);
         scrollListener = new EndlessRecyclerViewScrollListener(gridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                md.downloadMore(profiles, self);
+                md.downloadMore(profiles,petId, self);
             }
         };
         recyclerView.addOnScrollListener(scrollListener);
     }
-
     @Override
     public void didCompleteDownload() {
         Integer lastSize = profiles.size();

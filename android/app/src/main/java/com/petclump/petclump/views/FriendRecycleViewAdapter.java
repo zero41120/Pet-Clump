@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.petclump.petclump.R;
 import com.petclump.petclump.controller.ChattingActivity;
+import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.FriendProfile;
 
 import java.util.List;
@@ -43,15 +44,14 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         holder.friendview_time.setText(time);
         String history = friends.get(position).getLastMessage();
         holder.friendview_history.setText(history);
+        String url = friends.get(position).getUrl();
+        new DownloadImageTask(holder.friendview_image, mContext).execute(url);
 
         holder.friendview_cardView.setOnClickListener(v->{
             Intent intent = new Intent(mContext, ChattingActivity.class);
             intent.putExtra("Name", name);
             mContext.startActivity(intent);
         });
-
-
-
     }
 
     @Override

@@ -21,10 +21,12 @@ import java.util.List;
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
     private List<MatchingProfile> pets;
     private Context mContext;
+    private String MainPet_id = "";
 
-    public RecycleViewAdapter(Context c, List<MatchingProfile> pets) {
+    public RecycleViewAdapter(Context c, List<MatchingProfile> pets, String MainPet_id) {
         this.mContext = c;
         this.pets = pets;
+        this.MainPet_id = MainPet_id;
     }
 
 
@@ -45,7 +47,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.pet_matchview_label.setText(information);
         String url = pets.get(position).getPhotoUrl();
         if(url.compareTo("") != 0){
-            new DownloadImageTask(holder.pet_matchview_image).execute(url);
+            new DownloadImageTask(holder.pet_matchview_image,mContext).execute(url);
         }else{
             holder.pet_matchview_image.setImageResource(PetProfile.default_image);
         }
@@ -57,6 +59,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             intent.putExtra("Bio", pets.get(position).getBio());
             intent.putExtra("Spe", pets.get(position).getSpe());
             intent.putExtra("petId", pets.get(position).getPetId());
+            intent.putExtra("MainPetId",MainPet_id);
             //intent.putExtra("main_url", pets.get(position).getPhotoUrl());
             mContext.startActivity(intent);
         });

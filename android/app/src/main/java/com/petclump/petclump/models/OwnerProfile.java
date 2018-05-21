@@ -36,8 +36,14 @@ public class OwnerProfile implements Profile {
     private double lat = 0.0 ,lon = 0.0;
     private FreeSchedule freeTime = new FreeSchedule("");
 
+    // singleton
+    private static OwnerProfile obj = new OwnerProfile();
+    private OwnerProfile (){}
 
-    public OwnerProfile (){}
+    public static OwnerProfile getInstance(){
+        return obj;
+    }
+
     public static String num_month(int num){
         switch(num){
             case 1: return "Jan";

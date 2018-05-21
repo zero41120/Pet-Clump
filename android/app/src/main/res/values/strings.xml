@@ -186,5 +186,8 @@
     <string name="Report_profile">Report profile</string>
     <string name="Quiz_Finish">You\'ve finished 10 quizzes! Click to exit</string>
     <string name="Available_Quiz">Avaliable Quiz</string>
+    <string name="Pet_info">Pet info</string>
+    <string name="My_Info">My Info</string>
+    <string name="View_Match_As">View Match As</string>
 
 </resources>

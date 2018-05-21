@@ -7,29 +7,46 @@
     android:layout_height="wrap_content"
     android:paddingTop="8dp">
 
-    <TextView
-        android:id="@+id/chatview_sent_message"
-        android:text="hello, hello!dfdfdfdfddfdfdfdfdfdfdfdfddfdf"
-        android:background="@drawable/chat_bubble_purple"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxWidth="240dp"
-        android:padding="15dp"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:layout_marginRight="8dp"
-        android:layout_margin="10dp"
-        app:layout_constraintRight_toRightOf="parent"
+    <ImageView
+        android:id="@+id/chatview_sent_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ray"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/chatview_sent_time"
-        android:text="11:40"
+        android:id="@+id/chatview_sent_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/chat_bubble_purple"
+        android:maxWidth="240dp"
+        android:padding="15dp"
+        android:text="hello,"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/chatview_sent_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/chatview_sent_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginTop="8dp"
+        android:text="11:40"
         android:textSize="10sp"
-        android:layout_marginRight="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/chatview_sent_message"
-        app:layout_constraintRight_toLeftOf="@+id/chatview_sent_message" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatview_sent_image" />
 
 </android.support.constraint.ConstraintLayout>

@@ -58,7 +58,7 @@ public class ImagePager extends PagerAdapter {
         pet.download(this.pet_id, ()->{
             String url = pet.getUrl(imagesId[position]);
             if(url.compareTo("") != 0){
-                new DownloadImageTask(imageView).execute(url);
+                new DownloadImageTask(imageView, mContext).execute(url);
             }else{
                 imageView.setImageResource(PetProfile.default_image);
             }

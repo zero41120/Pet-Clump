@@ -3,29 +3,46 @@ package com.petclump.petclump.models;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.datastructures.DefaultMap;
+import com.petclump.petclump.models.protocols.FriendChangeState;
 import com.petclump.petclump.models.protocols.Profile;
 import com.petclump.petclump.models.protocols.ProfileDeletor;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.annotation.Nullable;
 
 public class PetProfile implements Profile {
     private String bio = "PET_BIO";
@@ -36,8 +53,12 @@ public class PetProfile implements Profile {
     private String quiz = "";
     private Integer sequence = -1;
     private String TAG = "PetProfile";
+    private HashMap<String, String> relation_list = new HashMap<>();
 
     public static final int default_image = R.drawable.dog_placeholder;
+
+    // multithreading fields:
+
 
     // pet photo url
     private HashMap<String, String> url_map = new HashMap<String, String>(){{
@@ -52,12 +73,14 @@ public class PetProfile implements Profile {
         put("group_profile_url_3","");
     }};
 
+
     // firebase instance
     private FirebaseAuth Auth_pet = FirebaseAuth.getInstance();
     private FirebaseStorage Store_pet = FirebaseStorage.getInstance();
 
+    // singleton
+    public PetProfile(){}
 
-    public PetProfile(){    }
     public PetProfile(Map<String, Object> map){
         DefaultMap data = new DefaultMap(map);
         this.bio = data.getDefault("bio");
@@ -99,6 +122,136 @@ public class PetProfile implements Profile {
         }};
     }
 
+    private Map<String, Object> generateFriendRequest(String pending){
+        return new HashMap<String, Object>(){{
+
+            put("pending", pending);
+
+        }};
+    }
+
+
+    // friend manipulation field
+    public enum friend_change_type {NEW_FRIEND, ADD_UNREAD_FRIEND, BLOCK_FRIEND};
+    synchronized public void new_friend_change(String sender_id, String receiver_id, friend_change_type type, FriendChangeState c){
+        if (Auth_pet.getCurrentUser() == null){
+            Log.e(TAG, "user is null.");
+            return;
+        }
+        String code_sender = "";
+        String code_receiver = "";
+        switch (type){
+            case NEW_FRIEND:
+                code_sender = "3";
+                code_receiver = "0";
+                break;
+            case ADD_UNREAD_FRIEND:
+                code_sender = "1";
+                code_receiver = "1";
+                break;
+            case BLOCK_FRIEND:
+                code_sender = "2";
+                code_receiver = "2";
+                break;
+        }
+        // upload sender's list
+        DocumentReference sender_list = FirebaseFirestore.getInstance().collection("pets")
+                .document(sender_id)
+                .collection("friends").document(receiver_id);
+        sender_list.set(generateFriendRequest(code_sender)).addOnCompleteListener(task -> {
+            if(!task.isSuccessful()) {
+                Log.w(TAG, "changing friend status failed.");
+            }
+        });
+        // upload receiver's list
+        DocumentReference receiver_list = FirebaseFirestore.getInstance().collection("pets")
+                .document(receiver_id)
+                .collection("friends").document(sender_id);
+        receiver_list.set(generateFriendRequest(code_receiver)).addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                c.didCompleteChange();
+            }
+            else {
+                Log.w(TAG, "changing friend status failed.");
+            }
+        });
+    }
+    synchronized public void friend_delete (String sender_id, String receiver_id, ProfileDeletor c){
+
+        // delete receiver from sender
+        FirebaseFirestore.getInstance().collection("pets")
+                .document(sender_id)
+                .collection("friends")
+                .document(receiver_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                // if the document exists
+                if(task.getResult().exists()){
+                    task.getResult().getReference().delete();
+                }else{
+                    Log.e(TAG,"friend_delete: receiver_id doesn't exist");
+                }
+            }
+        });
+        // delete sender from receiver
+        FirebaseFirestore.getInstance().collection("pets")
+                .document(receiver_id)
+                .collection("friends")
+                .document(sender_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                // if the document exists
+                if(task.getResult().exists()){
+                    task.getResult().getReference().delete();
+                }else{
+                    Log.e(TAG,"friend_delete: sender_id doesn't exist");
+                }
+            }
+        });
+    }
+    synchronized public void listenToFriendList(String pet_id, ProfileDownloader c){
+
+        if (Auth_pet.getCurrentUser() == null){
+            Log.d(TAG, "listenToFriendList:"+" current user is none");
+            return;
+        }
+        DocumentReference ref = FirebaseFirestore.getInstance().collection("pets").document(pet_id);
+        ref.collection("friends")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if(task.getResult().size()>0){
+                    ref.collection("friends").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                            if (e != null) {
+                                Log.w(TAG, "Listen to Friend_List failed.", e);
+                                return;
+                            }
+                            List A = queryDocumentSnapshots.getDocumentChanges();
+                            // iterate through data
+                            for(Object x: A){
+                                Map<String, Object> ref_data = x==null? null: ((DocumentChange)x).getDocument().getData();
+                                if(x != null)
+                                    relation_list.put(((DocumentChange)x).getDocument().getId(), ref_data.get("pending").toString());
+                            }
+                            //Log.d(TAG,"FriendList:" +Thread.currentThread().toString());
+                            c.didCompleteDownload();
+                        }
+                    });
+                }else{
+                    Log.d(TAG,pet_id + " doesn't contain friends collection");
+                }
+            }
+        });
+    }
+    synchronized public HashMap<String, String> getRelation_list() {
+        return relation_list;
+    }
+
+    /*** profile methods ***/
     public void upload(String id, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
             Log.w(TAG, "User is null! Cannot update.");
@@ -120,7 +273,7 @@ public class PetProfile implements Profile {
     @Override
     public void download(String id, ProfileDownloader c){
         if (Auth_pet.getCurrentUser() == null){
-            Log.d(TAG, " Current User is none");
+            Log.d(TAG, "download:"+" Current user is none");
             return;
         }
         DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("pets").document(id);
@@ -286,5 +439,14 @@ public class PetProfile implements Profile {
         }
         return url_map.get("main_profile_url");
     }
+    public static String parseUrlToCache(String url){
+        StringBuilder newstr = new StringBuilder();
+        for(int i=0; i<url.length();i++){
+            if(url.charAt(i) != '/')
+                newstr.append(url.charAt(i));
+        }
+        return newstr.toString();
+    }
+
 
 }

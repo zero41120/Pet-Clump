@@ -1,6 +1,7 @@
 package com.petclump.petclump.controller;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,10 +10,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.views.ChatRecycleViewAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +61,7 @@ public class ChattingActivity extends AppCompatActivity {
                 messsageUpdate();
             }
         });
-
+        setActionBar(name);
     }
     public void setRecyclerView(){
         chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList);
@@ -90,4 +94,14 @@ public class ChattingActivity extends AppCompatActivity {
 
     }
 
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
+    }
 }
