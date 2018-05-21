@@ -2068,7 +2068,7 @@
         </scene>
     </scenes>
     <resources>
-
+        <image name="cat" width="215" height="185"/>
         <image name="twtr-play.png" width="70" height="70"/>
     </resources>
     <inferredMetricsTieBreakers>
