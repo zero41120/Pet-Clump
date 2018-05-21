@@ -355,6 +355,8 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKr-fD-fJZ">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" red="0.72941176470000002" green="0.59999999999999998" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="My Friend" id="3UY-B0-6h4">
                                         <barButtonItem key="leftBarButtonItem" title="Exit" id="hSh-b0-fGs">
