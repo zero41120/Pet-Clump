@@ -49,6 +49,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             finish();
         }
         setupUI();
+        setActionBar(String.valueOf(getText(R.string.About_me)));
     }
 
     private void setupUI(){
@@ -133,6 +134,16 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             new DownloadImageTask(profile_pet3, this).execute(url);
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
         });
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
     }
 }
 

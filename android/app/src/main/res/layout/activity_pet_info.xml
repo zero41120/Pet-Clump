@@ -21,8 +21,9 @@
             android:background="@color/white"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:adjustViewBounds="true"
+
             android:src="@drawable/photo_placeholder"
             android:tag="main_profile_url"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -38,6 +39,8 @@
             android:layout_height="@dimen/profile_pet_size2"
             android:tag="pet_profile_url_1"
             android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             app:layout_constraintBottom_toTopOf="@+id/pet_profile_2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pet_main_profile"
@@ -50,6 +53,8 @@
             android:layout_height="@dimen/profile_pet_size2"
             android:background="@color/white"
             android:tag="pet_profile_url_2"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/pet_main_profile"
@@ -60,6 +65,8 @@
             android:id="@+id/pet_profile_3"
             android:layout_width="@dimen/profile_pet_size2"
             android:layout_height="@dimen/profile_pet_size2"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:background="@color/white"
             android:src="@drawable/photo_placeholder"
             android:tag="pet_profile_url_3"
@@ -70,6 +77,8 @@
             android:id="@+id/pet_profile_4"
             android:layout_width="@dimen/profile_pet_size2"
             android:layout_height="@dimen/profile_pet_size2"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:background="@color/white"
             android:tag="pet_profile_url_4"
             app:layout_constraintEnd_toStartOf="@+id/pet_profile_3"
@@ -85,6 +94,8 @@
             android:layout_marginBottom="46dp"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:src="@drawable/photo_placeholder"
             android:tag="pet_profile_url_5"
             app:layout_constraintBottom_toTopOf="@+id/Txt_my_pet_and_I"
@@ -108,7 +119,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/varela_round"/>
 
         <TextView
             android:id="@+id/Txt_my_pet_and_I"
@@ -117,6 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="44dp"
+            android:fontFamily="@font/varela_round"
             android:gravity="center"
             android:text="DUGGYY and I "
             app:layout_constraintEnd_toEndOf="parent"
@@ -182,6 +195,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
+                android:fontFamily="@font/varela_round"
                 android:text="@string/Name" />
 
             <EditText
@@ -194,6 +208,7 @@
                 android:maxLength="20"
                 android:textSize="20dp"
                 android:padding="10dp"
+                android:fontFamily="@font/varela_round"
                 android:background="@drawable/pet_info_background"/>
 
             <TextView
@@ -204,7 +219,8 @@
                 android:layout_marginLeft="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Specie" />
+                android:text="@string/Specie"
+                android:fontFamily="@font/varela_round"/>
             <RelativeLayout
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -225,7 +241,8 @@
                 android:layout_marginLeft="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Age" />
+                android:text="@string/Age"
+                android:fontFamily="@font/varela_round"/>
 
             <EditText
                 android:id="@+id/pet_age"
@@ -238,7 +255,8 @@
                 android:text=""
                 android:textSize="20dp"
                 android:padding="10dp"
-                android:background="@drawable/pet_info_background"/>
+                android:background="@drawable/pet_info_background"
+                android:fontFamily="@font/varela_round"/>
 
             <TextView
                 android:id="@+id/label_pet_bio"
@@ -248,7 +266,8 @@
                 android:layout_marginLeft="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Bio" />
+                android:text="@string/Bio"
+                android:fontFamily="@font/varela_round"/>
 
             <EditText
                 android:id="@+id/pet_bio"
@@ -261,7 +280,8 @@
                 android:padding="10dp"
                 android:maxLength="500"
                 android:textSize="20dp"
-                android:background="@drawable/pet_info_background"/>
+                android:background="@drawable/pet_info_background"
+                android:fontFamily="@font/varela_round"/>
             <TextView
                 android:id="@+id/Quiz_number"
                 style="@style/fontStyle4"
@@ -270,7 +290,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:text="@string/Available_Quiz" />
+                android:text="@string/Available_Quiz"
+                android:fontFamily="@font/varela_round"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -286,7 +307,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
                     android:background="@drawable/cancel_button_background"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/varela_round"/>
                 <Button
                     android:id="@+id/button_save"
                     android:layout_width="100dp"
@@ -296,7 +318,8 @@
                     android:text="@string/Save"
                     android:layout_gravity="center"
                     android:background="@drawable/chat_bubble_purple"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/varela_round"/>
             </LinearLayout>
 
             <Button
@@ -306,10 +329,12 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:text="@string/Quiz"
+                android:fontFamily="@font/varela_round"
                 android:textColor="@color/white"
                 android:background="@drawable/quiz_button_background"/>
             <Button
                 android:id="@+id/Button_delete_pet"
+                android:fontFamily="@font/varela_round"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Delete Pet"

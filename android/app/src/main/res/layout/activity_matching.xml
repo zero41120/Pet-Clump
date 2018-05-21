@@ -8,11 +8,14 @@
 
     <TextView
         android:id="@+id/Txt_view_match"
-        style="@style/fontStyle4"
+        android:textStyle="bold"
+        android:textSize="26dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:layout_marginTop="8dp"
         android:text="@string/View_match_as"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,72 +24,70 @@
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="136dp"
-        android:layout_marginRight="136dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/vm_button_settings"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Txt_view_match">
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/match_pet1"
-            android:layout_width="@dimen/profile_pet_size"
-            android:layout_height="@dimen/profile_pet_size"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
             android:src="@drawable/dog_placeholder"
             app:civ_border_color="#EEEEEE"
             app:civ_border_width="4dp"
             app:civ_shadow="true"
-            app:civ_shadow_color="#0d80e5"
+            app:civ_shadow_color="@color/colorAccent"
             app:civ_shadow_radius="10" />
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/match_pet2"
-            android:layout_width="@dimen/profile_pet_size"
-            android:layout_height="@dimen/profile_pet_size"
-            android:layout_marginBottom="32dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:src="@drawable/pig_placeholder"
             app:civ_border_color="#EEEEEE"
             app:civ_border_width="4dp"
             app:civ_shadow="true"
-            app:civ_shadow_color="#0d80e5"
+            app:civ_shadow_color="@color/colorAccent"
             app:civ_shadow_radius="10" />
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/match_pet3"
-            android:layout_width="@dimen/profile_pet_size"
-            android:layout_height="@dimen/profile_pet_size"
-            android:layout_gravity="center"
-            android:layout_marginBottom="32dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/ray"
             app:civ_border_color="#EEEEEE"
             app:civ_border_width="4dp"
             app:civ_shadow="true"
-            app:civ_shadow_color="#0d80e5"
+            app:civ_shadow_color="@color/colorAccent"
             app:civ_shadow_radius="10" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/vm_button_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="173dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginRight="173dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+    <!--<Button-->
+        <!--android:id="@+id/vm_button_settings"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="173dp"-->
+        <!--android:layout_marginLeft="150dp"-->
+        <!--android:layout_marginRight="173dp"-->
+        <!--android:layout_marginStart="150dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:text="@string/settings"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.0"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />-->
 </android.support.constraint.ConstraintLayout>

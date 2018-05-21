@@ -3,6 +3,9 @@
     <color name="colorPrimary">#c299ff</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#AFEEEE</color>
+    <!--<color name="colorPrimary">#849A9D</color>-->
+    <!--<color name="colorPrimaryDark">#849A9D</color>-->
+    <!--<color name="colorAccent">	#BDC1A3</color>-->
     <color name="lightYellow">#f2efde</color>
     <color name="white">#f9f9f9</color>
     <color name="grey">	#B0C4DE</color>
