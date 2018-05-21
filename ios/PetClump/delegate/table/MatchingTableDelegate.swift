@@ -14,7 +14,7 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     var element: [MatchingProfile] = []
     
     var downloadLimit: Int
-    var profile: PetProfile
+    var myProfile: PetProfile
 
     let db = Firestore.firestore()
     var query: Query
@@ -24,7 +24,7 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
 
     
     init(myPet: PetProfile, downloadLimit: Int, table: UITableView, callerView: UIViewController){
-        self.profile = myPet
+        self.myProfile = myPet
         self.downloadLimit = downloadLimit
         self.table = table
         self.callerView = callerView
@@ -42,7 +42,7 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
             }
         
             guard let last = snap.documents.last else { return }
-            let quizResult = self.profile.quiz
+            let quizResult = self.myProfile.quiz
             var toSort: [MatchingProfile] = []
             for doc in snap.documents{
                 let petProfile = PetProfile(refObj: doc.data())
@@ -102,8 +102,9 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
         let index = sender.view!.tag
-        pdv.petProfile = PetProfile()
-        pdv.petProfile!.copy(FromProfile: element[index].getProfile())
+        pdv.friendProfile = PetProfile()
+        pdv.friendProfile!.copy(FromProfile: element[index].getProfile())
+        pdv.myProfile = myProfile
         callerView.present(pdv, animated: true, completion: nil)
     }
     

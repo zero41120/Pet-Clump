@@ -88,11 +88,9 @@ class PetProfile: Profile, Deletable{
             if let document = document, document.exists {
                 // Unwraps data object
                 let refObj = document.data()!
-                print("Document data: \(refObj.description)")
                 
                 // Gets user information
                 self.fetchData(refObj: refObj)
-                print("Dic: \(self.generateDictionary())")
             }
             guard (completion != nil) else { return }
             completion!()
@@ -199,5 +197,9 @@ class PetProfile: Profile, Deletable{
                 print("Pet deleted :(\(petId)")
             }
         })
+    }
+    
+    func getId() -> String{
+        return "\(ownerId)\(sequence)"
     }
 }
