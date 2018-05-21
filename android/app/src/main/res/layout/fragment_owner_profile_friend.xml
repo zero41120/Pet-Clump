@@ -99,7 +99,7 @@ tools:context=".views.OwnerProfileFriendFragment">
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="373dp"
-            android:layout_height="504dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
