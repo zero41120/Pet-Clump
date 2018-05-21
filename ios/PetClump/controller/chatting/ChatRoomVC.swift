@@ -31,12 +31,12 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         setupKeyboardObservers()
-        hideKeyboardWhenTappedAround()
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorColor = UIColor.clear
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.keyboardDismissMode = .onDrag
+
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         inputField.delegate = self
         
@@ -47,6 +47,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
             tableView.reloadData()
         }
     }
+    
     
     func setupKeyboardObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
