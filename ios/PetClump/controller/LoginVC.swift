@@ -53,6 +53,9 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, 
             facebookLoginButtonView.backgroundColor = .clear
             view.addSubview(btn)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         transitionLoginStateUI()
     }
 
@@ -63,30 +66,14 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, 
         if let user = Auth.auth().currentUser {
             view.backgroundColor = .green
             uidLabel.text = user.uid
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let pdv = storyBoard.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
+            self.present(pdv, animated: true, completion: nil)
         } else {
             view.backgroundColor = .yellow
             uidLabel.text = "You are not logged in"
         }
-    }
-    
-    /**
-     * This action signs out any Firebase authenticated user if signed in, then alerts the result.
-     * - Parameter sender: the action sender
-     */
-    @IBAction func topSignOut(_ sender: Any) {
-        // Signs out the user
-        var message = "You have already signed out"
-        if let user = Auth.auth().currentUser{
-            do {
-                try Auth.auth().signOut()
-                message = "You have signed out as " + user.uid
-            } catch let signOutError as NSError {
-                message = String.init(format: "Error signing out: %@", signOutError)
-            }
-        }
-        // Alterts result
-        self.transitionLoginStateUI()
-        self.makeAlert(message: message)
     }
     
     /**

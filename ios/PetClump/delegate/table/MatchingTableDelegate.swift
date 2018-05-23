@@ -99,7 +99,7 @@ class MatchingTableDelegate: NSObject, UITableViewDataSource, UITableViewDelegat
     }
     
     @objc func viewMatching(sender: UITapGestureRecognizer){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
         let index = sender.view!.tag
         pdv.friendProfile = PetProfile()

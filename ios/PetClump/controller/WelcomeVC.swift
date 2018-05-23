@@ -12,10 +12,6 @@ import FirebaseAuth
 
 class WelcomeVC: UIViewController{
     
-    @IBAction func tapExit(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -37,11 +33,34 @@ class WelcomeVC: UIViewController{
     
     @objc func startMatching(sender: UITapGestureRecognizer){
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "BestMatchingVC") as! MatchBestVC
         pdv.petProfile = PetProfile()
         pdv.petProfile!.ownerId = uid
         pdv.petProfile!.sequence = sender.view!.tag
         self.present(pdv, animated: true, completion: nil)
     }
+    
+    /**
+     * This action signs out any Firebase authenticated user if signed in, then alerts the result.
+     */
+    @IBAction func tapExit(_ sender: Any) {
+        let title = NSLocalizedString("Logout", comment: "This is the title in an logout alert")
+        let message = NSLocalizedString("Are you sure you want to logout?", comment: "This is the message in an logout alert")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Logout", comment: "This is the logout button on an alert to inform user"), style: .destructive, handler: { (action: UIAlertAction!) in
+            if let user = Auth.auth().currentUser{
+                do {
+                    print("You are logging out as \(user.uid)")
+                    try Auth.auth().signOut()
+                } catch let signOutError as NSError {
+                    print("Error logging out: \(signOutError)")
+                }
+            }
+            self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "This is the Cancel button on an alert to inform user that by clickign this button information on this page stays and user may contiune editing"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

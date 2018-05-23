@@ -22,13 +22,9 @@ class FrinedListViewVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -55,16 +51,13 @@ class FrinedListViewVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         //load the time of each friend chat
         cell.animalTime.text = time[indexPath.row]
         
-        
         return cell
     }
     
     // Dismisses the view
     @IBAction func tapCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        
     }
-    
 }
 
 
