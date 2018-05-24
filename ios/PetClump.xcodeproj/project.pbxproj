@@ -24,7 +24,6 @@
 		294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C94C72097E35E00266533 /* QuizQuestion.swift */; };
 		295EC96820A40A0400F8D32F /* MatchingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96720A40A0400F8D32F /* MatchingTableViewCell.swift */; };
 		295EC96A20A40A9000F8D32F /* MatchBestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96920A40A9000F8D32F /* MatchBestVC.swift */; };
-		295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */; };
 		295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96D20A41A3100F8D32F /* MatchingProfile.swift */; };
 		298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFEC20969349007A6846 /* OwnerProfile.swift */; };
 		298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF0209693A7007A6846 /* PetProfile.swift */; };
@@ -96,7 +95,6 @@
 		294C94C72097E35E00266533 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		295EC96720A40A0400F8D32F /* MatchingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTableViewCell.swift; sourceTree = "<group>"; };
 		295EC96920A40A9000F8D32F /* MatchBestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchBestVC.swift; sourceTree = "<group>"; };
-		295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTableDelegate.swift; sourceTree = "<group>"; };
 		295EC96D20A41A3100F8D32F /* MatchingProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingProfile.swift; sourceTree = "<group>"; };
 		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
 		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
@@ -274,14 +272,6 @@
 			path = text;
 			sourceTree = "<group>";
 		};
-		296FD5BB20AC28A000FEA664 /* table */ = {
-			isa = PBXGroup;
-			children = (
-				295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */,
-			);
-			path = table;
-			sourceTree = "<group>";
-		};
 		298BCFFC2096DFD6007A6846 /* picker */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
-				296FD5BB20AC28A000FEA664 /* table */,
 				298BCFFC2096DFD6007A6846 /* picker */,
 				296FD5BA20AC289600FEA664 /* text */,
 			);
@@ -695,7 +684,6 @@
 				29A90B80208DA16F0024ECF7 /* OwnerSettingVC.swift in Sources */,
 				2901B3C320B234F30058DC1C /* MessageCell.swift in Sources */,
 				84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */,
-				295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298BCFF7209699B9007A6846 /* LimitTextFieldDelegate.swift in Sources */,
 				298FEB67209394D70018F368 /* WelcomeVC.swift in Sources */,
