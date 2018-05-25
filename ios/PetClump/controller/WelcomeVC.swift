@@ -34,11 +34,11 @@ class WelcomeVC: UIViewController{
     @objc func startMatching(sender: UITapGestureRecognizer){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "BestMatchingVC") as! MatchBestVC
-        pdv.petProfile = PetProfile()
-        pdv.petProfile!.ownerId = uid
-        pdv.petProfile!.sequence = sender.view!.tag
-        self.present(pdv, animated: true, completion: nil)
+        let _ = PetProfile(uid: uid, sequence: sender.view!.tag, completion: { (selectedPet) in
+            PetProfile.most_recent_pet = selectedPet
+            let pdv = storyBoard.instantiateViewController(withIdentifier: "MainTabBar") as! MainTabBar
+            self.present(pdv, animated: true, completion: nil)
+        })
     }
     
     /**

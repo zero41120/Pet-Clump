@@ -12,6 +12,7 @@ import Firebase
 
 class PetProfile: Profile, Deletable{
     private static let COLLECTION_NAME = "pets"
+    public static var most_recent_pet: PetProfile?
 
     var bio: String     = ""
     var age: String     = ""

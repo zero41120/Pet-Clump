@@ -19,7 +19,6 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, 
 
     
     @IBOutlet weak var signInButtonGoogle: GIDSignInButton!
-    @IBOutlet weak var signOutButtonGoogle: UIButton!
     @IBOutlet weak var facebookLoginButtonView: UIView!
     @IBOutlet weak var uidLabel: UILabel!
     var signInButtonFacebook: FBSDKLoginButton?

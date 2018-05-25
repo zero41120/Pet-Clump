@@ -19,7 +19,7 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
     var downloadLimit: Int = 30
     
     // Assigned by caller view
-    var petProfile: PetProfile?
+    var petProfile: PetProfile? = PetProfile.most_recent_pet
     
     override func viewDidLoad() {
         super.viewDidLoad()

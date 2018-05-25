@@ -22,7 +22,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     
     // Assign by caller
     var friendPetProfile: PetProfile?
-    var myPetProfile: PetProfile?
+    var myPetProfile: PetProfile? = PetProfile.most_recent_pet
     
     var messages: [Message] = []
     var messenger: Messenger?
@@ -40,7 +40,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         inputField.delegate = self
         
-        // Download Message
+        // TODO Download Message
         messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
         messenger!.download(count: 5) { (retMessages) in
             messages = retMessages

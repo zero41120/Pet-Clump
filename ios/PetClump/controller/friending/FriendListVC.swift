@@ -1,5 +1,5 @@
 //
-//  FrinedListViewVC.swift
+//  FriendListVC.swift
 //  PetClump
 //
 //  Created by Jerod Zheng on 5/20/18.
@@ -8,8 +8,11 @@
 
 import UIKit
 
-class FrinedListViewVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // Assign by caller view
+    var myPet: PetProfile = PetProfile.most_recent_pet!
+    
     //this is the array for each fof your riend's name
     let elements = ["horse", "cat", "dog", "potato","horse", "cat", "dog", "potato","horse", "cat", "dog", "potato"]
     
@@ -27,6 +30,12 @@ class FrinedListViewVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.dataSource = self
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
+        pdv.myPetProfile = myPet
+        self.present(pdv, animated: true, completion: nil)
+    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return elements.count
@@ -36,7 +45,7 @@ class FrinedListViewVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         //load each cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! FriendListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! FriendListCell
         
         //loading the name of each frineds
         cell.animalLbl.text = elements[indexPath.row]
