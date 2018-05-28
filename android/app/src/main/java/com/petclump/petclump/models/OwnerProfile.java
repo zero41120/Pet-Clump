@@ -107,7 +107,9 @@ public class OwnerProfile implements Profile {
             this.name = (String) ref.get("name");
             Log.d(TAG, "Download successfully" + name);
             this.gender = (String) ref.get("gender");
+            Log.d(TAG, "Download successfully" + gender);
             this.birthday = (Date) ref.get("birthday");
+            Log.d(TAG, "Download successfully" + String.valueOf(birthday));
             this.distancePerference = Integer.parseInt(ref.get("distancePerference").toString());
             this.lat = (Double)ref.get("lat");
             this.lon = (Double)ref.get("lon");

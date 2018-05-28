@@ -59,7 +59,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             intent.putExtra("Bio", pets.get(position).getBio());
             intent.putExtra("Spe", pets.get(position).getSpe());
             intent.putExtra("petId", pets.get(position).getPetId());
-            intent.putExtra("MainPetId",MainPet_id);
+            intent.putExtra("MainPetId", MainPet_id);
             //intent.putExtra("main_url", pets.get(position).getPhotoUrl());
             mContext.startActivity(intent);
         });
