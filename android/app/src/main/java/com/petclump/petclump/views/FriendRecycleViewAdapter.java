@@ -51,6 +51,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         new DownloadImageTask(holder.friendview_image, mContext).execute(url);
         holder.friendview_image.setOnClickListener(v->{
             Intent intent2 = new Intent(mContext, FriendProfileActivity.class);
+            intent2.putExtra("friend_id", friend_id);
             mContext.startActivity(intent2);
         });
 
