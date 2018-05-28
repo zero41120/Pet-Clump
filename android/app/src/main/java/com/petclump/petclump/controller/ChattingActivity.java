@@ -53,10 +53,6 @@ public class ChattingActivity extends AppCompatActivity {
         BaseMessage message6 = new BaseMessage(2, "I'm a bot.", name);
 //        BaseMessage message7 = new BaseMessage(2, "不要突然講中文啦", "10:10");
         baseMessageList.add(message1);
-//        baseMessageList.add(message2);
-//        baseMessageList.add(message3);
-//        baseMessageList.add(message4);
-//        baseMessageList.add(message5);
         baseMessageList.add(message6);
        // baseMessageList.add(message7);
         recyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
@@ -73,12 +69,12 @@ public class ChattingActivity extends AppCompatActivity {
         });
         chatview_send = findViewById(R.id.button_chatview_send);
         chatview_editText = findViewById(R.id.chatview_editText);
-        chatview_send.setOnClickListener(new View.OnClickListener() {
+/*        chatview_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 messsageUpdate();
             }
-        });
+        });*/
         setActionBar(name);
     }
     public void setRecyclerView(){
@@ -108,7 +104,6 @@ public class ChattingActivity extends AppCompatActivity {
                        INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
                 getCurrentFocus().getWindowToken(), 0);
-
 
     }
 

@@ -46,7 +46,8 @@ public class PetProfile implements Profile {
     private String quiz = "";
     private Integer sequence = -1;
     private String TAG = "PetProfile";
-    private HashMap<String, String> relation_list = new HashMap<>();
+    private HashMap<String, String> relation_list = new HashMap<>();    // friend_list
+    private HashMap<String, String> chat_list = new HashMap<>();        // chat_list
 
     public static final int default_image = R.drawable.dog_placeholder;
 
@@ -125,7 +126,7 @@ public class PetProfile implements Profile {
 
     // friend manipulation field
     public enum friend_change_type {NEW_FRIEND, ADD_UNREAD_FRIEND, BLOCK_FRIEND};
-    synchronized public void new_friend_change(String sender_id, String receiver_id, friend_change_type type, FriendChangeState c){
+    public void new_friend_change(String sender_id, String receiver_id, friend_change_type type, FriendChangeState c){
         if (Auth_pet.getCurrentUser() == null){
             Log.e(TAG, "user is null.");
             return;
@@ -168,7 +169,7 @@ public class PetProfile implements Profile {
             }
         });
     }
-    synchronized public void friend_delete (String sender_id, String receiver_id, ProfileDeletor c){
+    public void friend_delete (String sender_id, String receiver_id, ProfileDeletor c){
 
         // delete receiver from sender
         FirebaseFirestore.getInstance().collection("pets")
@@ -201,8 +202,7 @@ public class PetProfile implements Profile {
             }
         });
     }
-    synchronized public void listenToFriendList(String pet_id, ProfileDownloader c){
-
+    public void listenToFriendList(String pet_id, ProfileDownloader c){
         if (Auth_pet.getCurrentUser() == null){
             Log.d(TAG, "listenToFriendList:"+" current user is none");
             return;
@@ -210,7 +210,6 @@ public class PetProfile implements Profile {
         DocumentReference ref = FirebaseFirestore.getInstance().collection("pets").document(pet_id);
         ref.collection("friends")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
@@ -237,12 +236,78 @@ public class PetProfile implements Profile {
                     Log.d(TAG,pet_id + " doesn't contain friends collection");
                     c.didCompleteDownload();
                 }
-
             }
         });
     }
-    synchronized public HashMap<String, String> getRelation_list() {
+    public HashMap<String, String> getRelation_list() {
         return relation_list;
+    }
+
+    // message manipulation field
+    public void listenToChatList(String pet_id, ProfileDownloader c){
+        if (Auth_pet.getCurrentUser() == null){
+            Log.d(TAG, "listenToChatList:"+" current user is none");
+            return;
+        }
+        DocumentReference ref = FirebaseFirestore.getInstance().collection("pets").document(pet_id);
+        ref.collection("chats")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.getResult().size()>0){
+                    ref.collection("chats").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        @Override
+                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                            if (e != null) {
+                                Log.w(TAG, "Listen to Chat_List failed.", e);
+                                return;
+                            }
+                            List A = queryDocumentSnapshots.getDocumentChanges();
+                            // iterate through data
+                            for(Object x: A){
+                                Map<String, Object> ref_data = x==null? null: ((DocumentChange)x).getDocument().getData();
+                                if(x != null)
+                                    chat_list.put(((DocumentChange)x).getDocument().getId(), ref_data.get("pending").toString());
+                            }
+                            //Log.d(TAG,"FriendList:" +Thread.currentThread().toString());
+                            c.didCompleteDownload();
+                        }
+                    });
+                }else{
+                    Log.d(TAG,pet_id + " No unread chats");
+                    c.didCompleteDownload();
+                }
+            }
+        });
+    }
+
+    public void new_unread_message(String sender_id, String receiver_id, ProfileUploader c){
+        if (Auth_pet.getCurrentUser() == null){
+            Log.e(TAG, "user is null.");
+            return;
+        }
+        if(sender_id.equals("") || receiver_id.equals("")){
+            Log.e(TAG, "new_unread_message:"+" Error, one of the id is empty!");
+            return;
+        }
+        String combined_id = "";
+        if(sender_id.compareTo(receiver_id)>0){
+            combined_id = sender_id + receiver_id;
+        }else{
+            combined_id = receiver_id + sender_id;
+        }
+
+        // upload change
+        DocumentReference ref = FirebaseFirestore.getInstance().collection("pets")
+                .document(receiver_id)
+                .collection("chats").document(combined_id);
+
+        HashMap<String, Object> temp = new HashMap<String, Object>(){{put("pending", "UNREAD");}};
+        ref.set(temp).addOnCompleteListener(task -> {
+            if(!task.isSuccessful()) {
+                Log.w(TAG, "new_unread_message changes failed");
+            }
+        });
     }
 
     /*** profile methods ***/
