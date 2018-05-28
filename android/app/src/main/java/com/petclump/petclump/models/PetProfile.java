@@ -50,7 +50,6 @@ public class PetProfile implements Profile {
 
     public static final int default_image = R.drawable.dog_placeholder;
 
-    // multithreading fields:
 
 
     // pet photo url
@@ -135,16 +134,16 @@ public class PetProfile implements Profile {
         String code_receiver = "";
         switch (type){
             case NEW_FRIEND:
-                code_sender = "3";
-                code_receiver = "0";
+                code_sender = "SENDER";
+                code_receiver = "RECEIVER";
                 break;
             case ADD_UNREAD_FRIEND:
-                code_sender = "1";
-                code_receiver = "1";
+                code_sender = "FRIEND";
+                code_receiver = "FRIEND";
                 break;
             case BLOCK_FRIEND:
-                code_sender = "2";
-                code_receiver = "2";
+                code_sender = "BLOCKED";
+                code_receiver = "BLOCKED";
                 break;
         }
         // upload sender's list
