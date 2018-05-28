@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Base64;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.IvParameterSpec;
@@ -100,10 +101,10 @@ public class Cryptographer {
             byte[] original = cipher.doFinal(Base64.decodeBase64(cipherText));
 
             return new String(original);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (BadPaddingException ex) {
+            return "Error Padding";
+        } catch (Exception e) {
+            return "Error";
         }
-        return null;
     }
-
 }
