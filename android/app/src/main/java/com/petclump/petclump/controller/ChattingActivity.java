@@ -69,19 +69,17 @@ public class ChattingActivity extends AppCompatActivity {
 
                 // remaining part
                 setRecyclerView();
-                chatview_send = findViewById(R.id.button_chatview_send);
-                chatview_editText = findViewById(R.id.chatview_editText);
-                chatview_send.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        messsageUpdate();
-                    }
-                });
-                setActionBar(name);
             });
         });
-
-
+        chatview_send = findViewById(R.id.button_chatview_send);
+        chatview_editText = findViewById(R.id.chatview_editText);
+        chatview_send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                messsageUpdate();
+            }
+        });
+        setActionBar(name);
     }
     public void setRecyclerView(){
         chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList, my_url, friend_url);

@@ -88,7 +88,7 @@ public class FriendFragment extends Fragment {
             //download_list = new ArrayList<>();
             for (Map.Entry<String,String> entry : Friend_list.entrySet()){
                 // friend_list
-                if(entry.getValue().equals("1")){
+                if(entry.getValue().equals("FRIEND")){
                     //download_list.add(entry.getKey());
                     pet.download(entry.getKey(), ()->{
                         FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "what's up", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main));
@@ -99,7 +99,7 @@ public class FriendFragment extends Fragment {
                     });
                 }
                 // unread friend request list
-                if(entry.getValue().equals("0")){
+                if(entry.getValue().equals("RECEIVER")){
                     unread_friend(entry.getKey());
                 }
             }
