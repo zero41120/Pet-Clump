@@ -243,7 +243,9 @@ public class PetProfile implements Profile {
                     });
                 }else{
                     Log.d(TAG,pet_id + " doesn't contain friends collection");
+                    c.didCompleteDownload();
                 }
+
             }
         });
     }
