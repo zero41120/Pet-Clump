@@ -42,9 +42,10 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         
         // TODO Download Message
         messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
-        messenger!.download(count: 5) { (retMessages) in
-            messages = retMessages
-            tableView.reloadData()
+        messenger!.download() { (retMessages) in
+            self.messages = retMessages
+            self.tableView.reloadData()
+            self.scrollBottom(animated: false)
         }
     }
     
@@ -58,7 +59,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.bottomConstraint.constant = -(keyboardSize.height + 88)
             self.view.layoutIfNeeded()
-            self.scrollBottom()
+            self.scrollBottom(animated: false)
         }
     }
     
@@ -66,17 +67,19 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             bottomConstraint.constant = 0
             self.view.layoutIfNeeded()
-            self.scrollBottom()
+            self.scrollBottom(animated: true)
         }
     }
     
     @objc func handleSend() {
         guard self.inputField!.text != ""  else { return }
+        self.inputField.isEnabled = false
         messenger?.upload(message: self.inputField!.text!, completion: { (message) in
             self.inputField!.text = ""
-            messages = messages + message
-            tableView.reloadData()
-            self.scrollBottom()
+            //self.messages.append(message)
+            self.tableView.reloadData()
+            self.scrollBottom(animated: true)
+            self.inputField.isEnabled = true
         })
         
     }
@@ -84,13 +87,18 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let last = messages.count
         if indexPath.row == last - 1 {
-            messenger!.download(count: 10) { (retMessages) in
+            messenger!.download() { (retMessages) in
                 if retMessages.count < 1 {
                     return
                 }
-                messages = messages + retMessages
+                if retMessages.count == 1 && self.messages.count != 0{
+                    if self.messages.last!.equals(obj: retMessages[0]){
+                        return
+                    }
+                }
+                self.messages = self.messages + retMessages
                 tableView.reloadData()
-                self.scrollBottom()
+                self.scrollBottom(animated: false)
             }
         }
     }
@@ -153,11 +161,13 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func scrollBottom(){
+    private func scrollBottom(animated: Bool){
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
-            print("\(self.messages.count-1)")
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            let row = self.messages.count-1
+            if  row > 0 {
+                let indexPath = IndexPath(row: row, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+            }
         }
     }
        
