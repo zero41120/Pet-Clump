@@ -40,8 +40,6 @@ class Messenger {
     let chatRoomId: String
     let roomRef: DocumentReference
     let chatRef: CollectionReference
-    var queryDoc: QueryDocumentSnapshot?
-    var listenerQuery: Query?
     
     init(myPet: PetProfile, friendPet: PetProfile) {
         self.myId = myPet.getId()
@@ -63,34 +61,26 @@ class Messenger {
             }
         }
     }
-
-    func download(completion: @escaping (([Message]) -> Void)){
-        // Download from firebase
+    
+    func startListen(handler: @escaping (([Message]) -> Void)){
+        let listenerQuery = chatRef.order(by: "time")
         
-        let query = queryDoc == nil ?
-            chatRef.order(by: "time") :
-            chatRef.order(by: "time").start(afterDocument: queryDoc!)
-
-        query.getDocuments {(snap, err) in
-            guard let snap = snap else {
-                print("Error loding chats")
+        listenerQuery.addSnapshotListener { (snap, error) in
+            if let err = error {
+                print(err)
                 return
             }
-            var messages:[Message] = []
-            
-            guard let last = snap.documents.last else { return }
-            if self.queryDoc == snap.documents.last { return }
-            self.queryDoc = last
-            
-            print("last: \(last.data())")
+            guard let snap = snap else { return }
+            //guard let last = snap.documents.last else { return }
+            var messages: [Message] = []
             for doc in snap.documents {
-                print("doc: \(doc.data())")
                 messages.append(Message(refObject: doc.data()))
             }
-            completion(messages)
+            handler(messages)
         }
+
     }
-    
+
     func upload(message: String, completion: @escaping ((Message) -> Void)){
         let msg = Message(refObject: ["senderId":myId, "time": Timestamp(), "text": message, "iv":"place_holder"])
         chatRef.document().setData(msg.generateDictionary()) { (error) in

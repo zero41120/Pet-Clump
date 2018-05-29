@@ -42,10 +42,10 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         
         // TODO Download Message
         messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
-        messenger!.download() { (retMessages) in
-            self.messages = retMessages
+        messenger!.startListen { (messages) in
+            self.messages = messages
             self.tableView.reloadData()
-            self.scrollBottom(animated: false)
+            self.scrollBottom(animated: true)
         }
     }
     
@@ -73,34 +73,10 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     
     @objc func handleSend() {
         guard self.inputField!.text != ""  else { return }
-        self.inputField.isEnabled = false
         messenger?.upload(message: self.inputField!.text!, completion: { (message) in
             self.inputField!.text = ""
-            //self.messages.append(message)
-            self.tableView.reloadData()
-            self.scrollBottom(animated: true)
-            self.inputField.isEnabled = true
         })
         
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let last = messages.count
-        if indexPath.row == last - 1 {
-            messenger!.download() { (retMessages) in
-                if retMessages.count < 1 {
-                    return
-                }
-                if retMessages.count == 1 && self.messages.count != 0{
-                    if self.messages.last!.equals(obj: retMessages[0]){
-                        return
-                    }
-                }
-                self.messages = self.messages + retMessages
-                tableView.reloadData()
-                self.scrollBottom(animated: false)
-            }
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
