@@ -78,7 +78,7 @@ public class OwnerProfileFriendFragment extends Fragment implements ProfileDownl
                     if (isAdded() && activity!=null)
                         mutualSchedule(mySchedule, friendSchedule);
                     else
-                        Log.d(TAG, "uessss");
+                        Log.d(TAG, "can't find Activity");
                 });
 
             });
