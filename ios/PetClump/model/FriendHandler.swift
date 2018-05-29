@@ -44,6 +44,7 @@ class FriendHandler {
         if myPending != nil {
             print("myPending exists: \(myPending!)")
             completion()
+            return
         }
         myRecord.getDocument(completion: { (snap , error) in
             if let document = snap, document.exists {

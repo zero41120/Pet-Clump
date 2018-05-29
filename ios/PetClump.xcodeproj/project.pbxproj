@@ -221,6 +221,7 @@
 		2934865020AB8E1800143474 /* message */ = {
 			isa = PBXGroup;
 			children = (
+				2901B3C620B250850058DC1C /* Messenger.swift */,
 				2926C2F120A9332500DB6A3C /* Crytographer.swift */,
 			);
 			path = message;
@@ -315,7 +316,6 @@
 				2934865020AB8E1800143474 /* message */,
 				2934864F20AB8DBA00143474 /* profile */,
 				294C94C72097E35E00266533 /* QuizQuestion.swift */,
-				2901B3C620B250850058DC1C /* Messenger.swift */,
 				29D0F0EC20BCC6DB0019BD8A /* FriendHandler.swift */,
 			);
 			path = model;
