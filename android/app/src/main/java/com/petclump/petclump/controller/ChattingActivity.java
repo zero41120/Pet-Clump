@@ -83,8 +83,9 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             @Override
             public void onClick(View v) {
                 String text = chatview_editText.getText().toString();
-                pet.new_message(my_id,friend_id,text,calendar.getTime().toString(),()->{});
-                BaseMessage temp = new BaseMessage(1, text,calendar.getTime().toString());
+                String time = calendar.getTime().toString();
+                pet.new_message(my_id,friend_id,text,time,()->{});
+                BaseMessage temp = new BaseMessage(1, text,time);
                 baseMessageList.add(temp);
                 messsageUpdate();
             }
