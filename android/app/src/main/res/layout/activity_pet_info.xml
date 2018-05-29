@@ -263,17 +263,32 @@
                 android:padding="10dp"
                 android:background="@drawable/pet_info_background"
                 android:fontFamily="@font/varela_round"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/label_pet_bio"
+                    style="@style/fontStyle4"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Bio"
+                    android:fontFamily="@font/varela_round"/>
+                <TextView
+                    android:id="@+id/cha_tracker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/varela_round"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="100dp"
+                    style="@style/fontStyle4"
+                    android:text="0/500"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/label_pet_bio"
-                style="@style/fontStyle4"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Bio"
-                android:fontFamily="@font/varela_round"/>
 
             <EditText
                 android:id="@+id/pet_bio"
