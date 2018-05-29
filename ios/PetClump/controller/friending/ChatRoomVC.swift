@@ -30,7 +30,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupKeyboardObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorColor = UIColor.clear
         tableView.delegate = self
@@ -49,25 +49,25 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         }
     }
     
-    
-    func setupKeyboardObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.bottomConstraint.constant = -(keyboardSize.height + 88)
-            self.view.layoutIfNeeded()
-            self.scrollBottom(animated: false)
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            bottomConstraint.constant = 0
-            self.view.layoutIfNeeded()
-            self.scrollBottom(animated: true)
+    // https://stackoverflow.com/questions/25693130
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                self.bottomConstraint?.constant = 0.0
+            } else {
+                self.bottomConstraint?.constant = -(endFrame?.size.height ?? 0.0) + 36
+            }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
         }
     }
     

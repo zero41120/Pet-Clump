@@ -71,7 +71,6 @@ class Messenger {
                 return
             }
             guard let snap = snap else { return }
-            //guard let last = snap.documents.last else { return }
             var messages: [Message] = []
             for doc in snap.documents {
                 messages.append(Message(refObject: doc.data()))
