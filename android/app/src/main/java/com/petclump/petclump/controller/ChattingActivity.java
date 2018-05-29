@@ -24,6 +24,8 @@ import com.petclump.petclump.views.ChatRecycleViewAdapter;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 //This is made based on this tutorial!
 // https://blog.sendbird.com/android-chat-tutorial-building-a-messaging-ui
@@ -76,11 +78,14 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
         chatview_send = findViewById(R.id.button_chatview_send);
         chatview_editText = findViewById(R.id.chatview_editText);
-
+        Calendar calendar = new GregorianCalendar();
         chatview_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pet.new_message(my_id,friend_id,chatview_editText.getText().toString(),()->{});
+                String text = chatview_editText.getText().toString();
+                pet.new_message(my_id,friend_id,text,calendar.getTime().toString(),()->{});
+                BaseMessage temp = new BaseMessage(1, text,"111");
+                baseMessageList.add(temp);
                 messsageUpdate();
             }
         });
@@ -89,6 +94,7 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
     }
     public void setRecyclerView(){
         chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList, my_url, friend_url);
+        chatRecycleViewAdapter.setHasStableIds(true);
         linearLayoutManager = new LinearLayoutManager(this);
         //linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -103,14 +109,13 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
     }
     public void messsageUpdate(){
-
+        chatRecycleViewAdapter.notifyDataSetChanged();
         chatview_editText.getText().clear();
         InputMethodManager inputMethodManager =
                 (InputMethodManager)getSystemService(
                        INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
                 getCurrentFocus().getWindowToken(), 0);
-        setRecyclerView();
 
     }
 
@@ -128,5 +133,6 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
     @Override
     public void didCompleteDownload() {
         chatRecycleViewAdapter.notifyDataSetChanged();
+
     }
 }

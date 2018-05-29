@@ -132,4 +132,8 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             new DownloadImageTask(friendImage, mContext).execute(friend_url);
         }
     }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 }

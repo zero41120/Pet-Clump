@@ -74,8 +74,6 @@ public class MessagingDownloader {
                     else
                         sender = 2;
                     BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),temp.get("time").toString());
-                    if(toAppend.contains(temp_meg))
-                        continue;
                     messages.add(temp_meg);
                 }
                 Log.d(TAG, "Completed: " + messages.toString());
@@ -106,11 +104,14 @@ public class MessagingDownloader {
                                 return;
                             }
                             List A = queryDocumentSnapshots.getDocumentChanges();
+                            String source = queryDocumentSnapshots != null && queryDocumentSnapshots.getMetadata().hasPendingWrites()
+                                    ? "Local" : "Server";
+                            if(source.equals("Local"))
+                                return;
                             // iterate through data
                             for(Object x: A){
-
                                 if(x != null){
-                                    String doc_id = ((DocumentChange)x).getDocument().getId();
+                                    //String doc_id = ((DocumentChange)x).getDocument().getId();
 /*                                    File path = new File(ctx.getCacheDir()+"/message/"+combined_id+"/",doc_id+".txt");
                                     if(path.exists())
                                         continue;*/

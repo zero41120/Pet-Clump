@@ -355,7 +355,7 @@ public class PetProfile implements Profile {
             }
         });
     }
-    public void new_message(String my_id, String friend_id, String text,ProfileUploader c){
+    public void new_message(String my_id, String friend_id, String text,String time, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
             Log.e(TAG, "user is null.");
             return;
@@ -371,7 +371,7 @@ public class PetProfile implements Profile {
         }else{
             combined_id = friend_id + my_id;
         }
-        Calendar calendar = new GregorianCalendar();
+
         // send message
         DocumentReference ref = FirebaseFirestore.getInstance().collection("chats")
                 .document(combined_id)
@@ -379,7 +379,7 @@ public class PetProfile implements Profile {
         //TODO: encryp text
         HashMap<String, Object> temp = new HashMap<String, Object>(){{
             put("sender", my_id);
-            put("time", calendar.getTime());
+            put("time", time);
             put("text",text);
         }};
         ref.set(temp).addOnCompleteListener(task -> {
