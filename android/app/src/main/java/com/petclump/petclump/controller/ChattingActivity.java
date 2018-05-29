@@ -84,7 +84,7 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             public void onClick(View v) {
                 String text = chatview_editText.getText().toString();
                 pet.new_message(my_id,friend_id,text,calendar.getTime().toString(),()->{});
-                BaseMessage temp = new BaseMessage(1, text,"111");
+                BaseMessage temp = new BaseMessage(1, text,calendar.getTime().toString());
                 baseMessageList.add(temp);
                 messsageUpdate();
             }
