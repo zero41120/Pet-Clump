@@ -9,17 +9,8 @@
 import UIKit
 
 class MatchingTableViewCell: UITableViewCell {
-
     @IBOutlet weak var imageRight: UIImageView!
     @IBOutlet weak var imageLeft: UIImageView!
     @IBOutlet weak var labelRight: UILabel!
     @IBOutlet weak var labelLeft: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 }

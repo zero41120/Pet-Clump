@@ -84,7 +84,10 @@ class Messenger {
     
     func upload(message: String, completion: (([Message]) -> Void)){
         let msg = Message(refObject: ["senderId":myId, "time": Timestamp(), "message": message])
+        let bot_msg = Message(refObject: ["senderId":"5Z2rd459CqXZFE3vrk7AQkYn1Yy10", "time": Timestamp(), "message": "I'm a bot"])
+
         messages.append(msg)
+        messages.append(bot_msg)
         completion([msg])
     }
 }
