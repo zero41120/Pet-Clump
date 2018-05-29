@@ -56,7 +56,15 @@ public class PetProfileFriendFragment extends Fragment implements ProfileDownloa
             friendpetprofile_name.setText(petProfile.getName());
             friendpetprofile_age.setText(petProfile.getAge());
         });
-        ImagePager imagePager = new ImagePager(friend_id, getActivity() );
+        String[] MatchImage= new String[]{
+                "main_profile_url",
+                "pet_profile_url_1",
+                "pet_profile_url_2",
+                "pet_profile_url_3",
+                "pet_profile_url_4",
+                "pet_profile_url_5",
+        };
+        ImagePager imagePager = new ImagePager(friend_id, getActivity(), MatchImage);
         friendpetprofile_viewPager.setAdapter(imagePager);
         return v;
     }

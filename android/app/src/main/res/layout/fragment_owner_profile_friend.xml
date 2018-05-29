@@ -191,7 +191,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="834dp" />
 
                 <ImageView
-                    android:id="@+id/sch11"
+                    android:id="@+id/ms11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -199,7 +199,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch21"
+                    android:id="@+id/ms21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -207,7 +207,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch31"
+                    android:id="@+id/ms31"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -215,7 +215,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch41"
+                    android:id="@+id/ms41"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -223,7 +223,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch51"
+                    android:id="@+id/ms51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -231,7 +231,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch61"
+                    android:id="@+id/ms61"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -239,7 +239,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch71"
+                    android:id="@+id/ms71"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -260,7 +260,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="834dp" />
 
                 <ImageView
-                    android:id="@+id/sch12"
+                    android:id="@+id/ms12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -268,7 +268,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch22"
+                    android:id="@+id/ms22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -276,7 +276,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch32"
+                    android:id="@+id/ms32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -284,7 +284,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch42"
+                    android:id="@+id/ms42"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -292,7 +292,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch52"
+                    android:id="@+id/ms52"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -300,7 +300,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch62"
+                    android:id="@+id/ms62"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -308,7 +308,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch72"
+                    android:id="@+id/ms72"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -329,7 +329,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="834dp" />
 
                 <ImageView
-                    android:id="@+id/sch13"
+                    android:id="@+id/ms13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -337,7 +337,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch23"
+                    android:id="@+id/ms23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -345,7 +345,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch33"
+                    android:id="@+id/ms33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -353,7 +353,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch43"
+                    android:id="@+id/ms43"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -361,7 +361,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch53"
+                    android:id="@+id/ms53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -369,7 +369,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch63"
+                    android:id="@+id/ms63"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"
@@ -377,7 +377,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                     tools:layout_editor_absoluteY="779dp" />
 
                 <ImageView
-                    android:id="@+id/sch73"
+                    android:id="@+id/ms73"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/schedule_gray"

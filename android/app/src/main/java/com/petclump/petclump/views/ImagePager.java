@@ -24,18 +24,13 @@ import java.util.zip.Inflater;
 public class ImagePager extends PagerAdapter {
     Context mContext;
     private String pet_id = "";
-    private String[] imagesId = new String[]{
-        "main_profile_url",
-        "pet_profile_url_1",
-        "pet_profile_url_2",
-        "pet_profile_url_3",
-        "pet_profile_url_4",
-        "pet_profile_url_5",
-    };
 
-    public ImagePager(String id, Context mContext) {
+    private String[] imagesId;
+
+    public ImagePager(String id, Context mContext, String[] imagesId) {
         this.mContext = mContext;
         this.pet_id = id;
+        this.imagesId = imagesId;
     }
 
     @Override

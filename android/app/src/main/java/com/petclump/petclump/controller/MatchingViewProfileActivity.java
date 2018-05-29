@@ -45,7 +45,15 @@ public class MatchingViewProfileActivity extends AppCompatActivity {
         matchviewprofile_add_friend = findViewById(R.id.button_add_friend);
 
         matchviewprofile_viewPager = findViewById(R.id.matchviewprofile_viewPager);
-        ImagePager imagePager = new ImagePager(intent.getExtras().getString("petId"),this);
+        String[] MatchImage= new String[]{
+                "main_profile_url",
+                "pet_profile_url_1",
+                "pet_profile_url_2",
+                "pet_profile_url_3",
+                "pet_profile_url_4",
+                "pet_profile_url_5",
+        };
+        ImagePager imagePager = new ImagePager(intent.getExtras().getString("petId"),this, MatchImage);
         matchviewprofile_viewPager.setAdapter(imagePager);
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(matchviewprofile_viewPager);
