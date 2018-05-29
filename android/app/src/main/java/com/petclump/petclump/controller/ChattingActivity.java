@@ -1,5 +1,6 @@
 package com.petclump.petclump.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -60,29 +61,34 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
        // baseMessageList.add(message7);
         recyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
         // setup photo
-        downloader = new MessagingDownloader(my_id, friend_id,2);
+        downloader = new MessagingDownloader(this,my_id, friend_id,2);
+        Log.d(TAG,"my:"+my_id+" other:"+friend_id);
+        ChattingActivity t = this;
         pet.download(my_id, ()->{
             my_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
             //Log.d(TAG,"my:"+my_url);
             pet.download(friend_id,()->{
                 friend_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
-                //Log.d(TAG,"friend:"+friend_url);
+                setRecyclerView();
 
-                // remaining part
 
             });
         });
         downloader.downloadMore(baseMessageList, this);
+        downloader.listenToRoom(baseMessageList, this);
+
         chatview_send = findViewById(R.id.button_chatview_send);
         chatview_editText = findViewById(R.id.chatview_editText);
-/*        chatview_send.setOnClickListener(new View.OnClickListener() {
+
+        chatview_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                messsageUpdate();
+                pet.new_message(my_id,friend_id,chatview_editText.getText().toString(),()->{});
+                chatview_editText.setText("");
             }
-        });*/
+        });
         setActionBar(name);
-        setRecyclerView();
+
     }
     public void setRecyclerView(){
         chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList, my_url, friend_url);
@@ -100,11 +106,12 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
     }
     public void messsageUpdate(){
-        String tempMessage = chatview_editText.getText().toString();
+/*        String tempMessage = chatview_editText.getText().toString();
         BaseMessage message1 = new BaseMessage(1, tempMessage, "me");
         BaseMessage message2 = new BaseMessage(2, "I'm a bot.", name);
         baseMessageList.add(message1);
-        baseMessageList.add(message2);
+        baseMessageList.add(message2);*/
+
         chatview_editText.getText().clear();
         setRecyclerView();
         InputMethodManager inputMethodManager =

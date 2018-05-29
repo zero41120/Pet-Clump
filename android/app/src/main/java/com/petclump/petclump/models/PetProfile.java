@@ -28,6 +28,8 @@ import com.petclump.petclump.models.protocols.ProfileDeletor;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -351,6 +353,40 @@ public class PetProfile implements Profile {
 
                 c.didCompleteDelete();
             }
+        });
+    }
+    public void new_message(String my_id, String friend_id, String text,ProfileUploader c){
+        if (Auth_pet.getCurrentUser() == null){
+            Log.e(TAG, "user is null.");
+            return;
+        }
+
+        if(my_id.equals("") || friend_id.equals("")){
+            Log.e(TAG, "new_unread_message:"+" Error, one of the id is empty!");
+            return;
+        }
+        String combined_id = "";
+        if(my_id.compareTo(friend_id)>0){
+            combined_id = my_id + friend_id;
+        }else{
+            combined_id = friend_id + my_id;
+        }
+        Calendar calendar = new GregorianCalendar();
+        // send message
+        DocumentReference ref = FirebaseFirestore.getInstance().collection("chats")
+                .document(combined_id)
+                .collection("message").document();
+        //TODO: encryp text
+        HashMap<String, Object> temp = new HashMap<String, Object>(){{
+            put("sender", my_id);
+            put("time", calendar.getTime());
+            put("text",text);
+        }};
+        ref.set(temp).addOnCompleteListener(task -> {
+            if(!task.isSuccessful()) {
+                Log.w(TAG, "new_unread_message changes failed");
+            }
+            c.didCompleteUpload();
         });
     }
     public HashMap<String, String> getChat_list(){ return chat_list;}
