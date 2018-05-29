@@ -65,7 +65,7 @@ public class MessagingDownloader {
 /*                    File path = new File(ctx.getCacheDir()+"/message/"+combined_id+"/",doc.getId()+".txt");
                     if(path.exists())
                         continue;*/
-                    visited.put(doc.getId(),true);
+                    /*visited.put(doc.getId(),true);*/
                     Map<String,Object> temp = doc.getData();
                     int sender = 0;
                     // decide sender
@@ -74,6 +74,8 @@ public class MessagingDownloader {
                     else
                         sender = 2;
                     BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),temp.get("time").toString());
+                    if(toAppend.contains(temp_meg))
+                        continue;
                     messages.add(temp_meg);
                 }
                 Log.d(TAG, "Completed: " + messages.toString());
@@ -112,8 +114,8 @@ public class MessagingDownloader {
 /*                                    File path = new File(ctx.getCacheDir()+"/message/"+combined_id+"/",doc_id+".txt");
                                     if(path.exists())
                                         continue;*/
-                                    if(visited.containsKey(doc_id))
-                                        continue;
+//                                    if(visited.containsKey(doc_id))
+//                                        continue;
                                     Map<String, Object> temp = ((DocumentChange)x).getDocument().getData();
                                     int sender = 0;
                                     if(temp.get("sender").toString().equals(my_id))
@@ -121,6 +123,8 @@ public class MessagingDownloader {
                                     else
                                         sender = 2;
                                     BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),temp.get("time").toString());
+                                    if(toAppend.contains(temp_meg))
+                                        continue;
                                     messages.add(temp_meg);
                                 }
                             }

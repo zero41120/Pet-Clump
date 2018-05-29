@@ -53,29 +53,26 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         friend_id = intent.getStringExtra("friend_id");
 
 
-        BaseMessage message1 = new BaseMessage(1, "Hey What's up", "");
-        BaseMessage message6 = new BaseMessage(2, "I'm a bot.", "");
-//        BaseMessage message7 = new BaseMessage(2, "不要突然講中文啦", "10:10");
-        baseMessageList.add(message1);
-        baseMessageList.add(message6);
        // baseMessageList.add(message7);
         recyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
         // setup photo
         downloader = new MessagingDownloader(this,my_id, friend_id,2);
         Log.d(TAG,"my:"+my_id+" other:"+friend_id);
-        ChattingActivity t = this;
+        ChattingActivity theCTX = this;
         pet.download(my_id, ()->{
             my_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
             //Log.d(TAG,"my:"+my_url);
             pet.download(friend_id,()->{
                 friend_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
-                setRecyclerView();
 
 
             });
         });
-        downloader.downloadMore(baseMessageList, this);
-        downloader.listenToRoom(baseMessageList, this);
+        downloader.downloadMore(baseMessageList, ()->{
+            setRecyclerView();
+            downloader.listenToRoom(baseMessageList, theCTX);
+        });
+
 
         chatview_send = findViewById(R.id.button_chatview_send);
         chatview_editText = findViewById(R.id.chatview_editText);
@@ -84,7 +81,7 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             @Override
             public void onClick(View v) {
                 pet.new_message(my_id,friend_id,chatview_editText.getText().toString(),()->{});
-                chatview_editText.setText("");
+                messsageUpdate();
             }
         });
         setActionBar(name);
@@ -106,19 +103,14 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
     }
     public void messsageUpdate(){
-/*        String tempMessage = chatview_editText.getText().toString();
-        BaseMessage message1 = new BaseMessage(1, tempMessage, "me");
-        BaseMessage message2 = new BaseMessage(2, "I'm a bot.", name);
-        baseMessageList.add(message1);
-        baseMessageList.add(message2);*/
 
         chatview_editText.getText().clear();
-        setRecyclerView();
         InputMethodManager inputMethodManager =
                 (InputMethodManager)getSystemService(
                        INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
                 getCurrentFocus().getWindowToken(), 0);
+        setRecyclerView();
 
     }
 
