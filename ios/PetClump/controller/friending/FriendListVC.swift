@@ -10,16 +10,11 @@ import UIKit
 
 class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    // Assign by caller view
     var myPet: PetProfile = PetProfile.most_recent_pet!
     
     //this is the array for each fof your riend's name
     var friendHandlers: [FriendHandler] = []
-    
-    // this is the array for each of the friend's chat history
     let messages = ["Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you" ]
-    
-    // this is the array for each of the friend's time last message sent.
     let times = ["12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11"]
     
     @IBOutlet weak var tableView: UITableView!
@@ -51,12 +46,16 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             pdv.friendPetProfile = friendHandler.friendPet
             self.present(pdv, animated: true, completion: nil)
         }, ifFalse: {
-            self.makeAlert(message: NSLocalizedString("You need to confrim friend request first!", comment: "This is an alert text when the user select the message without confriming a friend request"))
             self.tableView.deselectRow(at: indexPath, animated: true)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+            let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
+            pdv.friendProfile = self.friendHandlers[indexPath.row].friendPet
+            pdv.myProfile = self.friendHandlers[indexPath.row].myPet
+            self.present(pdv, animated: true, completion: nil)
         })
         
     }
-    
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendHandlers.count
     }
