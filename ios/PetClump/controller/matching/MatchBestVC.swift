@@ -29,7 +29,6 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         }
 
         petProfile!.download {
-            print("\(self.petProfile!.generateDictionary())")
             self.matchingTable.delegate = self
             self.matchingTable.dataSource = self
             self.query = self.db.collection("pets").limit(to: self.downloadLimit)
@@ -57,6 +56,7 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
                 if petProfile.ownerId == uid {
                     continue
                 }
+                // TODO avoid friend
                 let newMatchProfile = MatchingProfile(quizResult: quizResult, petProfile: petProfile)
                 toSort.append(newMatchProfile)
             }
@@ -110,8 +110,7 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
         let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
         let index = sender.view!.tag
-        pdv.friendProfile = PetProfile()
-        pdv.friendProfile!.copy(FromProfile: element[index].getProfile())
+        pdv.friendProfile = element[index].getProfile()
         pdv.myProfile = petProfile
         self.present(pdv, animated: true, completion: nil)
     }

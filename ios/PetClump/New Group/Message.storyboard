@@ -292,6 +292,16 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWh-De-kt9">
+                                                            <rect key="frame" x="291" y="5" width="49" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" title="Accept"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aG9-wz-pyS">
+                                                            <rect key="frame" x="291" y="44" width="43" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" title="Reject"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="0.46270333899999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -318,11 +328,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="acceptButton" destination="gWh-De-kt9" id="xRU-7Z-VSs"/>
                                             <outlet property="animalChat" destination="89f-Zt-3Fx" id="fc5-jr-1la"/>
                                             <outlet property="animalImage" destination="ydd-if-6zq" id="5Hw-e8-9f3"/>
                                             <outlet property="animalLbl" destination="Yhz-7o-DLc" id="4Z3-bN-eAD"/>
                                             <outlet property="animalTime" destination="vXQ-Mx-XNX" id="IkF-yV-6UG"/>
                                             <outlet property="cellView" destination="RBM-5q-8Jo" id="uZT-jq-bxh"/>
+                                            <outlet property="rejectButton" destination="aG9-wz-pyS" id="uQa-x3-OeG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -600,6 +612,7 @@
                         <viewLayoutGuide key="safeArea" id="iof-A9-Gb2"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="YS3-el-K1n" id="ZiZ-2J-88G"/>
                         <outlet property="ageLabel" destination="fgo-Ir-Hsp" id="ues-lC-Csl"/>
                         <outlet property="bioTextField" destination="Si8-LK-cNJ" id="o7z-tL-oax"/>
                         <outlet property="imageScroller" destination="QKC-I8-m4A" id="stf-qb-MwT"/>

@@ -14,4 +14,8 @@ class FriendListCell: UITableViewCell {
     @IBOutlet weak var animalLbl: UILabel!
     @IBOutlet weak var animalTime: UILabel!
     @IBOutlet weak var animalChat: UILabel!
+    
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var rejectButton: UIButton!
+    
 }

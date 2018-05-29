@@ -69,4 +69,13 @@ extension UIViewController: QuickAlert, ConfirmDismissAlert {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "This is the Cancel button on an alert to inform user that by clickign this button information on this page stays and user may contiune editing"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func confirmBefore(doing: @escaping (()->Void), title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Confirm", comment: "This is the Confirm button on an alert to inform user that by click this button informaion associate with this alert will be processed"), style: .destructive, handler: { (action: UIAlertAction!) in
+            doing()
+        }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "This is the Cancel button on an alert to inform user that by clickign this button information on this page stays and user may contiune editing"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }

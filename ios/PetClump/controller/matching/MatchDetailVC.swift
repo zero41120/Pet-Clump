@@ -14,13 +14,15 @@ class MatchDetailVC: UIViewController{
     // Assigned by caller view
     var friendProfile: PetProfile?
     var myProfile: PetProfile?
+    var friendHandler: FriendHandler?
     
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var specieLabel: UILabel!
     @IBOutlet weak var bioTextField: UITextView!
     @IBOutlet weak var imageScroller: ImageScrollerView!
-    
+    @IBOutlet weak var addButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let _ = Auth.auth().currentUser?.uid else {
@@ -33,6 +35,12 @@ class MatchDetailVC: UIViewController{
         bioTextField.text = friendProfile!.bio
         let imageUrls = friendProfile!.getPhotoUrls(isPulic: true)
         self.imageScroller.setupScrollerWith(urls: imageUrls)
+        friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
+        friendHandler!.isPending(ifTrue: {
+            print("Disabled add friend due to pending")
+            self.disableAddButton()
+        }, ifFalse: nil)
+        
     }
     
     @IBAction func tapExit(_ sender: Any) {
@@ -40,10 +48,13 @@ class MatchDetailVC: UIViewController{
     }
     
     @IBAction func tapAddFriend(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
-        pdv.friendPetProfile = friendProfile!
-        pdv.myPetProfile = myProfile!
-        self.present(pdv, animated: true, completion: nil)
+        friendHandler?.addFriend(){
+            disableAddButton()
+        }
+    }
+    
+    func disableAddButton() {
+        self.addButton.isEnabled = false
+        addButton.title = NSLocalizedString("Pending", comment: "This is the replacement text on the 'Add Friend' button when a friend request is sent/received")
     }
 }

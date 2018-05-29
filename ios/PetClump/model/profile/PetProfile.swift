@@ -54,6 +54,17 @@ class PetProfile: Profile, Deletable{
         }
     }
     
+    convenience init(id: String, completion: ((PetProfile)->Void)?){
+        self.init()
+        self.ownerId = String(id.dropLast())
+        self.sequence = Int(String(id.last!))!
+        download {
+            guard completion != nil else { return }
+            completion!(self)
+        }
+    }
+    
+    
     func copy(FromProfile: PetProfile){
         self.fetchData(refObj: FromProfile.generateDictionary())
     }
@@ -65,6 +76,7 @@ class PetProfile: Profile, Deletable{
         self.name    = refObj["name"] as? String ?? ""
         self.specie  = refObj["spe"]  as? String ?? ""
         self.ownerId = refObj["owner_id"] as? String ?? ""
+        self.sequence = refObj["sequence"] as? Int ?? -1
         self.url_map["main_url"] = refObj["main_url"] as? String ?? ""
         self.url_map["pet_view_1"] = refObj["pet_view_1"] as? String ?? ""
         self.url_map["pet_view_2"] = refObj["pet_view_2"] as? String ?? ""

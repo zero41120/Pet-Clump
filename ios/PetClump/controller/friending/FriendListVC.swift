@@ -14,13 +14,13 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var myPet: PetProfile = PetProfile.most_recent_pet!
     
     //this is the array for each fof your riend's name
-    let elements = ["horse", "cat", "dog", "potato","horse", "cat", "dog", "potato","horse", "cat", "dog", "potato"]
+    var friendHandlers: [FriendHandler] = []
     
     // this is the array for each of the friend's chat history
-    let message = ["Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you" ]
+    let messages = ["Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you" ]
     
     // this is the array for each of the friend's time last message sent.
-    let time = ["12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11"]
+    let times = ["12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11"]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,40 +28,82 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        FriendHandler.downloadFriends(myProfile: PetProfile.most_recent_pet!, callerView: self) { (fHandler) in
+            fHandler.isFriending(ifTrue: {
+                self.friendHandlers.append(fHandler)
+                self.tableView.reloadData()
+            }, ifFalse: nil)
+            fHandler.isReceiving(ifTrue: {
+                self.friendHandlers.append(fHandler)
+                self.tableView.reloadData()
+            }, ifFalse: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
-        pdv.myPetProfile = myPet
-        self.present(pdv, animated: true, completion: nil)
+        
+        let friendHandler = friendHandlers[indexPath.row]
+        friendHandler.isFriending(ifTrue: {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+            let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
+            pdv.myPetProfile = friendHandler.myPet
+            pdv.friendPetProfile = friendHandler.friendPet
+            self.present(pdv, animated: true, completion: nil)
+        }, ifFalse: {
+            self.makeAlert(message: NSLocalizedString("You need to confrim friend request first!", comment: "This is an alert text when the user select the message without confriming a friend request"))
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        })
+        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return elements.count
+        return friendHandlers.count
     }
-    
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //load each cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! FriendListCell
+        let friendHandler = friendHandlers[indexPath.row]
+        let friend = friendHandler.friendPet
         
-        //loading the name of each frineds
-        cell.animalLbl.text = elements[indexPath.row]
-        
-        //loading the image of each friend
-        cell.animalImage.image = UIImage(named: elements[indexPath.row])
-        //make the image round
-        cell.animalImage.layer.cornerRadius = cell.animalImage.frame.height / 2
-        
-        //load the message of each friend
-        cell.animalChat.text = message[indexPath.row]
-        //load the time of each friend chat
-        cell.animalTime.text = time[indexPath.row]
-        
+        friendHandler.isFriending(
+            ifTrue: {
+                cell.acceptButton.isHidden = true
+                cell.rejectButton.isHidden = true
+                // load message
+            }, ifFalse: {
+                cell.animalChat.text = NSLocalizedString("Sent you a friend request!", comment: "This is message show to you when another user send you a friend request")
+                cell.animalTime.text = ""
+                cell.acceptButton.tag = indexPath.row
+                cell.rejectButton.tag = indexPath.row
+                cell.acceptButton.addTarget(self, action: #selector(self.acceptFriend), for: .touchUpInside)
+                cell.rejectButton.addTarget(self, action: #selector(self.rejectFriend), for: .touchUpInside)
+            }
+        )
+        cell.animalImage.load(url: friend.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+        cell.animalImage.setRounded()
+        cell.animalLbl.text = friend.name
         return cell
     }
+    
+    @objc func acceptFriend(sender: UIButton){
+        let row = sender.tag
+        let fHandler = self.friendHandlers[row]
+        fHandler.acceptFriend()
+        self.tableView.reloadData()
+    }
+    
+    @objc func rejectFriend(sender: UIButton){
+        let row = sender.tag
+        let fHandler = self.friendHandlers[row]
+        confirmBefore(doing: {
+            fHandler.rejectFriend()
+        }, title: NSLocalizedString("Reject", comment: "This is title of an alert when user select reject to respond a friend request"),
+           message: NSLocalizedString("Are you sure you want to reject this request?", comment: "This is message of an alert when user select reject to respond a friend request"))
+        self.tableView.reloadData()
+    }
+    
     
     // Dismisses the view
     @IBAction func tapCancel(_ sender: Any) {
