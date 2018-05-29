@@ -77,7 +77,11 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             startActivity(new Intent(c, Popup.class))
         );
         // Enter Pet_info to create new pet
-        edit_button.setOnClickListener(v-> startActivity(new Intent(c, UserInfoEditActivity.class)));
+
+        edit_button.setOnClickListener(v-> {
+            Intent intent = new Intent(c, UserInfoEditActivity.class);
+            startActivity(intent);
+        });
 
         Intent i = new Intent(c, PetInfoActivity.class);
         profile_pet1.setOnClickListener(v->{

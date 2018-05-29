@@ -52,6 +52,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         holder.friendview_image.setOnClickListener(v->{
             Intent intent2 = new Intent(mContext, FriendProfileActivity.class);
             intent2.putExtra("friend_id", friend_id);
+            intent2.putExtra("my_id", my_id);
             mContext.startActivity(intent2);
         });
 
