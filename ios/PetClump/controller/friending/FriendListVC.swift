@@ -60,6 +60,10 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         return friendHandlers.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! FriendListCell
@@ -72,7 +76,7 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 cell.rejectButton.isHidden = true
                 // load message
             }, ifFalse: {
-                cell.animalChat.text = NSLocalizedString("Sent you a friend request!", comment: "This is message show to you when another user send you a friend request")
+                cell.animalChat.text = NSLocalizedString("Added you!", comment: "This is message show to you when another user send you a friend request")
                 cell.animalTime.text = ""
                 cell.acceptButton.tag = indexPath.row
                 cell.rejectButton.tag = indexPath.row
