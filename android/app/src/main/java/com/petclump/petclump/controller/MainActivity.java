@@ -33,11 +33,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.models.Chat;
+import com.petclump.petclump.models.MessagingDownloader;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -92,21 +95,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
        /* PetProfile.getInstance().listenToFriendList("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",()->{
             Log.d(TAG,PetProfile.getInstance().getRelation_list().toString());
         });*/
-        pickButton.setOnClickListener(v ->
-            {
-                //Toast.makeText(this, PetProfile.parseUrlToCache("http:/sldkfj/sdf&%%%/asb.txt"), Toast.LENGTH_SHORT).show();
-                //PetProfile.getInstance().listenToFriendList(FirebaseAuth.getInstance().getCurrentUser().getUid(), ()->{});
-                /*PetProfile.getInstance().new_friend_change("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",
-                        "94OeeGargpPOI5RuQU9N9zb2qvD30", PetProfile.friend_change_type.NEW_FRIEND,()->{
-                            Toast.makeText(this, "Request has been sent!", Toast.LENGTH_SHORT).show();
-                        }
-                        );*/
-              /*PetProfile.getInstance().friend_delete("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",
-                        "94OeeGargpPOI5RuQU9N9zb2qvD30", ()->{
-                            Toast.makeText(this, "Request has been sent!", Toast.LENGTH_SHORT).show();
-                        });*/
-            }
-        );
+/*       PetProfile pet = new PetProfile();
+       String sed = "94OeeGargpPOI5RuQU9N9zb2qvD31";
+       String rec = "i9DnVO5BDzWSVdMLLCIZJWgx6Uq20";
+
+        MessagingDownloader m = new MessagingDownloader(sed, rec, 2);
+        ArrayList<BaseMessage> mes = new ArrayList<>();*/
+
+        pickButton.setOnClickListener(v -> {
+/*            m.downloadMore(mes, ()->{
+                //Log.d(TAG,"after download:"+mes);
+            });*/
+        });
 
         // Setting page activity
         settingsButton.setOnClickListener(v ->

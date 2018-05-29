@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.BaseMessage;
+import com.petclump.petclump.models.MessagingDownloader;
 import com.petclump.petclump.models.PetProfile;
+import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.views.ChatRecycleViewAdapter;
 
 import org.w3c.dom.Text;
@@ -24,10 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 //This is made based on this tutorial!
 // https://blog.sendbird.com/android-chat-tutorial-building-a-messaging-ui
-public class ChattingActivity extends AppCompatActivity {
+public class ChattingActivity extends AppCompatActivity implements ProfileDownloader{
     private ChatRecycleViewAdapter chatRecycleViewAdapter;
     private RecyclerView recyclerView;
-    private List<BaseMessage> baseMessageList;
+    private ArrayList<BaseMessage> baseMessageList;
     private Button chatview_send;
     private EditText chatview_editText;
     private LinearLayoutManager linearLayoutManager;
@@ -38,6 +40,7 @@ public class ChattingActivity extends AppCompatActivity {
     private String friend_url = "";
     private PetProfile pet = new PetProfile();
     private String TAG = "ChattingActivity";
+    private MessagingDownloader downloader;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +52,15 @@ public class ChattingActivity extends AppCompatActivity {
         friend_id = intent.getStringExtra("friend_id");
 
 
-        BaseMessage message1 = new BaseMessage(1, "Hey What's up", "me");
-        BaseMessage message6 = new BaseMessage(2, "I'm a bot.", name);
+        BaseMessage message1 = new BaseMessage(1, "Hey What's up", "");
+        BaseMessage message6 = new BaseMessage(2, "I'm a bot.", "");
 //        BaseMessage message7 = new BaseMessage(2, "不要突然講中文啦", "10:10");
         baseMessageList.add(message1);
         baseMessageList.add(message6);
        // baseMessageList.add(message7);
         recyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
+        // setup photo
+        downloader = new MessagingDownloader(my_id, friend_id,2);
         pet.download(my_id, ()->{
             my_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
             //Log.d(TAG,"my:"+my_url);
@@ -64,9 +69,10 @@ public class ChattingActivity extends AppCompatActivity {
                 //Log.d(TAG,"friend:"+friend_url);
 
                 // remaining part
-                setRecyclerView();
+
             });
         });
+        downloader.downloadMore(baseMessageList, this);
         chatview_send = findViewById(R.id.button_chatview_send);
         chatview_editText = findViewById(R.id.chatview_editText);
 /*        chatview_send.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +82,7 @@ public class ChattingActivity extends AppCompatActivity {
             }
         });*/
         setActionBar(name);
+        setRecyclerView();
     }
     public void setRecyclerView(){
         chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList, my_url, friend_url);
@@ -90,6 +97,7 @@ public class ChattingActivity extends AppCompatActivity {
                 recyclerView.smoothScrollToPosition(chatRecycleViewAdapter.getItemCount()-1);
             }
         });
+
     }
     public void messsageUpdate(){
         String tempMessage = chatview_editText.getText().toString();
@@ -116,5 +124,10 @@ public class ChattingActivity extends AppCompatActivity {
         actionBar.setCustomView(R.layout.actionbar_layout);
         TextView myText = findViewById(R.id.mytext);
         myText.setText(heading);
+    }
+
+    @Override
+    public void didCompleteDownload() {
+        chatRecycleViewAdapter.notifyDataSetChanged();
     }
 }

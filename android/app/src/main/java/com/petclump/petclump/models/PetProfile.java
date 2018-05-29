@@ -135,16 +135,16 @@ public class PetProfile implements Profile {
         String code_receiver = "";
         switch (type){
             case NEW_FRIEND:
-                code_sender = "SENDER";
-                code_receiver = "RECEIVER";
+                code_sender = "sending";
+                code_receiver = "receiving";
                 break;
             case ADD_UNREAD_FRIEND:
-                code_sender = "FRIEND";
-                code_receiver = "FRIEND";
+                code_sender = "friending";
+                code_receiver = "friending";
                 break;
             case BLOCK_FRIEND:
-                code_sender = "BLOCKED";
-                code_receiver = "BLOCKED";
+                code_sender = "blocking";
+                code_receiver = "blocking";
                 break;
         }
         // upload sender's list
@@ -170,7 +170,14 @@ public class PetProfile implements Profile {
         });
     }
     public void friend_delete (String sender_id, String receiver_id, ProfileDeletor c){
-
+        if (Auth_pet.getCurrentUser() == null){
+            Log.e(TAG, "user is null.");
+            return;
+        }
+        if(relation_list.containsKey(sender_id))
+            relation_list.remove(sender_id);
+        if(relation_list.containsKey(receiver_id))
+            relation_list.remove(receiver_id);
         // delete receiver from sender
         FirebaseFirestore.getInstance().collection("pets")
                 .document(sender_id)
@@ -250,12 +257,12 @@ public class PetProfile implements Profile {
             return;
         }
         DocumentReference ref = FirebaseFirestore.getInstance().collection("pets").document(pet_id);
-        ref.collection("chats")
+        ref.collection("unread")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.getResult().size()>0){
-                    ref.collection("chats").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    ref.collection("unread").addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                             if (e != null) {
@@ -280,7 +287,6 @@ public class PetProfile implements Profile {
             }
         });
     }
-
     public void new_unread_message(String sender_id, String receiver_id, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
             Log.e(TAG, "user is null.");
@@ -300,15 +306,54 @@ public class PetProfile implements Profile {
         // upload change
         DocumentReference ref = FirebaseFirestore.getInstance().collection("pets")
                 .document(receiver_id)
-                .collection("chats").document(combined_id);
+                .collection("unread").document(combined_id);
 
         HashMap<String, Object> temp = new HashMap<String, Object>(){{put("pending", "UNREAD");}};
         ref.set(temp).addOnCompleteListener(task -> {
             if(!task.isSuccessful()) {
                 Log.w(TAG, "new_unread_message changes failed");
             }
+            c.didCompleteUpload();
         });
     }
+    public void unread_delete(String unhandled_id, String the_other_id, ProfileDeletor c){
+        // notice we will only delete the document from unhandled_id
+        if (Auth_pet.getCurrentUser() == null){
+            Log.e(TAG, "user is null.");
+            return;
+        }
+        if(unhandled_id.equals("") || the_other_id.equals("")){
+            Log.e(TAG, "unread_delete:"+" Error, one of the id is empty!");
+            return;
+        }
+        String combined_id = "";
+        if(unhandled_id.compareTo(the_other_id)>0){
+            combined_id = unhandled_id + the_other_id;
+        }else{
+            combined_id = the_other_id + unhandled_id;
+        }
+        if(chat_list.containsKey(combined_id)){
+            chat_list.remove(combined_id);
+        }
+        // delete receiver from sender
+        FirebaseFirestore.getInstance().collection("pets")
+                .document(unhandled_id)
+                .collection("unread")
+                .document(combined_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                // if the document exists
+                if(task.getResult().exists()){
+                    task.getResult().getReference().delete();
+                }else{
+                    Log.e(TAG,"unread_delete: document_id doesn't exist");
+                }
+
+                c.didCompleteDelete();
+            }
+        });
+    }
+    public HashMap<String, String> getChat_list(){ return chat_list;}
 
     /*** profile methods ***/
     public void upload(String id, ProfileUploader c){
