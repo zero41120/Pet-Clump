@@ -91,16 +91,16 @@ public class ChattingActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Call smooth scroll
-                recyclerView.smoothScrollToPosition(chatRecycleViewAdapter.getItemCount()-1);
+                recyclerView.scrollToPosition(chatRecycleViewAdapter.getItemCount()-1);
             }
         });
     }
     public void messsageUpdate(){
         String tempMessage = chatview_editText.getText().toString();
         BaseMessage message1 = new BaseMessage(1, tempMessage, "me");
-        BaseMessage message2 = new BaseMessage(2, "I'm a bot.", name);
+        //BaseMessage message2 = new BaseMessage(2, "I'm a bot.", name);
         baseMessageList.add(message1);
-        baseMessageList.add(message2);
+        //baseMessageList.add(message2);
         chatview_editText.getText().clear();
         setRecyclerView();
         InputMethodManager inputMethodManager =
