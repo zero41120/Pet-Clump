@@ -44,54 +44,54 @@ public class OwnerProfileFriendFragment extends Fragment implements ProfileDownl
                              Bundle savedInstanceState) {
 
         v =   inflater.inflate(R.layout.fragment_owner_profile_friend, container, false);
-        Activity activity = getActivity();
-            friendownerprofile_viewPager = v.findViewById(R.id.friendownerprofile_viewPager);
-            String friend_id = ((FriendProfileActivity)getActivity()).getIntent().getExtras().getString("friend_id");
-            String my_id = ((FriendProfileActivity)getActivity()).getIntent().getExtras().getString("my_id");
-            //Log.d(TAG, friend_id);
-            friendownerprofile_name = v.findViewById(R.id.friendownerprofile_name);
-            friendownerprofile_dob = v.findViewById(R.id.friendownerprofile_dob);
-            friendownerprofile_gender= v.findViewById(R.id.friendownerprofile_gender);
-            calendar = new GregorianCalendar();
-            petProfile = new PetProfile();
-            myProfile = new PetProfile();
-            ownerProfile = OwnerProfile.getInstance();
-            mySelf = OwnerProfile.getInstance();
-            petProfile.download(friend_id, ()->{
-                owner_id = petProfile.getOwnerId();
-                ownerProfile.download(owner_id, ()->{
-                    Log.d(TAG, owner_id);
-                    friendSchedule = ownerProfile.getFreeTime();
-                    calendar.setTime((Date) ownerProfile.getBirthday());
-                    String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
-                            +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
-                            +String.valueOf(calendar.get(Calendar.YEAR));
-                    friendownerprofile_dob.setText(t);
-                    friendownerprofile_gender.setText(ownerProfile.getGender());
-                    friendownerprofile_name.setText(ownerProfile.getName());
-                });
+        activity = getActivity();
+        friendownerprofile_viewPager = v.findViewById(R.id.friendownerprofile_viewPager);
+        String friend_id = ((FriendProfileActivity)getActivity()).getIntent().getExtras().getString("friend_id");
+        String my_id = ((FriendProfileActivity)getActivity()).getIntent().getExtras().getString("my_id");
+        //Log.d(TAG, friend_id);
+        friendownerprofile_name = v.findViewById(R.id.friendownerprofile_name);
+        friendownerprofile_dob = v.findViewById(R.id.friendownerprofile_dob);
+        friendownerprofile_gender= v.findViewById(R.id.friendownerprofile_gender);
+        calendar = new GregorianCalendar();
+        petProfile = new PetProfile();
+        myProfile = new PetProfile();
+        ownerProfile = OwnerProfile.getInstance();
+        mySelf = OwnerProfile.getInstance();
+        petProfile.download(friend_id, ()->{
+            owner_id = petProfile.getOwnerId();
+            ownerProfile.download(owner_id, ()->{
+                Log.d(TAG, owner_id);
+                friendSchedule = ownerProfile.getFreeTime();
+                calendar.setTime((Date) ownerProfile.getBirthday());
+                String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
+                        +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
+                        +String.valueOf(calendar.get(Calendar.YEAR));
+                friendownerprofile_dob.setText(t);
+                friendownerprofile_gender.setText(ownerProfile.getGender());
+                friendownerprofile_name.setText(ownerProfile.getName());
             });
-            myProfile.download(my_id, ()->{
-                my_owner_id = myProfile.getOwnerId();
-                mySelf.download(my_owner_id, ()-> {
-                    mySchedule = mySelf.getFreeTime();
-                    if (isAdded() && activity!=null)
-                        mutualSchedule(mySchedule, friendSchedule);
-                    else
-                        Log.d(TAG, "can't find Activity");
-                });
-
+        });
+        myProfile.download(my_id, ()->{
+            my_owner_id = myProfile.getOwnerId();
+            mySelf.download(my_owner_id, ()-> {
+                mySchedule = mySelf.getFreeTime();
+                if (isAdded() && activity!=null)
+                    mutualSchedule(mySchedule, friendSchedule);
+                else
+                    Log.d(TAG, "can't find Activity");
             });
 
-            String[] MatchImage= new String[]{
-                    "group_profile_url_1",
-                    "group_profile_url_2",
-                    "group_profile_url_3"
-            };
-            ImagePager imagePager = new ImagePager(friend_id, getActivity(), MatchImage );
-            friendownerprofile_viewPager.setAdapter(imagePager);
-            return v;
-        }
+        });
+
+        String[] MatchImage= new String[]{
+                "group_profile_url_1",
+                "group_profile_url_2",
+                "group_profile_url_3"
+        };
+        ImagePager imagePager = new ImagePager(friend_id, getActivity(), MatchImage );
+        friendownerprofile_viewPager.setAdapter(imagePager);
+        return v;
+    }
 
 
 
