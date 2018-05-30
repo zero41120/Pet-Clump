@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -35,6 +37,7 @@ import java.io.ByteArrayOutputStream;
 public class PetInfoActivity extends AppCompatActivity implements ImageView.OnClickListener {
     private static final String TAG = "PetInfoActivity";
     private TextView pet_name, pet_age, pet_bio, pet_primary_name, pet_and_I_name, Quiz_number;
+    private TextView cha_tracker;
     private Spinner pet_specie;
     private String[] specie_array_string;
     private int sequence = -1;
@@ -43,7 +46,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context c;
-
+    private TextWatcher textWatcher;
     Button Button_to_quiz, Button_cancel, Button_save, Button_delete;
     private PetProfile pet = new PetProfile();
     private static final int INTIAL_CODE = 99;
@@ -58,6 +61,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         Log.d(TAG, "sequence:" + sequence);
         setActionBar(String.valueOf(getText(R.string.Pet_info)));
         setupUI();
+
     }
 
     @Override
@@ -142,7 +146,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
     }
 
     private void setupUI() {
-
+        cha_tracker = findViewById(R.id.cha_tracker);
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
         //Button_return = findViewById(R.id.Button_return);
         Button_save = findViewById(R.id.button_save);
@@ -230,6 +234,20 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
                     new DownloadImageTask(im[k],this).execute(url[k]);
                 }
             }
+            cha_tracker.setText(String.valueOf(pet_bio.getText().length()) + "/500");
+            textWatcher= new TextWatcher() {
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    //This sets a textview to the current length
+                    cha_tracker.setText(String.valueOf(s.length())+"/500");
+                }
+
+                public void afterTextChanged(Editable s) {
+                }
+            };
+            pet_bio.addTextChangedListener(textWatcher);
 /*           for(String x: url){
                 Log.d(TAG, "url list:" +x);
             }*/
