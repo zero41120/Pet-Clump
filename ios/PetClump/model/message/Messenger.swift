@@ -18,8 +18,8 @@ class Message{
     init(refObject: [String: Any]){
         senderId = refObject["senderId"] as! String
         time = refObject["time"] as! Timestamp
-        message = refObject["text"] as! String
-        iv = refObject["iv"] as! String
+        message = refObject["text"] as? String ?? "Error Message"
+        iv = refObject["iv"] as? String ?? "No iv"
     }
     func generateDictionary() -> [String: Any]{
         return ["senderId":senderId, "time":time, "text":message, "iv":iv]
