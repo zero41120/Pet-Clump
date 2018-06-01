@@ -62,12 +62,14 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         downloader = new MessagingDownloader(this,my_id, friend_id,2);
         Log.d(TAG,"my:"+my_id+" other:"+friend_id);
         ChattingActivity theCTX = this;
+        //setRecyclerView();
         pet.download(my_id, ()->{
             my_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
             //Log.d(TAG,"my:"+my_url);
             pet.download(friend_id,()->{
                 friend_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
                 downloader.listenToRoom(baseMessageList, theCTX);
+                setRecyclerView();
 
 
             });
@@ -76,9 +78,6 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             setRecyclerView();
 
         });*/
-
-
-
         chatview_send = findViewById(R.id.button_chatview_send);
         chatview_editText = findViewById(R.id.chatview_editText);
         Calendar calendar = new GregorianCalendar();
@@ -103,18 +102,22 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         //linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(chatRecycleViewAdapter);
-        recyclerView.post(new Runnable() {
-            @Override
-            public void run() {
-                // Call smooth scroll
-                recyclerView.smoothScrollToPosition(chatRecycleViewAdapter.getItemCount()-1 >= 0 ? chatRecycleViewAdapter.getItemCount()-1 : 0);
-            }
-        });
+        Log.d(TAG, "Item count" + String.valueOf(chatRecycleViewAdapter.getItemCount()));
+        recyclerView.scrollToPosition(chatRecycleViewAdapter.getItemCount()-1>= 0 ? chatRecycleViewAdapter.getItemCount()-1: 0);
+
+
 
     }
     public void messsageUpdate(){
         //chatRecycleViewAdapter.notifyDataSetChanged();
         chatview_editText.getText().clear();
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Call smooth scroll
+                recyclerView.scrollToPosition(chatRecycleViewAdapter.getItemCount()-1>= 0 ? chatRecycleViewAdapter.getItemCount()-1: 0);
+            }
+        });
         InputMethodManager inputMethodManager =
                 (InputMethodManager)getSystemService(
                        INPUT_METHOD_SERVICE);
@@ -136,8 +139,16 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
     @Override
     public void didCompleteDownload() {
-        setRecyclerView();
-        chatRecycleViewAdapter.notifyDataSetChanged();
+//        setRecyclerView();
+        if (chatRecycleViewAdapter!=null){
+            //Integer lastSize = baseMessageList.size();
+            Log.d(TAG, String.valueOf(baseMessageList.size()));
+            chatRecycleViewAdapter.notifyDataSetChanged();
+        }else{
+            setRecyclerView();
+
+        }
+
 
 
     }

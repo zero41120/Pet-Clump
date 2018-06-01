@@ -97,6 +97,8 @@ public class MessagingDownloader {
                     return;
                 }
                 List A = queryDocumentSnapshots.getDocumentChanges();
+                messages.clear();
+
                 String source = queryDocumentSnapshots != null && queryDocumentSnapshots.getMetadata().hasPendingWrites()
                         ? "Local" : "Server";
                 if(source.equals("Local"))
@@ -120,10 +122,13 @@ public class MessagingDownloader {
                         if(toAppend.contains(temp_meg))
                             continue;
                         messages.add(temp_meg);
+
+
                     }
                 }
                 Log.d(TAG,"ListenToRoom:"+messages);
                 toAppend.addAll(messages);
+                Log.d(TAG, "toAppend" + toAppend);
                 c.didCompleteDownload();
             }
         });
