@@ -68,7 +68,7 @@ public class MatchingProfileDownloader {
 
         if (pet_list.get(pet_id) != null) {
             switch (pet_list.get(pet_id)) {
-                case "1":
+                case "friend":
                 case "2":
                 case "3":
                 case "0":

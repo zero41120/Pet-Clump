@@ -2,7 +2,6 @@ package com.petclump.petclump.views;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,22 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.petclump.petclump.R;
-import com.petclump.petclump.models.FriendListDownloader;
 import com.petclump.petclump.models.FriendProfile;
 import com.petclump.petclump.models.PetProfile;
-import com.petclump.petclump.models.protocols.FriendChangeState;
-import com.petclump.petclump.models.protocols.ProfileDownloader;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 import javax.annotation.Nullable;
 
-public class FriendFragment extends Fragment implements ProfileDownloader {
+public class FriendFragment extends Fragment {
     View v;
     private static String TAG = "FriendFragment";
     private RecyclerView recyclerView;
@@ -41,14 +34,6 @@ public class FriendFragment extends Fragment implements ProfileDownloader {
     private Map<String,String> Friend_list = null;
     public FriendFragment(){}
 
-    @Override
-    public void didCompleteDownload() {
-        FriendProfile t = new FriendProfile(pet.getName(), "what's up", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main));
-        if (!friendProfileList.contains(t)){
-            friendProfileList.add(t);
-            friendRecycleViewAdapter.notifyDataSetChanged();
-        }
-    }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle saveInstanceState) {
         v = inflater.inflate(R.layout.fragment_friend, container, false);
@@ -96,18 +81,25 @@ public class FriendFragment extends Fragment implements ProfileDownloader {
         super.onCreate(savedInstanceState);
 
         pet_id = getActivity().getIntent().getStringExtra("petId");
+        // TODO: 有可能会加两遍，需要检测是否在Friend_list里
         pet.listenToFriendList(pet_id,()->{
             Friend_list = (Map<String, String>) pet.getRelation_list().clone();
             Log.d(TAG, "didCompleteDownload: " + Friend_list);
             //download_list = new ArrayList<>();
             for (Map.Entry<String,String> entry : Friend_list.entrySet()){
                 // friend_list
-                if(entry.getValue().equals("1")){
+                if(entry.getValue().equals("friending")){
                     //download_list.add(entry.getKey());
-                    pet.download(entry.getKey(), this);
+                    pet.download(entry.getKey(), ()->{
+                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "what's up", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main));
+                        if (!friendProfileList.contains(t)){
+                            friendProfileList.add(t);
+                            friendRecycleViewAdapter.notifyDataSetChanged();
+                        }
+                    });
                 }
                 // unread friend request list
-                if(entry.getValue().equals("0")){
+                if(entry.getValue().equals("receiving")){
                     unread_friend(entry.getKey());
                 }
             }

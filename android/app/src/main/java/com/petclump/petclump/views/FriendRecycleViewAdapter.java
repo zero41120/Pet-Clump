@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.petclump.petclump.R;
 import com.petclump.petclump.controller.ChattingActivity;
+import com.petclump.petclump.controller.FriendProfileActivity;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.FriendProfile;
 
@@ -38,6 +39,8 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
 
     @Override
     public void onBindViewHolder(@NonNull FriendRecycleViewAdapter.MyViewHolder holder, int position) {
+        String my_id = friends.get(position).getMy_id();
+        String friend_id = friends.get(position).getFriend_id();
         String name = friends.get(position).getName();
         holder.friendview_name.setText(name);
         String time = friends.get(position).getTime();
@@ -46,9 +49,15 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         holder.friendview_history.setText(history);
         String url = friends.get(position).getUrl();
         new DownloadImageTask(holder.friendview_image, mContext).execute(url);
+        holder.friendview_image.setOnClickListener(v->{
+            Intent intent2 = new Intent(mContext, FriendProfileActivity.class);
+            mContext.startActivity(intent2);
+        });
 
         holder.friendview_cardView.setOnClickListener(v->{
             Intent intent = new Intent(mContext, ChattingActivity.class);
+            intent.putExtra("my_id", my_id);
+            intent.putExtra("friend_id", friend_id);
             intent.putExtra("Name", name);
             mContext.startActivity(intent);
         });

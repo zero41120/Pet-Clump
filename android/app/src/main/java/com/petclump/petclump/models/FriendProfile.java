@@ -1,13 +1,17 @@
 package com.petclump.petclump.models;
 
 public class FriendProfile {
-    String name;
-    String lastMessage;
-    String time;
-    String url;
+    private String name;
+    private String lastMessage;
+    private String time;
+    private String url;
+    private String my_id = "";
+    private String friend_id = "";
 
 
-    public FriendProfile(String name, String lastMessage, String time, String url) {
+    public FriendProfile(String my_id, String friend_id,String name, String lastMessage, String time, String url) {
+        this.my_id = my_id;
+        this.friend_id = friend_id;
         this.name = name;
         this.lastMessage = lastMessage;
         this.time = time;
@@ -29,6 +33,12 @@ public class FriendProfile {
 
     public String getUrl(){return url;}
 
+    public String getMy_id(){return  my_id;};
+
+    public String getFriend_id() {
+        return friend_id;
+    }
+
     @Override
     public boolean equals(Object o) {
 
@@ -46,8 +56,7 @@ public class FriendProfile {
         FriendProfile c = (FriendProfile) o;
 
         // Compare the data members and return accordingly
-        return (this.name == c.name) && (this.lastMessage == c.lastMessage) && (this.time == c.time)
-                &&(this.url == c.url);
+        return (this.friend_id.equals(c.getFriend_id()) && this.my_id.equals(c.getMy_id()));
     }
 
 }

@@ -10,10 +10,10 @@
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:hardwareAccelerated="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -66,7 +66,8 @@
             android:name=".controller.MatchingTab"
             android:label="@string/title_activity_matching_tab"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.ChattingActivity"></activity>
+        <activity android:name=".controller.ChattingActivity" />
+        <activity android:name=".controller.FriendProfileActivity"></activity>
     </application>
 
 </manifest>

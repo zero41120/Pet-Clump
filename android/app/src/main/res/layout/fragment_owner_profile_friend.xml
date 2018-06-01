@@ -1,223 +1,108 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".views.OwnerProfileFriendFragment">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/user_info_edit_layout"
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:padding="10dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context=".controller.UserInfoEditActivity">
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/about_my_pet_label">
-
-            <TextView
-                android:id="@+id/pet_name_label"
-                style="@style/fontStyle4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/varela_round"
-                android:text="@string/Name" />
-
-            <EditText
-                android:id="@+id/user_name_editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/pet_info_background"
-                android:ems="10"
-                android:fontFamily="@font/varela_round"
-                android:inputType="textPersonName"
-                android:maxLength="20"
-                android:padding="10dp"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/pet_specie_label"
-                style="@style/fontStyle4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/varela_round"
-                android:text="@string/Gender" />
-
-            <RelativeLayout
-                android:layout_width="260dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/pet_info_background">
-
-                <Spinner
-                    android:id="@+id/user_select_gender"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/pet_age"
-                style="@style/fontStyle4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/varela_round"
-                android:text="@string/Date_of_birth" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/user_dob_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Spinner
-                    android:id="@+id/user_dob_day"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Spinner
-                    android:id="@+id/user_dob_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/pet_bio_label"
-                style="@style/fontStyle4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/varela_round"
-                android:text="@string/Match_range" />
-
-            <SeekBar
-                android:id="@+id/user_match_value_seekbar"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:background="@color/navy"
+            android:layout_weight="1">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/friendownerprofile_viewPager"
                 android:layout_width="300dp"
-                android:layout_height="38dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:max="3"
-                android:progress="3" />
+                android:layout_height="300dp"
+                android:layout_gravity="center" />
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginBottom="10dp"
+                app:ci_gravity="bottom"/>
+        </RelativeLayout>
 
-            <TextView
-                android:id="@+id/user_match_value"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="64dp"
-                android:layout_marginStart="64dp"
-                android:fontFamily="@font/varela_round"
-                android:text="@string/No_preferred_range"
-                android:textAlignment="center"
-                android:textColor="@color/navy"
-                android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/free_schedule_label"
-                style="@style/fontStyle4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/varela_round"
-                android:text="@string/Free_schedule" />
-        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/grey">
+
+        </View>
 
         <TextView
-            android:id="@+id/about_my_pet_label"
+            android:id="@+id/friendownerprofile_name"
+            android:fontFamily="@font/varela_round"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="David"
+            android:textColor="@color/navy"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/friendownerprofile_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             android:fontFamily="@font/varela_round"
-            android:gravity="center"
-            android:text="@string/About_me"
-            android:textSize="@dimen/font_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="69dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/chat_bubble_purple"
+            android:text="Man"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/friendownerprofile_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             android:fontFamily="@font/varela_round"
-            android:text="@string/Save"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/cancel_button"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
+            android:text="25 years old"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/cancel_button"
-            android:layout_width="69dp"
-            android:layout_height="35dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/cancel_button_background"
-            android:fontFamily="@font/varela_round"
-            android:text="@string/Cancel"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/save_button"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.007" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/colorAccent">
 
-
+        </View>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/fontStyle4"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
+            android:text="Mutual Schedule"/>
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="373dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout">
@@ -227,12 +112,8 @@
                 android:layout_height="match_parent">
 
                 <TextView
-
                     android:layout_width="20dp"
-                    android:layout_height="@dimen/schedule_size"
-
-                    tools:layout_editor_absoluteX="152dp"
-                    tools:layout_editor_absoluteY="834dp" />
+                    android:layout_height="@dimen/schedule_size" />
 
                 <TextView
 
@@ -509,14 +390,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </TableLayout>
-        <View
-            android:id="@+id/small_line"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/colorAccent"
-            app:layout_constraintTop_toBottomOf="@id/tableLayout"/>
 
 
-    </android.support.constraint.ConstraintLayout>
 
-</ScrollView>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+
+
+</LinearLayout>
