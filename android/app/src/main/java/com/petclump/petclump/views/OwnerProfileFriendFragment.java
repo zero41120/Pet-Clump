@@ -69,19 +69,20 @@ public class OwnerProfileFriendFragment extends Fragment implements ProfileDownl
                 friendownerprofile_dob.setText(t);
                 friendownerprofile_gender.setText(ownerProfile.getGender());
                 friendownerprofile_name.setText(ownerProfile.getName());
-            });
-        });
-        myProfile.download(my_id, ()->{
-            my_owner_id = myProfile.getOwnerId();
-            mySelf.download(my_owner_id, ()-> {
-                mySchedule = mySelf.getFreeTime();
-                if (isAdded() && activity!=null)
-                    mutualSchedule(mySchedule, friendSchedule);
-                else
-                    Log.d(TAG, "can't find Activity");
-            });
+                myProfile.download(my_id, ()->{
+                    my_owner_id = myProfile.getOwnerId();
+                    mySelf.download(my_owner_id, ()-> {
+                        mySchedule = mySelf.getFreeTime();
+                        if (isAdded() && activity!=null)
+                            mutualSchedule(mySchedule, friendSchedule);
+                        else
+                            Log.d(TAG, "can't find Activity");
+                    });
 
+                });
+            });
         });
+
 
         String[] MatchImage= new String[]{
                 "group_profile_url_1",
