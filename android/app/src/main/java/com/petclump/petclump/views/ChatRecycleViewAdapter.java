@@ -44,21 +44,20 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
     // Determines the appropriate ViewType according to the sender of the message.
     @Override
     public int getItemViewType(int position) {
-        String message = MessageList.get(position).getMessage();
-        int sender = MessageList.get(position).getWhich_side();
-        return sender ;
+
+        return position ;
     }
 
     // Inflates the appropriate layout according to the ViewType.
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-
-        if (viewType == VIEW_TYPE_MESSAGE_SENT) {
+        BaseMessage message = MessageList.get(viewType);
+        if (message.getWhich_side() == VIEW_TYPE_MESSAGE_SENT) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_message_sent, parent, false);
             return new SentMessageHolder(view);
-        } else if (viewType == VIEW_TYPE_MESSAGE_RECEIVED) {
+        } else if (message.getWhich_side() == VIEW_TYPE_MESSAGE_RECEIVED) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_message_received, parent, false);
             return new ReceivedMessageHolder(view);
@@ -72,11 +71,11 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BaseMessage message = MessageList.get(position);
 
-        switch (holder.getItemViewType()) {
-            case VIEW_TYPE_MESSAGE_SENT:
-                ((SentMessageHolder) holder).bind(message);
-                break;
-            case VIEW_TYPE_MESSAGE_RECEIVED:
+        if (message.getWhich_side()==1) {
+
+            ((SentMessageHolder) holder).bind(message);
+        }
+        else if (message.getWhich_side()==2){
                 ((ReceivedMessageHolder) holder).bind(message);
         }
     }
@@ -131,5 +130,9 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             // Insert the profile image from the URL into the ImageView.
             new DownloadImageTask(friendImage, mContext).execute(friend_url);
         }
+    }
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 }
