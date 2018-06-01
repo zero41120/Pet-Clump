@@ -46,7 +46,10 @@ public class Cryptographer {
         }
         return null;
     }
-
+/*    @Override
+    public String toString(){
+       return new String(generateSecretKey());
+    }*/
     /**
      * This method generates a initialization vector.
      * We will store this value for each message we send.

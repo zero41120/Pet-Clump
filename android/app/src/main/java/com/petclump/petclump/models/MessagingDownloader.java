@@ -50,6 +50,7 @@ public class MessagingDownloader {
             combined_id = my_id + other_id;
         else
             combined_id = other_id + my_id;
+        Log.d(TAG,"combined_id:"+combined_id);
 
         this.downloadLimit = downloadLimit;
         messageQuery = db.collection("chats").document(combined_id).collection("message")

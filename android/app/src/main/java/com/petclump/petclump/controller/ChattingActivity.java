@@ -81,16 +81,13 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         chatview_send = findViewById(R.id.button_chatview_send);
         chatview_editText = findViewById(R.id.chatview_editText);
         Calendar calendar = new GregorianCalendar();
-        chatview_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        chatview_send.setOnClickListener(v->{
                 String text = chatview_editText.getText().toString();
 
                 pet.new_message(my_id,friend_id,text, Timestamp.now(),()->{});
                 BaseMessage temp = new BaseMessage(1, text,Timestamp.now());
                 baseMessageList.add(temp);
                 messsageUpdate();
-            }
         });
         setActionBar(name);
 
@@ -105,18 +102,12 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         Log.d(TAG, "Item count" + String.valueOf(chatRecycleViewAdapter.getItemCount()));
         recyclerView.scrollToPosition(chatRecycleViewAdapter.getItemCount()-1>= 0 ? chatRecycleViewAdapter.getItemCount()-1: 0);
 
-
-
     }
     public void messsageUpdate(){
         //chatRecycleViewAdapter.notifyDataSetChanged();
         chatview_editText.getText().clear();
-        recyclerView.post(new Runnable() {
-            @Override
-            public void run() {
-                // Call smooth scroll
+        recyclerView.post(()-> {
                 recyclerView.scrollToPosition(chatRecycleViewAdapter.getItemCount()-1>= 0 ? chatRecycleViewAdapter.getItemCount()-1: 0);
-            }
         });
         InputMethodManager inputMethodManager =
                 (InputMethodManager)getSystemService(
@@ -146,10 +137,6 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             //chatRecycleViewAdapter.notifyDataSetChanged();
         }else{
             setRecyclerView();
-
         }
-
-
-
     }
 }
