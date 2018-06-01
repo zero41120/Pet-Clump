@@ -66,7 +66,10 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
             UIView.animate(withDuration: duration,
                            delay: TimeInterval(0),
                            options: animationCurve,
-                           animations: { self.view.layoutIfNeeded() },
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.scrollBottom(animated: true)
+                            },
                            completion: nil)
         }
     }

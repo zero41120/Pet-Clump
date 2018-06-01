@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bCU-ZZ-F68">
-                                <rect key="frame" x="0.0" y="88" width="375" height="645"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="646"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="FriendMessageCell" rowHeight="96" id="8Ur-3R-M6D" customClass="MessageCell" customModule="PetClump" customModuleProvider="target">
@@ -157,14 +157,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZP-Je-Et1">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZP-Je-Et1" userLabel="Divider">
                                 <rect key="frame" x="0.0" y="733" width="375" height="1"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="CNh-xx-S2p"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrl-fN-Cxb">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrl-fN-Cxb" userLabel="MessageBox">
                                 <rect key="frame" x="0.0" y="734" width="375" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Message... " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52y-yU-5B5">
@@ -198,13 +198,13 @@
                         <constraints>
                             <constraint firstItem="xrl-fN-Cxb" firstAttribute="bottom" secondItem="htU-BV-OK9" secondAttribute="bottom" id="7di-pC-2yJ"/>
                             <constraint firstItem="RXE-LY-OFD" firstAttribute="top" secondItem="htU-BV-OK9" secondAttribute="top" id="Dgn-8V-9vK"/>
-                            <constraint firstItem="SZP-Je-Et1" firstAttribute="top" secondItem="bCU-ZZ-F68" secondAttribute="bottom" id="HRM-Vl-FWH"/>
+                            <constraint firstItem="bCU-ZZ-F68" firstAttribute="bottom" secondItem="xrl-fN-Cxb" secondAttribute="top" id="HRM-Vl-FWH"/>
                             <constraint firstItem="RXE-LY-OFD" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="MKZ-O0-Nso"/>
                             <constraint firstItem="bCU-ZZ-F68" firstAttribute="trailing" secondItem="htU-BV-OK9" secondAttribute="trailing" id="NKX-O4-k2c"/>
-                            <constraint firstAttribute="trailing" secondItem="SZP-Je-Et1" secondAttribute="trailing" id="P9b-TZ-1Vk"/>
+                            <constraint firstItem="SZP-Je-Et1" firstAttribute="trailing" secondItem="uHB-bw-hOw" secondAttribute="trailing" id="P9b-TZ-1Vk"/>
                             <constraint firstItem="xrl-fN-Cxb" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="TUk-GH-deX"/>
                             <constraint firstItem="bCU-ZZ-F68" firstAttribute="leading" secondItem="htU-BV-OK9" secondAttribute="leading" id="fwf-tg-RQA"/>
-                            <constraint firstItem="xrl-fN-Cxb" firstAttribute="top" secondItem="SZP-Je-Et1" secondAttribute="bottom" id="hUB-oY-EkV"/>
+                            <constraint firstItem="SZP-Je-Et1" firstAttribute="bottom" secondItem="xrl-fN-Cxb" secondAttribute="top" id="hUB-oY-EkV"/>
                             <constraint firstItem="bCU-ZZ-F68" firstAttribute="top" secondItem="RXE-LY-OFD" secondAttribute="bottom" id="lCE-KX-ht6"/>
                             <constraint firstItem="SZP-Je-Et1" firstAttribute="leading" secondItem="uHB-bw-hOw" secondAttribute="leading" id="nds-Ou-UCJ"/>
                             <constraint firstItem="xrl-fN-Cxb" firstAttribute="trailing" secondItem="htU-BV-OK9" secondAttribute="trailing" id="vhH-ks-Mc6"/>
