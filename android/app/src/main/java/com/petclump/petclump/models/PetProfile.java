@@ -22,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.petclump.petclump.R;
+import com.petclump.petclump.models.Cryptography.Cryptographer;
 import com.petclump.petclump.models.datastructures.DefaultMap;
 import com.petclump.petclump.models.protocols.FriendChangeState;
 import com.petclump.petclump.models.protocols.Profile;
@@ -29,6 +30,7 @@ import com.petclump.petclump.models.protocols.ProfileDeletor;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -120,13 +122,10 @@ public class PetProfile implements Profile {
 
     private Map<String, Object> generateFriendRequest(String pending){
         return new HashMap<String, Object>(){{
-
             put("pending", pending);
 
         }};
     }
-
-
     // friend manipulation field
     public enum friend_change_type {NEW_FRIEND, ADD_UNREAD_FRIEND, BLOCK_FRIEND};
     public void new_friend_change(String sender_id, String receiver_id, friend_change_type type, FriendChangeState c){
@@ -382,7 +381,7 @@ public class PetProfile implements Profile {
             put("senderId", my_id);
             put("time", time);
             put("text",text);
-            put("iv","");
+            put("iv", Cryptographer.getInstance().generateInitializationVector().toString());
         }};
         ref.set(temp).addOnCompleteListener(task -> {
             if(!task.isSuccessful()) {

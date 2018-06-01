@@ -19,13 +19,11 @@
 		2934864820AA510900143474 /* ImageScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864720AA510900143474 /* ImageScroller.swift */; };
 		2934864A20AA511600143474 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934864920AA511600143474 /* ShadowView.swift */; };
 		2934865420AC206400143474 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934865320AC206400143474 /* StringExtension.swift */; };
-		2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */; };
 		2948A2FA2085206B007FEDD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */; };
 		294C94C52097D74700266533 /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C94C42097D74700266533 /* QuizVC.swift */; };
 		294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294C94C72097E35E00266533 /* QuizQuestion.swift */; };
 		295EC96820A40A0400F8D32F /* MatchingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96720A40A0400F8D32F /* MatchingTableViewCell.swift */; };
 		295EC96A20A40A9000F8D32F /* MatchBestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96920A40A9000F8D32F /* MatchBestVC.swift */; };
-		295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */; };
 		295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295EC96D20A41A3100F8D32F /* MatchingProfile.swift */; };
 		298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFEC20969349007A6846 /* OwnerProfile.swift */; };
 		298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298BCFF0209693A7007A6846 /* PetProfile.swift */; };
@@ -40,10 +38,12 @@
 		29A90B80208DA16F0024ECF7 /* OwnerSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A90B7F208DA16F0024ECF7 /* OwnerSettingVC.swift */; };
 		29B19366208D31BB00A59783 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B19365208D31BB00A59783 /* Profile.swift */; };
 		29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */; };
+		29C02B9220B878CD00672F9A /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C02B9120B878CD00672F9A /* MainTabBar.swift */; };
 		29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797A207EE97D002971C5 /* AppDelegate.swift */; };
 		29C1797D207EE97D002971C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1797C207EE97D002971C5 /* LoginVC.swift */; };
 		29C17982207EE97F002971C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C17981207EE97F002971C5 /* Assets.xcassets */; };
 		29C17985207EE97F002971C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C17983207EE97F002971C5 /* LaunchScreen.storyboard */; };
+		29D0F0ED20BCC6DB0019BD8A /* FriendHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D0F0EC20BCC6DB0019BD8A /* FriendHandler.swift */; };
 		29D1342320A9E609005A72EA /* MatchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D1342220A9E609005A72EA /* MatchDetailVC.swift */; };
 		29F104F920A0069E006E84E0 /* ImageInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104F820A0069E006E84E0 /* ImageInputDelegate.swift */; };
 		29F104FB20A00FB9006E84E0 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F104FA20A00FB9006E84E0 /* ImageExtension.swift */; };
@@ -51,8 +51,8 @@
 		29FC3FDA20AF38440045AA65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29FC3FD820AF38420045AA65 /* Main.storyboard */; };
 		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
-		778663D020B267C2008DD4F9 /* FrinedListViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CE20B267C2008DD4F9 /* FrinedListViewVC.swift */; };
-		778663D120B267C2008DD4F9 /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CF20B267C2008DD4F9 /* FriendListTableViewCell.swift */; };
+		778663D020B267C2008DD4F9 /* FriendListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CE20B267C2008DD4F9 /* FriendListVC.swift */; };
+		778663D120B267C2008DD4F9 /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CF20B267C2008DD4F9 /* FriendListCell.swift */; };
 		778663D320B2689B008DD4F9 /* ImageScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663D220B2689A008DD4F9 /* ImageScrollerView.swift */; };
 		84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */; };
 		847769B320969252002AF924 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769A820969252002AF924 /* Direction.swift */; };
@@ -60,9 +60,6 @@
 		847769B620969252002AF924 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AB20969252002AF924 /* ViewManager.swift */; };
 		847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769AC20969252002AF924 /* ZLSwipeableView.swift */; };
 		847769B920969289002AF924 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847769B820969289002AF924 /* CardView.swift */; };
-		8496347820A8DEC900719162 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496347720A8DEC900719162 /* ChatVC.swift */; };
-		8496347B20A8E60900719162 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496347A20A8E60900719162 /* ChatTableViewCell.swift */; };
-		8496347D20A8E69800719162 /* PeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496347C20A8E69800719162 /* PeerTableViewCell.swift */; };
 		84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2320A007BD00533D35 /* AMLineView.swift */; };
 		84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2420A007BD00533D35 /* AMTabButton.swift */; };
 		84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */; };
@@ -94,14 +91,12 @@
 		2934864920AA511600143474 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		2934864B20AA59A300143474 /* ImageScrollerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
 		2934865320AC206400143474 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreLearningVC.swift; sourceTree = "<group>"; };
 		2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2948A2FB208523C8007FEDD8 /* PetClump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetClump.entitlements; sourceTree = "<group>"; };
 		294C94C42097D74700266533 /* QuizVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuizVC.swift; path = PetClump/controller/setting/QuizVC.swift; sourceTree = SOURCE_ROOT; };
 		294C94C72097E35E00266533 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		295EC96720A40A0400F8D32F /* MatchingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTableViewCell.swift; sourceTree = "<group>"; };
 		295EC96920A40A9000F8D32F /* MatchBestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchBestVC.swift; sourceTree = "<group>"; };
-		295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingTableDelegate.swift; sourceTree = "<group>"; };
 		295EC96D20A41A3100F8D32F /* MatchingProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingProfile.swift; sourceTree = "<group>"; };
 		298BCFEC20969349007A6846 /* OwnerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerProfile.swift; sourceTree = "<group>"; };
 		298BCFF0209693A7007A6846 /* PetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfile.swift; sourceTree = "<group>"; };
@@ -116,12 +111,14 @@
 		29A90B7F208DA16F0024ECF7 /* OwnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSettingVC.swift; sourceTree = "<group>"; };
 		29B19365208D31BB00A59783 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		29B1936B208D4C8800A59783 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		29C02B9120B878CD00672F9A /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		29C17977207EE97D002971C5 /* PetClump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetClump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C1797A207EE97D002971C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29C1797C207EE97D002971C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		29C17981207EE97F002971C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C17984207EE97F002971C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C17986207EE97F002971C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29D0F0EC20BCC6DB0019BD8A /* FriendHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendHandler.swift; sourceTree = "<group>"; };
 		29D1342220A9E609005A72EA /* MatchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailVC.swift; sourceTree = "<group>"; };
 		29F104F820A0069E006E84E0 /* ImageInputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInputDelegate.swift; sourceTree = "<group>"; };
 		29F104FA20A00FB9006E84E0 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
@@ -129,8 +126,8 @@
 		29FC3FD920AF38420045AA65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
-		778663CE20B267C2008DD4F9 /* FrinedListViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrinedListViewVC.swift; sourceTree = "<group>"; };
-		778663CF20B267C2008DD4F9 /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		778663CE20B267C2008DD4F9 /* FriendListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListVC.swift; sourceTree = "<group>"; };
+		778663CF20B267C2008DD4F9 /* FriendListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
 		778663D220B2689A008DD4F9 /* ImageScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
 		84771F7820968FD7007385F0 /* ZLSwipeableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLSwipeableViewController.swift; sourceTree = "<group>"; };
 		847769A820969252002AF924 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
@@ -138,9 +135,6 @@
 		847769AB20969252002AF924 /* ViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		847769AC20969252002AF924 /* ZLSwipeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZLSwipeableView.swift; sourceTree = "<group>"; };
 		847769B820969289002AF924 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		8496347720A8DEC900719162 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
-		8496347A20A8E60900719162 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
-		8496347C20A8E69800719162 /* PeerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerTableViewCell.swift; sourceTree = "<group>"; };
 		84CF6B2320A007BD00533D35 /* AMLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMLineView.swift; sourceTree = "<group>"; };
 		84CF6B2420A007BD00533D35 /* AMTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMTabButton.swift; sourceTree = "<group>"; };
 		84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPagerTabsViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +184,9 @@
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
+				29FC3FD820AF38420045AA65 /* Main.storyboard */,
+				2901B3BC20B229B30058DC1C /* Message.storyboard */,
 				778663D220B2689A008DD4F9 /* ImageScrollerView.swift */,
 				29B1936D208D4CD000A59783 /* image */,
 				29A6E5B5208EB851006352CF /* font */,
@@ -224,6 +221,7 @@
 		2934865020AB8E1800143474 /* message */ = {
 			isa = PBXGroup;
 			children = (
+				2901B3C620B250850058DC1C /* Messenger.swift */,
 				2926C2F120A9332500DB6A3C /* Crytographer.swift */,
 			);
 			path = message;
@@ -232,16 +230,12 @@
 		294C94C62097E13B00266533 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				298FEB66209394D70018F368 /* WelcomeVC.swift */,
-				2944004A208D0D6400F8D03C /* FirestoreLearningVC.swift */,
 				29C1797C207EE97D002971C5 /* LoginVC.swift */,
-				778663CF20B267C2008DD4F9 /* FriendListTableViewCell.swift */,
-				778663CE20B267C2008DD4F9 /* FrinedListViewVC.swift */,
-				296FD5B820AC26C800FEA664 /* matching */,
+				298FEB66209394D70018F368 /* WelcomeVC.swift */,
+				29C02B9120B878CD00672F9A /* MainTabBar.swift */,
 				296FD5B720AC26B000FEA664 /* setting */,
 				29FC3FDB20AF44760045AA65 /* friending */,
 				296FD5B820AC26C800FEA664 /* matching */,
-				296FD5B920AC26D400FEA664 /* chatting */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -266,17 +260,6 @@
 			path = matching;
 			sourceTree = "<group>";
 		};
-		296FD5B920AC26D400FEA664 /* chatting */ = {
-			isa = PBXGroup;
-			children = (
-				8496347720A8DEC900719162 /* ChatVC.swift */,
-				8496347C20A8E69800719162 /* PeerTableViewCell.swift */,
-				8496347A20A8E60900719162 /* ChatTableViewCell.swift */,
-				29FC3FD620AF2F950045AA65 /* ChatRoomVC.swift */,
-			);
-			path = chatting;
-			sourceTree = "<group>";
-		};
 		296FD5BA20AC289600FEA664 /* text */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,14 +267,6 @@
 				298BCFFD2096E213007A6846 /* LimitTextViewDelegate.swift */,
 			);
 			path = text;
-			sourceTree = "<group>";
-		};
-		296FD5BB20AC28A000FEA664 /* table */ = {
-			isa = PBXGroup;
-			children = (
-				295EC96B20A40B2400F8D32F /* MatchingTableDelegate.swift */,
-			);
-			path = table;
 			sourceTree = "<group>";
 		};
 		298BCFFC2096DFD6007A6846 /* picker */ = {
@@ -320,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				29C1797A207EE97D002971C5 /* AppDelegate.swift */,
-				296FD5BB20AC28A000FEA664 /* table */,
 				298BCFFC2096DFD6007A6846 /* picker */,
 				296FD5BA20AC289600FEA664 /* text */,
 			);
@@ -342,7 +316,7 @@
 				2934865020AB8E1800143474 /* message */,
 				2934864F20AB8DBA00143474 /* profile */,
 				294C94C72097E35E00266533 /* QuizQuestion.swift */,
-				2901B3C620B250850058DC1C /* Messenger.swift */,
+				29D0F0EC20BCC6DB0019BD8A /* FriendHandler.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -377,8 +351,6 @@
 		29C17979207EE97D002971C5 /* PetClump */ = {
 			isa = PBXGroup;
 			children = (
-				29FC3FD820AF38420045AA65 /* Main.storyboard */,
-				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 				29C17986207EE97F002971C5 /* Info.plist */,
 				29C17981207EE97F002971C5 /* Assets.xcassets */,
 				2948A2F92085206B007FEDD8 /* GoogleService-Info.plist */,
@@ -389,7 +361,6 @@
 				290DF24820953F2C00A64D0C /* view */,
 				29B19362208D310D00A59783 /* model */,
 				29053320209A2A100076A2AF /* lib */,
-				2901B3BC20B229B30058DC1C /* Message.storyboard */,
 			);
 			path = PetClump;
 			sourceTree = "<group>";
@@ -397,6 +368,9 @@
 		29FC3FDB20AF44760045AA65 /* friending */ = {
 			isa = PBXGroup;
 			children = (
+				29FC3FD620AF2F950045AA65 /* ChatRoomVC.swift */,
+				778663CF20B267C2008DD4F9 /* FriendListCell.swift */,
+				778663CE20B267C2008DD4F9 /* FriendListVC.swift */,
 			);
 			path = friending;
 			sourceTree = "<group>";
@@ -681,11 +655,9 @@
 			files = (
 				295EC96820A40A0400F8D32F /* MatchingTableViewCell.swift in Sources */,
 				298BCFF52096998C007A6846 /* GenderInputDelegate.swift in Sources */,
-				2944004B208D0D6400F8D03C /* FirestoreLearningVC.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
 				778663D320B2689B008DD4F9 /* ImageScrollerView.swift in Sources */,
 				29F104F920A0069E006E84E0 /* ImageInputDelegate.swift in Sources */,
-				8496347B20A8E60900719162 /* ChatTableViewCell.swift in Sources */,
 				29A6E5B4208EA86A006352CF /* SettingVC.swift in Sources */,
 				29FC3FD720AF2F950045AA65 /* ChatRoomVC.swift in Sources */,
 				29D1342320A9E609005A72EA /* MatchDetailVC.swift in Sources */,
@@ -695,12 +667,12 @@
 				295EC96A20A40A9000F8D32F /* MatchBestVC.swift in Sources */,
 				2934864A20AA511600143474 /* ShadowView.swift in Sources */,
 				298BCFED20969349007A6846 /* OwnerProfile.swift in Sources */,
-				8496347820A8DEC900719162 /* ChatVC.swift in Sources */,
 				298FEB63209393C30018F368 /* PetSettingVC.swift in Sources */,
 				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,
 				2934864520AA4E1600143474 /* CachedImage.swift in Sources */,
 				2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */,
-				8496347D20A8E69800719162 /* PeerTableViewCell.swift in Sources */,
+				29C02B9220B878CD00672F9A /* MainTabBar.swift in Sources */,
+				29D0F0ED20BCC6DB0019BD8A /* FriendHandler.swift in Sources */,
 				84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */,
 				29B19366208D31BB00A59783 /* Profile.swift in Sources */,
 				298BCFFE2096E213007A6846 /* LimitTextViewDelegate.swift in Sources */,
@@ -712,7 +684,6 @@
 				29A90B80208DA16F0024ECF7 /* OwnerSettingVC.swift in Sources */,
 				2901B3C320B234F30058DC1C /* MessageCell.swift in Sources */,
 				84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */,
-				295EC96C20A40B2400F8D32F /* MatchingTableDelegate.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
 				298BCFF7209699B9007A6846 /* LimitTextFieldDelegate.swift in Sources */,
 				298FEB67209394D70018F368 /* WelcomeVC.swift in Sources */,
@@ -724,9 +695,9 @@
 				847769B720969252002AF924 /* ZLSwipeableView.swift in Sources */,
 				29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */,
 				847769B920969289002AF924 /* CardView.swift in Sources */,
-				778663D020B267C2008DD4F9 /* FrinedListViewVC.swift in Sources */,
+				778663D020B267C2008DD4F9 /* FriendListVC.swift in Sources */,
 				2934865420AC206400143474 /* StringExtension.swift in Sources */,
-				778663D120B267C2008DD4F9 /* FriendListTableViewCell.swift in Sources */,
+				778663D120B267C2008DD4F9 /* FriendListCell.swift in Sources */,
 				847769B320969252002AF924 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

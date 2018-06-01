@@ -115,7 +115,7 @@ class ViewManager : NSObject {
         let translation = recognizer.translation(in: containerView)
         let location = recognizer.location(in: containerView)
         let velocity = recognizer.velocity(in: containerView)
-        let movement = Movement(location: location, translation: translation, velocity: velocity)
+        let _ = Movement(location: location, translation: translation, velocity: velocity)
         
         switch recognizer.state {
         case .began:

@@ -1,5 +1,5 @@
 //
-//  FriendListTableViewCell.swift
+//  FriendListCell.swift
 //  PetClump
 //
 //  Created by Jerod Zheng on 5/20/18.
@@ -8,18 +8,14 @@
 
 import UIKit
 
-class FriendListTableViewCell: UITableViewCell {
-
-
+class FriendListCell: UITableViewCell {
     @IBOutlet weak var animalImage: UIImageView!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var animalLbl: UILabel!
     @IBOutlet weak var animalTime: UILabel!
     @IBOutlet weak var animalChat: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var rejectButton: UIButton!
+    
 }

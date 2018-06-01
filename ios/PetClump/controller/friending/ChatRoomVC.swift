@@ -22,7 +22,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     
     // Assign by caller
     var friendPetProfile: PetProfile?
-    var myPetProfile: PetProfile?
+    var myPetProfile: PetProfile? = PetProfile.most_recent_pet
     
     var messages: [Message] = []
     var messenger: Messenger?
@@ -30,7 +30,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupKeyboardObservers()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorColor = UIColor.clear
         tableView.delegate = self
@@ -40,33 +40,37 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         inputField.delegate = self
         
-        // Download Message
+        // TODO Download Message
         messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
-        messenger!.download(count: 5) { (retMessages) in
-            messages = retMessages
-            tableView.reloadData()
+        messenger!.startListen { (messages) in
+            self.messages = messages
+            self.tableView.reloadData()
+            self.scrollBottom(animated: true)
         }
     }
     
-    
-    func setupKeyboardObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.bottomConstraint.constant = -(keyboardSize.height + 88)
-            self.view.layoutIfNeeded()
-            self.scrollBottom()
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            bottomConstraint.constant = 0
-            self.view.layoutIfNeeded()
-            self.scrollBottom()
+    // https://stackoverflow.com/questions/25693130
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                self.bottomConstraint?.constant = 0.0
+            } else {
+                self.bottomConstraint?.constant = -(endFrame?.size.height ?? 0.0) + 36
+            }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: {
+                            self.view.layoutIfNeeded()
+                            self.scrollBottom(animated: true)
+                            },
+                           completion: nil)
         }
     }
     
@@ -74,25 +78,8 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         guard self.inputField!.text != ""  else { return }
         messenger?.upload(message: self.inputField!.text!, completion: { (message) in
             self.inputField!.text = ""
-            messages = messages + message
-            tableView.reloadData()
-            self.scrollBottom()
         })
         
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let last = messages.count
-        if indexPath.row == last - 1 {
-            messenger!.download(count: 10) { (retMessages) in
-                if retMessages.count < 1 {
-                    return
-                }
-                messages = messages + retMessages
-                tableView.reloadData()
-                self.scrollBottom()
-            }
-        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -153,11 +140,13 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func scrollBottom(){
+    private func scrollBottom(animated: Bool){
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
-            print("\(self.messages.count-1)")
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            let row = self.messages.count-1
+            if  row > 0 {
+                let indexPath = IndexPath(row: row, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+            }
         }
     }
        
