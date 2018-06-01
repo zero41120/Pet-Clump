@@ -303,6 +303,16 @@
                 android:textSize="20dp"
                 android:background="@drawable/pet_info_background"
                 android:fontFamily="@font/varela_round"/>
+            <Button
+                android:id="@+id/Button_to_quiz"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Quiz"
+                android:fontFamily="@font/varela_round"
+                android:textColor="@color/white"
+                android:background="@drawable/quiz_button_background"/>
             <TextView
                 android:id="@+id/Quiz_number"
                 style="@style/fontStyle4"
@@ -342,27 +352,14 @@
                     android:textColor="@color/white"
                     android:fontFamily="@font/varela_round"/>
             </LinearLayout>
-
-            <Button
-                android:id="@+id/Button_to_quiz"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:text="@string/Quiz"
-                android:fontFamily="@font/varela_round"
-                android:textColor="@color/white"
-                android:background="@drawable/quiz_button_background"/>
             <Button
                 android:id="@+id/Button_delete_pet"
                 android:fontFamily="@font/varela_round"
-                android:layout_width="100dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:text="Delete Pet"
                 android:padding="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_margin="24dp"
                 app:layout_constraintStart_toEndOf="@+id/Label_pet_name"
                 app:layout_constraintTop_toBottomOf="@+id/button_save"
                 android:textColor="@color/white"

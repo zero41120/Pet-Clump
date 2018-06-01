@@ -204,7 +204,12 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             pet_name.setText(pet.getName());
             String quiz = pet.getQuiz();
             Integer quiz_num = quiz.length();
-            Quiz_number.setText("Completed questions: " + quiz_num.toString() + "/70");
+            if (quiz.length()==70){
+                Quiz_number.setText("You've answered all the quizzes!");
+            }else{
+                Quiz_number.setText("Completed questions: " + quiz_num.toString() + "/70");
+            }
+
 
             // setup picture URL
             String[] url = new String[]{
