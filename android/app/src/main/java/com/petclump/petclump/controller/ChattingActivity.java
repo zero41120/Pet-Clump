@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.Timestamp;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.models.MessagingDownloader;
@@ -66,14 +67,16 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             //Log.d(TAG,"my:"+my_url);
             pet.download(friend_id,()->{
                 friend_url = pet.getPhotoUrl(PetProfile.UrlKey.main);
+                downloader.listenToRoom(baseMessageList, theCTX);
 
 
             });
         });
-        downloader.downloadMore(baseMessageList, ()->{
+       /*downloader.downloadMore(baseMessageList, ()->{
             setRecyclerView();
-            downloader.listenToRoom(baseMessageList, theCTX);
-        });
+
+        });*/
+
 
 
         chatview_send = findViewById(R.id.button_chatview_send);
@@ -83,9 +86,9 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             @Override
             public void onClick(View v) {
                 String text = chatview_editText.getText().toString();
-                String time = calendar.getTime().toString();
-                pet.new_message(my_id,friend_id,text,time,()->{});
-                BaseMessage temp = new BaseMessage(1, text,time);
+
+                pet.new_message(my_id,friend_id,text, Timestamp.now(),()->{});
+                BaseMessage temp = new BaseMessage(1, text,Timestamp.now());
                 baseMessageList.add(temp);
                 messsageUpdate();
             }
@@ -104,13 +107,13 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             @Override
             public void run() {
                 // Call smooth scroll
-                recyclerView.smoothScrollToPosition(chatRecycleViewAdapter.getItemCount()-1);
+                recyclerView.smoothScrollToPosition(chatRecycleViewAdapter.getItemCount()-1 >= 0 ? chatRecycleViewAdapter.getItemCount()-1 : 0);
             }
         });
 
     }
     public void messsageUpdate(){
-        chatRecycleViewAdapter.notifyDataSetChanged();
+        //chatRecycleViewAdapter.notifyDataSetChanged();
         chatview_editText.getText().clear();
         InputMethodManager inputMethodManager =
                 (InputMethodManager)getSystemService(
@@ -133,7 +136,9 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
     @Override
     public void didCompleteDownload() {
+        setRecyclerView();
         chatRecycleViewAdapter.notifyDataSetChanged();
+
 
     }
 }

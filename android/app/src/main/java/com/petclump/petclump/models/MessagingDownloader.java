@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -21,6 +22,7 @@ import com.petclump.petclump.models.protocols.ProfileDownloader;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,17 +71,14 @@ public class MessagingDownloader {
                     Map<String,Object> temp = doc.getData();
                     int sender = 0;
                     // decide sender
-                    if(temp.get("sender").toString().equals(my_id))
+                    if(temp.get("senderId").toString().equals(my_id))
                         sender = 1;
                     else
                         sender = 2;
-                    BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),temp.get("time").toString());
+                    BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),new Timestamp((Date)temp.get("time")));
                     messages.add(temp_meg);
                 }
                 Log.d(TAG, "Completed: " + messages.toString());
-                messageQuery = db.collection("chats").document(combined_id).collection("message")
-                        .orderBy("time", Query.Direction.ASCENDING).
-                        startAfter(lastVisible).limit(downloadLimit);
                 toAppend.addAll(messages);
                 c.didCompleteDownload();
             });
@@ -90,7 +89,46 @@ public class MessagingDownloader {
             return;
         }
         ArrayList<BaseMessage> messages = new ArrayList<>();
-        DocumentReference ref = FirebaseFirestore.getInstance().collection("chats").document(combined_id);
+        messageQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w(TAG, "Listen to message failed.", e);
+                    return;
+                }
+                List A = queryDocumentSnapshots.getDocumentChanges();
+                String source = queryDocumentSnapshots != null && queryDocumentSnapshots.getMetadata().hasPendingWrites()
+                        ? "Local" : "Server";
+                if(source.equals("Local"))
+                    return;
+                // iterate through data
+                for(Object x: A){
+                    if(x != null){
+                        //String doc_id = ((DocumentChange)x).getDocument().getId();
+/*                                    File path = new File(ctx.getCacheDir()+"/message/"+combined_id+"/",doc_id+".txt");
+                                    if(path.exists())
+                                        continue;*/
+//                                    if(visited.containsKey(doc_id))
+//                                        continue;
+                        Map<String, Object> temp = ((DocumentChange)x).getDocument().getData();
+                        int sender = 0;
+                        if(temp.get("senderId").toString().equals(my_id))
+                            sender = 1;
+                        else
+                            sender = 2;
+                        BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),new Timestamp((Date)temp.get("time")));
+                        if(toAppend.contains(temp_meg))
+                            continue;
+                        messages.add(temp_meg);
+                    }
+                }
+                Log.d(TAG,"ListenToRoom:"+messages);
+                toAppend.addAll(messages);
+                c.didCompleteDownload();
+            }
+        });
+
+        /*DocumentReference ref = FirebaseFirestore.getInstance().collection("chats").document(combined_id);
         ref.collection("message")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -112,18 +150,18 @@ public class MessagingDownloader {
                             for(Object x: A){
                                 if(x != null){
                                     //String doc_id = ((DocumentChange)x).getDocument().getId();
-/*                                    File path = new File(ctx.getCacheDir()+"/message/"+combined_id+"/",doc_id+".txt");
+*//*                                    File path = new File(ctx.getCacheDir()+"/message/"+combined_id+"/",doc_id+".txt");
                                     if(path.exists())
-                                        continue;*/
+                                        continue;*//*
 //                                    if(visited.containsKey(doc_id))
 //                                        continue;
                                     Map<String, Object> temp = ((DocumentChange)x).getDocument().getData();
                                     int sender = 0;
-                                    if(temp.get("sender").toString().equals(my_id))
+                                    if(temp.get("senderId").toString().equals(my_id))
                                         sender = 1;
                                     else
                                         sender = 2;
-                                    BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),temp.get("time").toString());
+                                    BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),new Timestamp((Date)temp.get("time")));
                                     if(toAppend.contains(temp_meg))
                                         continue;
                                     messages.add(temp_meg);
@@ -138,6 +176,6 @@ public class MessagingDownloader {
                     c.didCompleteDownload();
                 }
             }
-        });
+        });*/
     }
 }

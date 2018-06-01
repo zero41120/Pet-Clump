@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -355,7 +356,7 @@ public class PetProfile implements Profile {
             }
         });
     }
-    public void new_message(String my_id, String friend_id, String text,String time, ProfileUploader c){
+    public void new_message(String my_id, String friend_id, String text, Timestamp time, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
             Log.e(TAG, "user is null.");
             return;
@@ -378,9 +379,10 @@ public class PetProfile implements Profile {
                 .collection("message").document();
         //TODO: encryp text
         HashMap<String, Object> temp = new HashMap<String, Object>(){{
-            put("sender", my_id);
+            put("senderId", my_id);
             put("time", time);
             put("text",text);
+            put("iv","");
         }};
         ref.set(temp).addOnCompleteListener(task -> {
             if(!task.isSuccessful()) {

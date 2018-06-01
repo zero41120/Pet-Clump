@@ -1,9 +1,11 @@
 package com.petclump.petclump.models;
 
+import com.google.firebase.Timestamp;
+
 public class BaseMessage {
     public int which_side;
     public String message;
-    public String time;
+    public Timestamp time;
 
     public int getWhich_side() {
         return which_side;
@@ -13,11 +15,11 @@ public class BaseMessage {
         return message;
     }
 
-    public String getUser() {
+    public Timestamp getUser() {
         return time;
     }
 
-    public BaseMessage(int which_side, String message, String time) {
+    public BaseMessage(int which_side, String message, Timestamp time) {
         this.which_side = which_side;
         this.message = message;
         this.time= time;
