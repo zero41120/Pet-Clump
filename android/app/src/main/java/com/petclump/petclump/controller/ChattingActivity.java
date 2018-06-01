@@ -139,11 +139,11 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
     @Override
     public void didCompleteDownload() {
-//        setRecyclerView();
-        if (chatRecycleViewAdapter!=null){
+        if (baseMessageList.size()!=0){
             //Integer lastSize = baseMessageList.size();
             Log.d(TAG, String.valueOf(baseMessageList.size()));
-            chatRecycleViewAdapter.notifyDataSetChanged();
+            setRecyclerView();
+            //chatRecycleViewAdapter.notifyDataSetChanged();
         }else{
             setRecyclerView();
 
