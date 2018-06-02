@@ -191,5 +191,6 @@
     <string name="View_Match_As">View Match As</string>
     <string name="pet">pet</string>
     <string name="owner">owner</string>
+    <string name="Discovery">Discovery</string>
 
 </resources>

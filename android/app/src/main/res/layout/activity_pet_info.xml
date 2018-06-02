@@ -106,31 +106,32 @@
 
         <TextView
             android:id="@+id/title_pet_name"
-            style="@style/fontStyle3"
+            style="@style/fontStyle4"
+            android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="43dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:gravity="center"
+            android:fontFamily="@font/varela_round"
+            android:gravity="left"
             android:text="DUGGYY"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="@font/varela_round"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/Txt_my_pet_and_I"
-            style="@style/fontStyle3"
+            style="@style/fontStyle4"
+            android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/varela_round"
-            android:gravity="center"
+            android:gravity="left"
             android:text="DUGGYY and I "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -288,7 +289,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="100dp"
-                    style="@style/fontStyle4"
+                    style="@style/fontStyle1"
                     android:text="0/500"/>
             </LinearLayout>
 
@@ -306,16 +307,6 @@
                 android:textSize="20dp"
                 android:background="@drawable/pet_info_background"
                 android:fontFamily="@font/varela_round"/>
-            <Button
-                android:id="@+id/Button_to_quiz"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="24dp"
-                android:text="@string/Quiz"
-                android:fontFamily="@font/varela_round"
-                android:textColor="@color/white"
-                android:background="@drawable/quiz_button_background"/>
             <TextView
                 android:id="@+id/Quiz_number"
                 style="@style/fontStyle4"
@@ -326,35 +317,18 @@
                 android:layout_marginLeft="24dp"
                 android:text="@string/Available_Quiz"
                 android:fontFamily="@font/varela_round"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/Button_to_quiz"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="20dp">
-                <Button
-                    android:id="@+id/button_cancel"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="@android:string/cancel"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/cancel_button_background"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/varela_round"/>
-                <Button
-                    android:id="@+id/button_save"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="100dp"
-                    android:layout_marginStart="100dp"
-                    android:text="@string/Save"
-                    android:layout_gravity="center"
-                    android:background="@drawable/chat_bubble_purple"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/varela_round"/>
-            </LinearLayout>
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="24dp"
+                android:text="@string/Quiz"
+                android:fontFamily="@font/varela_round"
+                android:textColor="@color/white"
+                android:background="@drawable/quiz_button_background"/>
+
+
             <Button
                 android:id="@+id/Button_delete_pet"
                 android:fontFamily="@font/varela_round"

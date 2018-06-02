@@ -30,7 +30,7 @@ tools:context=".views.PetProfileFriendFragment">
                 android:layout_height="300dp"
                 android:layout_gravity="center" />
             <me.relex.circleindicator.CircleIndicator
-                android:id="@+id/indicator"
+                android:id="@+id/indicator_p"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginStart="100dp"
@@ -87,8 +87,8 @@ tools:context=".views.PetProfileFriendFragment">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/colorAccent">
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary">
 
         </View>
 

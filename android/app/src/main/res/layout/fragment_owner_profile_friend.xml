@@ -29,7 +29,7 @@ tools:context=".views.OwnerProfileFriendFragment">
                 android:layout_height="300dp"
                 android:layout_gravity="center" />
             <me.relex.circleindicator.CircleIndicator
-                android:id="@+id/indicator"
+                android:id="@+id/indicator_o"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginStart="100dp"
@@ -84,14 +84,14 @@ tools:context=".views.OwnerProfileFriendFragment">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/colorAccent">
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary">
 
         </View>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/fontStyle4"
+            style="@style/fontStyle1"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"

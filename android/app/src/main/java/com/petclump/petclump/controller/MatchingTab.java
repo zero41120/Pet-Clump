@@ -29,7 +29,7 @@ public class MatchingTab extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         ViewPager_inTab = findViewById(R.id.ViewPager_inTab);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new BestMatchFragment(), getResources().getString(R.string.Best_match));
+        viewPagerAdapter.addFragment(new BestMatchFragment(), getResources().getString(R.string.Discovery));
         viewPagerAdapter.addFragment(new FriendFragment(),  getResources().getString(R.string.Friends));
 
         ViewPager_inTab.setAdapter(viewPagerAdapter);

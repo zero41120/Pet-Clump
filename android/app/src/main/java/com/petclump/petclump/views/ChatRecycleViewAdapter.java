@@ -128,7 +128,8 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             messageText.setText(message.getMessage());
             Timestamp currentTime =message.getTime();
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-            String time = timeFormat.format(currentTime.toDate());
+            java.util.Date date = currentTime.toDate();
+            String time = timeFormat.format(date);
             // Format the stored timestamp into a readable String using method.
             timeText.setText(time);
             // Insert the profile image from the URL into the ImageView.

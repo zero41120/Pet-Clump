@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -63,6 +64,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         sequence = (Integer) extras.get("sequence");
         Log.d(TAG, "sequence:" + sequence);
         setActionBar(String.valueOf(getText(R.string.Pet_info)));
+        //keyboardOff();
         setupUI();
 
     }
@@ -152,9 +154,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         cha_tracker = findViewById(R.id.cha_tracker);
         Button_to_quiz = findViewById(R.id.Button_to_quiz);
         //Button_return = findViewById(R.id.Button_return);
-        Button_save = findViewById(R.id.button_save);
         Button_delete = findViewById(R.id.Button_delete_pet);
-        Button_cancel = findViewById(R.id.button_cancel);
         Quiz_number = findViewById(R.id.Quiz_number);
 
         pet_view_main = findViewById(R.id.pet_main_profile);
@@ -208,9 +208,11 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             String quiz = pet.getQuiz();
             Integer quiz_num = quiz.length();
             if (quiz.length()==70){
-                Quiz_number.setText("You've answered all the quizzes!");
+                Quiz_number.setText("quiz completion: 70 out of 70");
+                Button_to_quiz.setBackgroundResource(R.drawable.cancel_button_background);
+                Button_to_quiz.setText("No quiz available");
             }else{
-                Quiz_number.setText("Completed questions: " + quiz_num.toString() + "/70");
+                Quiz_number.setText("Quiz completion: " + quiz_num.toString() + "out of 70");
             }
 
 
@@ -273,9 +275,6 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             }
         });
 
-        Button_cancel.setOnClickListener(v ->
-               finish()
-        );
 
         Button_delete.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -293,20 +292,6 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
 
         });
 
-
-        // upload pet information
-        Button_save.setOnClickListener(v -> {
-            pet.setBio(pet_bio.getText().toString());
-            pet.setAge(pet_age.getText().toString());
-            pet.setName(pet_name.getText().toString());
-            //pet.setSpe(pet_specie.getText().toString());
-            pet.setOwner_id(user.getUid());
-            pet.setSequence(sequence);
-            pet.setSpe(Specie.specie_num(getSpinnerPosition(pet_specie, pet_specie.getSelectedItem())));
-            pet.upload(user.getUid() + sequence, () -> {
-                Toast.makeText(this, "Upload Complete!", Toast.LENGTH_SHORT).show();
-            });
-        });
     }
     private void saveInfo(){
         pet.setBio(pet_bio.getText().toString());
@@ -384,6 +369,13 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
 
         // open gallery
 
+    }
+    public void keyboardOff(){
+        InputMethodManager inputMethodManager =
+                (InputMethodManager)getSystemService(
+                        INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                getCurrentFocus().getWindowToken(), 0);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

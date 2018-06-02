@@ -4,12 +4,13 @@
     android:layout_width="150dp"
     android:layout_height="180dp"
     android:clickable="true"
+    android:focusable="true"
     android:id="@+id/matchview_cardView"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="10dp"
     android:layout_margin="20dp"
-    app:cardCornerRadius="15dp"
-    app:cardBackgroundColor="@color/purple">
+    app:cardCornerRadius="40dp"
+    app:cardBackgroundColor="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,19 +19,37 @@
             android:id="@+id/pet_matchview_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@drawable/chat_bubble_purple"
+            android:background="@color/white"
 
             />
-        <TextView
-            android:id="@+id/pet_matchview_label"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="match rate"
-            android:background="@drawable/chat_bubble_purple"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:fontFamily="@font/varela_round"/>
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/pet_matchview_label"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@color/blue"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="100%"
+                android:gravity="center"
+                android:fontFamily="@font/varela_round"/>
+            <TextView
+                android:id="@+id/pet_matchview_location"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:text=">500 miles"
+                android:background="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:fontFamily="@font/varela_round"/>
+        </LinearLayout>
+
     </LinearLayout>
 
 

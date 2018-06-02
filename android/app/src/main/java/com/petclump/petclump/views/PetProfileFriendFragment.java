@@ -19,6 +19,8 @@ import com.petclump.petclump.models.protocols.ProfileUploader;
 
 import org.w3c.dom.Text;
 
+import me.relex.circleindicator.CircleIndicator;
+
 
 public class PetProfileFriendFragment extends Fragment implements ProfileDownloader{
     private ViewPager friendpetprofile_viewPager;
@@ -66,6 +68,9 @@ public class PetProfileFriendFragment extends Fragment implements ProfileDownloa
         };
         ImagePager imagePager = new ImagePager(friend_id, getActivity(), MatchImage);
         friendpetprofile_viewPager.setAdapter(imagePager);
+        CircleIndicator indicator = (CircleIndicator) v.findViewById(R.id.indicator_p);
+        indicator.setViewPager(friendpetprofile_viewPager);
+
         return v;
     }
 

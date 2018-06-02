@@ -20,9 +20,13 @@ import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import me.relex.circleindicator.CircleIndicator;
 
 
 public class OwnerProfileFriendFragment extends Fragment implements ProfileDownloader{
@@ -37,6 +41,7 @@ public class OwnerProfileFriendFragment extends Fragment implements ProfileDownl
     private String TAG = "OwnerProfileFriendFrag";
     private FreeSchedule mySchedule, friendSchedule;
     private Activity activity;
+    private static final int CURRENT_YEAR = 2018;
     public OwnerProfileFriendFragment() { }
 
     @Override
@@ -63,10 +68,11 @@ public class OwnerProfileFriendFragment extends Fragment implements ProfileDownl
                 Log.d(TAG, owner_id);
                 friendSchedule = ownerProfile.getFreeTime();
                 calendar.setTime((Date) ownerProfile.getBirthday());
-                String t = String.valueOf(OwnerProfile.num_month(calendar.get(Calendar.MONTH)+1))+" "
-                        +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
-                        +String.valueOf(calendar.get(Calendar.YEAR));
-                friendownerprofile_dob.setText(t);
+                Integer y=
+                        Integer.valueOf(calendar.get(Calendar.YEAR));
+                String year = String.valueOf(CURRENT_YEAR-y);
+
+                friendownerprofile_dob.setText(year + " years old");
                 friendownerprofile_gender.setText(ownerProfile.getGender());
                 friendownerprofile_name.setText(ownerProfile.getName());
                 myProfile.download(my_id, ()->{
@@ -91,6 +97,8 @@ public class OwnerProfileFriendFragment extends Fragment implements ProfileDownl
         };
         ImagePager imagePager = new ImagePager(friend_id, getActivity(), MatchImage );
         friendownerprofile_viewPager.setAdapter(imagePager);
+        CircleIndicator indicator = (CircleIndicator) v.findViewById(R.id.indicator_o);
+        indicator.setViewPager(friendownerprofile_viewPager);
         return v;
     }
 
