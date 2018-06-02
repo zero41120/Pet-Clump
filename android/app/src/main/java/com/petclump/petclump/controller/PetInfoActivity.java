@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -306,6 +308,18 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             });
         });
     }
+    private void saveInfo(){
+        pet.setBio(pet_bio.getText().toString());
+        pet.setAge(pet_age.getText().toString());
+        pet.setName(pet_name.getText().toString());
+        //pet.setSpe(pet_specie.getText().toString());
+        pet.setOwner_id(user.getUid());
+        pet.setSequence(sequence);
+        pet.setSpe(Specie.specie_num(getSpinnerPosition(pet_specie, pet_specie.getSelectedItem())));
+        pet.upload(user.getUid() + sequence, () -> {
+            Toast.makeText(this, "Upload Complete!", Toast.LENGTH_SHORT).show();
+        });
+    }
 
     private Integer getSpinnerPosition(Spinner spinner, Object item) {
         return ((ArrayAdapter<String>) spinner.getAdapter()).getPosition(item.toString());
@@ -371,6 +385,15 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         // open gallery
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        // the menu being referenced here is the menu.xml from res/menu/menu.xml
+        inflater.inflate(R.menu.menu_save, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
     public void setActionBar(String heading) {
         // TODO Auto-generated method stub
 
@@ -385,9 +408,14 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                saveInfo();
+                break;
             case android.R.id.home:
                 finish();
+            default:
+                super.onOptionsItemSelected(item);
         }
 
         return true;

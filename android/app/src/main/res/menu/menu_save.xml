@@ -6,10 +6,5 @@
         android:title="@string/Save"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/action_cancel"
-        android:title="@string/Cancel"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:showAsAction="always"
-        />
+
 </menu>

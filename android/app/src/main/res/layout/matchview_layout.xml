@@ -8,7 +8,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="10dp"
     android:layout_margin="20dp"
-    app:cardCornerRadius="4dp">
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="@color/purple">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,14 +18,17 @@
             android:id="@+id/pet_matchview_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@color/grey"
+            android:background="@drawable/chat_bubble_purple"
+
             />
         <TextView
             android:id="@+id/pet_matchview_label"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="match rate"
+            android:background="@drawable/chat_bubble_purple"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:gravity="center"
             android:fontFamily="@font/varela_round"/>
     </LinearLayout>

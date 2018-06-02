@@ -128,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/varela_round"
             android:gravity="center"
             android:text="DUGGYY and I "
@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -154,6 +154,7 @@
                 android:layout_height="@dimen/profile_pet_size2"
                 android:layout_weight="0.1"
                 android:scaleType="centerCrop"
+                android:layout_margin="10dp"
                 android:adjustViewBounds="true"
                 android:background="@color/lightYellow"
                 android:src="@drawable/photo_placeholder2" />
@@ -166,6 +167,7 @@
                 android:layout_weight="0.1"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
+                android:layout_margin="10dp"
                 android:background="@color/lightYellow"
                 android:src="@drawable/photo_placeholder2" />
 
@@ -177,6 +179,7 @@
                 android:layout_weight="0.1"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
+                android:layout_margin="10dp"
                 android:background="@color/lightYellow"
                 android:src="@drawable/photo_placeholder2" />
         </LinearLayout>

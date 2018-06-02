@@ -8,6 +8,8 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -140,6 +142,15 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        // the menu being referenced here is the menu.xml from res/menu/menu.xml
+        inflater.inflate(R.menu.menu_edit, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
     public void setActionBar(String heading) {
         // TODO Auto-generated method stub
 
@@ -154,9 +165,19 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                /*the R.id.action_favorite is the ID of our button (defined in strings.xml).
+                Change Activity here (if that's what you're intending to do, which is probably is).
+                 */
+                Intent i = new Intent(c, UserInfoEditActivity.class);
+                startActivity(i);
+                break;
             case android.R.id.home:
                 finish();
+                break;
+            default:
+                super.onOptionsItemSelected(item);
         }
 
         return true;

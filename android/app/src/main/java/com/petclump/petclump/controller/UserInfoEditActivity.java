@@ -7,6 +7,9 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -80,8 +83,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         user_select_gender = findViewById(R.id.user_select_gender);
         user_select_gender.setOnItemSelectedListener(this);
 
-        save_button = findViewById(R.id.save_button);
-        cancel_button = findViewById(R.id.cancel_button);
 
         year = 2003;
         day_array_string = new String[31];
@@ -101,10 +102,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         // if(extras != null){
         //    pet_num = extras.getInt("pet_num");
         //}
-
-        //edit_name_button.setOnClickListener(v ->nameChangeClick());
-        save_button.setOnClickListener(v -> saveData());
-        cancel_button.setOnClickListener(v -> cancelData());
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_month = ArrayAdapter.createFromResource(this,
@@ -246,9 +243,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         return valid;
 
     }
-    private void cancelData() {
-        finish();
-    }
 
     private void saveData() {
         OwnerProfile profile = OwnerProfile.getInstance();
@@ -285,7 +279,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         profile.upload(user.getUid(),()->{
             Toast.makeText(this, "Upload successfully!", Toast.LENGTH_SHORT).show();
         });
-        finish();
+        //finish();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -311,14 +305,40 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             Log.d("ClickView to gray",String.valueOf((Integer)i.getTag()));
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        // the menu being referenced here is the menu.xml from res/menu/menu.xml
+        inflater.inflate(R.menu.menu_save, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
     public void setActionBar(String heading) {
         // TODO Auto-generated method stub
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setCustomView(R.layout.actionbar_layout);
         TextView myText = findViewById(R.id.mytext);
         myText.setText(heading);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                saveData();
+                break;
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                super.onOptionsItemSelected(item);
+        }
+
+        return true;
     }
 }
