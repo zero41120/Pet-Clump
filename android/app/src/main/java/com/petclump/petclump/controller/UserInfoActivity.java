@@ -8,6 +8,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -146,8 +147,19 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.actionbar_layout);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         TextView myText = findViewById(R.id.mytext);
         myText.setText(heading);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch(item.getItemId()){
+            case android.R.id.home:
+                finish();
+        }
+
+        return true;
     }
 }
 

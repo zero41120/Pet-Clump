@@ -4,12 +4,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.MatchingProfile;
@@ -51,6 +55,7 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
     @Override
     public void onCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         petId = getActivity().getIntent().getStringExtra("petId");
         profile = new PetProfile();
         profile.download(petId, ()->{
@@ -73,6 +78,7 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
         };
         recyclerView.addOnScrollListener(scrollListener);
     }
+
     @Override
     public void didCompleteDownload() {
         Integer lastSize = profiles.size();

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         uidText = findViewById(R.id.uidText);
         animalText = findViewById(R.id.animalText);
         Button pickButton = findViewById(R.id.main_button_upload);
-        Button settingsButton = findViewById(R.id.button_settings);
+        //Button settingsButton = findViewById(R.id.button_settings);
         Button matchingButton = findViewById(R.id.matching_button);
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -109,9 +109,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
         // Setting page activity
-        settingsButton.setOnClickListener(v ->
-            startActivity(new Intent(c, UserInfoActivity.class))
-        );
+//        settingsButton.setOnClickListener(v ->
+//            startActivity(new Intent(c, UserInfoActivity.class))
+//        );
 
         // Matching activity
         matchingButton.setOnClickListener(v->

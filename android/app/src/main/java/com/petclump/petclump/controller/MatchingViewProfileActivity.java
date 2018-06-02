@@ -2,8 +2,10 @@ package com.petclump.petclump.controller;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -61,13 +63,37 @@ public class MatchingViewProfileActivity extends AppCompatActivity {
         String main_pet_id = intent.getExtras().getString("MainPetId");
         String the_pet_id = intent.getExtras().getString("petId");
         PetProfile pet = new PetProfile();
+        setActionBar(Name);
 
         matchviewprofile_add_friend.setOnClickListener(v-> {
             pet.new_friend_change(main_pet_id, the_pet_id, PetProfile.friend_change_type.NEW_FRIEND, () -> {
                 Toast.makeText(this, "send successfully!", Toast.LENGTH_SHORT).show();
                 matchviewprofile_add_friend.setClickable(false);
                 matchviewprofile_add_friend.setText("Already sent");
+                matchviewprofile_add_friend.setBackgroundResource(R.drawable.cancel_button_background);
             });
         });
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        TextView myText = findViewById(R.id.mytext);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        myText.setText(heading);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch(item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+        }
+
+        return true;
     }
 }

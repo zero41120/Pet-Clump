@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -377,7 +378,18 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.actionbar_layout);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         TextView myText = findViewById(R.id.mytext);
         myText.setText(heading);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch(item.getItemId()){
+            case android.R.id.home:
+                finish();
+        }
+
+        return true;
     }
 }

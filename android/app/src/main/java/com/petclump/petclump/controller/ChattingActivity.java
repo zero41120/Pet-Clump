@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -83,7 +84,6 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         Calendar calendar = new GregorianCalendar();
         chatview_send.setOnClickListener(v->{
                 String text = chatview_editText.getText().toString();
-
                 pet.new_message(my_id,friend_id,text, Timestamp.now(),()->{});
                 BaseMessage temp = new BaseMessage(1, text,Timestamp.now());
                 baseMessageList.add(temp);
@@ -125,7 +125,19 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.actionbar_layout);
         TextView myText = findViewById(R.id.mytext);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         myText.setText(heading);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch(item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+        }
+
+        return true;
     }
 
     @Override

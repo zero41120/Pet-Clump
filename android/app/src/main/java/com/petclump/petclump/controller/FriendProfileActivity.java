@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.petclump.petclump.R;
 import com.petclump.petclump.views.ImagePager;
@@ -36,6 +38,28 @@ public class FriendProfileActivity extends AppCompatActivity {
 
         ViewPager_inTab_profile.setAdapter(viewPagerAdapter);
         tabLayout2.setupWithViewPager(ViewPager_inTab_profile);
+        setActionBar("");
 
+    }
+    public void setActionBar(String heading) {
+        // TODO Auto-generated method stub
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayOptions(android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.actionbar_layout);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        TextView myText = findViewById(R.id.mytext);
+        myText.setText(heading);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch(item.getItemId()){
+            case android.R.id.home:
+                finish();
+        }
+
+        return true;
     }
 }
