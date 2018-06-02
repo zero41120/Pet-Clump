@@ -167,9 +167,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_edit:
-                /*the R.id.action_favorite is the ID of our button (defined in strings.xml).
-                Change Activity here (if that's what you're intending to do, which is probably is).
-                 */
                 Intent i = new Intent(c, UserInfoEditActivity.class);
                 startActivity(i);
                 break;

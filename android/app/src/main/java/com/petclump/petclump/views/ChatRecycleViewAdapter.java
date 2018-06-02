@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.Timestamp;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.models.DownloadImageTask;
@@ -71,11 +72,11 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         BaseMessage message = MessageList.get(position);
 
-        if (message.getWhich_side()==1) {
+        if (message.getWhich_side()==VIEW_TYPE_MESSAGE_SENT) {
 
             ((SentMessageHolder) holder).bind(message);
         }
-        else if (message.getWhich_side()==2){
+        else if (message.getWhich_side()==VIEW_TYPE_MESSAGE_RECEIVED){
                 ((ReceivedMessageHolder) holder).bind(message);
         }
     }
@@ -94,9 +95,9 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
 
         void bind(BaseMessage message) {
             messageText.setText(message.getMessage());
-            Date currentTime = Calendar.getInstance().getTime();
+            Timestamp currentTime =message.getTime();
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-            String time = timeFormat.format(currentTime);
+            String time = timeFormat.format(currentTime.toDate());
             // Format the stored timestamp into a readable String using method.
             timeText.setText(time);
 
@@ -119,14 +120,11 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
 
         void bind(BaseMessage message) {
             messageText.setText(message.getMessage());
-
-            // Format the stored timestamp into a readable String using method.
-            Date currentTime = Calendar.getInstance().getTime();
+            Timestamp currentTime =message.getTime();
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-            String time = timeFormat.format(currentTime);
+            String time = timeFormat.format(currentTime.toDate());
+            // Format the stored timestamp into a readable String using method.
             timeText.setText(time);
-            //nameText.setText(message.getUser());
-
             // Insert the profile image from the URL into the ImageView.
             new DownloadImageTask(friendImage, mContext).execute(friend_url);
         }

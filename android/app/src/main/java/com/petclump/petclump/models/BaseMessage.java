@@ -15,9 +15,10 @@ public class BaseMessage {
         return message;
     }
 
-    public Timestamp getUser() {
+    public Timestamp getTime() {
         return time;
     }
+
 
     public BaseMessage(int which_side, String message, Timestamp time) {
         this.which_side = which_side;
