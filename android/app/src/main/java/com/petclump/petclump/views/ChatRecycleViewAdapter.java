@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.firebase.Timestamp;
 import com.petclump.petclump.R;
+import com.petclump.petclump.controller.FriendProfileActivity;
 import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.PetProfile;
@@ -30,12 +31,16 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
     private PetProfile pet = new PetProfile();
     private String my_url = "";
     private String friend_url = "";
+    private String friend_id = "";
+    private String my_id = "";
 
-    public ChatRecycleViewAdapter(Context context, List<BaseMessage> messageList, String my_url, String friend_url){
+    public ChatRecycleViewAdapter(Context context, List<BaseMessage> messageList, String my_url, String friend_url, String friend_id, String my_id){
         this.mContext = context;
         this.MessageList = messageList;
         this.my_url = my_url;
         this.friend_url = friend_url;
+        this.friend_id = friend_id;
+        this.my_id = my_id;
     }
     @Override
     public int getItemCount() {
@@ -116,6 +121,7 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             timeText = (TextView) itemView.findViewById(R.id.chatview_receive_time);
 
             friendImage = (ImageView) itemView.findViewById(R.id.chatview_receive_image);
+
         }
 
         void bind(BaseMessage message) {
@@ -127,6 +133,12 @@ public class ChatRecycleViewAdapter extends RecyclerView.Adapter{
             timeText.setText(time);
             // Insert the profile image from the URL into the ImageView.
             new DownloadImageTask(friendImage, mContext).execute(friend_url);
+            friendImage.setOnClickListener(v->{
+                Intent i = new Intent(mContext, FriendProfileActivity.class);
+                i.putExtra("friend_id", friend_id);
+                i.putExtra("my_id", my_id);
+                mContext.startActivity(i);
+            });
         }
     }
     @Override

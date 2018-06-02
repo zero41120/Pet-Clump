@@ -93,7 +93,7 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
     }
     public void setRecyclerView(){
-        chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList, my_url, friend_url);
+        chatRecycleViewAdapter = new ChatRecycleViewAdapter(this, baseMessageList, my_url, friend_url, friend_id, my_id);
         chatRecycleViewAdapter.setHasStableIds(true);
         linearLayoutManager = new LinearLayoutManager(this);
         //linearLayoutManager.setReverseLayout(true);
