@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -54,6 +55,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
     Button Button_to_quiz, Button_cancel, Button_save, Button_delete;
     private PetProfile pet = new PetProfile();
     private static final int INTIAL_CODE = 99;
+    private boolean isSaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         Log.d(TAG, "sequence:" + sequence);
         setActionBar(String.valueOf(getText(R.string.Pet_info)));
         //keyboardOff();
+        isSaved = false;
         setupUI();
 
     }
@@ -208,11 +211,11 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             String quiz = pet.getQuiz();
             Integer quiz_num = quiz.length();
             if (quiz.length()==70){
-                Quiz_number.setText("quiz completion: 70 out of 70");
+                Quiz_number.setText("Quiz completion: 70 out of 70");
                 Button_to_quiz.setBackgroundResource(R.drawable.cancel_button_background);
                 Button_to_quiz.setText("No quiz available");
             }else{
-                Quiz_number.setText("Quiz completion: " + quiz_num.toString() + "out of 70");
+                Quiz_number.setText("Quiz completion: " + quiz_num.toString() + " out of 70");
             }
 
 
@@ -294,6 +297,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
 
     }
     private void saveInfo(){
+
         pet.setBio(pet_bio.getText().toString());
         pet.setAge(pet_age.getText().toString());
         pet.setName(pet_name.getText().toString());
@@ -303,6 +307,7 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         pet.setSpe(Specie.specie_num(getSpinnerPosition(pet_specie, pet_specie.getSelectedItem())));
         pet.upload(user.getUid() + sequence, () -> {
             Toast.makeText(this, "Upload Complete!", Toast.LENGTH_SHORT).show();
+            isSaved = true;
         });
     }
 
@@ -405,11 +410,26 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
                 saveInfo();
                 break;
             case android.R.id.home:
-                finish();
+                if (isSaved==true){
+                    finish();
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder
+                            .setTitle("Are you sure you want to exit?")
+                            .setMessage("You haven't saved yet!")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton("Yes", (DialogInterface dialog, int which) -> {
+                                finish();
+                            })
+                            .setNegativeButton("No", null).show();
+                }
+                break;
             default:
                 super.onOptionsItemSelected(item);
         }
 
         return true;
     }
+
 }

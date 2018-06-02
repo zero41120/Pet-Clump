@@ -255,8 +255,8 @@
                     android:layout_width="20dp"
                     android:layout_height="@dimen/schedule_size"
                     android:text="am"
-                    tools:layout_editor_absoluteX="152dp"
-                    tools:layout_editor_absoluteY="834dp" />
+                    android:textAlignment="center"
+                    android:layout_gravity="center"/>
 
                 <ImageView
                     android:id="@+id/sch11"
@@ -323,9 +323,9 @@
 
                     android:layout_width="20dp"
                     android:layout_height="@dimen/schedule_size"
-                    android:text="noon"
-                    tools:layout_editor_absoluteX="152dp"
-                    tools:layout_editor_absoluteY="834dp" />
+                    android:text="nn"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"/>
 
                 <ImageView
                     android:id="@+id/sch12"
@@ -393,8 +393,8 @@
                     android:layout_width="20dp"
                     android:layout_height="@dimen/schedule_size"
                     android:text="pm"
-                    tools:layout_editor_absoluteX="152dp"
-                    tools:layout_editor_absoluteY="834dp" />
+                    android:textAlignment="center"
+                    android:layout_gravity="center"/>
 
                 <ImageView
                     android:id="@+id/sch13"
@@ -462,6 +462,7 @@
             android:id="@+id/small_line"
             android:layout_width="match_parent"
             android:layout_height="4dp"
+            android:layout_marginTop="30dp"
             android:background="@color/colorAccent"
             app:layout_constraintTop_toBottomOf="@id/tableLayout"/>
 
