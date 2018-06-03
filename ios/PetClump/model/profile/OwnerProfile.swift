@@ -23,10 +23,11 @@ import Firebase
 class OwnerProfile: Profile{
     
     private static let COLLECTION_NAME = "users"
+    public static var most_recent_owner: OwnerProfile?
     
     var id = ""
     var name = "No name"
-    var gender = "Man"
+    var gender = "Apache Helicotper"
     var birthday = Date()
     var distancePerference = 5
     var lat = 0.0, lon = 0.0
@@ -41,8 +42,31 @@ class OwnerProfile: Profile{
         }
     }
     
+    static func isFirstTimeUsing(uid: String, didCompleteCheck: @escaping (Bool)->Void){
+        let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(uid)
+        docRef.getDocument { (document, error) in
+            if error != nil {
+                didCompleteCheck(true)
+                return
+            }
+            if let doc = document, doc.exists {
+                didCompleteCheck(false)
+            } else {
+                didCompleteCheck(true)
+            }
+        }
+    }
+    
     func upload(vc: QuickAlert?, completion: (() -> Void)?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        let locManager = CLLocationManager()
+        locManager.requestWhenInUseAuthorization()
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
+            let coordinate = locManager.location!.coordinate
+            self.lat = coordinate.latitude
+            self.lon = coordinate.longitude
+            print("Will save lat: \(self.lat), lon: \(self.lon)")
+        }
         
         let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(uid)
         docRef.setData(self.generateDictionary()) { (err) in
@@ -65,17 +89,7 @@ class OwnerProfile: Profile{
                 return
             }
             if let document = document, document.exists {
-                // Unwraps data object
-                let refObj = document.data()!
-                
-                // Gets user information
-                self.name = refObj["name"] as? String ?? ""
-                self.gender = refObj["gender"] as? String ?? ""
-                if let bd = refObj["birthday"] as? Timestamp{
-                    self.birthday = bd.dateValue()
-                }
-                self.distancePerference = refObj["distancePerference"] as? Int ?? 25
-                self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
+                self.fetchData(refObj: document.data()!)
             }
             guard (completion != nil) else { return }
             completion!()
@@ -83,8 +97,8 @@ class OwnerProfile: Profile{
     }
     
     private func fetchData(refObj: [String : Any]){
-//        self.lon     = refObj["lon"]  as? String ?? ""
-//        self.lat     = refObj["lat"]  as? String ?? ""
+        self.lon     = refObj["lon"]  as? Double ?? 0.0
+        self.lat     = refObj["lat"]  as? Double ?? 0.0
         self.name    = refObj["name"] as? String ?? ""
         self.gender  = refObj["gender"] as? String ?? ""
         self.freeTime = FreeSchedule(freeString: refObj["freeTime"]  as? String ?? "")

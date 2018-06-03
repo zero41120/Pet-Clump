@@ -65,7 +65,12 @@ class OwnerSettingVC: UIViewController{
     
     func didCompleteDownload(profile: OwnerProfile) {
         // Gets user information
-        self.nameTextField.text = profile.name
+        if profile.name == "No name" {
+            self.nameTextField.placeholder = "Olivia Hye"
+        } else {
+            self.nameTextField.text = profile.name
+        }
+        
         self.genderTextField.text = profile.gender
         
         // Gets user birthdat and parse it
@@ -133,6 +138,10 @@ class OwnerSettingVC: UIViewController{
         
         // Creates a profile object
         let profile = OwnerProfile()
+        if(nameTextField.text! == ""){
+            makeAlert(message: NSLocalizedString("You must enter a name!", comment: "Shows when user try to tap save without filling the information"))
+            return
+        }
         profile.name     = nameTextField.text!
         profile.gender   = genderTextField.text!
         profile.birthday = self.datePicker!.date
@@ -159,7 +168,9 @@ class OwnerSettingVC: UIViewController{
         profile.freeTime = FreeSchedule(freeString: freeString)
         
         // Uploads the profile with empty completed action
-        profile.upload(vc: self, completion: nil)
+        profile.upload(vc: self) {
+            OwnerProfile.most_recent_owner = profile
+        }
         self.dismiss(animated: true, completion: nil)
     }
 }

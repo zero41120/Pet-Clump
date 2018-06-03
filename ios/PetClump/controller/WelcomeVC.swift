@@ -12,23 +12,38 @@ import FirebaseAuth
 
 class WelcomeVC: UIViewController{
     
+    override func viewWillAppear(_ animated: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        OwnerProfile.isFirstTimeUsing(uid: uid) { (isFirstTime) in
+            if isFirstTime {
+                print("it is first time")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let pdv = storyboard.instantiateViewController(withIdentifier: "OwnerSettingVC") as! OwnerSettingVC
+                self.present(pdv, animated: false, completion: nil)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let uid = Auth.auth().currentUser?.uid else {
             self.dismiss(animated: true, completion: nil)
             return
         }
-        for view in self.view.subviews {
-            if let image = view as? UIImageView {
-                image.setRounded()
-                let _ = PetProfile.init(uid: uid, sequence: image.tag) { (myPet) in
-                    image.load(url: myPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.startMatching(sender:)))
-                    image.isUserInteractionEnabled = true
-                    image.addGestureRecognizer(tap)
+
+        OwnerProfile.most_recent_owner = OwnerProfile(id: uid, completion: { (owner) in
+            for view in self.view.subviews {
+                if let image = view as? UIImageView {
+                    image.setRounded()
+                    let _ = PetProfile.init(uid: uid, sequence: image.tag) { (myPet) in
+                        image.load(url: myPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+                        let tap = UITapGestureRecognizer(target: self, action: #selector(self.startMatching(sender:)))
+                        image.isUserInteractionEnabled = true
+                        image.addGestureRecognizer(tap)
+                    }
                 }
             }
-        }
+        })
     }
     
     @objc func startMatching(sender: UITapGestureRecognizer){
