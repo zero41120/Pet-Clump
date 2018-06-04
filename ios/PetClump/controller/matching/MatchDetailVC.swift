@@ -33,12 +33,17 @@ class MatchDetailVC: UIViewController{
         nameLabel.text = friendProfile!.name
         specieLabel.text = friendProfile!.specie
         bioTextField.text = friendProfile!.bio
-        let imageUrls = friendProfile!.getPhotoUrls(isPulic: true)
-        self.imageScroller.setupScrollerWith(urls: imageUrls)
         friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
         friendHandler!.shouldDisableAddFriendButton(ifTrue: {
             print("Disabled add friend due to pending")
             self.disableAddButton()
+            self.friendHandler!.isFriending(ifTrue: {
+                let imageUrls = self.friendProfile!.getPhotoUrls(isPulic: false)
+                self.imageScroller.setupScrollerWith(urls: imageUrls)
+            }, ifFalse: {
+                let imageUrls = self.friendProfile!.getPhotoUrls(isPulic: true)
+                self.imageScroller.setupScrollerWith(urls: imageUrls)
+            })
         }, ifFalse: nil)
         
     }
