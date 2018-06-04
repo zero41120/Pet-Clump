@@ -194,8 +194,9 @@ class PetSettingVC: UIViewController{
             petProfile!.age     = petAgeTextField.text!
             petProfile!.specie  = petSpeciesTextField.text!
             petProfile!.ownerId = uid
-            petProfile!.upload(vc: self, completion: nil)
-            self.makeAlert(message: NSLocalizedString("Your pet information is saved!", comment: "This is a alter message that shows up and the user tap save on the pet information viewing page."))
+            petProfile!.upload(vc: self) {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
@@ -219,6 +220,6 @@ class PetSettingVC: UIViewController{
     }
     
     @IBAction func tapExit(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        confirmBeforeDismiss(title: NSLocalizedString("Exit", comment: "Alert title when leaving setting page"), message: NSLocalizedString("Your information will not be saved, leave now?", comment: "Alert message when leaving the setting page"))
     }
 }
