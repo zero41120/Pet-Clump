@@ -17,8 +17,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/about_my_pet_label">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/pet_name_label"
