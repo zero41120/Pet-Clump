@@ -11,6 +11,8 @@
 		2901B3C320B234F30058DC1C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2901B3C220B234F30058DC1C /* MessageCell.swift */; };
 		2901B3C720B250850058DC1C /* Messenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2901B3C620B250850058DC1C /* Messenger.swift */; };
 		2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905331E209915F50076A2AF /* TextViewExtension.swift */; };
+		29063C2B20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29063C2A20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift */; };
+		29063C2F20C5DC4D00113FA4 /* MatchTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29063C2E20C5DC4D00113FA4 /* MatchTabBar.swift */; };
 		2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926C2F120A9332500DB6A3C /* Crytographer.swift */; };
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
@@ -89,6 +91,8 @@
 		2901B3C220B234F30058DC1C /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		2901B3C620B250850058DC1C /* Messenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messenger.swift; sourceTree = "<group>"; };
 		2905331E209915F50076A2AF /* TextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewExtension.swift; sourceTree = "<group>"; };
+		29063C2A20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailOwnerVC.swift; sourceTree = "<group>"; };
+		29063C2E20C5DC4D00113FA4 /* MatchTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTabBar.swift; sourceTree = "<group>"; };
 		2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetClumpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926C2F120A9332500DB6A3C /* Crytographer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crytographer.swift; sourceTree = "<group>"; };
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
@@ -202,8 +206,8 @@
 		290DF24820953F2C00A64D0C /* view */ = {
 			isa = PBXGroup;
 			children = (
-				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 				29FC3FD820AF38420045AA65 /* Main.storyboard */,
+				29C17983207EE97F002971C5 /* LaunchScreen.storyboard */,
 				2901B3BC20B229B30058DC1C /* Message.storyboard */,
 				778663D220B2689A008DD4F9 /* ImageScrollerView.swift */,
 				29B1936D208D4CD000A59783 /* image */,
@@ -273,7 +277,9 @@
 			isa = PBXGroup;
 			children = (
 				295EC96920A40A9000F8D32F /* MatchBestVC.swift */,
+				29063C2E20C5DC4D00113FA4 /* MatchTabBar.swift */,
 				29D1342220A9E609005A72EA /* MatchDetailVC.swift */,
+				29063C2A20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift */,
 			);
 			path = matching;
 			sourceTree = "<group>";
@@ -748,7 +754,9 @@
 				298BCFF7209699B9007A6846 /* LimitTextFieldDelegate.swift in Sources */,
 				298FEB67209394D70018F368 /* WelcomeVC.swift in Sources */,
 				2934864820AA510900143474 /* ImageScroller.swift in Sources */,
+				29063C2B20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift in Sources */,
 				295EC96E20A41A3100F8D32F /* MatchingProfile.swift in Sources */,
+				29063C2F20C5DC4D00113FA4 /* MatchTabBar.swift in Sources */,
 				2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */,
 				847769B620969252002AF924 /* ViewManager.swift in Sources */,
 				294C94C52097D74700266533 /* QuizVC.swift in Sources */,

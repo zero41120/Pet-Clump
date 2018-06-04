@@ -11,9 +11,6 @@ import Firebase
 
 class MatchDetailVC: UIViewController{
     
-    // Assigned by caller view
-    var friendProfile: PetProfile?
-    var myProfile: PetProfile?
     var friendHandler: FriendHandler?
     
     @IBOutlet weak var ageLabel: UILabel!
@@ -29,14 +26,16 @@ class MatchDetailVC: UIViewController{
             self.dismiss(animated: true, completion: nil)
             return
         }
+        let friendProfile = MatchTabBar.thatPet
+        let myProfile = MatchTabBar.thisPet
         ageLabel.text = friendProfile!.age
         nameLabel.text = friendProfile!.name
         specieLabel.text = friendProfile!.specie
         bioTextField.text = friendProfile!.bio
-        let imageUrls = friendProfile!.getPhotoUrls(isPulic: true)
-        self.imageScroller.setupScrollerWith(urls: imageUrls)
-        friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!)
-        friendHandler!.isPending(ifTrue: {
+        friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
+        imageScroller.setupScrollerWith(urls: friendProfile!.getPetPhotoUrls())
+        friendHandler!.shouldDisableAddFriendButton(ifTrue: {
+
             print("Disabled add friend due to pending")
             self.disableAddButton()
         }, ifFalse: nil)
@@ -55,6 +54,6 @@ class MatchDetailVC: UIViewController{
     
     func disableAddButton() {
         self.addButton.isEnabled = false
-        addButton.title = NSLocalizedString("Pending", comment: "This is the replacement text on the 'Add Friend' button when a friend request is sent/received")
+        addButton.title = NSLocalizedString("Added", comment: "This is the replacement text on the 'Add Friend' button when a friend request is sent/received")
     }
 }

@@ -31,4 +31,8 @@ extension String{
         let fontAttributes = [NSAttributedStringKey.font: font]
         return self.size(withAttributes: fontAttributes)
     }
+    
+    func contains(toSearch: String) -> Bool {
+        return self.range(of: toSearch) != nil
+    }
 }
