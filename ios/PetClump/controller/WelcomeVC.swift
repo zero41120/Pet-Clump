@@ -16,7 +16,7 @@ class WelcomeVC: UIViewController{
         guard let uid = Auth.auth().currentUser?.uid else { return }
         OwnerProfile.isFirstTimeUsing(uid: uid) { (isFirstTime) in
             if isFirstTime {
-                print("it is first time")
+                print("Force enter profile page for first time user")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let pdv = storyboard.instantiateViewController(withIdentifier: "OwnerSettingVC") as! OwnerSettingVC
                 self.present(pdv, animated: false, completion: nil)
@@ -43,6 +43,9 @@ class WelcomeVC: UIViewController{
                     }
                 }
             }
+            OwnerProfile.most_recent_owner?.upload(vc: nil, completion: {
+                print("silent update location for returning user")
+            })
         })
     }
     
