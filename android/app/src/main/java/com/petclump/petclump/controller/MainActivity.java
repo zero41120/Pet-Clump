@@ -70,9 +70,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void setupUI(){
         // Init variables
         c = getApplicationContext();
-        uidText = findViewById(R.id.uidText);
-        animalText = findViewById(R.id.animalText);
-        Button pickButton = findViewById(R.id.main_button_upload);
+        uidText = findViewById(R.id.user_UID);
         //Button settingsButton = findViewById(R.id.button_settings);
         Button matchingButton = findViewById(R.id.matching_button);
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -102,16 +100,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         MessagingDownloader m = new MessagingDownloader(sed, rec, 2);
         ArrayList<BaseMessage> mes = new ArrayList<>();*/
 
-        pickButton.setOnClickListener(v -> {
-/*            m.downloadMore(mes, ()->{
-                //Log.d(TAG,"after download:"+mes);
-            });*/
-        });
-
-        // Setting page activity
-//        settingsButton.setOnClickListener(v ->
-//            startActivity(new Intent(c, UserInfoActivity.class))
-//        );
 
         // Matching activity
         matchingButton.setOnClickListener(v->
@@ -119,22 +107,22 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         );
 
         // Animal text on screen
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        for (Specie s: Specie.values()) {
-                            Thread.sleep(1000);
-                            runOnUiThread( ()-> animalText.setText(s.getName(c)));
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    Log.d("Interrupted", "run: " + e.getMessage());
-                }
-            }
-        };
-        t.start();
+//        Thread t = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    while (!isInterrupted()) {
+//                        for (Specie s: Specie.values()) {
+//                            Thread.sleep(1000);
+//                            runOnUiThread( ()-> animalText.setText(s.getName(c)));
+//                        }
+//                    }
+//                } catch (InterruptedException e) {
+//                    Log.d("Interrupted", "run: " + e.getMessage());
+//                }
+//            }
+//        };
+//        t.start();
     }
 
 
@@ -152,6 +140,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             .build();
 
         SignInButton mGoogleSignInBtn = findViewById(R.id.googleBtn);
+        Button google_button = findViewById(R.id.google_button);
+        google_button.setOnClickListener(v->{
+            mGoogleSignInBtn.performClick();
+        });
         mGoogleSignInBtn.setOnClickListener(v -> {
             Intent doSignIn = Auth.GoogleSignInApi.getSignInIntent(gClient);
             startActivityForResult(doSignIn, RC_SIGN_IN);
@@ -174,7 +166,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void setupFacebookLogin(){
         // Initialize Facebook Login button
         fbManager = CallbackManager.Factory.create();
-        LoginButton loginButton = findViewById(R.id.facebook_button);
+        LoginButton loginButton = findViewById(R.id.facebook_button_real);
+        Button facebook_button = findViewById(R.id.facebook_button);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(fbManager, new FacebookCallback<LoginResult>() {
             @Override
