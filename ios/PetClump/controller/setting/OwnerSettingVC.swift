@@ -22,6 +22,9 @@ class OwnerSettingVC: UIViewController{
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var matchSlider: UISlider!
+    private let matchValues = [5, 20, 100, -1]
+    private var lastMatchIndex: Int? = nil
+
 
     // Genreated UI
     
@@ -57,6 +60,12 @@ class OwnerSettingVC: UIViewController{
         genderPicker!.dataSource = genderPickerDelegate
         genderTextField.delegate = genderPickerDelegate
         genderTextField.inputView = genderPicker
+        
+        // Set up match slider
+        matchSlider.minimumValue = 0
+        matchSlider.maximumValue = Float(matchValues.count - 1)
+
+        
         // Assigned by UserDataView
         self.profile = OwnerProfile(id: uid) { profile in
             self.didCompleteDownload(profile: profile)
@@ -129,8 +138,14 @@ class OwnerSettingVC: UIViewController{
     }
     
     func updateMatchRangeLabel(){
-        let range = Int(self.matchSlider.value)
-        self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
+        let range = self.matchSlider.value
+        let newIndex = Int(range + 0.5)
+        self.matchSlider.setValue(Float(newIndex), animated: false)
+        let didChange = lastMatchIndex == nil || newIndex != lastMatchIndex!
+        if didChange {
+            let actualValue = self.matchValues[newIndex]
+            self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(actualValue)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
+        }
     }
     
     @IBAction func tapUploadProfile(_ sender: Any) {
