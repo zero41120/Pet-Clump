@@ -21,7 +21,6 @@ class FriendHandler {
     
     let myPet: PetProfile
     let friendPet: PetProfile
-    let motherView: UIViewController
     
     var myRecord: DocumentReference
     var theirRecord: DocumentReference
@@ -29,10 +28,9 @@ class FriendHandler {
     private var myPending: String?
     private var friendPending: String?
     
-    init(myProfile: PetProfile, friendProfile: PetProfile, caller: UIViewController){
+    init(myProfile: PetProfile, friendProfile: PetProfile){
         self.myPet = myProfile
         self.friendPet = friendProfile
-        self.motherView = caller
         
         self.myRecord = Firestore.firestore().collection("pets").document(myPet.getId()).collection("friends").document(friendPet.getId())
         self.theirRecord = Firestore.firestore().collection("pets").document(friendPet.getId()).collection("friends").document(myPet.getId())
@@ -48,8 +46,10 @@ class FriendHandler {
         }
         myRecord.getDocument(completion: { (snap , error) in
             if let document = snap, document.exists {
-                self.myPending = document.get("pending") as? String
-                print("downloaded myPending: \(self.myPending!)")
+                self.myPending = document.get("pending") as? String ?? ""
+                completion()
+            } else {
+                self.myPending = ""
                 completion()
             }
         })
@@ -167,7 +167,7 @@ class FriendHandler {
             } else {
                 for document in snap!.documents {
                     let _ = PetProfile(id: document.documentID, completion: { (friendPet) in
-                        downloaded(FriendHandler(myProfile: myProfile, friendProfile: friendPet, caller: callerView))
+                        downloaded(FriendHandler(myProfile: myProfile, friendProfile: friendPet))
                         print("downloaded: \(friendPet.getId())")
                     })
                 }

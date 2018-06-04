@@ -35,6 +35,7 @@ class MatchDetailVC: UIViewController{
         friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
         imageScroller.setupScrollerWith(urls: friendProfile!.getPetPhotoUrls())
         friendHandler!.shouldDisableAddFriendButton(ifTrue: {
+
             print("Disabled add friend due to pending")
             self.disableAddButton()
         }, ifFalse: nil)

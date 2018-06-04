@@ -66,7 +66,7 @@
         <!--SettingVC-->
         <scene sceneID="J6j-EU-Tek">
             <objects>
-                <viewController id="WAf-Bi-FHO" customClass="SettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WAf-Bi-FHO" customClass="SettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPt-bm-ql5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -365,7 +365,7 @@
         <!--Owner SettingVC-->
         <scene sceneID="6kg-iQ-QI8">
             <objects>
-                <viewController id="NHe-gv-fBJ" customClass="OwnerSettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OwnerSettingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NHe-gv-fBJ" customClass="OwnerSettingVC" customModule="PetClump" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VvJ-4q-iHG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

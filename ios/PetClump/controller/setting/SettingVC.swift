@@ -51,9 +51,11 @@ class SettingVC: UIViewController{
             self.birthdayLabel.text = profile.getBirthdayString()
             
             // Gets match perference and updates the slider
-            self.matchSlider.setValue(Float(profile.distancePerference), animated: true)
-            let range = Int(self.matchSlider.value)
-            self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
+            self.matchSlider.minimumValue = 0
+            self.matchSlider.maximumValue = Float(OwnerSettingVC.matchValues.count - 1)
+            let indexAsValue = Float(OwnerSettingVC.matchValues.index(of: profile.distancePerference) ?? 0)
+            self.matchSlider.setValue(indexAsValue, animated: true)
+            self.titleMatchRangeLabel.text = OwnerSettingVC.getRangeDisplayText(actualValue: profile.distancePerference)
         }
         let _ = PetProfile(uid: uid, sequence: 0) { (pet) in
             self.pet0ImageView.load(url: pet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))

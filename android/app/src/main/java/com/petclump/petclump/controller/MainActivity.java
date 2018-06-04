@@ -1,10 +1,14 @@
 package com.petclump.petclump.controller;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
@@ -35,6 +39,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.models.Chat;
+import com.petclump.petclump.models.GPS.MyService;
 import com.petclump.petclump.models.MessagingDownloader;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
@@ -88,30 +93,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             );
             FirebaseAuth.getInstance().signOut();
         });
-        /*Chat s = new Chat(FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
-        s.connectServer(null);*/
-
-        // Upload photo activity
-       /* PetProfile.getInstance().listenToFriendList("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",()->{
-            Log.d(TAG,PetProfile.getInstance().getRelation_list().toString());
-        });*/
-/*       PetProfile pet = new PetProfile();
-       String sed = "94OeeGargpPOI5RuQU9N9zb2qvD31";
-       String rec = "i9DnVO5BDzWSVdMLLCIZJWgx6Uq20";
-
-        MessagingDownloader m = new MessagingDownloader(sed, rec, 2);
-        ArrayList<BaseMessage> mes = new ArrayList<>();*/
 
         pickButton.setOnClickListener(v -> {
-/*            m.downloadMore(mes, ()->{
-                //Log.d(TAG,"after download:"+mes);
-            });*/
-        });
 
-        // Setting page activity
-//        settingsButton.setOnClickListener(v ->
-//            startActivity(new Intent(c, UserInfoActivity.class))
-//        );
+        });
 
         // Matching activity
         matchingButton.setOnClickListener(v->
@@ -164,8 +149,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         } else {
             oResult.setResultCallback(this::handleSignInResult);
         }
-        //FirebaseAuth.getInstance().addAuthStateListener();
-
     }
 
     /**

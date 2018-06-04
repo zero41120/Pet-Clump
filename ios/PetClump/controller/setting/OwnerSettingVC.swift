@@ -22,6 +22,9 @@ class OwnerSettingVC: UIViewController{
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var matchSlider: UISlider!
+    public static let matchValues = [5, 20, 100, 21000]
+    private var lastMatchIndex: Int? = nil
+
 
     // Genreated UI
     
@@ -57,6 +60,11 @@ class OwnerSettingVC: UIViewController{
         genderPicker!.dataSource = genderPickerDelegate
         genderTextField.delegate = genderPickerDelegate
         genderTextField.inputView = genderPicker
+        
+        // Set up match slider
+        matchSlider.minimumValue = 0
+        matchSlider.maximumValue = Float(OwnerSettingVC.matchValues.count - 1)
+        
         // Assigned by UserDataView
         self.profile = OwnerProfile(id: uid) { profile in
             self.didCompleteDownload(profile: profile)
@@ -65,7 +73,12 @@ class OwnerSettingVC: UIViewController{
     
     func didCompleteDownload(profile: OwnerProfile) {
         // Gets user information
-        self.nameTextField.text = profile.name
+        if profile.name == "No name" {
+            self.nameTextField.placeholder = "Olivia Hye"
+        } else {
+            self.nameTextField.text = profile.name
+        }
+        
         self.genderTextField.text = profile.gender
         
         // Gets user birthdat and parse it
@@ -91,7 +104,8 @@ class OwnerSettingVC: UIViewController{
         }
     
         // Gets match perference and updates the slider
-        self.matchSlider.setValue(Float(profile.distancePerference), animated: true)
+        let indexAsValue = Float(OwnerSettingVC.matchValues.index(of: profile.distancePerference) ?? 0)
+        self.matchSlider.setValue(indexAsValue, animated: true)
         self.updateMatchRangeLabel()
     }
     
@@ -104,7 +118,7 @@ class OwnerSettingVC: UIViewController{
     }
     
     @IBAction func tapCancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        confirmBeforeDismiss(title: NSLocalizedString("Exit", comment: "Alert title when leaving setting page"), message: NSLocalizedString("Your information will not be saved, leave now?", comment: "Alert message when leaving the setting page"))
     }
     
     @IBAction func tapEditBirthday(_sender: Any) {
@@ -124,8 +138,19 @@ class OwnerSettingVC: UIViewController{
     }
     
     func updateMatchRangeLabel(){
-        let range = Int(self.matchSlider.value)
-        self.titleMatchRangeLabel.text = NSLocalizedString("Match Range: \(range)", comment: "This is the label to show the match range from the user to other users. (range) is a computed value and should not be changed")
+        let range = self.matchSlider.value
+        let newIndex = Int(range + 0.5)
+        self.matchSlider.setValue(Float(newIndex), animated: false)
+        let didChange = lastMatchIndex == nil || newIndex != lastMatchIndex!
+        if didChange {
+            lastMatchIndex = newIndex
+            let actualValue = OwnerSettingVC.matchValues[newIndex]
+            self.titleMatchRangeLabel.text = OwnerSettingVC.getRangeDisplayText(actualValue: actualValue)
+        }
+    }
+    
+    static func getRangeDisplayText(actualValue: Int)->String{
+        return actualValue > 100 ? NSLocalizedString("No prefered range", comment: "Shows on the match range perference slider for maxium range") : NSLocalizedString("With in \(actualValue) km", comment: "Shows on the matching range perference lable")
     }
     
     @IBAction func tapUploadProfile(_ sender: Any) {
@@ -133,10 +158,15 @@ class OwnerSettingVC: UIViewController{
         
         // Creates a profile object
         let profile = OwnerProfile()
+        if(nameTextField.text! == ""){
+            makeAlert(message: NSLocalizedString("You must enter a name!", comment: "Shows when user try to tap save without filling the information"))
+            return
+        }
         profile.name     = nameTextField.text!
         profile.gender   = genderTextField.text!
         profile.birthday = self.datePicker!.date
-        profile.distancePerference = Int(matchSlider.value)
+        print("self.matchValues[lastMatchIndex ?? 0] : \(OwnerSettingVC.matchValues[lastMatchIndex ?? 0])")
+        profile.distancePerference = OwnerSettingVC.matchValues[lastMatchIndex ?? 0]
         
         //set up the weekly-schedule and svae it.
         var someArray: [String] = [String](repeating: "0", count: 21)
@@ -159,8 +189,10 @@ class OwnerSettingVC: UIViewController{
         profile.freeTime = FreeSchedule(freeString: freeString)
         
         // Uploads the profile with empty completed action
-        profile.upload(vc: self, completion: nil)
-        self.dismiss(animated: true, completion: nil)
+        profile.upload(vc: self) {
+            OwnerProfile.most_recent_owner = profile
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 

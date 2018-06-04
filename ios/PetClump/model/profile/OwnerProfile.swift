@@ -23,10 +23,11 @@ import Firebase
 class OwnerProfile: Profile{
     
     private static let COLLECTION_NAME = "users"
+    public static var most_recent_owner: OwnerProfile?
     
     var id = ""
     var name = "No name"
-    var gender = "Man"
+    var gender = "Apache Helicotper"
     var birthday = Date()
     var distancePerference = 5
     var lat = 0.0, lon = 0.0
@@ -41,8 +42,31 @@ class OwnerProfile: Profile{
         }
     }
     
+    static func isFirstTimeUsing(uid: String, didCompleteCheck: @escaping (Bool)->Void){
+        let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(uid)
+        docRef.getDocument { (document, error) in
+            if error != nil {
+                didCompleteCheck(true)
+                return
+            }
+            if let doc = document, doc.exists {
+                didCompleteCheck(false)
+            } else {
+                didCompleteCheck(true)
+            }
+        }
+    }
+    
     func upload(vc: QuickAlert?, completion: (() -> Void)?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        let locManager = CLLocationManager()
+        locManager.requestWhenInUseAuthorization()
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
+            let coordinate = locManager.location!.coordinate
+            self.lat = coordinate.latitude
+            self.lon = coordinate.longitude
+            print("Will save lat: \(self.lat), lon: \(self.lon)")
+        }
         
         let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(uid)
         docRef.setData(self.generateDictionary()) { (err) in
@@ -106,6 +130,9 @@ class OwnerProfile: Profile{
     func getAgeString() -> String {
         let ageYear = Calendar.current.dateComponents([.year], from: self.birthday, to: Date()).year!
         return NSLocalizedString("\(ageYear) years old", comment: "An age lable")
+    }
+    func validLocation() -> Bool{
+        return self.lat != 0.0 && self.lon != 0.0
     }
 }
 

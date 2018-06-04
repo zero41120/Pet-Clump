@@ -68,7 +68,7 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, 
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let pdv = storyBoard.instantiateViewController(withIdentifier: "WelcomeVC") as! WelcomeVC
-            self.present(pdv, animated: true, completion: nil)
+            self.present(pdv, animated: false, completion: nil)
         } else {
             view.backgroundColor = .yellow
             uidLabel.text = "You are not logged in"
