@@ -36,7 +36,7 @@ class MatchDetailVC: UIViewController{
         let imageUrls = friendProfile!.getPhotoUrls(isPulic: true)
         self.imageScroller.setupScrollerWith(urls: imageUrls)
         friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
-        friendHandler!.isPending(ifTrue: {
+        friendHandler!.shouldDisableAddFriendButton(ifTrue: {
             print("Disabled add friend due to pending")
             self.disableAddButton()
         }, ifFalse: nil)
@@ -55,6 +55,6 @@ class MatchDetailVC: UIViewController{
     
     func disableAddButton() {
         self.addButton.isEnabled = false
-        addButton.title = NSLocalizedString("Pending", comment: "This is the replacement text on the 'Add Friend' button when a friend request is sent/received")
+        addButton.title = NSLocalizedString("Added", comment: "This is the replacement text on the 'Add Friend' button when a friend request is sent/received")
     }
 }

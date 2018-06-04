@@ -40,12 +40,14 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let friendHandler = friendHandlers[indexPath.row]
         friendHandler.isFriending(ifTrue: {
+            // Start messaging for friends
             let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
             let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
             pdv.myPetProfile = friendHandler.myPet
             pdv.friendPetProfile = friendHandler.friendPet
             self.present(pdv, animated: true, completion: nil)
         }, ifFalse: {
+            // View the profile of the friend request sender
             self.tableView.deselectRow(at: indexPath, animated: true)
             let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
             let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
@@ -86,8 +88,20 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         )
         cell.animalImage.load(url: friend.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
         cell.animalImage.setRounded()
+        cell.animalImage.tag = indexPath.row
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewProfileOfFriend(sender:)))
+        cell.animalImage.isUserInteractionEnabled = true
+        cell.animalImage.addGestureRecognizer(tap)
         cell.animalLbl.text = friend.name
         return cell
+    }
+    
+    @objc func viewProfileOfFriend(sender: UITapGestureRecognizer){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
+        pdv.friendProfile = self.friendHandlers[sender.view!.tag].friendPet
+        pdv.myProfile = self.friendHandlers[sender.view!.tag].myPet
+        self.present(pdv, animated: true, completion: nil)
     }
     
     @objc func acceptFriend(sender: UIButton){

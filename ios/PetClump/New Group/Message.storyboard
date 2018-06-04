@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="646"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="FriendMessageCell" rowHeight="96" id="8Ur-3R-M6D" customClass="MessageCell" customModule="PetClump" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="FriendMessageCell" rowHeight="96" id="8Ur-3R-M6D" customClass="MessageCell" customModule="PetClump" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ur-3R-M6D" id="hUh-E6-cwq">
@@ -38,7 +38,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="cQj-PX-Dou"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2um-xC-lbi">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2um-xC-lbi">
                                                     <rect key="frame" x="80" y="11" width="280" height="74"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <attributedString key="attributedText">
@@ -86,14 +86,14 @@
                                             <outlet property="timeLabel" destination="H9Y-8e-abW" id="Ul7-A9-qcK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="MyMessageCell" rowHeight="96" id="mUL-6r-pi9" customClass="MessageCell" customModule="PetClump" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="MyMessageCell" rowHeight="96" id="mUL-6r-pi9" customClass="MessageCell" customModule="PetClump" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="124" width="375" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mUL-6r-pi9" id="x5M-93-lVu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="95.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="World" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zal-xD-Qe3">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="World" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zal-xD-Qe3">
                                                     <rect key="frame" x="15" y="11" width="280" height="74"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>

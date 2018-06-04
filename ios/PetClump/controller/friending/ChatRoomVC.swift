@@ -40,7 +40,6 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         inputField.delegate = self
         
-        // TODO Download Message
         messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
         messenger!.startListen { (messages) in
             self.messages = messages
@@ -97,6 +96,7 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         let senderId = messages[indexPath.row].senderId
         let senderCellId = senderId == myPetProfile?.getId() ? MessageCell.myCellId : MessageCell.friendCellId
         let cell = tableView.dequeueReusableCell(withIdentifier: senderCellId) as! MessageCell
+        cell.selectionStyle = .none
         
         // Text field
         let message = messages[indexPath.row].message
@@ -108,11 +108,16 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         cell.makeBubble(backColor: UIColor(red: 0, green: 137/255, blue: 249/255, alpha: 1), textColor: UIColor.white)
         
         // Image
-        let senderImageUrl =
-            senderId == myPetProfile?.getId() ?
-            myPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main) :
-            friendPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
-        cell.petImage.load(url: senderImageUrl!)
+        if senderId == myPetProfile?.getId(){
+            let senderImageUrl = myPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
+            cell.petImage.load(url: senderImageUrl!)
+        } else {
+            let senderImageUrl = friendPetProfile?.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main)
+            cell.petImage.load(url: senderImageUrl!)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewProfileOfFriend(sender:)))
+            cell.petImage.isUserInteractionEnabled = true
+            cell.petImage.addGestureRecognizer(tap)
+        }
         
         // Time
         let time = messages[indexPath.row].time
@@ -121,6 +126,15 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
         cell.timeLabel.text = dateFormatter.string(from: time.dateValue())
         
         return cell
+    }
+
+
+    @objc func viewProfileOfFriend(sender: UITapGestureRecognizer){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
+        pdv.friendProfile = self.friendPetProfile
+        pdv.myProfile = self.myPetProfile
+        self.present(pdv, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -149,6 +163,5 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
             }
         }
     }
-       
 }
 
