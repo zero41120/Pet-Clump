@@ -30,25 +30,21 @@ class MatchDetailOwnerVC: UIViewController{
             self.nameLabel.text = friendOwer.name
             self.genderLabel.text = friendOwer.gender
             self.imageScroller.setupScrollerWith(urls: friendPet.getGroupPhotoUrls())
-            // let commonTime = friendOwer.freeTime.getCommonFreeTime(other: )
+            let commonTime = friendOwer.freeTime.getCommonFreeTime(other: OwnerProfile.most_recent_owner!.freeTime)
             
             // Gets weekly schedule
-//            let color = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
-//            for view in self.view.subviews as [UIView] {
-//                if let imageView = view as? UIImageView {
-//                    let week = imageView.tag / 10 - 1
-//                    let part = imageView.tag % 10 - 1
-//                    imageView.layer.borderColor = color
-//                    imageView.layer.borderWidth = 1
-//                    imageView.backgroundColor = profile.freeTime.isFree(weekDay: week, partDay: part) ?
-//                        UIImageView.getDefaultSelectedColor() :
-//                        UIImageView.getDefaultDeselectedColor()
-//                    
-//                    let tap = UITapGestureRecognizer(target: self, action: #selector(toggleImageColor(tapGestureRecognizer:)))
-//                    imageView.isUserInteractionEnabled = true
-//                    imageView.addGestureRecognizer(tap)
-//                }
-//            }
+            let color = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
+            for view in self.view.subviews as [UIView] {
+                if let imageView = view as? UIImageView {
+                    let week = imageView.tag / 10 - 1
+                    let part = imageView.tag % 10 - 1
+                    imageView.layer.borderColor = color
+                    imageView.layer.borderWidth = 1
+                    imageView.backgroundColor = commonTime.isFree(weekDay: week, partDay: part) ?
+                        UIImageView.getDefaultSelectedColor() :
+                        UIImageView.getDefaultDeselectedColor()
+                }
+            }
         })
     }
     

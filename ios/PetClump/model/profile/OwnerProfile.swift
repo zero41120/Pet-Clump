@@ -164,7 +164,9 @@ class FreeSchedule{
         var commonStirng = ""
         let thisTime = Array(self.freeTimeAsString)
         let otherTime = Array(other.freeTimeAsString)
-        for index in 0...thisTime.count {
+        print(thisTime)
+        print(otherTime)
+        for index in 0...(thisTime.count - 1) {
             if thisTime[index] == "1" && otherTime[index] == "1"{
                 commonStirng += "1"
             } else {

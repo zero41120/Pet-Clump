@@ -32,7 +32,7 @@ class MatchDetailVC: UIViewController{
         nameLabel.text = friendProfile!.name
         specieLabel.text = friendProfile!.specie
         bioTextField.text = friendProfile!.bio
-        friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
+        friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!)
         imageScroller.setupScrollerWith(urls: friendProfile!.getPetPhotoUrls())
         friendHandler!.shouldDisableAddFriendButton(ifTrue: {
 
