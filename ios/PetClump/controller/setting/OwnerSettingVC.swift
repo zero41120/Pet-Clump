@@ -118,7 +118,7 @@ class OwnerSettingVC: UIViewController{
     }
     
     @IBAction func tapCancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        confirmBeforeDismiss(title: NSLocalizedString("Exit", comment: "Alert title when leaving setting page"), message: NSLocalizedString("Your information will not be saved, leave now?", comment: "Alert message when leaving the setting page"))
     }
     
     @IBAction func tapEditBirthday(_sender: Any) {
