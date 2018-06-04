@@ -1,10 +1,11 @@
 package com.petclump.petclump.models;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.firestore.DocumentReference;
-//import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -14,7 +15,9 @@ import com.petclump.petclump.models.protocols.ProfileUploader;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 
 /**
@@ -36,9 +39,13 @@ public class OwnerProfile implements Profile {
     private double lat = 0.0 ,lon = 0.0;
     private FreeSchedule freeTime = new FreeSchedule("");
 
+    private String TAG = "Ownerprofile";
+    private Context theContext;
+
     // singleton
     private static OwnerProfile obj = new OwnerProfile();
     private OwnerProfile (){}
+
 
     public static OwnerProfile getInstance(){
         return obj;
@@ -77,16 +84,14 @@ public class OwnerProfile implements Profile {
     @Override
     public void upload(String id, ProfileUploader c){
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
-            c.didCompleteUpload();
+            Log.d(TAG, "upload_failed due to null user! ");
         }
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(id);
         docRef.set(generateDictionary()).addOnCompleteListener(task -> {
-            String message = "";
-            if(task.isSuccessful()) {
-                message += "Upload successful for user: " + id;
-            }
-            Log.d("Profile", "upload: " + message);
+            //Log.d("Profile", "upload: " + message);
+            c.didCompleteUpload();
         });
+
     }
     @Override
     public void download(String id, ProfileDownloader c){
@@ -152,18 +157,20 @@ public class OwnerProfile implements Profile {
         this.distancePerference = distancePerference;
     }
 
+
     public double getLat() {
         return lat;
-    }
-    public void setLat(double lat) {
-        this.lat = lat;
     }
     public double getLon() {
         return lon;
     }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
     public void setLon(double lon) {
         this.lon = lon;
     }
+
     public FreeSchedule getFreeTime() {
         return freeTime;
     }

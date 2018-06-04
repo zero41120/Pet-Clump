@@ -29,6 +29,7 @@ public class MatchingProfileDownloader {
     private Query petProfileQuery;
     private PetProfile pet;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private OwnerProfile owner = OwnerProfile.getInstance();
     public MatchingProfileDownloader(PetProfile myPet, Integer downloadLimit){
         this.downloadLimit = downloadLimit;
         this.pet = myPet;
@@ -47,9 +48,12 @@ public class MatchingProfileDownloader {
                     // if should block pet
                     if(user_pets(doc.getId()) || relation_pets(doc.getId(), pet_list))
                         continue;
+                    // TODO get GPS from host
+                    String userId = get_userId(doc.getId());
                     PetProfile petInfo = new PetProfile(doc.getData());
                     MatchingProfile match = new MatchingProfile(this.pet.getQuiz(), petInfo);
                     profiles.add(match);
+
                 }
                 Log.d(TAG, "Completed: " + profiles);
                 petProfileQuery = db.collection(COLLECTION_NAME)
@@ -62,7 +66,10 @@ public class MatchingProfileDownloader {
     }
     private boolean user_pets(String pet_id){
         String id = user.getUid();
-        return pet_id.substring(0,pet_id.length()-1).equals(id);
+        return get_userId(pet_id).equals(id);
+    }
+    private String get_userId(String pet_id){
+        return pet_id.substring(0,pet_id.length()-1);
     }
     private boolean relation_pets(String pet_id, Map<String, String> pet_list) {
 
