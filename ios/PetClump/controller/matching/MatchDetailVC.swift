@@ -35,7 +35,7 @@ class MatchDetailVC: UIViewController{
         bioTextField.text = friendProfile!.bio
         let imageUrls = friendProfile!.getPhotoUrls(isPulic: true)
         self.imageScroller.setupScrollerWith(urls: imageUrls)
-        friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
+        friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!)
         friendHandler!.isPending(ifTrue: {
             print("Disabled add friend due to pending")
             self.disableAddButton()

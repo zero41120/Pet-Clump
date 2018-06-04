@@ -126,6 +126,10 @@ class OwnerProfile: Profile{
         dateFormatter.dateFormat = "yyyy/MM/dd"
         return dateFormatter.string(from: self.birthday)
     }
+    
+    func validLocation() -> Bool{
+        return self.lat != 0.0 && self.lon != 0.0
+    }
 }
 
 

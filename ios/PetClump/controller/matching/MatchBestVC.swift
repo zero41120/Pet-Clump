@@ -49,21 +49,43 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
             }
             
             guard let last = snap.documents.last else { return }
+            var downloadSize = snap.documents.count
             let quizResult = self.petProfile!.quiz
-            var toSort: [MatchingProfile] = []
+            var toSort: [MatchingProfile] = [] {
+                didSet {
+                    if downloadSize == toSort.count {
+                        toSort.sort(by: MatchingProfile.matcherSorter)
+                        self.element.append(contentsOf: toSort)
+                        self.query = self.db.collection("pets").start(afterDocument: last).limit(to: self.downloadLimit)
+                        self.matchingTable.reloadData()
+                    }
+                }
+            }
             for doc in snap.documents{
-                let petProfile = PetProfile(refObj: doc.data())
-                if petProfile.ownerId == uid {
+                // Set up variable
+                let thisPet = PetProfile.most_recent_pet!
+                let thatPet = PetProfile(refObj: doc.data())
+                
+                // Skip your own pet
+                if thatPet.ownerId == uid {
+                    downloadSize -= 1
                     continue
                 }
-                // TODO avoid friend
-                let newMatchProfile = MatchingProfile(quizResult: quizResult, petProfile: petProfile)
-                toSort.append(newMatchProfile)
+                
+                // Skip your friend
+                let friendHandler = FriendHandler(myProfile: thisPet, friendProfile: thatPet)
+                friendHandler.isFriending(
+                    ifTrue: {
+                        downloadSize -= 1
+                    }, ifFalse: {
+                    // Downloads that owner and process matching %
+                    let _ = OwnerProfile(id: thatPet.ownerId, completion: { (owner) in
+                        let match = MatchingProfile(thatOwner: owner, thatPet: thatPet)
+                        print("\(thatPet.name): q:\(match.quiz) l:\(match.location)")
+                        toSort.append(match)
+                    })
+                })
             }
-            toSort.sort(by: MatchingProfile.matcherSorter)
-            self.element.append(contentsOf: toSort)
-            self.query = self.db.collection("pets").start(afterDocument: last).limit(to: self.downloadLimit)
-            self.matchingTable.reloadData()
         }
     }
     
