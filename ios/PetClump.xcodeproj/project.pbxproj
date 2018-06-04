@@ -13,6 +13,7 @@
 		2905331F209915F50076A2AF /* TextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905331E209915F50076A2AF /* TextViewExtension.swift */; };
 		29063C2B20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29063C2A20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift */; };
 		29063C2F20C5DC4D00113FA4 /* MatchTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29063C2E20C5DC4D00113FA4 /* MatchTabBar.swift */; };
+		2914C80920C5FFFF001D7237 /* GeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914C80820C5FFFF001D7237 /* GeneralVC.swift */; };
 		2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926C2F120A9332500DB6A3C /* Crytographer.swift */; };
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
@@ -93,6 +94,7 @@
 		2905331E209915F50076A2AF /* TextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewExtension.swift; sourceTree = "<group>"; };
 		29063C2A20C5DBFA00113FA4 /* MatchDetailOwnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailOwnerVC.swift; sourceTree = "<group>"; };
 		29063C2E20C5DC4D00113FA4 /* MatchTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTabBar.swift; sourceTree = "<group>"; };
+		2914C80820C5FFFF001D7237 /* GeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralVC.swift; sourceTree = "<group>"; };
 		2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetClumpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926C2F120A9332500DB6A3C /* Crytographer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crytographer.swift; sourceTree = "<group>"; };
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				296FD5B720AC26B000FEA664 /* setting */,
 				29FC3FDB20AF44760045AA65 /* friending */,
 				296FD5B820AC26C800FEA664 /* matching */,
+				2914C80820C5FFFF001D7237 /* GeneralVC.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				298FEB63209393C30018F368 /* PetSettingVC.swift in Sources */,
 				294C94C82097E35E00266533 /* QuizQuestion.swift in Sources */,
 				2934864520AA4E1600143474 /* CachedImage.swift in Sources */,
+				2914C80920C5FFFF001D7237 /* GeneralVC.swift in Sources */,
 				2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */,
 				29C02B9220B878CD00672F9A /* MainTabBar.swift in Sources */,
 				29D0F0ED20BCC6DB0019BD8A /* FriendHandler.swift in Sources */,

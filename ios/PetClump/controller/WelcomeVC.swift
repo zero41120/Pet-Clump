@@ -10,9 +10,10 @@ import UIKit
 import FirebaseAuth
 
 
-class WelcomeVC: UIViewController{
+class WelcomeVC: GeneralVC{
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard let uid = Auth.auth().currentUser?.uid else { return }
         OwnerProfile.isFirstTimeUsing(uid: uid) { (isFirstTime) in
             if isFirstTime {
