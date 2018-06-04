@@ -17,7 +17,7 @@ class MatchingProfile{
     var quiz: Double = 0.0
     var location: Double = 0.0
     var matchingPercent: Double = 0.0
-    var distance: Int = 0
+    var distance: Int = -1
 
     init(thatOwner: OwnerProfile, thatPet: PetProfile){
         self.thisOwner = OwnerProfile.most_recent_owner!
@@ -63,6 +63,7 @@ class MatchingProfile{
     func getAge() -> String{ return thatPet.age }
     func getBio() -> String{ return thatPet.bio }
     func getMatchPercent() -> String { return String(Int(matchingPercent * 100)) + "%" }
+    func getDistance() -> String { return distance == -1 ? "?km" : "\(distance)km" }
     func getData() -> [String: Any]{ return thatPet.generateDictionary() }
     func getPetId() -> String { return "\(thatPet.ownerId)\(thatPet.sequence)" }
     func getSpe() -> String { return thatPet.specie }

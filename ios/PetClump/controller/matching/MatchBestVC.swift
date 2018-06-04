@@ -104,7 +104,7 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         // Set required cell
         let left = element[index]
         cell.imageLeft.tag = index
-        cell.labelLeft.text = left.getMatchPercent()
+        cell.labelLeft.text = "\(left.getMatchPercent())\t\(left.getDistance())"
         cell.imageLeft.load(url: left.getPhotoUrl())
         cell.imageLeft.isUserInteractionEnabled = true
         cell.imageLeft.addGestureRecognizer(tapl)
@@ -119,7 +119,7 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
         // Set optional cell
         let right =  element[index + 1]
         cell.imageRight.tag = index + 1
-        cell.labelRight.text = right.getMatchPercent()
+        cell.labelRight.text = "\(right.getMatchPercent())\t\(right.getDistance())"
         cell.imageRight.load(url: right.getPhotoUrl())
         cell.imageRight.isUserInteractionEnabled = true
         cell.imageRight.addGestureRecognizer(tapr)
