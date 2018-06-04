@@ -51,6 +51,7 @@
 		29FC3FDA20AF38440045AA65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29FC3FD820AF38420045AA65 /* Main.storyboard */; };
 		29FCCEF320953FFA00F95695 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */; };
 		4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */; };
+		7741801A20C4A06B00795A51 /* PetClumpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7741801920C4A06B00795A51 /* PetClumpUITests.swift */; };
 		778663D020B267C2008DD4F9 /* FriendListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CE20B267C2008DD4F9 /* FriendListVC.swift */; };
 		778663D120B267C2008DD4F9 /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663CF20B267C2008DD4F9 /* FriendListCell.swift */; };
 		778663D320B2689B008DD4F9 /* ImageScrollerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778663D220B2689A008DD4F9 /* ImageScrollerView.swift */; };
@@ -67,6 +68,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		2926C2EC20A9316600DB6A3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29C1796F207EE97D002971C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29C17976207EE97D002971C5;
+			remoteInfo = PetClump;
+		};
+		7741801C20C4A06B00795A51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29C1796F207EE97D002971C5 /* Project object */;
 			proxyType = 1;
@@ -126,6 +134,9 @@
 		29FC3FD920AF38420045AA65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29FCCEF220953FFA00F95695 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		41AAF428C22EF2ED34CFBEF7 /* Pods-PetClump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetClump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetClump/Pods-PetClump.debug.xcconfig"; sourceTree = "<group>"; };
+		7741801720C4A06B00795A51 /* PetClumpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetClumpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7741801920C4A06B00795A51 /* PetClumpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetClumpUITests.swift; sourceTree = "<group>"; };
+		7741801B20C4A06B00795A51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		778663CE20B267C2008DD4F9 /* FriendListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListVC.swift; sourceTree = "<group>"; };
 		778663CF20B267C2008DD4F9 /* FriendListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
 		778663D220B2689A008DD4F9 /* ImageScrollerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollerView.swift; sourceTree = "<group>"; };
@@ -156,6 +167,13 @@
 				29309A2020855EB70059E2E4 /* Bolts.framework in Frameworks */,
 				29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */,
 				4778105DD9E6E656ED368498 /* Pods_PetClump.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7741801420C4A06B00795A51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				29C17979207EE97D002971C5 /* PetClump */,
+				7741801820C4A06B00795A51 /* PetClumpUITests */,
 				29C17978207EE97D002971C5 /* Products */,
 				0ECC28B514BE4CD702FB4434 /* Pods */,
 				B5B004EA17432DBFD1994CBE /* Frameworks */,
@@ -344,6 +363,7 @@
 			children = (
 				29C17977207EE97D002971C5 /* PetClump.app */,
 				2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */,
+				7741801720C4A06B00795A51 /* PetClumpUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -373,6 +393,15 @@
 				778663CE20B267C2008DD4F9 /* FriendListVC.swift */,
 			);
 			path = friending;
+			sourceTree = "<group>";
+		};
+		7741801820C4A06B00795A51 /* PetClumpUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7741801920C4A06B00795A51 /* PetClumpUITests.swift */,
+				7741801B20C4A06B00795A51 /* Info.plist */,
+			);
+			path = PetClumpUITests;
 			sourceTree = "<group>";
 		};
 		847769A720969252002AF924 /* ZLSwipeableViewSwift */ = {
@@ -449,6 +478,24 @@
 			productReference = 29C17977207EE97D002971C5 /* PetClump.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7741801620C4A06B00795A51 /* PetClumpUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7741802020C4A06C00795A51 /* Build configuration list for PBXNativeTarget "PetClumpUITests" */;
+			buildPhases = (
+				7741801320C4A06B00795A51 /* Sources */,
+				7741801420C4A06B00795A51 /* Frameworks */,
+				7741801520C4A06B00795A51 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7741801D20C4A06B00795A51 /* PBXTargetDependency */,
+			);
+			name = PetClumpUITests;
+			productName = PetClumpUITests;
+			productReference = 7741801720C4A06B00795A51 /* PetClumpUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -477,6 +524,11 @@
 							};
 						};
 					};
+					7741801620C4A06B00795A51 = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 29C17976207EE97D002971C5;
+					};
 				};
 			};
 			buildConfigurationList = 29C17972207EE97D002971C5 /* Build configuration list for PBXProject "PetClump" */;
@@ -494,6 +546,7 @@
 			targets = (
 				29C17976207EE97D002971C5 /* PetClump */,
 				2926C2E620A9316600DB6A3C /* PetClumpTests */,
+				7741801620C4A06B00795A51 /* PetClumpUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -517,6 +570,13 @@
 				29C17982207EE97F002971C5 /* Assets.xcassets in Resources */,
 				292E24CE208AB0BA005311F1 /* button_icon.png in Resources */,
 				2901B3BD20B229B30058DC1C /* Message.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7741801520C4A06B00795A51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +762,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7741801320C4A06B00795A51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7741801A20C4A06B00795A51 /* PetClumpUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -709,6 +777,11 @@
 			isa = PBXTargetDependency;
 			target = 29C17976207EE97D002971C5 /* PetClump */;
 			targetProxy = 2926C2EC20A9316600DB6A3C /* PBXContainerItemProxy */;
+		};
+		7741801D20C4A06B00795A51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29C17976207EE97D002971C5 /* PetClump */;
+			targetProxy = 7741801C20C4A06B00795A51 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -911,6 +984,34 @@
 			};
 			name = Release;
 		};
+		7741801E20C4A06B00795A51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PetClumpUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerod.PetClumpUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PetClump;
+			};
+			name = Debug;
+		};
+		7741801F20C4A06B00795A51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PetClumpUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerod.PetClumpUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PetClump;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -937,6 +1038,15 @@
 			buildConfigurations = (
 				29C1798A207EE97F002971C5 /* Debug */,
 				29C1798B207EE97F002971C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7741802020C4A06C00795A51 /* Build configuration list for PBXNativeTarget "PetClumpUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7741801E20C4A06B00795A51 /* Debug */,
+				7741801F20C4A06B00795A51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
