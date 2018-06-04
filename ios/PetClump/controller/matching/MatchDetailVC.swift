@@ -11,9 +11,6 @@ import Firebase
 
 class MatchDetailVC: UIViewController{
     
-    // Assigned by caller view
-    var friendProfile: PetProfile?
-    var myProfile: PetProfile?
     var friendHandler: FriendHandler?
     
     @IBOutlet weak var ageLabel: UILabel!
@@ -29,21 +26,17 @@ class MatchDetailVC: UIViewController{
             self.dismiss(animated: true, completion: nil)
             return
         }
+        let friendProfile = MatchTabBar.thatPet
+        let myProfile = MatchTabBar.thisPet
         ageLabel.text = friendProfile!.age
         nameLabel.text = friendProfile!.name
         specieLabel.text = friendProfile!.specie
         bioTextField.text = friendProfile!.bio
         friendHandler = FriendHandler(myProfile: myProfile!, friendProfile: friendProfile!, caller: self)
+        imageScroller.setupScrollerWith(urls: friendProfile!.getPetPhotoUrls())
         friendHandler!.shouldDisableAddFriendButton(ifTrue: {
             print("Disabled add friend due to pending")
             self.disableAddButton()
-            self.friendHandler!.isFriending(ifTrue: {
-                let imageUrls = self.friendProfile!.getPhotoUrls(isPulic: false)
-                self.imageScroller.setupScrollerWith(urls: imageUrls)
-            }, ifFalse: {
-                let imageUrls = self.friendProfile!.getPhotoUrls(isPulic: true)
-                self.imageScroller.setupScrollerWith(urls: imageUrls)
-            })
         }, ifFalse: nil)
         
     }

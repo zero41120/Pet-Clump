@@ -65,17 +65,7 @@ class OwnerProfile: Profile{
                 return
             }
             if let document = document, document.exists {
-                // Unwraps data object
-                let refObj = document.data()!
-                
-                // Gets user information
-                self.name = refObj["name"] as? String ?? ""
-                self.gender = refObj["gender"] as? String ?? ""
-                if let bd = refObj["birthday"] as? Timestamp{
-                    self.birthday = bd.dateValue()
-                }
-                self.distancePerference = refObj["distancePerference"] as? Int ?? 25
-                self.freeTime = FreeSchedule(freeString: refObj["freeTime"] as? String ?? "")
+                self.fetchData(refObj: document.data()!)
             }
             guard (completion != nil) else { return }
             completion!()
@@ -83,8 +73,8 @@ class OwnerProfile: Profile{
     }
     
     private func fetchData(refObj: [String : Any]){
-//        self.lon     = refObj["lon"]  as? String ?? ""
-//        self.lat     = refObj["lat"]  as? String ?? ""
+        self.lon     = refObj["lon"]  as? Double ?? 0.0
+        self.lat     = refObj["lat"]  as? Double ?? 0.0
         self.name    = refObj["name"] as? String ?? ""
         self.gender  = refObj["gender"] as? String ?? ""
         self.freeTime = FreeSchedule(freeString: refObj["freeTime"]  as? String ?? "")
@@ -111,6 +101,11 @@ class OwnerProfile: Profile{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         return dateFormatter.string(from: self.birthday)
+    }
+    
+    func getAgeString() -> String {
+        let ageYear = Calendar.current.dateComponents([.year], from: self.birthday, to: Date()).year!
+        return NSLocalizedString("\(ageYear) years old", comment: "An age lable")
     }
 }
 

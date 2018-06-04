@@ -131,9 +131,9 @@ class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UI
 
     @objc func viewProfileOfFriend(sender: UITapGestureRecognizer){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
-        pdv.friendProfile = self.friendPetProfile
-        pdv.myProfile = self.myPetProfile
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchTabBar") as! MatchTabBar
+        MatchTabBar.thatPet = self.friendPetProfile
+        MatchTabBar.thisPet = self.myPetProfile
         self.present(pdv, animated: true, completion: nil)
     }
     

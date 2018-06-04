@@ -25,14 +25,8 @@ class PetProfile: Profile, Deletable{
     // Image
     private var url_map = [
         "main_url":"",
-        "pet_view_1":"",
-        "pet_view_2":"",
-        "pet_view_3":"",
-        "pet_view_4":"",
-        "pet_view_5":"",
-        "group_view_1":"",
-        "group_view_2":"",
-        "group_view_3":""
+        "pet_view_1":"", "pet_view_2":"", "pet_view_3":"", "pet_view_4":"", "pet_view_5":"",
+        "group_view_1":"", "group_view_2":"", "group_view_3":""
     ]
     
     init() {}
@@ -63,7 +57,6 @@ class PetProfile: Profile, Deletable{
             completion!(self)
         }
     }
-    
     
     func copy(FromProfile: PetProfile){
         self.fetchData(refObj: FromProfile.generateDictionary())
@@ -149,22 +142,37 @@ class PetProfile: Profile, Deletable{
         }
     }
     
-    func getPhotoUrls(isPulic: Bool) -> [String] {
+    func getPetPhotoUrls() -> [String] {
+        return getPhotoUrls(isPet: true)
+    }
+    
+    func getGroupPhotoUrls() -> [String] {
+        return getPhotoUrls(isPet: false)
+    }
+    
+    private func getPhotoUrls(isPet: Bool) -> [String] {
         var urls: [String] = []
         let keys = Array(url_map.keys).sorted()
         for key in keys {
             let value = url_map[key] ?? ""
-            if isPulic && key.range(of: "group") != nil {
-                continue
+            if value == "" { continue }
+            if isPet {
+                if isGroupPhotoKey(keyString: key){
+                    continue
+                }
+                urls.append(value)
+            } else {
+                if isGroupPhotoKey(keyString: key){
+                    urls.append(value)
+                }
             }
-            if value == "" {
-                continue
-            }
-            urls.append(value)
         }
         return urls
     }
     
+    private func isGroupPhotoKey(keyString: String) -> Bool {
+        return keyString.contains(toSearch: "group")
+    }
     func setPhotoUrl(key: PetPhotoUrlKey, url: String){
         switch key {
         case .main: url_map["main_url"] = url
@@ -180,28 +188,27 @@ class PetProfile: Profile, Deletable{
     }
     
     func upload(vc: QuickAlert?, completion: (() -> Void)?) {
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let _ = Auth.auth().currentUser?.uid else {
             guard vc != nil else { return }
             vc!.makeAlert(message: "User is not signed in!")
             return
         }
-        let generatedId = "\(uid)\(sequence)"
-        let docRef =  Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(generatedId)
+        let docRef =  Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(getId())
         docRef.setData(self.generateDictionary()) { (err: Error?) in
             print("Before upload: \(self.generateDictionary())")
             if let err = err{
                 guard vc != nil else { return }
                 vc!.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
             }
-            print("Uploaded successfully for pet " + generatedId)
+            print("Uploaded successfully for pet " + self.getId())
             guard (completion != nil) else { return }
             completion!()
         }
     }
     
     func delete(){
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let petId = "\(uid)\(sequence)"
+        guard let _ = Auth.auth().currentUser?.uid else { return }
+        let petId = getId()
         // TODO delete photos
         Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(petId).delete(completion: { (error) in
             if let err = error {

@@ -51,8 +51,8 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             self.tableView.deselectRow(at: indexPath, animated: true)
             let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
             let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
-            pdv.friendProfile = self.friendHandlers[indexPath.row].friendPet
-            pdv.myProfile = self.friendHandlers[indexPath.row].myPet
+            MatchTabBar.thisPet = self.friendHandlers[indexPath.row].myPet
+            MatchTabBar.thatPet = self.friendHandlers[indexPath.row].friendPet
             self.present(pdv, animated: true, completion: nil)
         })
         
@@ -98,10 +98,17 @@ class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @objc func viewProfileOfFriend(sender: UITapGestureRecognizer){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
-        pdv.friendProfile = self.friendHandlers[sender.view!.tag].friendPet
-        pdv.myProfile = self.friendHandlers[sender.view!.tag].myPet
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchTabBar") as! MatchTabBar
+        MatchTabBar.thisPet = friendHandlers[sender.view!.tag].myPet
+        MatchTabBar.thatPet = friendHandlers[sender.view!.tag].friendPet
         self.present(pdv, animated: true, completion: nil)
+
+        
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+//        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
+//        pdv.friendProfile = self.friendHandlers[sender.view!.tag].friendPet
+//        pdv.myProfile = self.friendHandlers[sender.view!.tag].myPet
+//        self.present(pdv, animated: true, completion: nil)
     }
     
     @objc func acceptFriend(sender: UIButton){
