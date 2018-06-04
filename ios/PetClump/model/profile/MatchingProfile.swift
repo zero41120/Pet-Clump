@@ -42,6 +42,7 @@ class MatchingProfile{
     }
     
     func calculatePercentLocation() -> Double{
+        // Calculate location with 30% weight
         if thisOwner.validLocation() && thatOwner.validLocation() {
             let thisLoc = CLLocation(latitude: thisOwner.lat, longitude: thisOwner.lon)
             let thatLoc = CLLocation(latitude: thatOwner.lat, longitude: thatOwner.lon)
@@ -63,7 +64,7 @@ class MatchingProfile{
     func getAge() -> String{ return thatPet.age }
     func getBio() -> String{ return thatPet.bio }
     func getMatchPercent() -> String { return String(Int(matchingPercent * 100)) + "%" }
-    func getDistance() -> String { return distance == -1 ? "?km" : "\(distance)km" }
+    func getDistance() -> String { return distance == -1 ? "? KM" : "\(Int(round(Double(distance) / 1000)))KM" }
     func getData() -> [String: Any]{ return thatPet.generateDictionary() }
     func getPetId() -> String { return "\(thatPet.ownerId)\(thatPet.sequence)" }
     func getSpe() -> String { return thatPet.specie }
