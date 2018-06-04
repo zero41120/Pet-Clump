@@ -39,7 +39,7 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
         if (size == 0){
             return 0.0;
         }
-        return sum / size;
+        return (sum / size)*0.7;
     }
 
     public void calculateDistance(ProfileDownloader downloader){
@@ -59,7 +59,6 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
             //Log.d(TAG, "a:"+a+" c:"+c+" d:"+distance);
             downloader.didCompleteDownload();
         });
-
     }
 
     public String getName(){

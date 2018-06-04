@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,26 +43,29 @@ import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.models.Chat;
 import com.petclump.petclump.models.GPS.MyService;
 import com.petclump.petclump.models.MessagingDownloader;
+import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     // Google Sign-ins
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient gClient;
-
     // Facebook Sign-ins
     private CallbackManager fbManager;
-
     // UI
     private TextView animalText, uidText;
     private Context c;
     private static final String TAG = "Entry Point";
+    // GPS
+    private double profile_lat = 0.0, profile_lon = 0.0;
+    private OwnerProfile owner = OwnerProfile.getInstance();
 
 
     @Override
@@ -68,8 +73,31 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupUI();
+        setGPS();
         setupGoogleLogin();
         setupFacebookLogin();
+    }
+    private void setGPS(){
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                99);
+        LocationManager lm = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        List<String> providers = lm.getProviders(true);
+        Location l;
+        // Go through the location providers starting with GPS, stop as soon
+        // as we find one.
+        try{
+            for (int i=providers.size()-1; i>=0; i--) {
+                l = lm.getLastKnownLocation(providers.get(i));
+                profile_lat = l.getLatitude();
+                profile_lon = l.getLongitude();
+                //Toast.makeText(this, l.getLatitude()+","+l.getLongitude(), Toast.LENGTH_SHORT).show();
+                if (l != null) break;
+            }
+        }catch(SecurityException e){
+            e.printStackTrace();
+            Log.d(TAG,"setGPS failed, permission:"+e);
+        }
     }
 
     private void setupUI(){
@@ -83,7 +111,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // Show user UID if logged in
-        if (cUser != null) { uidText.setText(cUser.getUid()); }
+        if (cUser != null) {
+            uidText.setText(cUser.getUid());
+            saveGPS();
+        }
 
         // Sign out button
         Button mGoogleSignOutBtn = findViewById(R.id.mGoogleSignOut);
@@ -222,7 +253,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.w(TAG, "signInWithCredential:failure", task.getException());
                 return;
             }
-
+            // setup new GPS
+            setGPS();
             FirebaseUser user = mAuth.getCurrentUser();
             if (user == null) {
                 Log.d(TAG, "handleFBSignInResult: No current user");
@@ -230,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
 
             this.uidText.setText(mAuth.getCurrentUser().getUid());
+            saveGPS();
             Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
         });
     }
@@ -237,5 +270,48 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed: Sign in connection failed");
+    }
+    // GPS permission setup
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 99:
+                // If the permissions aren't set, then return. Otherwise, proceed.
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}
+                                , 10);
+                    }
+                    Log.d(TAG, "returning program");
+                    return;
+                }
+                else{
+                    // Create Intent to reference MyService, start the Service.
+                    Log.d(TAG, "starting service");
+                    Intent i = new Intent(this, MyService.class);
+                    if(i==null)
+                        Log.d(TAG, "intent null");
+                    else{
+                        startService(i);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    private void saveGPS(){
+        FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
+        owner.download(cUser.getUid(),()->{
+            owner.setLat(profile_lat);
+            owner.setLon(profile_lon);
+            owner.upload(cUser.getUid(),()->{
+                Toast.makeText(c, "GPS change has uploaded.", Toast.LENGTH_SHORT).show();
+            });
+        });
     }
 }
