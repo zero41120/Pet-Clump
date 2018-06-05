@@ -22,7 +22,8 @@ class ImageInputDelegate: NSObject, UIImagePickerControllerDelegate, UINavigatio
     
     func uploadImageToFirebaseStorage(originalImage: UIImage){
         //upload to firebase
-        let data = compressImage(image: originalImage)
+        let croppedImage = cropToBounds(image: originalImage, width: Double(imageView!.frame.width), height: Double(imageView!.frame.height))
+        let data = compressImage(image: croppedImage)
         let tag = imageView!.tag
         let fileName = NSUUID.init().uuidString + ".png"
         let storageRef = Storage.storage().reference(withPath: "image/\(fileName)")
@@ -37,7 +38,7 @@ class ImageInputDelegate: NSObject, UIImagePickerControllerDelegate, UINavigatio
                         print("There is an error when uploading: \(error!)")
                     } else {
                         print("\(url!) for \(tag)")
-                        self.imageView?.image = originalImage
+                        self.imageView?.image = croppedImage
                         switch tag {
                         case 0: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.main, url: "\(url!)")
                         case 1: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet1, url: "\(url!)")
@@ -84,5 +85,41 @@ class ImageInputDelegate: NSObject, UIImagePickerControllerDelegate, UINavigatio
         }
         picker.dismiss(animated: true, completion: nil)
         
+    }
+    
+    
+    //https://stackoverflow.com/questions/32041420
+    func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
+        
+        let cgimage = image.cgImage!
+        let contextImage: UIImage = UIImage(cgImage: cgimage)
+        let contextSize: CGSize = contextImage.size
+        var posX: CGFloat = 0.0
+        var posY: CGFloat = 0.0
+        var cgwidth: CGFloat = CGFloat(width)
+        var cgheight: CGFloat = CGFloat(height)
+        
+        // See what size is longer and create the center off of that
+        if contextSize.width > contextSize.height {
+            posX = ((contextSize.width - contextSize.height) / 2)
+            posY = 0
+            cgwidth = contextSize.height
+            cgheight = contextSize.height
+        } else {
+            posX = 0
+            posY = ((contextSize.height - contextSize.width) / 2)
+            cgwidth = contextSize.width
+            cgheight = contextSize.width
+        }
+        
+        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+        
+        // Create bitmap image from context using the rect
+        let imageRef: CGImage = cgimage.cropping(to: rect)!
+        
+        // Create a new image based on the imageRef and rotate back to the original orientation
+        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+        
+        return image
     }
 }
