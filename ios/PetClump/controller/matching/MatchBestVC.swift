@@ -85,7 +85,6 @@ class MatchBestVC: GeneralVC, UITableViewDataSource, UITableViewDelegate{
                     // Downloads that owner and process matching %
                     let _ = OwnerProfile(id: thatPet.ownerId, completion: { (owner) in
                         let match = MatchingProfile(thatOwner: owner, thatPet: thatPet)
-                        print("\(thatPet.name): q:\(match.quiz) l:\(match.location)")
                         toSort.append(match)
                     })
                 })
@@ -112,6 +111,8 @@ class MatchBestVC: GeneralVC, UITableViewDataSource, UITableViewDelegate{
         cell.imageLeft.load(url: left.getPhotoUrl())
         cell.imageLeft.isUserInteractionEnabled = true
         cell.imageLeft.addGestureRecognizer(tapl)
+        cell.labelLeftLoc.text = left.getDistance()
+        cell.labelLeftMatch.text = left.getMatchPercent()
         
         // Finish setup if optional is empty
         if !element.indices.contains(index + 1) {
@@ -124,11 +125,12 @@ class MatchBestVC: GeneralVC, UITableViewDataSource, UITableViewDelegate{
         // Set optional cell
         let right =  element[index + 1]
         cell.imageRight.tag = index + 1
-        cell.labelRightLoc.text = right.getDistance()
-        cell.labelRightMatch.text = right.getMatchPercent()
         cell.imageRight.load(url: right.getPhotoUrl())
         cell.imageRight.isUserInteractionEnabled = true
         cell.imageRight.addGestureRecognizer(tapr)
+        cell.labelRightLoc.text = right.getDistance()
+        cell.labelRightMatch.text = right.getMatchPercent()
+
         cell.labelRightLoc.layer.isHidden = false
         cell.labelRightMatch.layer.isHidden = false
         cell.imageRight.layer.isHidden = false
