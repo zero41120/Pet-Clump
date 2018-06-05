@@ -25,8 +25,8 @@ class Cryptographer{
     }
     
     
+    let ke = KeyExchanger.getInstance()
 
-    
     
     /**
      * This method generates a secret key.

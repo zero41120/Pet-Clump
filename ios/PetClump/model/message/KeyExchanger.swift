@@ -5,6 +5,8 @@ import BigInt
 
 public class KeyExchanger {
     
+  
+    
     var primitiveRoot: BigInt = BigInt(0)
     var bigPrime: BigInt = BigInt(0)
     var mySecret: BigInt = BigInt(0)
@@ -21,6 +23,16 @@ public class KeyExchanger {
         loadOrGenerateSecret(fdId: friendId)
     }
     
+    private static let instance = KeyExchanger()
+    private init() {
+        /*loadOrGenerateSecret(fdId: "Galen Robbins")
+        bigPrime = generate512bitProbabilisticPrime()
+        primitiveRoot = findPrimitiveRoot(p: bigPrime)*/
+    }
+    static func getInstance() -> KeyExchanger{
+        return self.instance
+    }
+    
     
      public func getSharedKey(fdPublic: BigInt) -> Array<UInt8> {
         if sharedKey.isEmpty {
@@ -32,7 +44,7 @@ public class KeyExchanger {
             }
             
             key = key.sha256()
-            let shrkey: ArraySlice<UInt8> = sharedKey[0..<16]
+            let shrkey: ArraySlice<UInt8> = key[0..<16]
             sharedKey = Array(shrkey)
         }
         return sharedKey
@@ -61,7 +73,7 @@ public class KeyExchanger {
     
     public func generatePublicPrimes() {
         self.bigPrime = generate512bitProbabilisticPrime()
-        self.primitiveRoot = findPrimitiveRoot(p: self.bigPrime)
+        self.primitiveRoot = findPrimitiveRoot(p: bigPrime)
         
     }
     
@@ -79,7 +91,7 @@ public class KeyExchanger {
         }
     }
     
-    
+    //not generating array?
     private func primeFactors(number: BigInt) -> Array<BigInt> {
         var n: BigInt = number
         var i: BigInt = 2
@@ -105,11 +117,11 @@ public class KeyExchanger {
     
     private func isPrimeRoot(g: BigInt, p: BigInt) -> Bool {
         let totient: BigInt = p - 1
-        let factors = primeFactors(number: totient)
+        let factors: Array<BigInt> = primeFactors(number: totient)
         //var i: Int = 0
         let j: Int = factors.count
         
-        for i in 0...j {
+        for i in 0..<j {
             let factor: BigInt = factors[i]
             let t: BigInt = totient / factor
             let pow: BigInt = g.power(t,modulus: p)

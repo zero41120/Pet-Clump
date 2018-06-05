@@ -65,8 +65,6 @@
 		84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2420A007BD00533D35 /* AMTabButton.swift */; };
 		84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */; };
 		C928CC2920C536B100EE7A6F /* KeyExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C928CC2820C536B100EE7A6F /* KeyExchanger.swift */; };
-		C92DFF1420C601CD0063CFF7 /* KeyExchangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92DFF1320C601CD0063CFF7 /* KeyExchangeTests.swift */; };
-		C92DFF1C20C602870063CFF7 /* KeyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92DFF1B20C602870063CFF7 /* KeyExchange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,9 +167,6 @@
 		C928CC2820C536B100EE7A6F /* KeyExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyExchanger.swift; sourceTree = "<group>"; };
 		C92DFF0120C5FE200063CFF7 /* KeyExchangeTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyExchangeTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92DFF1120C601CD0063CFF7 /* KeyExchangeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyExchangeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C92DFF1320C601CD0063CFF7 /* KeyExchangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyExchangeTests.swift; sourceTree = "<group>"; };
-		C92DFF1520C601CD0063CFF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C92DFF1B20C602870063CFF7 /* KeyExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyExchange.swift; sourceTree = "<group>"; };
 		CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetClump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -390,7 +385,6 @@
 			children = (
 				29C17979207EE97D002971C5 /* PetClump */,
 				7741801820C4A06B00795A51 /* PetClumpUITests */,
-				C92DFF1220C601CD0063CFF7 /* KeyExchangeTests */,
 				29C17978207EE97D002971C5 /* Products */,
 				0ECC28B514BE4CD702FB4434 /* Pods */,
 				B5B004EA17432DBFD1994CBE /* Frameworks */,
@@ -476,16 +470,6 @@
 				CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C92DFF1220C601CD0063CFF7 /* KeyExchangeTests */ = {
-			isa = PBXGroup;
-			children = (
-				C92DFF1320C601CD0063CFF7 /* KeyExchangeTests.swift */,
-				C92DFF1B20C602870063CFF7 /* KeyExchange.swift */,
-				C92DFF1520C601CD0063CFF7 /* Info.plist */,
-			);
-			path = KeyExchangeTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -623,6 +607,7 @@
 					};
 					C92DFF1020C601CD0063CFF7 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 29C17976207EE97D002971C5;
 					};
@@ -901,8 +886,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C92DFF1C20C602870063CFF7 /* KeyExchange.swift in Sources */,
-				C92DFF1420C601CD0063CFF7 /* KeyExchangeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,11 +1175,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = KeyExchangeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.KeyExchangeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetClump.app/PetClump";
@@ -1207,6 +1192,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = KeyExchangeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
