@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     // Facebook Sign-ins
     private CallbackManager fbManager;
     // UI
-    private TextView animalText, uidText;
+    private TextView uidText;
     private Context c;
     private static final String TAG = "Entry Point";
     // GPS
@@ -72,10 +72,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        checkLoggedIn();
         setupUI();
         setGPS();
         setupGoogleLogin();
         setupFacebookLogin();
+    }
+    private void checkLoggedIn(){
+        if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            startActivity(new Intent(this, MatchingActivity.class));
+        }
     }
     private void setGPS(){
         ActivityCompat.requestPermissions(this,
@@ -263,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             this.uidText.setText(mAuth.getCurrentUser().getUid());
             saveGPS();
+            checkLoggedIn();
             Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
         });
     }
