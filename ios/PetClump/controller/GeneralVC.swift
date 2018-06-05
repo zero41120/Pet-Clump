@@ -11,21 +11,53 @@ import UIKit
 class GeneralVC: UIViewController {
     var primaryColor: UIColor { return self.uicolorFromHex(rgbValue: 0x00cccc) }
     var primaryDark:  UIColor { return self.uicolorFromHex(rgbValue: 0x3d3d5c) }
-    var colorAccent:  UIColor { return self.uicolorFromHex(rgbValue: 0xffb266)}
+    var colorAccent:  UIColor { return self.uicolorFromHex(rgbValue: 0xffb266) }
+    func getDefaultFont(_ size: CGFloat) -> UIFont {
+        return UIFont(name: "VarelaRound", size: size)!
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         for view in self.view.subviews {
             if let navigation = view as? UINavigationBar {
                 // Bar background
+                navigation.isTranslucent = false
                 navigation.barTintColor = self.primaryColor
                 // Button color
                 navigation.tintColor = UIColor.white
                 // Title color
-                navigation.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+                navigation.titleTextAttributes =
+                    [NSAttributedStringKey.foregroundColor : UIColor.white,
+                     NSAttributedStringKey.font : getDefaultFont(22)]
+                continue
             }
             
+            if let button = view as? UIButton {
+                let fontSize = button.titleLabel!.font.pointSize
+                button.titleLabel?.font = getDefaultFont(fontSize)
+                continue
+            }
+            
+            if let lable = view as? UILabel {
+                let fontSize = lable.font.pointSize
+                lable.font = getDefaultFont(fontSize)
+                continue
+            }
+            
+            if let lable = view as? UITextView {
+                let fontSize = lable.font!.pointSize
+                lable.font = getDefaultFont(fontSize)
+                continue
+            }
+            
+            if let lable = view as? UITextField {
+                let fontSize = lable.font!.pointSize
+                lable.font = getDefaultFont(fontSize)
+                continue
+            }
+
             if let filler = view as? FillerView{
                 filler.backgroundColor = self.primaryColor
+                continue
             }
         }
     }    
