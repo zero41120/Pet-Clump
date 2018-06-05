@@ -25,6 +25,18 @@ class WelcomeVC: GeneralVC{
                 self.present(pdv, animated: false, completion: nil)
             }
         }
+        
+        for view in self.view.subviews {
+            if let image = view as? UIImageView {
+                image.setRounded()
+                let _ = PetProfile.init(uid: uid, sequence: image.tag) { (myPet) in
+                    image.load(url: myPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.startMatching(sender:)))
+                    image.isUserInteractionEnabled = true
+                    image.addGestureRecognizer(tap)
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -34,19 +46,7 @@ class WelcomeVC: GeneralVC{
             return
         }
 
-
         OwnerProfile.most_recent_owner = OwnerProfile(id: uid, completion: { (owner) in
-            for view in self.view.subviews {
-                if let image = view as? UIImageView {
-                    image.setRounded()
-                    let _ = PetProfile.init(uid: uid, sequence: image.tag) { (myPet) in
-                        image.load(url: myPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
-                        let tap = UITapGestureRecognizer(target: self, action: #selector(self.startMatching(sender:)))
-                        image.isUserInteractionEnabled = true
-                        image.addGestureRecognizer(tap)
-                    }
-                }
-            }
             WelcomeVC.locationManager.requestWhenInUseAuthorization()
             if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
                 OwnerProfile.most_recent_owner?.upload(vc: nil, completion: {
