@@ -1101,7 +1101,6 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAR-Su-IvY">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                                <color key="backgroundColor" red="0.72941176470000002" green="0.59999999999999998" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Start Matching" id="lkN-tw-IO2">
                                         <barButtonItem key="backBarButtonItem" title="Back" id="VH2-4S-xQv"/>
@@ -1126,7 +1125,7 @@
                                     <constraint firstAttribute="width" constant="200" id="Guh-9a-ReE"/>
                                 </constraints>
                             </imageView>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-HI-lZ2" customClass="FillerView" customModule="PetClump" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-HI-lZ2" customClass="FillerView" customModule="PetClump" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="m6m-Lg-crs"/>

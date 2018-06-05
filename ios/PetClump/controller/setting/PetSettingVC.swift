@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PetSettingVC: UIViewController{
+class PetSettingVC: GeneralVC{
     //Title Labels
     @IBOutlet weak var nameTitleLabel:    UILabel!
     @IBOutlet weak var infoTitleLabel:    UILabel!

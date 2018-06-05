@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class MatchBestVC: GeneralVC, UITableViewDataSource, UITableViewDelegate{
 
     @IBOutlet weak var matchingTable: UITableView!
     

@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class SettingVC: UIViewController{
+class SettingVC: GeneralVC{
     
     // Title Labels
     @IBOutlet weak var titleNameLabel:       UILabel!
