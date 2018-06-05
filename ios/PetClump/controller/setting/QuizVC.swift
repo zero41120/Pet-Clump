@@ -11,7 +11,7 @@ import Firebase
 import UIColor_FlatColors
 import Cartography
 
-class QuizVC: UIViewController{
+class QuizVC: GeneralVC{
 
     // Assigned by caller
     var petProfile: PetProfile?

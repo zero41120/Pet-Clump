@@ -186,7 +186,7 @@ DEPENDENCIES:
   - "UIColor+FlatColors"
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AZPeerToPeerConnection
     - BigInt
     - Bolts
@@ -268,4 +268,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 07ddcc4d7ea4cbe494ec1b02f2d5600e3e13554a
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.0

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ChatRoomVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+class ChatRoomVC: GeneralVC, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     private static let MAX_WIDTH = 200
     private static let MIN_HEIGHT = 96

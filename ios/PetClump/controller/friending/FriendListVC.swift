@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
 
     var myPet: PetProfile = PetProfile.most_recent_pet!
     
