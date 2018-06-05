@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PetSettingVC: UIViewController{
+class PetSettingVC: GeneralVC{
     //Title Labels
     @IBOutlet weak var nameTitleLabel:    UILabel!
     @IBOutlet weak var infoTitleLabel:    UILabel!
@@ -168,35 +168,42 @@ class PetSettingVC: UIViewController{
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
             imageView.image = nil;
             imageView.backgroundColor = UIImageView.getDefaultDeselectedColor()
-            switch imageView.tag {
-            case 0: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.main, url: "")
-            case 1: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet1, url: "")
-            case 2: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet2, url: "")
-            case 3: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet3, url: "")
-            case 4: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet4, url: "")
-            case 5: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet5, url: "")
-            case 6: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group1, url: "")
-            case 7: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group2, url: "")
-            case 8: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group3, url: "")
-            default: break
-            }
-            self.petProfile?.upload(vc: nil, completion: nil)
+            let photoKey = PetProfile.tagToPhotoKey(tag: imageView.tag)
+            self.petProfile!.deleteImage(photoKey: photoKey)
+            self.petProfile!.upload(vc: nil, completion: nil)
         }))
         // Cancel
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+        
+    }
+    
+    private func validateInput() -> Bool {
+        if(petNameTextField.text! == ""){
+            makeAlert(message: NSLocalizedString("You must enter a name!", comment: "Shows when user try to tap save without filling the information"))
+            return false
+        }
+        if(petBioTextView.text! == ""){
+            makeAlert(message: NSLocalizedString("You must enter your pet's bio!", comment: "Shows when user try to tap save without filling the information"))
+            return false
+        }
+        if(petAgeTextField.text! == ""){
+            makeAlert(message: NSLocalizedString("You need to enter the age! I don't know is an answer.", comment: "Shows when user try to tap save without filling the information"))
+            return false
+        }
+        return true
     }
     
     @IBAction func tapSave(_ sender: Any) {
-        if let uid = Auth.auth().currentUser?.uid{
-            petProfile!.name    = petNameTextField.text!
-            petProfile!.bio     = petBioTextView.text!
-            petProfile!.age     = petAgeTextField.text!
-            petProfile!.specie  = petSpeciesTextField.text!
-            petProfile!.ownerId = uid
-            petProfile!.upload(vc: self) {
-                self.dismiss(animated: true, completion: nil)
-            }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        if !validateInput() { return }
+        petProfile!.name    = petNameTextField.text!
+        petProfile!.bio     = petBioTextView.text!
+        petProfile!.age     = petAgeTextField.text!
+        petProfile!.specie  = petSpeciesTextField.text!
+        petProfile!.ownerId = uid
+        petProfile!.upload(vc: self) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     

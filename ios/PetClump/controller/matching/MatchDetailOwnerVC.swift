@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MatchDetailOwnerVC: UIViewController{
+class MatchDetailOwnerVC: GeneralVC{
         
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!

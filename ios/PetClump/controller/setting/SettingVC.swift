@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class SettingVC: UIViewController{
+class SettingVC: GeneralVC{
     
     // Title Labels
     @IBOutlet weak var titleNameLabel:       UILabel!
@@ -48,7 +48,7 @@ class SettingVC: UIViewController{
             // Gets user information
             self.nameLabel.text = profile.name
             self.genderLabel.text = profile.gender
-            self.birthdayLabel.text = profile.getBirthdayString()
+            self.birthdayLabel.text = profile.birthday.getBirthdayString()
             
             // Gets match perference and updates the slider
             self.matchSlider.minimumValue = 0

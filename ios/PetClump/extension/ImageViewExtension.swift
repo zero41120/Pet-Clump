@@ -22,15 +22,6 @@ extension UIImageView {
         self.layer.masksToBounds = true
     }
     
-    func setShadow() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.25
-        layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        layer.shadowRadius = 4.0
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.main.scale
-    }
-    
     func load(url: String){
         if url == "" {
             self.image = nil

@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MatchDetailVC: UIViewController{
+class MatchDetailVC: GeneralVC{
     
     var friendHandler: FriendHandler?
     

@@ -16,7 +16,7 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import BigInt
 
-class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, GIDSignInDelegate{
+class LoginVC: GeneralVC, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, GIDSignInDelegate{
 
     
     @IBOutlet weak var signInButtonGoogle: GIDSignInButton!
