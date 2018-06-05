@@ -57,7 +57,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     private OwnerProfile profile = OwnerProfile.getInstance();
-    private double profile_lat = 0.0, profile_lon = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,33 +64,10 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             Log.d(TAG, "onCreate: User not logged in");
             finish();
         }
-        setGPS();
         setupUI();
         setActionBar(String.valueOf(getText(R.string.About_me)));
     }
 
-    private void setGPS(){
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                99);
-        LocationManager lm = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        List<String> providers = lm.getProviders(true);
-        Location l;
-        // Go through the location providers starting with GPS, stop as soon
-        // as we find one.
-        try{
-            for (int i=providers.size()-1; i>=0; i--) {
-                l = lm.getLastKnownLocation(providers.get(i));
-                profile_lat = l.getLatitude();
-                profile_lon = l.getLongitude();
-                //Toast.makeText(this, l.getLatitude()+","+l.getLongitude(), Toast.LENGTH_SHORT).show();
-                if (l != null) break;
-            }
-        }catch(SecurityException e){
-            e.printStackTrace();
-            Log.d(TAG,"setGPS failed, permission:"+e);
-        }
-    }
     private void setupUI(){
         setContentView(R.layout.activity_user_info_edit);
         c = getApplicationContext();
@@ -274,8 +250,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void saveData() {
-        profile.setLat(Math.round(profile_lat*1000000)/1000000.0);
-        profile.setLon(Math.round(profile_lon*1000000)/1000000.0);
         profile.setGender(user_select_gender.getSelectedItem().toString());
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
@@ -370,37 +344,5 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
         return true;
     }
-    // GPS permission setup
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 99:
-                // If the permissions aren't set, then return. Otherwise, proceed.
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                        PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}
-                                , 10);
-                    }
-                    Log.d(TAG, "returning program");
-                    return;
-                }
-                else{
-                    // Create Intent to reference MyService, start the Service.
-                    Log.d(TAG, "starting service");
-                    Intent i = new Intent(this, MyService.class);
-                    if(i==null)
-                        Log.d(TAG, "intent null");
-                    else{
-                        startService(i);
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-    }
+
 }

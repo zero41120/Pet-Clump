@@ -42,11 +42,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // User the position to get the profile to show a card
-        String information = pets.get(position).getMatchingPercent() + "%";
-        holder.pet_matchview_label.setText(information);
-        pets.get(position).calculateDistance(()->{
-            holder.pet_matchview_location.setText(pets.get(position).getDistance() + "km");
-        });
+        holder.pet_matchview_location.setText(pets.get(position).getDistance() + "km");
+        holder.pet_matchview_label.setText(pets.get(position).getMatchingPercent()+ "%");
+
         String url = pets.get(position).getPhotoUrl();
         if(url.compareTo("") != 0){
             new DownloadImageTask(holder.pet_matchview_image,mContext).execute(url);
