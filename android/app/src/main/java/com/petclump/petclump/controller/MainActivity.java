@@ -1,10 +1,16 @@
 package com.petclump.petclump.controller;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
@@ -35,27 +41,31 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.BaseMessage;
 import com.petclump.petclump.models.Chat;
+import com.petclump.petclump.models.GPS.MyService;
 import com.petclump.petclump.models.MessagingDownloader;
+import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     // Google Sign-ins
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient gClient;
-
     // Facebook Sign-ins
     private CallbackManager fbManager;
-
     // UI
     private TextView animalText, uidText;
     private Context c;
     private static final String TAG = "Entry Point";
+    // GPS
+    private double profile_lat = 0.0, profile_lon = 0.0;
+    private OwnerProfile owner = OwnerProfile.getInstance();
 
 
     @Override
@@ -63,22 +73,46 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupUI();
+        setGPS();
         setupGoogleLogin();
         setupFacebookLogin();
+    }
+    private void setGPS(){
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                99);
+        LocationManager lm = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        List<String> providers = lm.getProviders(true);
+        Location l;
+        // Go through the location providers starting with GPS, stop as soon
+        // as we find one.
+        try{
+            for (int i=providers.size()-1; i>=0; i--) {
+                l = lm.getLastKnownLocation(providers.get(i));
+                profile_lat = l.getLatitude();
+                profile_lon = l.getLongitude();
+                //Toast.makeText(this, l.getLatitude()+","+l.getLongitude(), Toast.LENGTH_SHORT).show();
+                if (l != null) break;
+            }
+        }catch(SecurityException e){
+            e.printStackTrace();
+            Log.d(TAG,"setGPS failed, permission:"+e);
+        }
     }
 
     private void setupUI(){
         // Init variables
         c = getApplicationContext();
-        uidText = findViewById(R.id.uidText);
-        animalText = findViewById(R.id.animalText);
-        Button pickButton = findViewById(R.id.main_button_upload);
+        uidText = findViewById(R.id.user_UID);
         //Button settingsButton = findViewById(R.id.button_settings);
         Button matchingButton = findViewById(R.id.matching_button);
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // Show user UID if logged in
-        if (cUser != null) { uidText.setText(cUser.getUid()); }
+        if (cUser != null) {
+            uidText.setText(cUser.getUid());
+            saveGPS();
+        }
 
         // Sign out button
         Button mGoogleSignOutBtn = findViewById(R.id.mGoogleSignOut);
@@ -88,30 +122,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             );
             FirebaseAuth.getInstance().signOut();
         });
-        /*Chat s = new Chat(FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
-        s.connectServer(null);*/
 
-        // Upload photo activity
-       /* PetProfile.getInstance().listenToFriendList("5Z2rd459CqXZFE3vrk7AQkYn1Yy10",()->{
-            Log.d(TAG,PetProfile.getInstance().getRelation_list().toString());
-        });*/
-/*       PetProfile pet = new PetProfile();
-       String sed = "94OeeGargpPOI5RuQU9N9zb2qvD31";
-       String rec = "i9DnVO5BDzWSVdMLLCIZJWgx6Uq20";
-
-        MessagingDownloader m = new MessagingDownloader(sed, rec, 2);
-        ArrayList<BaseMessage> mes = new ArrayList<>();*/
-
-        pickButton.setOnClickListener(v -> {
-/*            m.downloadMore(mes, ()->{
-                //Log.d(TAG,"after download:"+mes);
-            });*/
-        });
-
-        // Setting page activity
-//        settingsButton.setOnClickListener(v ->
-//            startActivity(new Intent(c, UserInfoActivity.class))
-//        );
 
         // Matching activity
         matchingButton.setOnClickListener(v->
@@ -119,22 +130,22 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         );
 
         // Animal text on screen
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        for (Specie s: Specie.values()) {
-                            Thread.sleep(1000);
-                            runOnUiThread( ()-> animalText.setText(s.getName(c)));
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    Log.d("Interrupted", "run: " + e.getMessage());
-                }
-            }
-        };
-        t.start();
+//        Thread t = new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    while (!isInterrupted()) {
+//                        for (Specie s: Specie.values()) {
+//                            Thread.sleep(1000);
+//                            runOnUiThread( ()-> animalText.setText(s.getName(c)));
+//                        }
+//                    }
+//                } catch (InterruptedException e) {
+//                    Log.d("Interrupted", "run: " + e.getMessage());
+//                }
+//            }
+//        };
+//        t.start();
     }
 
 
@@ -152,6 +163,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             .build();
 
         SignInButton mGoogleSignInBtn = findViewById(R.id.googleBtn);
+        Button google_button = findViewById(R.id.google_button);
+        google_button.setOnClickListener(v->{
+            mGoogleSignInBtn.performClick();
+        });
         mGoogleSignInBtn.setOnClickListener(v -> {
             Intent doSignIn = Auth.GoogleSignInApi.getSignInIntent(gClient);
             startActivityForResult(doSignIn, RC_SIGN_IN);
@@ -164,8 +179,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         } else {
             oResult.setResultCallback(this::handleSignInResult);
         }
-        //FirebaseAuth.getInstance().addAuthStateListener();
-
     }
 
     /**
@@ -174,7 +187,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void setupFacebookLogin(){
         // Initialize Facebook Login button
         fbManager = CallbackManager.Factory.create();
-        LoginButton loginButton = findViewById(R.id.facebook_button);
+        LoginButton loginButton = findViewById(R.id.facebook_button_real);
+        Button facebook_button = findViewById(R.id.facebook_button);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(fbManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -239,7 +253,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.w(TAG, "signInWithCredential:failure", task.getException());
                 return;
             }
-
+            // setup new GPS
+            setGPS();
             FirebaseUser user = mAuth.getCurrentUser();
             if (user == null) {
                 Log.d(TAG, "handleFBSignInResult: No current user");
@@ -247,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
 
             this.uidText.setText(mAuth.getCurrentUser().getUid());
+            saveGPS();
             Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
         });
     }
@@ -254,5 +270,48 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed: Sign in connection failed");
+    }
+    // GPS permission setup
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 99:
+                // If the permissions aren't set, then return. Otherwise, proceed.
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}
+                                , 10);
+                    }
+                    Log.d(TAG, "returning program");
+                    return;
+                }
+                else{
+                    // Create Intent to reference MyService, start the Service.
+                    Log.d(TAG, "starting service");
+                    Intent i = new Intent(this, MyService.class);
+                    if(i==null)
+                        Log.d(TAG, "intent null");
+                    else{
+                        startService(i);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    private void saveGPS(){
+        FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
+        owner.download(cUser.getUid(),()->{
+            owner.setLat(profile_lat);
+            owner.setLon(profile_lon);
+            owner.upload(cUser.getUid(),()->{
+                Toast.makeText(c, "GPS change has uploaded.", Toast.LENGTH_SHORT).show();
+            });
+        });
     }
 }

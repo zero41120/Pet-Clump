@@ -4,62 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/entry_bg"
     tools:context=".controller.MainActivity">
-
-    <TextView
-        android:id="@+id/animalText"
-        android:layout_width="wrap_content"
-        android:layout_height="17dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginRight="150dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="150dp"
-        android:text="@string/greeting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/main_button_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Upload"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings"
-        app:layout_constraintBottom_toTopOf="@+id/main_button_upload"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951" />
-
-    <TextView
-        android:id="@+id/uidText"
-        android:layout_width="wrap_content"
-        android:layout_height="17dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginRight="150dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="150dp"
-        android:text="@string/greeting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleBtn"
@@ -69,44 +15,42 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="148dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facebook_button" />
 
     <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebook_button"
+        android:id="@+id/facebook_button_real"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="77dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uidText" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
     <Button
         android:id="@+id/mGoogleSignOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="116dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:text="Google Sign Out"
-        app:layout_constraintBottom_toTopOf="@+id/button_settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.211"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleBtn"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintTop_toBottomOf="@+id/user_UID" />
 
     <Button
         android:id="@+id/matching_button"
@@ -116,5 +60,118 @@
         android:text="Go Matching"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcome_text"
+        style="@style/entryfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="144dp"
+        android:fontFamily="@font/varela_round"
+        android:text="Welcome to"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/petclump_text"
+        app:layout_constraintEnd_toStartOf="@+id/petclump_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/petclump_text"
+        style="@style/entryfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="58dp"
+        android:layout_marginLeft="58dp"
+        android:layout_marginRight="58dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/varela_round"
+        android:textColor="@color/black"
+        android:text="Pet Clump"
+        android:textSize="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="84dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="12dp"
+        android:text="the best social app for pet owners"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petclump_text" />
+
+    <ImageView
+        android:id="@+id/petclump_icon"
+        android:layout_width="122dp"
+        android:layout_height="118dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="68dp"
+        android:src="@drawable/petclump"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/welcome_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/facebook_button"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="69dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/facebook_button_background"
+        android:fontFamily="@font/varela_round"
+        android:text="login with facebook"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petclump_text" />
+
+    <Button
+        android:id="@+id/google_button"
+        android:layout_width="230dp"
+        android:layout_height="43dp"
+
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/google_button_background"
+        android:fontFamily="@font/varela_round"
+        android:text="login with google"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebook_button_real" />
+
+    <TextView
+        android:id="@+id/user_UID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="168dp"
+        android:layout_marginLeft="169dp"
+        android:layout_marginRight="168dp"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="17dp"
+        android:text="dfjiafije"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googleBtn" />
 
 </android.support.constraint.ConstraintLayout>

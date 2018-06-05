@@ -15,13 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.MatchingProfile;
 import com.petclump.petclump.models.MatchingProfileDownloader;
+import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -49,7 +52,6 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
         self = this;
         profiles = new ArrayList<>();
         return v;
-
     }
 
     @Override
@@ -61,7 +63,9 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
         profile.download(petId, ()->{
             // Make sure profile is downloaded before requesting profile
             md = new MatchingProfileDownloader(profile, DEFAULT_DOWNLOAD_LIMIT);
-            setRecyclerView();
+            OwnerProfile.getInstance().download(FirebaseAuth.getInstance().getCurrentUser().getUid(),()->{
+                setRecyclerView();
+            });
         });
     }
     private void setRecyclerView(){
@@ -82,7 +86,8 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
     @Override
     public void didCompleteDownload() {
         Integer lastSize = profiles.size();
-        Log.d(TAG, "didCompleteDownload: "+ profiles);
+        Log.d(TAG, "didCompleteDownload: " + profiles);
         recycleViewAdapter.notifyItemInserted(lastSize);
     }
+
 }

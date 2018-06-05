@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
     tools:context=".controller.MatchingViewProfileActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -19,22 +18,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="@dimen/match_size"
+                android:layout_height="@dimen/match_size"
                 android:layout_gravity="center"
                 android:background="@color/navy"
                 android:layout_weight="1">
             <android.support.v4.view.ViewPager
                 android:id="@+id/matchviewprofile_viewPager"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="@dimen/match_size"
+                android:layout_height="@dimen/match_size"
                 android:layout_gravity="center" />
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
+                android:layout_height="340dp"
+                android:layout_marginStart="@dimen/match_margin"
+                android:layout_marginLeft="@dimen/match_margin"
                 android:layout_marginBottom="10dp"
                 app:ci_gravity="bottom"/>
             </RelativeLayout>

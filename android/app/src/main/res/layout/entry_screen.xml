@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/entry_bg">
+
+    <TextView
+        android:id="@+id/welcome_text"
+        style="@style/entryfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="144dp"
+        android:fontFamily="@font/varela_round"
+        android:text="Welcome to"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/petclump_text"
+        app:layout_constraintEnd_toStartOf="@+id/petclump_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/petclump_text"
+        style="@style/entryfont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="58dp"
+        android:layout_marginLeft="58dp"
+        android:layout_marginRight="58dp"
+        android:layout_marginStart="58dp"
+        android:fontFamily="@font/varela_round"
+        android:text="Pet Clump"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="79dp"
+        android:layout_marginStart="79dp"
+        android:text="the best social app for pet owners"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petclump_text" />
+
+    <ImageView
+        android:id="@+id/petclump_icon"
+        android:layout_width="122dp"
+        android:layout_height="118dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="68dp"
+        android:src="@drawable/petclump"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/welcome_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/facebook_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
+        android:src="@drawable/facebook"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="331dp" />
+
+    <ImageView
+        android:id="@+id/google_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="46dp"
+        android:src="@drawable/search"
+        app:layout_constraintEnd_toStartOf="@+id/google_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebook_img" />
+
+    <Button
+        android:id="@+id/facebook_button"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="69dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/facebook_button_background"
+        android:fontFamily="@font/varela_round"
+        android:text="login with facebook"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/facebook_img"
+        app:layout_constraintTop_toBottomOf="@+id/petclump_text" />
+
+    <Button
+        android:id="@+id/google_button"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="69dp"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/google_button_background"
+        android:fontFamily="@font/varela_round"
+        android:text="login with google"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/facebook_button" />
+
+    <TextView
+        android:id="@+id/user_UID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="168dp"
+        android:layout_marginLeft="169dp"
+        android:layout_marginRight="168dp"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="32dp"
+        android:text="dfjiafije"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/google_button" />
+
+
+
+</android.support.constraint.ConstraintLayout>

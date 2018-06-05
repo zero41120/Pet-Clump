@@ -65,7 +65,7 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
             fos.write(bitmapdata);
             fos.flush();
             fos.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         // return the file

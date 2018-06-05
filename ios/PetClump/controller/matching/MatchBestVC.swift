@@ -43,6 +43,10 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
     func downloadMore(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         query?.addSnapshotListener{(snap, err) in
+            if let error = err {
+                print("Error loding matches: \(error)")
+                return
+            }
             guard let snap = snap else {
                 print("Error loding matches")
                 return
@@ -130,10 +134,10 @@ class MatchBestVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @objc func viewMatching(sender: UITapGestureRecognizer){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchDetailVC") as! MatchDetailVC
         let index = sender.view!.tag
-        pdv.friendProfile = element[index].getProfile()
-        pdv.myProfile = petProfile
+        MatchTabBar.thatPet = element[index].getProfile()
+        MatchTabBar.thisPet = petProfile
         self.present(pdv, animated: true, completion: nil)
     }
     

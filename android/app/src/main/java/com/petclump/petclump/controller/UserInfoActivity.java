@@ -1,11 +1,18 @@
 package com.petclump.petclump.controller;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.DownloadImageTask;
+import com.petclump.petclump.models.GPS.MyService;
 import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
@@ -30,6 +38,7 @@ import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class UserInfoActivity extends AppCompatActivity implements ProfileDownloader{
     private static final String TAG = "User Info Activity";
@@ -71,7 +80,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         birthday_label  = findViewById(R.id.birthday_label);
         range_label     = findViewById(R.id.user_match_value);
 
-        edit_button     = findViewById(R.id.edit_button);
+        //edit_button     = findViewById(R.id.edit_button);
         button_why = findViewById(R.id.button_why);
         // initialize primary pet images
         initializePrimaryPet();
@@ -81,10 +90,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         );
         // Enter Pet_info to create new pet
 
-        edit_button.setOnClickListener(v-> {
-            Intent intent = new Intent(c, UserInfoEditActivity.class);
-            startActivity(intent);
-        });
 
         Intent i = new Intent(c, PetInfoActivity.class);
         profile_pet1.setOnClickListener(v->{
@@ -179,5 +184,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
 
         return true;
     }
+
 }
 

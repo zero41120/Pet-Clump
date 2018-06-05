@@ -91,6 +91,15 @@ class FriendHandler {
         }
     }
     
+    func shouldDisableAddFriendButton(ifTrue: (() -> Void)?, ifFalse: (() -> Void)?){
+        getMyPending {
+            switch self.myPending {
+            case "": ifFalse?()
+            default: ifTrue?()
+            }
+        }
+    }
+    
     func isBlocking(ifTrue: (() -> Void)?, ifFalse: (() -> Void)?){
         getMyPending {
             switch self.myPending {

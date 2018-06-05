@@ -127,6 +127,10 @@ class OwnerProfile: Profile{
         return dateFormatter.string(from: self.birthday)
     }
     
+    func getAgeString() -> String {
+        let ageYear = Calendar.current.dateComponents([.year], from: self.birthday, to: Date()).year!
+        return NSLocalizedString("\(ageYear) years old", comment: "An age lable")
+    }
     func validLocation() -> Bool{
         return self.lat != 0.0 && self.lon != 0.0
     }
@@ -160,7 +164,9 @@ class FreeSchedule{
         var commonStirng = ""
         let thisTime = Array(self.freeTimeAsString)
         let otherTime = Array(other.freeTimeAsString)
-        for index in 0...thisTime.count {
+        print(thisTime)
+        print(otherTime)
+        for index in 0...(thisTime.count - 1) {
             if thisTime[index] == "1" && otherTime[index] == "1"{
                 commonStirng += "1"
             } else {

@@ -1,10 +1,17 @@
 package com.petclump.petclump.controller;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -25,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.FreeSchedule;
+import com.petclump.petclump.models.GPS.MyService;
 import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
@@ -32,6 +40,7 @@ import com.petclump.petclump.models.protocols.ProfileUploader;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class UserInfoEditActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,ImageView.OnClickListener {
     private static final String TAG = "EditUser";
@@ -42,14 +51,12 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     TextView match_range_value;
     SeekBar user_match_range_seekbar;
     Spinner user_dob_day, user_dob_month, user_dob_year, user_select_gender;
-    Object dob_year, dob_month, dob_day, gender;
     Context c;
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    private OwnerProfile profile;
-
+    private OwnerProfile profile = OwnerProfile.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +67,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         setupUI();
         setActionBar(String.valueOf(getText(R.string.About_me)));
     }
-
 
     private void setupUI(){
         setContentView(R.layout.activity_user_info_edit);
@@ -133,7 +139,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
         setFreeScheduleListener();
-        profile = OwnerProfile.getInstance();
         profile.download(user.getUid(),()->{
             user_name_editText.setText(profile.getName());
             int index = getSpinnerPosition(user_select_gender, profile.getGender());
@@ -153,7 +158,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             user_match_range_seekbar.setProgress(stringToProgress(range));
             // setup free schedule
             FreeSchedule freeSchedule = profile.getFreeTime();
-            Toast.makeText(this, "freetime:"+freeSchedule, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "freetime:"+freeSchedule, Toast.LENGTH_SHORT).show();
             for(int i=1; i<8; i++) {
                 for(int j=1; j<4; j++) {
                     String imageID = "sch" + i + j;
@@ -219,7 +224,7 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
             case  0: return 5;
             case  1: return 20;
             case  2: return 100;
-            default: return 0;
+            default: return 21000;
         }
     }
     private boolean checkBirthday(){
@@ -245,7 +250,6 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void saveData() {
-        OwnerProfile profile = OwnerProfile.getInstance();
         profile.setGender(user_select_gender.getSelectedItem().toString());
         profile.setName(user_name_editText.getText().toString());
         profile.setDistancePerference(progressToMile(user_match_range_seekbar.getProgress()));
@@ -274,12 +278,11 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
                     freetime += "1";
             }
         }
-        Toast.makeText(this, "freetime:"+freetime, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "freetime:"+freetime, Toast.LENGTH_SHORT).show();
         profile.setFreeTime(freetime);
         profile.upload(user.getUid(),()->{
-            Toast.makeText(this, "Upload successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Upload successfully!", Toast.LENGTH_SHORT).show();
         });
-        //finish();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -341,4 +344,5 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
 
         return true;
     }
+
 }
