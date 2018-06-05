@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,13 +17,30 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.87341700052490201" green="1" blue="0.91507795804822034" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="Nph-BC-NIE">
+                                <rect key="frame" x="37.5" y="183" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="1Zr-nS-xEJ"/>
+                                    <constraint firstAttribute="width" constant="300" id="Hid-ma-fRJ"/>
+                                    <constraint firstAttribute="width" secondItem="Nph-BC-NIE" secondAttribute="height" multiplier="1:1" id="pY5-DJ-3qT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.35686274509803922" green="0.78823529411764703" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Nph-BC-NIE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cck-MN-QFW"/>
+                            <constraint firstItem="Nph-BC-NIE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="h2O-vc-cPS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch" width="891" height="891"/>
+    </resources>
 </document>
