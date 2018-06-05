@@ -5,9 +5,15 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="VarelaRound-Regular.otf">
+            <string>VarelaRound</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
@@ -17,38 +23,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_background" translatesAutoresizingMaskIntoConstraints="NO" id="EqU-SY-EhI">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-uG-9Ke" customClass="GIDSignInButton">
-                                <rect key="frame" x="83" y="314" width="209" height="59"/>
+                                <rect key="frame" x="97" y="437.33333333333331" width="209" height="59"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="59" id="ZnK-AJ-awn"/>
-                                    <constraint firstAttribute="width" constant="209" id="i16-7M-3NP"/>
+                                    <constraint firstAttribute="width" constant="209" id="r0P-k3-Swj"/>
+                                    <constraint firstAttribute="height" constant="59" id="tOq-XT-d8p"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wR-75-6CU">
-                                <rect key="frame" x="178" y="288" width="18" height="18"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="18" id="idD-uq-2kk"/>
-                                    <constraint firstAttribute="height" constant="18" id="m6b-4k-yFE"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="uid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIE-4I-BrB">
-                                <rect key="frame" x="83" y="441" width="209" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIE-4I-BrB">
+                                <rect key="frame" x="0.0" y="757" width="375" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Copyright © 2018 PetClump">
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mascot" translatesAutoresizingMaskIntoConstraints="NO" id="icg-gT-D8b">
+                                <rect key="frame" x="218" y="112" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="icg-gT-D8b" secondAttribute="height" multiplier="1:1" id="05g-d3-xsb"/>
+                                    <constraint firstAttribute="width" constant="120" id="rJB-xT-a7w"/>
+                                    <constraint firstAttribute="height" constant="120" id="wNi-Dr-vPh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekX-fR-8qW">
+                                <rect key="frame" x="29" y="188" width="189" height="36.333333333333343"/>
+                                <fontDescription key="fontDescription" name="VarelaRound" family="Varela Round" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THv-GK-rWf">
+                                <rect key="frame" x="79" y="292.33333333333331" width="296" height="20"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Best social app for pet owners
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" red="0.079258925432159663" green="0.17800624781682328" blue="0.17968858863342296" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xy2-a1-evl">
+                                <rect key="frame" x="58" y="232.00000000000003" width="259" height="60.333333333333343"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Pet Clump">
+                                        <attributes>
+                                            <font key="NSFont" size="50" name="VarelaRound"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" red="0.079258925432159663" green="0.17800624781682328" blue="0.17968858863342296" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wR-75-6CU">
+                                <rect key="frame" x="15" y="392.33333333333331" width="291" height="18"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="IlO-dN-swx"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="4wR-75-6CU" secondAttribute="trailing" constant="179" id="7bl-ks-LhC"/>
-                            <constraint firstItem="4wR-75-6CU" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="178" id="APo-w9-gWs"/>
-                            <constraint firstItem="4wR-75-6CU" firstAttribute="top" secondItem="fJF-8F-Rb7" secondAttribute="top" constant="244" id="BEg-E3-pXa"/>
-                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="TvC-uG-9Ke" secondAttribute="trailing" constant="83" id="P6U-Bx-RQI"/>
-                            <constraint firstItem="TvC-uG-9Ke" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="83" id="Y89-FK-Wlh"/>
-                            <constraint firstItem="TvC-uG-9Ke" firstAttribute="top" secondItem="4wR-75-6CU" secondAttribute="bottom" constant="8" id="vLS-fn-0Jp"/>
+                            <constraint firstItem="ekX-fR-8qW" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="29" id="0kg-18-NHE"/>
+                            <constraint firstItem="4wR-75-6CU" firstAttribute="top" secondItem="THv-GK-rWf" secondAttribute="bottom" constant="80" id="7tR-8X-Gfy"/>
+                            <constraint firstItem="xy2-a1-evl" firstAttribute="top" secondItem="icg-gT-D8b" secondAttribute="bottom" id="CJ6-kx-CY5"/>
+                            <constraint firstItem="4wR-75-6CU" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="15" id="DwB-rG-MMC"/>
+                            <constraint firstAttribute="bottom" secondItem="EqU-SY-EhI" secondAttribute="bottom" id="Hon-48-mwD"/>
+                            <constraint firstItem="icg-gT-D8b" firstAttribute="leading" secondItem="ekX-fR-8qW" secondAttribute="trailing" id="LJy-sh-A0T"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="4wR-75-6CU" secondAttribute="trailing" constant="69" id="T1o-W9-zck"/>
+                            <constraint firstItem="THv-GK-rWf" firstAttribute="top" secondItem="xy2-a1-evl" secondAttribute="bottom" id="W4c-cB-R9P"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="THv-GK-rWf" secondAttribute="trailing" id="XZb-Uw-vye"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="KIE-4I-BrB" secondAttribute="trailing" id="eYW-73-Rox"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="icg-gT-D8b" secondAttribute="trailing" constant="37" id="fLw-tJ-gUX"/>
+                            <constraint firstItem="KIE-4I-BrB" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" id="gBK-4z-qVg"/>
+                            <constraint firstItem="EqU-SY-EhI" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" id="gwa-4G-hEr"/>
+                            <constraint firstItem="icg-gT-D8b" firstAttribute="top" secondItem="fJF-8F-Rb7" secondAttribute="top" constant="68" id="h97-dS-W8f"/>
+                            <constraint firstItem="EqU-SY-EhI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hkP-0e-TQ9"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="TvC-uG-9Ke" secondAttribute="trailing" constant="69" id="hpl-YC-b4b"/>
+                            <constraint firstItem="xy2-a1-evl" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="58" id="hyL-S7-nY4"/>
+                            <constraint firstItem="EqU-SY-EhI" firstAttribute="trailing" secondItem="fJF-8F-Rb7" secondAttribute="trailing" id="lFd-Jt-bmT"/>
+                            <constraint firstItem="TvC-uG-9Ke" firstAttribute="top" secondItem="4wR-75-6CU" secondAttribute="bottom" constant="27" id="uL9-YO-WBZ"/>
+                            <constraint firstItem="KIE-4I-BrB" firstAttribute="bottom" secondItem="fJF-8F-Rb7" secondAttribute="bottom" id="wdx-6g-bu9"/>
+                            <constraint firstItem="fJF-8F-Rb7" firstAttribute="trailing" secondItem="xy2-a1-evl" secondAttribute="trailing" constant="58" id="xPi-v4-FVj"/>
+                            <constraint firstItem="THv-GK-rWf" firstAttribute="leading" secondItem="fJF-8F-Rb7" secondAttribute="leading" constant="79" id="ykT-If-9CT"/>
+                            <constraint firstItem="ekX-fR-8qW" firstAttribute="top" secondItem="fJF-8F-Rb7" secondAttribute="top" constant="144" id="zRh-9v-SUG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fJF-8F-Rb7"/>
                     </view>
@@ -61,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1007" y="30"/>
+            <point key="canvasLocation" x="-1007.2" y="29.55665024630542"/>
         </scene>
         <!--SettingVC-->
         <scene sceneID="J6j-EU-Tek">
@@ -1179,4 +1250,8 @@
             <point key="canvasLocation" x="-28" y="30"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="login_background" width="1397" height="2001"/>
+        <image name="mascot" width="143" height="146"/>
+    </resources>
 </document>
