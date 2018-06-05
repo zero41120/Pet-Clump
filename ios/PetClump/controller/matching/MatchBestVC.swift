@@ -100,7 +100,8 @@ class MatchBestVC: GeneralVC, UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Setups for cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "MatchingCell") as! MatchingTableViewCell
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.setupLable()
+        
         let tapl = UITapGestureRecognizer(target: self, action: #selector(viewMatching(sender:)))
         let tapr = UITapGestureRecognizer(target: self, action: #selector(viewMatching(sender:)))
         let index = indexPath.row * 2
@@ -108,14 +109,14 @@ class MatchBestVC: GeneralVC, UITableViewDataSource, UITableViewDelegate{
         // Set required cell
         let left = element[index]
         cell.imageLeft.tag = index
-        cell.labelLeft.text = "\(left.getMatchPercent())\t\(left.getDistance())"
         cell.imageLeft.load(url: left.getPhotoUrl())
         cell.imageLeft.isUserInteractionEnabled = true
         cell.imageLeft.addGestureRecognizer(tapl)
         
         // Finish setup if optional is empty
         if !element.indices.contains(index + 1) {
-            cell.labelRight.layer.isHidden = true
+            cell.labelRightLoc.layer.isHidden = true
+            cell.labelRightMatch.layer.isHidden = true
             cell.imageRight.layer.isHidden = true
             return cell
         }
@@ -123,11 +124,13 @@ class MatchBestVC: GeneralVC, UITableViewDataSource, UITableViewDelegate{
         // Set optional cell
         let right =  element[index + 1]
         cell.imageRight.tag = index + 1
-        cell.labelRight.text = "\(right.getMatchPercent())\t\(right.getDistance())"
+        cell.labelRightLoc.text = right.getDistance()
+        cell.labelRightMatch.text = right.getMatchPercent()
         cell.imageRight.load(url: right.getPhotoUrl())
         cell.imageRight.isUserInteractionEnabled = true
         cell.imageRight.addGestureRecognizer(tapr)
-        cell.labelRight.layer.isHidden = false
+        cell.labelRightLoc.layer.isHidden = false
+        cell.labelRightMatch.layer.isHidden = false
         cell.imageRight.layer.isHidden = false
         return cell
     }

@@ -9,23 +9,20 @@
 import UIKit
 
 class GeneralVC: UIViewController {
-    
-    func getDefaultFont(_ size: CGFloat) -> UIFont {
-        return UIFont(name: "VarelaRound", size: size)!
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         for view in self.view.subviews {
             if let navigation = view as? UINavigationBar {
                 // Bar background
                 navigation.isTranslucent = false
-                navigation.barTintColor = ColorProvider.primaryColor
+                navigation.barTintColor = StyleProvider.primaryColor
                 // Button color
                 navigation.tintColor = UIColor.white
                 // Title color
                 navigation.titleTextAttributes =
                     [NSAttributedStringKey.foregroundColor : UIColor.white,
-                     NSAttributedStringKey.font : getDefaultFont(22)]
+                     NSAttributedStringKey.font : StyleProvider.getDefaultFont(22)]
                 continue
             }
 
@@ -33,18 +30,18 @@ class GeneralVC: UIViewController {
             if view.responds(to: Selector("font")){
                 let font = view.value(forKey: "font") as! UIFont
                 let fontSize = font.pointSize
-                view.setValue(getDefaultFont(fontSize), forKey: "font")
+                view.setValue(StyleProvider.getDefaultFont(fontSize), forKey: "font")
                 continue
             }
             
             if let button = view as? UIButton {
                 let fontSize = button.titleLabel!.font.pointSize
-                button.titleLabel?.font = getDefaultFont(fontSize)
+                button.titleLabel?.font = StyleProvider.getDefaultFont(fontSize)
                 continue
             }
 
             if let filler = view as? FillerView{
-                filler.backgroundColor = ColorProvider.primaryColor
+                filler.backgroundColor = StyleProvider.primaryColor
                 continue
             }
         }
