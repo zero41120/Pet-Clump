@@ -30,28 +30,18 @@ class GeneralVC: UIViewController {
                      NSAttributedStringKey.font : getDefaultFont(22)]
                 continue
             }
+
+            // Magic
+            if view.responds(to: Selector("font")){
+                let font = view.value(forKey: "font") as! UIFont
+                let fontSize = font.pointSize
+                view.setValue(getDefaultFont(fontSize), forKey: "font")
+                continue
+            }
             
             if let button = view as? UIButton {
                 let fontSize = button.titleLabel!.font.pointSize
                 button.titleLabel?.font = getDefaultFont(fontSize)
-                continue
-            }
-            
-            if let lable = view as? UILabel {
-                let fontSize = lable.font.pointSize
-                lable.font = getDefaultFont(fontSize)
-                continue
-            }
-            
-            if let lable = view as? UITextView {
-                let fontSize = lable.font!.pointSize
-                lable.font = getDefaultFont(fontSize)
-                continue
-            }
-            
-            if let lable = view as? UITextField {
-                let fontSize = lable.font!.pointSize
-                lable.font = getDefaultFont(fontSize)
                 continue
             }
 
