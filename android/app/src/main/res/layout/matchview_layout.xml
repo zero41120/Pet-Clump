@@ -31,7 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:background="@color/purple"
+                android:background="@color/darkGreen"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text="100%"

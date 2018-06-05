@@ -42,7 +42,6 @@ public class QuizRecycleViewAdapter extends ArrayAdapter<String> {
     private static class ViewHolder {
         public TextView question;
 
-
         public ViewHolder(View view) {
             this.question = view.findViewById(R.id.quiz_question);
         }

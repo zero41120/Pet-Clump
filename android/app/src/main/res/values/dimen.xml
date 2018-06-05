@@ -5,4 +5,6 @@
     <dimen name="profile_pet_size">100dp</dimen>
     <dimen name="profile_pet_size2">100dp</dimen>
     <dimen name="schedule_size">40dp</dimen>
+    <dimen name="match_size">350dp</dimen>
+    <dimen name="match_margin">130dp</dimen>
 </resources>
