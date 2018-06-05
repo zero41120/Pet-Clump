@@ -66,6 +66,7 @@
 		84CF6B2620A007BD00533D35 /* AMLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2320A007BD00533D35 /* AMLineView.swift */; };
 		84CF6B2720A007BD00533D35 /* AMTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2420A007BD00533D35 /* AMTabButton.swift */; };
 		84CF6B2820A007BD00533D35 /* AMPagerTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */; };
+		C928CC2920C536B100EE7A6F /* KeyExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C928CC2820C536B100EE7A6F /* KeyExchanger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,20 @@
 			remoteInfo = PetClump;
 		};
 		7741801C20C4A06B00795A51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29C1796F207EE97D002971C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29C17976207EE97D002971C5;
+			remoteInfo = PetClump;
+		};
+		C92DFF0620C5FE200063CFF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29C1796F207EE97D002971C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29C17976207EE97D002971C5;
+			remoteInfo = PetClump;
+		};
+		C92DFF1620C601CD0063CFF7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29C1796F207EE97D002971C5 /* Project object */;
 			proxyType = 1;
@@ -153,6 +168,9 @@
 		84CF6B2320A007BD00533D35 /* AMLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMLineView.swift; sourceTree = "<group>"; };
 		84CF6B2420A007BD00533D35 /* AMTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMTabButton.swift; sourceTree = "<group>"; };
 		84CF6B2520A007BD00533D35 /* AMPagerTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMPagerTabsViewController.swift; sourceTree = "<group>"; };
+		C928CC2820C536B100EE7A6F /* KeyExchanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyExchanger.swift; sourceTree = "<group>"; };
+		C92DFF0120C5FE200063CFF7 /* KeyExchangeTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyExchangeTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C92DFF1120C601CD0063CFF7 /* KeyExchangeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyExchangeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD520A438C8461BA7C4D0BC1 /* Pods_PetClump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetClump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -175,6 +193,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7741801420C4A06B00795A51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92DFEFE20C5FE200063CFF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92DFF0E20C601CD0063CFF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -245,6 +277,7 @@
 			children = (
 				2901B3C620B250850058DC1C /* Messenger.swift */,
 				2926C2F120A9332500DB6A3C /* Crytographer.swift */,
+				C928CC2820C536B100EE7A6F /* KeyExchanger.swift */,
 			);
 			path = message;
 			sourceTree = "<group>";
@@ -370,6 +403,8 @@
 				29C17977207EE97D002971C5 /* PetClump.app */,
 				2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */,
 				7741801720C4A06B00795A51 /* PetClumpUITests.xctest */,
+				C92DFF0120C5FE200063CFF7 /* KeyExchangeTest.xctest */,
+				C92DFF1120C601CD0063CFF7 /* KeyExchangeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -502,6 +537,42 @@
 			productReference = 7741801720C4A06B00795A51 /* PetClumpUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		C92DFF0020C5FE200063CFF7 /* KeyExchangeTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C92DFF0A20C5FE200063CFF7 /* Build configuration list for PBXNativeTarget "KeyExchangeTest" */;
+			buildPhases = (
+				C92DFEFD20C5FE200063CFF7 /* Sources */,
+				C92DFEFE20C5FE200063CFF7 /* Frameworks */,
+				C92DFEFF20C5FE200063CFF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C92DFF0720C5FE200063CFF7 /* PBXTargetDependency */,
+			);
+			name = KeyExchangeTest;
+			productName = KeyExchangeTest;
+			productReference = C92DFF0120C5FE200063CFF7 /* KeyExchangeTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C92DFF1020C601CD0063CFF7 /* KeyExchangeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C92DFF1820C601CD0063CFF7 /* Build configuration list for PBXNativeTarget "KeyExchangeTests" */;
+			buildPhases = (
+				C92DFF0D20C601CD0063CFF7 /* Sources */,
+				C92DFF0E20C601CD0063CFF7 /* Frameworks */,
+				C92DFF0F20C601CD0063CFF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C92DFF1720C601CD0063CFF7 /* PBXTargetDependency */,
+			);
+			name = KeyExchangeTests;
+			productName = KeyExchangeTests;
+			productReference = C92DFF1120C601CD0063CFF7 /* KeyExchangeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -535,6 +606,17 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 29C17976207EE97D002971C5;
 					};
+					C92DFF0020C5FE200063CFF7 = {
+						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 29C17976207EE97D002971C5;
+					};
+					C92DFF1020C601CD0063CFF7 = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 29C17976207EE97D002971C5;
+					};
 				};
 			};
 			buildConfigurationList = 29C17972207EE97D002971C5 /* Build configuration list for PBXProject "PetClump" */;
@@ -553,6 +635,8 @@
 				29C17976207EE97D002971C5 /* PetClump */,
 				2926C2E620A9316600DB6A3C /* PetClumpTests */,
 				7741801620C4A06B00795A51 /* PetClumpUITests */,
+				C92DFF0020C5FE200063CFF7 /* KeyExchangeTest */,
+				C92DFF1020C601CD0063CFF7 /* KeyExchangeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -586,6 +670,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C92DFEFF20C5FE200063CFF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92DFF0F20C601CD0063CFF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -597,6 +695,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PetClump/Pods-PetClump-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AZPeerToPeerConnection/AZPeerToPeerConnection.framework",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
@@ -610,8 +709,10 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IGDigest/IGDigest.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor+FlatColors/UIColor_FlatColors.framework",
@@ -625,6 +726,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AZPeerToPeerConnection.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
@@ -638,8 +740,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGDigest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_FlatColors.framework",
@@ -748,6 +852,7 @@
 				298BCFF1209693A7007A6846 /* PetProfile.swift in Sources */,
 				29B1936C208D4C8800A59783 /* ViewControllerExtension.swift in Sources */,
 				29A90B80208DA16F0024ECF7 /* OwnerSettingVC.swift in Sources */,
+				C928CC2920C536B100EE7A6F /* KeyExchanger.swift in Sources */,
 				2901B3C320B234F30058DC1C /* MessageCell.swift in Sources */,
 				84771F7920968FD7007385F0 /* ZLSwipeableViewController.swift in Sources */,
 				29C1797B207EE97D002971C5 /* AppDelegate.swift in Sources */,
@@ -778,6 +883,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C92DFEFD20C5FE200063CFF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C92DFF0D20C601CD0063CFF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -790,6 +909,16 @@
 			isa = PBXTargetDependency;
 			target = 29C17976207EE97D002971C5 /* PetClump */;
 			targetProxy = 7741801C20C4A06B00795A51 /* PBXContainerItemProxy */;
+		};
+		C92DFF0720C5FE200063CFF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29C17976207EE97D002971C5 /* PetClump */;
+			targetProxy = C92DFF0620C5FE200063CFF7 /* PBXContainerItemProxy */;
+		};
+		C92DFF1720C601CD0063CFF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29C17976207EE97D002971C5 /* PetClump */;
+			targetProxy = C92DFF1620C601CD0063CFF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1020,6 +1149,69 @@
 			};
 			name = Release;
 		};
+		C92DFF0820C5FE200063CFF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KeyExchangeTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = test.KeyExchangeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetClump.app/PetClump";
+			};
+			name = Debug;
+		};
+		C92DFF0920C5FE200063CFF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KeyExchangeTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = test.KeyExchangeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetClump.app/PetClump";
+			};
+			name = Release;
+		};
+		C92DFF1920C601CD0063CFF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KeyExchangeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = test.KeyExchangeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetClump.app/PetClump";
+			};
+			name = Debug;
+		};
+		C92DFF1A20C601CD0063CFF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = KeyExchangeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = test.KeyExchangeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetClump.app/PetClump";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1055,6 +1247,24 @@
 			buildConfigurations = (
 				7741801E20C4A06B00795A51 /* Debug */,
 				7741801F20C4A06B00795A51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C92DFF0A20C5FE200063CFF7 /* Build configuration list for PBXNativeTarget "KeyExchangeTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C92DFF0820C5FE200063CFF7 /* Debug */,
+				C92DFF0920C5FE200063CFF7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C92DFF1820C601CD0063CFF7 /* Build configuration list for PBXNativeTarget "KeyExchangeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C92DFF1920C601CD0063CFF7 /* Debug */,
+				C92DFF1A20C601CD0063CFF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

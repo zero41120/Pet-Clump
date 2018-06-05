@@ -8,6 +8,8 @@
 
 import Foundation
 import CryptoSwift
+import BigInt
+
 
 // https://stackoverflow.com/questions/33342863/could-not-decrypt-a-base64string-using-cryptoswift
 class Cryptographer{
@@ -22,6 +24,10 @@ class Cryptographer{
         return self.instance
     }
     
+    
+    let ke = KeyExchanger.getInstance()
+
+    
     /**
      * This method generates a secret key.
      * We have to make Diffie-Hellman exchange for the shared key.
@@ -35,6 +41,7 @@ class Cryptographer{
         }
         return keyData.bytes
     }
+    
     
     /**
      * This method generates a initialization vector.
@@ -81,3 +88,6 @@ class Cryptographer{
         return plainText
     }
 }
+
+
+

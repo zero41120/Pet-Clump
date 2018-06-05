@@ -14,6 +14,7 @@ import FacebookCore
 import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
+import BigInt
 
 class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, GIDSignInDelegate{
 
@@ -27,13 +28,36 @@ class LoginVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate, 
     
     func unitTest(){
         let cG = Cryptographer.getInstance()
-        let key = cG.generateSecretKey()
-        let iv = cG.generateInitializationVector()
-        let inputText = "Hello world 🍚"
-        let cipherText = cG.encrypt(key: key, iv: iv, plainText: inputText)
-        let plainText = cG.decrypt(key: key, iv: iv, cipherText: cipherText)
-        print("crypto \(inputText) \(cipherText) : \(plainText)")
-    }
+        let alice = KeyExchanger(friendId: "bobid")
+        let bigPrime: BigInt = alice.getBigPrime()
+        let priPrime: BigInt = alice.getPrimitiveRoot()
+        let alicePublic = alice.getMyPublic()
+        
+        let bob = KeyExchanger(friendId: "aliceid", friendPublic: alicePublic, bigPrime: bigPrime, primitiveRoot: priPrime)
+        
+        let bobPublic: BigInt = bob.getMyPublic()
+        
+        let bobShared: Array<UInt8> = bob.getSharedKey(fdPublic: alicePublic)
+        let aliceShared: Array<UInt8> = alice.getSharedKey(fdPublic: bobPublic)
+        
+        if bobShared == aliceShared && bobShared != [] {
+            let key = bobShared
+
+            let iv = cG.generateInitializationVector()
+            let inputText = "Hello world 🍚"
+            let cipherText = cG.encrypt(key: key, iv: iv, plainText: inputText)
+            let plainText = cG.decrypt(key: key, iv: iv, cipherText: cipherText)
+            print("crypto \(inputText) \(cipherText) : \(plainText)")
+            
+            for i in 0..<bobShared.count {
+                print(String(bobShared[i]))
+            }
+            for i in 0..<aliceShared.count {
+                print(String(aliceShared[i]))
+            }        }
+
+        
+           }
     
     override func viewDidLoad() {
         super.viewDidLoad()
