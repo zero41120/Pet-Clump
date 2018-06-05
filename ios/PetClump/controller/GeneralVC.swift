@@ -9,9 +9,7 @@
 import UIKit
 
 class GeneralVC: UIViewController {
-    var primaryColor: UIColor { return self.uicolorFromHex(rgbValue: 0x00cccc) }
-    var primaryDark:  UIColor { return self.uicolorFromHex(rgbValue: 0x3d3d5c) }
-    var colorAccent:  UIColor { return self.uicolorFromHex(rgbValue: 0xffb266) }
+    
     func getDefaultFont(_ size: CGFloat) -> UIFont {
         return UIFont(name: "VarelaRound", size: size)!
     }
@@ -21,7 +19,7 @@ class GeneralVC: UIViewController {
             if let navigation = view as? UINavigationBar {
                 // Bar background
                 navigation.isTranslucent = false
-                navigation.barTintColor = self.primaryColor
+                navigation.barTintColor = ColorProvider.primaryColor
                 // Button color
                 navigation.tintColor = UIColor.white
                 // Title color
@@ -46,7 +44,7 @@ class GeneralVC: UIViewController {
             }
 
             if let filler = view as? FillerView{
-                filler.backgroundColor = self.primaryColor
+                filler.backgroundColor = ColorProvider.primaryColor
                 continue
             }
         }
