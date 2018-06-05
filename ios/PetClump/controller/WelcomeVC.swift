@@ -8,9 +8,11 @@
 
 import UIKit
 import FirebaseAuth
+import CoreLocation
 
 
 class WelcomeVC: GeneralVC{
+    static let locationManager = CLLocationManager()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,6 +34,7 @@ class WelcomeVC: GeneralVC{
             return
         }
 
+
         OwnerProfile.most_recent_owner = OwnerProfile(id: uid, completion: { (owner) in
             for view in self.view.subviews {
                 if let image = view as? UIImageView {
@@ -44,9 +47,12 @@ class WelcomeVC: GeneralVC{
                     }
                 }
             }
-            OwnerProfile.most_recent_owner?.upload(vc: nil, completion: {
-                print("silent update location for returning user")
-            })
+            WelcomeVC.locationManager.requestWhenInUseAuthorization()
+            if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
+                OwnerProfile.most_recent_owner?.upload(vc: nil, completion: {
+                    print("silent update location for returning user")
+                })
+            }
         })
     }
     
