@@ -195,7 +195,6 @@ class PetProfile: Profile, Deletable{
         }
         let docRef =  Firestore.firestore().collection(PetProfile.COLLECTION_NAME).document(getId())
         docRef.setData(self.generateDictionary()) { (err: Error?) in
-            print("Before upload: \(self.generateDictionary())")
             if let err = err{
                 guard vc != nil else { return }
                 vc!.makeAlert(message: "Upload failed, reason:" + err.localizedDescription)
@@ -221,5 +220,34 @@ class PetProfile: Profile, Deletable{
     
     func getId() -> String{
         return "\(ownerId)\(sequence)"
+    }
+    
+    
+    static func tagToPhotoKey(tag: Int) -> PetProfile.PetPhotoUrlKey{
+        switch tag {
+        case 0: return  .main
+        case 1: return  .pet1
+        case 2: return  .pet2
+        case 3: return  .pet3
+        case 4: return  .pet4
+        case 5: return  .pet5
+        case 6: return  .group1
+        case 7: return  .group2
+        case 8: return  .group3
+        default: return .main
+        }
+    }
+    
+    func deleteImage(photoKey: PetProfile.PetPhotoUrlKey){
+        let url = self.getPhotoUrl(key: photoKey)
+        if url == "" { return }
+        self.setPhotoUrl(key: photoKey, url: "")
+        let groups = url.capturedGroups(withRegex: ".*%2[fF](.*)\\?.*")
+        print("will delete photo: image/\(groups[0])")
+        Storage.storage().reference(withPath: "image/\(groups[0])").delete { (error) in
+            if let err = error {
+                print("error deleting photo: " + err.localizedDescription)
+            }
+        }
     }
 }

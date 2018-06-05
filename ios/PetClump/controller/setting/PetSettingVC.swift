@@ -168,23 +168,14 @@ class PetSettingVC: GeneralVC{
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
             imageView.image = nil;
             imageView.backgroundColor = UIImageView.getDefaultDeselectedColor()
-            switch imageView.tag {
-            case 0: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.main, url: "")
-            case 1: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet1, url: "")
-            case 2: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet2, url: "")
-            case 3: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet3, url: "")
-            case 4: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet4, url: "")
-            case 5: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet5, url: "")
-            case 6: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group1, url: "")
-            case 7: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group2, url: "")
-            case 8: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group3, url: "")
-            default: break
-            }
-            self.petProfile?.upload(vc: nil, completion: nil)
+            let photoKey = PetProfile.tagToPhotoKey(tag: imageView.tag)
+            self.petProfile!.deleteImage(photoKey: photoKey)
+            self.petProfile!.upload(vc: nil, completion: nil)
         }))
         // Cancel
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+        
     }
     
     @IBAction func tapSave(_ sender: Any) {

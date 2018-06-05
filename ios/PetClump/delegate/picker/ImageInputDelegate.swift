@@ -38,20 +38,13 @@ class ImageInputDelegate: NSObject, UIImagePickerControllerDelegate, UINavigatio
                         print("There is an error when uploading: \(error!)")
                     } else {
                         print("\(url!) for \(tag)")
+                        let photoKey = PetProfile.tagToPhotoKey(tag: self.imageView!.tag)
+                        // deletes old image
+                        self.petProfile!.deleteImage(photoKey: photoKey)
+                        // sets new image
                         self.imageView?.image = croppedImage
-                        switch tag {
-                        case 0: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.main, url: "\(url!)")
-                        case 1: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet1, url: "\(url!)")
-                        case 2: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet2, url: "\(url!)")
-                        case 3: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet3, url: "\(url!)")
-                        case 4: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet4, url: "\(url!)")
-                        case 5: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.pet5, url: "\(url!)")
-                        case 6: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group1, url: "\(url!)")
-                        case 7: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group2, url: "\(url!)")
-                        case 8: self.petProfile!.setPhotoUrl(key: PetProfile.PetPhotoUrlKey.group3, url: "\(url!)")
-                        default: break
-                        }
-                        self.petProfile?.upload(vc: nil, completion: nil)
+                        self.petProfile!.setPhotoUrl(key: photoKey, url: "\(url!)")
+                        self.petProfile!.upload(vc: nil, completion: nil)
                     }
                 })
             }
@@ -81,6 +74,7 @@ class ImageInputDelegate: NSObject, UIImagePickerControllerDelegate, UINavigatio
             return
         }
         if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            
             uploadImageToFirebaseStorage(originalImage: originalImage)
         }
         picker.dismiss(animated: true, completion: nil)
