@@ -11,7 +11,8 @@ import java.util.Map;
 public class MatchingProfile implements Comparable<MatchingProfile>{
 
     private PetProfile petProfile;
-    private Double matchingPercent;
+    private double quizPercent;
+    private double matchingPercent;
     private Integer distance;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private double lat = 0.0;
@@ -19,10 +20,11 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
     private OwnerProfile owner = OwnerProfile.getInstance();
     private final int R = 6373;
     private String TAG = "MatchingProfile:";
+    private boolean note = false;
 
     public MatchingProfile(String quizResult, PetProfile petProfile) {
         this.petProfile = petProfile;
-        matchingPercent = calculatePercent(quizResult, petProfile.getQuiz());
+        quizPercent = calculateQuiz(quizResult, petProfile.getQuiz());
         this.distance = 0;
     }
 
@@ -30,7 +32,7 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
         return this.petProfile.getPhotoUrl(PetProfile.UrlKey.main);
     }
 
-    private Double calculatePercent(String q1, String q2){
+    private double calculateQuiz(String q1, String q2){
         int size = q1.length() < q2.length()? q1.length() : q2.length();
         double sum = 0.0;
         for (int i = 0; i < size; i++) {
@@ -42,11 +44,13 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
         return (sum / size)*0.7;
     }
 
-    public void calculateDistance(ProfileDownloader downloader){
+    public void calculatePercent(ProfileDownloader downloader){
         db.collection("users").document(petProfile.getOwnerId()).get().addOnCompleteListener((task)->{
+            // calculate distance
             Map<String, Object> temp = task.getResult().getData();
             lat = Math.toRadians((double)temp.get("lat"));
             lon = Math.toRadians((double)temp.get("lon"));
+            long pre = (long)temp.get("distancePerference");
             double userlon = Math.toRadians(owner.getLon());
             double userlat = Math.toRadians(owner.getLat());
 
@@ -56,7 +60,13 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
             double a = Math.pow(Math.sin(dlat/2.0),2) + Math.cos(userlat)*Math.cos(lat)*Math.pow(Math.sin(dlon/2.0),2);
             double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
             this.distance =  ((Double)(R*c)).intValue();
+
             //Log.d(TAG, "a:"+a+" c:"+c+" d:"+distance);
+            // calcualte quiz
+            if(distance < pre/2)
+                matchingPercent = 0.3+quizPercent;
+            else
+                matchingPercent = 0.15+quizPercent;
             downloader.didCompleteDownload();
         });
     }
@@ -76,8 +86,6 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
     public Integer getDistance(){
         return distance;
     }
-    public double getLat(){return lat;}
-    public double getLon(){return lon;}
     public String getMatchingPercent(){
         return Integer.valueOf((int)(matchingPercent * 100)).toString();
     }
@@ -92,6 +100,9 @@ public class MatchingProfile implements Comparable<MatchingProfile>{
 
     public String getSpe(){
         return petProfile.getSpe();
+    }
+    public boolean getNote(){
+        return note;
     }
 
     @Override

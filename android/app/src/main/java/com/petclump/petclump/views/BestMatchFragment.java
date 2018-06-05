@@ -24,6 +24,7 @@ import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -85,7 +86,8 @@ public class BestMatchFragment extends Fragment implements ProfileDownloader {
     @Override
     public void didCompleteDownload() {
         Integer lastSize = profiles.size();
-        Log.d(TAG, "didCompleteDownload: "+ profiles);
+        Log.d(TAG, "didCompleteDownload: " + profiles);
         recycleViewAdapter.notifyItemInserted(lastSize);
     }
+
 }

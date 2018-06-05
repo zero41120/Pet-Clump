@@ -1,7 +1,10 @@
 package com.petclump.petclump.models;
 
+import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.TreeSet;
 
 public class MatchingProfileDownloader {
     private static final String COLLECTION_NAME = "pets";
@@ -34,36 +35,69 @@ public class MatchingProfileDownloader {
         this.downloadLimit = downloadLimit;
         this.pet = myPet;
         petProfileQuery = db.collection(COLLECTION_NAME).limit(downloadLimit);
+
     }
 
     public void downloadMore(List<MatchingProfile> toAppend, String id, ProfileDownloader c){
         pet.listenToFriendList(id, ()->{
             Map<String, String> pet_list = (Map<String, String>) pet.getRelation_list().clone();
-            List<MatchingProfile> profiles = new ArrayList<>();
+            //List<MatchingProfile> profiles = new ArrayList<>();
+            ObservableArrayList<MatchingProfile> profiles = new ObservableArrayList<>();
             petProfileQuery.get().addOnSuccessListener(documentSnapshots -> {
                 if(documentSnapshots.size() -1 < 0){ return; }
                 DocumentSnapshot lastVisible = documentSnapshots.getDocuments()
                         .get(documentSnapshots.size() -1);
+                List<DocumentSnapshot> valid_document = new ArrayList<>();
                 for (DocumentSnapshot doc: documentSnapshots.getDocuments()) {
                     // if should block pet
-                    if(user_pets(doc.getId()) || relation_pets(doc.getId(), pet_list))
+                    if(user_pets(doc.getId()) || relation_pets(doc.getId(), pet_list)){
                         continue;
-                    // TODO get GPS from host
-                    String userId = get_userId(doc.getId());
+                    }
+                    valid_document.add(doc);
+                }
+                for (DocumentSnapshot doc: valid_document) {
                     PetProfile petInfo = new PetProfile(doc.getData());
                     MatchingProfile match = new MatchingProfile(this.pet.getQuiz(), petInfo);
-                    profiles.add(match);
-
+                    match.calculatePercent(()->{
+                        profiles.add(match);
+                    });
                 }
-                Log.d(TAG, "Completed: " + profiles);
-                petProfileQuery = db.collection(COLLECTION_NAME)
-                        .startAfter(lastVisible).limit(downloadLimit);
-                Collections.sort(profiles);
-                toAppend.addAll(profiles);
-                c.didCompleteDownload();
+
+                profiles.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList>(){
+                    @Override
+                    public void onChanged(ObservableList sender) {
+                        Log.d("onCheanged",  sender.toString());
+                    }
+                    @Override
+                    public void onItemRangeChanged(ObservableList sender, int positionStart, int itemCount) {
+                        Log.d("onItemRangeChanged",  itemCount +"");
+                    }
+                    @Override
+                    public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount) {
+                        Log.d("onItemRangeInserted",  "size:"+profiles.size());
+                        if(profiles.size() >= valid_document.size()){
+                            Log.d(TAG, "Completed: " + profiles);
+                            petProfileQuery = db.collection(COLLECTION_NAME)
+                                    .startAfter(lastVisible).limit(downloadLimit);
+                            Collections.sort(profiles);
+                            toAppend.addAll(profiles);
+                            profiles.clear();
+                            c.didCompleteDownload();
+                        }
+                    }
+                    @Override
+                    public void onItemRangeMoved(ObservableList sender, int fromPosition, int toPosition, int itemCount) {
+                        Log.d("onItemRangeMoved",  itemCount +"");
+                    }
+                    @Override
+                    public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount) {
+                        Log.d("onItemRangeRemoved",  itemCount +"");
+                    }
+                });
             });
         });
     }
+
     private boolean user_pets(String pet_id){
         String id = user.getUid();
         return get_userId(pet_id).equals(id);
