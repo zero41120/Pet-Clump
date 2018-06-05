@@ -178,16 +178,32 @@ class PetSettingVC: GeneralVC{
         
     }
     
+    private func validateInput() -> Bool {
+        if(petNameTextField.text! == ""){
+            makeAlert(message: NSLocalizedString("You must enter a name!", comment: "Shows when user try to tap save without filling the information"))
+            return false
+        }
+        if(petBioTextView.text! == ""){
+            makeAlert(message: NSLocalizedString("You must enter your pet's bio!", comment: "Shows when user try to tap save without filling the information"))
+            return false
+        }
+        if(petAgeTextField.text! == ""){
+            makeAlert(message: NSLocalizedString("You need to enter the age! I don't know is an answer.", comment: "Shows when user try to tap save without filling the information"))
+            return false
+        }
+        return true
+    }
+    
     @IBAction func tapSave(_ sender: Any) {
-        if let uid = Auth.auth().currentUser?.uid{
-            petProfile!.name    = petNameTextField.text!
-            petProfile!.bio     = petBioTextView.text!
-            petProfile!.age     = petAgeTextField.text!
-            petProfile!.specie  = petSpeciesTextField.text!
-            petProfile!.ownerId = uid
-            petProfile!.upload(vc: self) {
-                self.dismiss(animated: true, completion: nil)
-            }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        if !validateInput() { return }
+        petProfile!.name    = petNameTextField.text!
+        petProfile!.bio     = petBioTextView.text!
+        petProfile!.age     = petAgeTextField.text!
+        petProfile!.specie  = petSpeciesTextField.text!
+        petProfile!.ownerId = uid
+        petProfile!.upload(vc: self) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
