@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class OwnerSettingVC: UIViewController{
+class OwnerSettingVC: GeneralVC{
 
     // View UI
     @IBOutlet weak var aboutMeNavBar: UINavigationBar!
@@ -82,7 +82,7 @@ class OwnerSettingVC: UIViewController{
         self.genderTextField.text = profile.gender
         
         // Gets user birthdat and parse it
-        self.birthdayTextField.text = profile.getBirthdayString()
+        self.birthdayTextField.text = profile.birthday.getBirthdayString()
         self.datePicker!.date = profile.birthday
         
         // Gets weekly schedule
@@ -123,12 +123,9 @@ class OwnerSettingVC: UIViewController{
     
     @IBAction func tapEditBirthday(_sender: Any) {
         // Save date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
         if (self.datePicker != nil) {
             let d = self.datePicker!.date
-            birthdayTextField.text = dateFormatter.string(from: d)
+            birthdayTextField.text = d.getBirthdayString()
         }
         self.view.endEditing(true);
     }
@@ -153,15 +150,27 @@ class OwnerSettingVC: UIViewController{
         return actualValue > 100 ? NSLocalizedString("No prefered range", comment: "Shows on the match range perference slider for maxium range") : NSLocalizedString("With in \(actualValue) km", comment: "Shows on the matching range perference lable")
     }
     
+    private func validateInput()->Bool{
+        if(nameTextField.text! == ""){
+            makeAlert(message: NSLocalizedString("You must enter a name!", comment: "Shows when user try to tap save without filling the information"))
+            return false
+        }
+        if(self.datePicker!.date > Date()){
+            makeAlert(message: NSLocalizedString("Birthday must be in the past", comment: "Shows when user try to tap save without filling correct information"))
+            return false
+        }
+        return true
+    }
     @IBAction func tapUploadProfile(_ sender: Any) {
         guard (Auth.auth().currentUser != nil) else { return }
         
         // Creates a profile object
         let profile = OwnerProfile()
-        if(nameTextField.text! == ""){
-            makeAlert(message: NSLocalizedString("You must enter a name!", comment: "Shows when user try to tap save without filling the information"))
+        
+        if !validateInput(){
             return
         }
+        
         profile.name     = nameTextField.text!
         profile.gender   = genderTextField.text!
         profile.birthday = self.datePicker!.date
