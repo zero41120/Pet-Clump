@@ -15,6 +15,7 @@
 		29063C2F20C5DC4D00113FA4 /* MatchTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29063C2E20C5DC4D00113FA4 /* MatchTabBar.swift */; };
 		2914C80920C5FFFF001D7237 /* GeneralVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914C80820C5FFFF001D7237 /* GeneralVC.swift */; };
 		2914C80B20C621EA001D7237 /* StyleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914C80A20C621EA001D7237 /* StyleProvider.swift */; };
+		2914C80D20C6382B001D7237 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914C80C20C6382B001D7237 /* DateExtension.swift */; };
 		2926C2F220A9332500DB6A3C /* Crytographer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2926C2F120A9332500DB6A3C /* Crytographer.swift */; };
 		292E24CE208AB0BA005311F1 /* button_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 292E24CD208AB0BA005311F1 /* button_icon.png */; };
 		29309A1E20855E950059E2E4 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29309A1D20855E950059E2E4 /* FBSDKLoginKit.framework */; };
@@ -97,6 +98,7 @@
 		29063C2E20C5DC4D00113FA4 /* MatchTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTabBar.swift; sourceTree = "<group>"; };
 		2914C80820C5FFFF001D7237 /* GeneralVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralVC.swift; sourceTree = "<group>"; };
 		2914C80A20C621EA001D7237 /* StyleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleProvider.swift; sourceTree = "<group>"; };
+		2914C80C20C6382B001D7237 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		2926C2E720A9316600DB6A3C /* PetClumpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetClumpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2926C2F120A9332500DB6A3C /* Crytographer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crytographer.swift; sourceTree = "<group>"; };
 		292E24CD208AB0BA005311F1 /* button_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_icon.png; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				2905331E209915F50076A2AF /* TextViewExtension.swift */,
 				29F104FA20A00FB9006E84E0 /* ImageExtension.swift */,
 				2934865320AC206400143474 /* StringExtension.swift */,
+				2914C80C20C6382B001D7237 /* DateExtension.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				295EC96820A40A0400F8D32F /* MatchingTableViewCell.swift in Sources */,
+				2914C80D20C6382B001D7237 /* DateExtension.swift in Sources */,
 				298BCFF52096998C007A6846 /* GenderInputDelegate.swift in Sources */,
 				847769B520969252002AF924 /* Scheduler.swift in Sources */,
 				778663D320B2689B008DD4F9 /* ImageScrollerView.swift in Sources */,

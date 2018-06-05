@@ -121,12 +121,6 @@ class OwnerProfile: Profile{
         ]
     }
     
-    func getBirthdayString() -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        return dateFormatter.string(from: self.birthday)
-    }
-    
     func getAgeString() -> String {
         let ageYear = Calendar.current.dateComponents([.year], from: self.birthday, to: Date()).year!
         return NSLocalizedString("\(ageYear) years old", comment: "An age lable")
