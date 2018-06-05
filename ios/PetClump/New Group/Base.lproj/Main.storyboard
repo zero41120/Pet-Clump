@@ -141,9 +141,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Edit" id="a1l-fb-4C7">
                                             <connections>
-                                                <segue destination="NHe-gv-fBJ" kind="popoverPresentation" popoverAnchorBarButtonItem="a1l-fb-4C7" id="PFQ-lQ-0Le">
-                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                </segue>
+                                                <segue destination="NHe-gv-fBJ" kind="showDetail" id="PFQ-lQ-0Le"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -314,47 +312,54 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="NO" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zea-pG-nmf">
-                                <rect key="frame" x="0.0" y="391" width="37" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRO-KS-OiV">
+                                <rect key="frame" x="319" y="88" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="S1W-Bj-Gej"/>
+                                    <constraint firstAttribute="height" constant="40" id="qk5-dh-q42"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="YES" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TjQ-VJ-2KP">
-                                <rect key="frame" x="331" y="391" width="44" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sK-dg-lh0">
+                                <rect key="frame" x="16" y="88" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="E99-Mj-OSL"/>
+                                    <constraint firstAttribute="width" constant="40" id="dJh-UN-F1A"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SKIP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dwc-bf-2uo">
-                                <rect key="frame" x="164" y="88" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-yo-Coj">
+                                <rect key="frame" x="167" y="88" width="40" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="G2v-lN-d6E"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SKIP" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rkP-zM-C23">
-                                <rect key="frame" x="161" y="748" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="7sK-dg-lh0" firstAttribute="top" secondItem="J7Z-y8-F7i" secondAttribute="bottom" id="B3L-Yg-Oyo"/>
+                            <constraint firstItem="1MH-qy-UJp" firstAttribute="trailing" secondItem="IRO-KS-OiV" secondAttribute="trailing" constant="16" id="ZNb-kr-yoz"/>
+                            <constraint firstItem="7sK-dg-lh0" firstAttribute="leading" secondItem="1MH-qy-UJp" secondAttribute="leading" constant="16" id="aa9-Zm-qBn"/>
+                            <constraint firstItem="IRO-KS-OiV" firstAttribute="top" secondItem="J7Z-y8-F7i" secondAttribute="bottom" id="aaM-wi-Okc"/>
+                            <constraint firstItem="IeR-yo-Coj" firstAttribute="top" secondItem="J7Z-y8-F7i" secondAttribute="bottom" id="adC-zl-YHn"/>
                             <constraint firstItem="J7Z-y8-F7i" firstAttribute="trailing" secondItem="1MH-qy-UJp" secondAttribute="trailing" id="fbA-85-caA"/>
                             <constraint firstItem="J7Z-y8-F7i" firstAttribute="leading" secondItem="1MH-qy-UJp" secondAttribute="leading" id="lEN-bQ-IF8"/>
                             <constraint firstItem="J7Z-y8-F7i" firstAttribute="top" secondItem="1MH-qy-UJp" secondAttribute="top" id="mLc-WW-OLk"/>
+                            <constraint firstItem="IeR-yo-Coj" firstAttribute="centerX" secondItem="J7Z-y8-F7i" secondAttribute="centerX" id="vao-D7-Y6b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1MH-qy-UJp"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGx-hO-KY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1492" y="30"/>
+            <point key="canvasLocation" x="1492" y="29.55665024630542"/>
         </scene>
         <!--Owner SettingVC-->
         <scene sceneID="6kg-iQ-QI8">
@@ -683,6 +688,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IEa-oF-IKh"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3FU-vV-BMe"/>
                     <connections>
                         <outlet property="aboutMeNavBar" destination="f2t-x2-uJu" id="Ofj-PO-nVK"/>
                         <outlet property="birthdayTextField" destination="mia-zd-5IB" id="F96-5v-x0l"/>
@@ -1111,7 +1117,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Setting" id="kjb-Kp-yIW">
                                             <connections>
-                                                <segue destination="WAf-Bi-FHO" kind="show" id="XA5-IB-wDa"/>
+                                                <segue destination="WAf-Bi-FHO" kind="showDetail" id="XA5-IB-wDa"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
