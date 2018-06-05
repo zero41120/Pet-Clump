@@ -80,7 +80,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         birthday_label  = findViewById(R.id.birthday_label);
         range_label     = findViewById(R.id.user_match_value);
 
-        edit_button     = findViewById(R.id.edit_button);
+        //edit_button     = findViewById(R.id.edit_button);
         button_why = findViewById(R.id.button_why);
         // initialize primary pet images
         initializePrimaryPet();
@@ -90,10 +90,6 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         );
         // Enter Pet_info to create new pet
 
-        edit_button.setOnClickListener(v-> {
-            Intent intent = new Intent(c, UserInfoEditActivity.class);
-            startActivity(intent);
-        });
 
         Intent i = new Intent(c, PetInfoActivity.class);
         profile_pet1.setOnClickListener(v->{
