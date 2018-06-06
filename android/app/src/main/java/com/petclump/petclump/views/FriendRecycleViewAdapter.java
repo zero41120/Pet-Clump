@@ -45,6 +45,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         String my_id = friends.get(position).getMy_id();
         String friend_id = friends.get(position).getFriend_id();
         String name = friends.get(position).getName();
+        String status = friends.get(position).getFriend_status();
         holder.friendview_name.setText(name);
         String time = friends.get(position).getTime();
         holder.friendview_time.setText(time);
@@ -52,27 +53,34 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         holder.friendview_history.setText(history);
         String url = friends.get(position).getUrl();
         new DownloadImageTask(holder.friendview_image, mContext).execute(url);
-        holder.friendview_image.setOnClickListener(v->{
-            Intent intent2 = new Intent(mContext, FriendProfileActivity.class);
-            intent2.putExtra("friend_id", friend_id);
-            intent2.putExtra("my_id", my_id);
-            mContext.startActivity(intent2);
-        });
-
-        holder.friendview_cardView.setOnClickListener(v->{
-            Intent intent = new Intent(mContext, ChattingActivity.class);
-            intent.putExtra("my_id", my_id);
-            intent.putExtra("friend_id", friend_id);
-            intent.putExtra("Name", name);
-            mContext.startActivity(intent);
-        });
-        holder.accept_button.setOnClickListener(v->{
+        if (status.equals("friending")){
             holder.accept_button.setVisibility(GONE);
             holder.reject_button.setVisibility(GONE);
             holder.friendview_time.setVisibility(View.VISIBLE);
-            holder.friendview_history.setText("Start messaging!");
+            holder.friendview_cardView.setOnClickListener(v->{
+                Intent intent = new Intent(mContext, ChattingActivity.class);
+                intent.putExtra("my_id", my_id);
+                intent.putExtra("friend_id", friend_id);
+                intent.putExtra("Name", name);
+                mContext.startActivity(intent);
+            });
+            holder.friendview_image.setOnClickListener(v->{
+                Intent intent2 = new Intent(mContext, FriendProfileActivity.class);
+                intent2.putExtra("friend_id", friend_id);
+                intent2.putExtra("my_id", my_id);
+                mContext.startActivity(intent2);
+            });
+        }else if (status.equals("receiving")){
+            holder.friendview_time.setVisibility(GONE);
+            holder.accept_button.setOnClickListener(v->{
+                holder.accept_button.setVisibility(GONE);
+                holder.reject_button.setVisibility(GONE);
+                holder.friendview_time.setVisibility(View.VISIBLE);
+                holder.friendview_history.setText("Start messaging!");
 
-        });
+            });
+        }
+
     }
 
     @Override

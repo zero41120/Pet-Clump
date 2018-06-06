@@ -48,33 +48,33 @@ public class FriendFragment extends Fragment {
         recyclerView.setAdapter(friendRecycleViewAdapter);
         recyclerView.invalidate();
     }
-    private void unread_friend(String sender_id){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        pet.download(sender_id,()->{
-            builder
-                    .setTitle("New Friend Request")
-                    .setMessage("You have received a new Request from " + pet.getName() + " , will you accept it?")
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setPositiveButton("Yes", (DialogInterface dialog, int which) -> {
-                        pet.new_friend_change(sender_id, pet_id, PetProfile.friend_change_type.ADD_UNREAD_FRIEND, ()->{
-                            Toast.makeText(getActivity(), "Successfully add the friend!", Toast.LENGTH_SHORT).show();
-                            friendRecycleViewAdapter.notifyDataSetChanged();
-                        });
-                    })
-                    .setNegativeButton("Block", (DialogInterface dialog, int which) -> {
-                        pet.new_friend_change(sender_id, pet_id, PetProfile.friend_change_type.BLOCK_FRIEND, ()->{
-                            Toast.makeText(getActivity(), "Successfully block the request!", Toast.LENGTH_SHORT).show();
-                            friendRecycleViewAdapter.notifyDataSetChanged();
-                        });
-                    })
-                    .setNeutralButton("Refuse", (DialogInterface dialog, int which) -> {
-                        pet.friend_delete(sender_id, pet_id, ()->{
-                            Toast.makeText(getActivity(), "Successfully refuse the request!", Toast.LENGTH_SHORT).show();
-                            friendRecycleViewAdapter.notifyDataSetChanged();
-                        });
-                    } ).show();
-        });
-    }
+//    private void unread_friend(String sender_id){
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+//        pet.download(sender_id,()->{
+//            builder
+//                    .setTitle("New Friend Request")
+//                    .setMessage("You have received a new Request from " + pet.getName() + " , will you accept it?")
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .setPositiveButton("Yes", (DialogInterface dialog, int which) -> {
+//                        pet.new_friend_change(sender_id, pet_id, PetProfile.friend_change_type.ADD_UNREAD_FRIEND, ()->{
+//                            Toast.makeText(getActivity(), "Successfully add the friend!", Toast.LENGTH_SHORT).show();
+//                            friendRecycleViewAdapter.notifyDataSetChanged();
+//                        });
+//                    })
+//                    .setNegativeButton("Block", (DialogInterface dialog, int which) -> {
+//                        pet.new_friend_change(sender_id, pet_id, PetProfile.friend_change_type.BLOCK_FRIEND, ()->{
+//                            Toast.makeText(getActivity(), "Successfully block the request!", Toast.LENGTH_SHORT).show();
+//                            friendRecycleViewAdapter.notifyDataSetChanged();
+//                        });
+//                    })
+//                    .setNeutralButton("Refuse", (DialogInterface dialog, int which) -> {
+//                        pet.friend_delete(sender_id, pet_id, ()->{
+//                            Toast.makeText(getActivity(), "Successfully refuse the request!", Toast.LENGTH_SHORT).show();
+//                            friendRecycleViewAdapter.notifyDataSetChanged();
+//                        });
+//                    } ).show();
+//        });
+//    }
 
     @Override
     public void onCreate(@android.support.annotation.Nullable Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class FriendFragment extends Fragment {
                 if(entry.getValue().equals("friending")){
                     //download_list.add(entry.getKey());
                     pet.download(entry.getKey(), ()->{
-                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main));
+                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
                         if (!friendProfileList.contains(t)){
                             friendProfileList.add(t);
                             friendRecycleViewAdapter.notifyDataSetChanged();
@@ -100,7 +100,13 @@ public class FriendFragment extends Fragment {
                 }
                 // unread friend request list
                 if(entry.getValue().equals("receiving")){
-                    unread_friend(entry.getKey());
+                    pet.download(entry.getKey(), ()->{
+                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
+                        if (!friendProfileList.contains(t)){
+                            friendProfileList.add(t);
+                            friendRecycleViewAdapter.notifyDataSetChanged();
+                        }
+                    });
                 }
             }
             setRecyclerView();

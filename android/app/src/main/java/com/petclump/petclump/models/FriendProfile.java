@@ -7,15 +7,17 @@ public class FriendProfile {
     private String url;
     private String my_id = "";
     private String friend_id = "";
+    private String status = "";
 
 
-    public FriendProfile(String my_id, String friend_id,String name, String lastMessage, String time, String url) {
+    public FriendProfile(String my_id, String friend_id,String name, String lastMessage, String time, String url, String status) {
         this.my_id = my_id;
         this.friend_id = friend_id;
         this.name = name;
         this.lastMessage = lastMessage;
         this.time = time;
         this.url = url;
+        this.status = status;
 
     }
 
@@ -38,6 +40,8 @@ public class FriendProfile {
     public String getFriend_id() {
         return friend_id;
     }
+
+    public String getFriend_status(){ return status; }
 
     @Override
     public boolean equals(Object o) {
