@@ -2,6 +2,7 @@ package com.petclump.petclump.controller;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -328,6 +330,20 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
         TextView myText = findViewById(R.id.mytext);
         myText.setText(heading);
     }
+    public boolean noInfo(){
+        String s = "";
+        return s.equalsIgnoreCase(String.valueOf(user_name_editText.getText()));
+    }
+    public void getDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("wait!")
+                .setMessage("Please fill in the required info.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Ok", (DialogInterface dialog, int which) -> {
+                })
+                .setNegativeButton("Ok", null).show();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -336,7 +352,10 @@ public class UserInfoEditActivity extends AppCompatActivity implements AdapterVi
                 saveData();
                 break;
             case android.R.id.home:
-                finish();
+                if (noInfo())
+                    getDialog();
+                else
+                    finish();
                 break;
             default:
                 super.onOptionsItemSelected(item);
