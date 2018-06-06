@@ -7,6 +7,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -568,11 +569,18 @@
                                                 <action selector="tapExit:" destination="Fm6-2r-3vg" id="nb0-49-MdR"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Add Friend" id="YS3-el-K1n">
-                                            <connections>
-                                                <action selector="tapAddFriend:" destination="Fm6-2r-3vg" id="jUU-Uw-5TI"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Add Friend" id="YS3-el-K1n">
+                                                <connections>
+                                                    <action selector="tapAddFriend:" destination="Fm6-2r-3vg" id="jUU-Uw-5TI"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Report" id="vFd-m0-Khc">
+                                                <connections>
+                                                    <action selector="tapReport:" destination="Fm6-2r-3vg" id="1AH-au-AAy"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -684,6 +692,7 @@
                         <outlet property="bioTextField" destination="Si8-LK-cNJ" id="o7z-tL-oax"/>
                         <outlet property="imageScroller" destination="QKC-I8-m4A" id="stf-qb-MwT"/>
                         <outlet property="nameLabel" destination="ca5-Iy-Dp6" id="OZK-Yi-SgS"/>
+                        <outlet property="reportButton" destination="vFd-m0-Khc" id="sFZ-Vk-uyK"/>
                         <outlet property="specieLabel" destination="lll-fl-Uis" id="n9C-Gb-cDI"/>
                     </connections>
                 </viewController>
