@@ -129,7 +129,7 @@ class FriendHandler {
         completion()
     }
     
-    func acceptFriend(){
+    func acceptFriend(completion: @escaping ()->Void){
         // Public vairable is generated in the chat room when user tap add friend
         self.chatRoomRef.getDocument { (snap, error) in
             if let err = error { print(err) }
@@ -139,7 +139,9 @@ class FriendHandler {
                 let mId = self.myPet.getId()
                 let myDH = KeyExchanger(acceptFriendId: fId, data: data)
                 data[mId] = "\(myDH.getMyPublic())"
-                self.chatRoomRef.setData(data, completion: nil)
+                self.chatRoomRef.setData(data) { _ in
+                    completion()
+                }
             }
         }
         

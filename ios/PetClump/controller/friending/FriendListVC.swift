@@ -81,6 +81,7 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
                     messenger.listenLastMessage(completion: { (text, time) in
                         cell.animalChat.text = text
                         cell.animalTime.text = time.getHourMinute()
+                        self.showNotification(subtitle: thatPet.name, message: text)
                     })
                 })
             }, ifFalse: {
@@ -113,8 +114,14 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
     @objc func acceptFriend(sender: UIButton){
         let row = sender.tag
         let fHandler = self.friendHandlers[row]
-        fHandler.acceptFriend()
-        self.tableView.reloadData()
+        fHandler.acceptFriend(completion: {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
+            let pdv = storyBoard.instantiateViewController(withIdentifier: "ChatRoomVC") as! ChatRoomVC
+            pdv.myPetProfile = fHandler.myPet
+            pdv.friendPetProfile = fHandler.friendPet
+            self.present(pdv, animated: true, completion: nil)
+            self.tableView.reloadData()
+        })
     }
     
     @objc func rejectFriend(sender: UIButton){

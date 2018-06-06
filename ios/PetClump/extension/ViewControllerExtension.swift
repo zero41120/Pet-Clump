@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 
 protocol QuickAlert {
     /**
@@ -77,5 +78,26 @@ extension UIViewController: QuickAlert, ConfirmDismissAlert {
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "This is the Cancel button on an alert to inform user that by clickign this button information on this page stays and user may contiune editing"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    static private let cache = NSCache<NSString, NSString>()
+
+    func showNotification(title: String = "Pet Clump", subtitle: String, message: String){
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.subtitle = subtitle
+        content.body = message
+        if UIViewController.cache.object(forKey: NSString(string: message)) != nil {
+            return
+        }
+        UIViewController.cache.setObject(NSString(string: subtitle), forKey: NSString(string: message))
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: "timeDone", content: content, trigger: trigger)
+
+        if UNUserNotificationCenter.current().delegate == nil{
+            UNUserNotificationCenter.current().delegate = UIApplication.shared.delegate as! AppDelegate
+        }
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let err = error { print(err) } 
+        }
     }
 }

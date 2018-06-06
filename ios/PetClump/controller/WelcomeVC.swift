@@ -9,14 +9,17 @@
 import UIKit
 import FirebaseAuth
 import CoreLocation
-
+import UserNotifications
 
 class WelcomeVC: GeneralVC{
     static let locationManager = CLLocationManager()
+    static let center = UNUserNotificationCenter.current()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        // First time user
         OwnerProfile.isFirstTimeUsing(uid: uid) { (isFirstTime) in
             if isFirstTime {
                 print("Force enter profile page for first time user")
@@ -25,6 +28,8 @@ class WelcomeVC: GeneralVC{
                 self.present(pdv, animated: false, completion: nil)
             }
         }
+        
+        // Set up pet display
         let addPet = NSLocalizedString("Add a New Pet", comment: "Show in the welcome view when the user has not create a pet")
         var titles: [String] = [addPet, addPet, addPet]
         for view in self.view.subviews {
@@ -55,6 +60,11 @@ class WelcomeVC: GeneralVC{
         guard let uid = Auth.auth().currentUser?.uid else {
             self.dismiss(animated: true, completion: nil)
             return
+        }
+        
+        
+        WelcomeVC.center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if let err = error { print(err) }
         }
 
         OwnerProfile.most_recent_owner = OwnerProfile(id: uid, completion: { (owner) in
