@@ -61,25 +61,18 @@ class MatchDetailVC: GeneralVC{
     
     @IBAction func tapReport(_ sender: Any) {
         // Action sheet to prompt user to upload / delete photo
-        let docRef = Firestore.firestore().collection("reports").document()
         let thisId = friendHandler!.myPet.getId()
         let thatId = friendHandler!.friendPet.getId()
+        let docRef = Firestore.firestore().collection("reports").document("\(thisId)\(thatId)")
         let alert = UIAlertController(title: NSLocalizedString("Report", comment: "This is an alert title when user clicks on the image to upload or delete"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
-        // Inappropriate image
-        alert.addAction(UIAlertAction(title: "Inappropriate image", style: .destructive, handler: { (action: UIAlertAction!) in
-            let data = ["from" : thisId, "to": thatId, "reason" : action.title!]
-            docRef.setData(data)
-        }))
-        // Offensive Language
-        alert.addAction(UIAlertAction(title: "Offensive Language", style: .destructive, handler: { (action: UIAlertAction!) in
-            let data = ["from" : thisId, "to": thatId, "reason" : action.title!]
-            docRef.setData(data)
-        }))
-        // Non-pet related activie
-        alert.addAction(UIAlertAction(title: "Non-pet related activie", style: .destructive, handler: { (action: UIAlertAction!) in
-            let data = ["from" : thisId, "to": thatId, "reason" : action.title!]
-            docRef.setData(data)
-        }))
+        let reportTypes = ["Inappropriate image", "Offensive Language", "Non-pet related activie"]
+        for type in reportTypes {
+            alert.addAction(UIAlertAction(title: type, style: .destructive, handler: { (action: UIAlertAction!) in
+                let data = ["from" : thisId, "to": thatId, "reason" : action.title!]
+                docRef.setData(data)
+                self.makeAlert(message: "We got your report!")
+            }))
+        }
         // Cancel
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true)
