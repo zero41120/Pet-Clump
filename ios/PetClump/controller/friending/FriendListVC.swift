@@ -102,13 +102,6 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
         MatchTabBar.thisPet = friendHandlers[sender.view!.tag].myPet
         MatchTabBar.thatPet = friendHandlers[sender.view!.tag].friendPet
         self.present(pdv, animated: true, completion: nil)
-
-        
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-//        let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
-//        pdv.friendProfile = self.friendHandlers[sender.view!.tag].friendPet
-//        pdv.myProfile = self.friendHandlers[sender.view!.tag].myPet
-//        self.present(pdv, animated: true, completion: nil)
     }
     
     @objc func acceptFriend(sender: UIButton){

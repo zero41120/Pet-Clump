@@ -8,18 +8,20 @@
 
 import UIKit
 import Firebase
+import BigInt
 
 
 class Message{
     let senderId: String
     let time: Timestamp
-    let message: String
+    var message: String
     let iv: String
     init(refObject: [String: Any]){
-        senderId = refObject["senderId"] as! String
-        time = refObject["time"] as! Timestamp
-        message = refObject["text"] as? String ?? "Error Message"
-        iv = refObject["iv"] as? String ?? "No iv"
+        self.senderId = refObject["senderId"] as! String
+        self.time = refObject["time"] as! Timestamp
+        self.message = refObject["text"] as? String ?? "Error Message"
+        self.iv = refObject["iv"] as? String ?? "No iv"
+        print("message: \(self.message)")
     }
     func generateDictionary() -> [String: Any]{
         return ["senderId":senderId, "time":time, "text":message, "iv":iv]
@@ -34,54 +36,55 @@ class Message{
 }
 
 class Messenger {
-    
+    var key: Array<UInt8> = []
     let myId: String
-    let friendId: String
     let chatRoomId: String
-    let roomRef: DocumentReference
     let chatRef: CollectionReference
     
-    init(myPet: PetProfile, friendPet: PetProfile) {
+    init(myPet: PetProfile, friendPet: PetProfile, completion: @escaping () -> Void) {
+        self.chatRoomId = myPet.generateChatRoomId(otherProfile: friendPet)
         self.myId = myPet.getId()
-        self.friendId = friendPet.getId()
-        self.chatRoomId = myId > friendId ? "\(myId)\(friendId)" : "\(friendId)\(myId)"
-        self.roomRef = Firestore.firestore().collection("chats").document(self.chatRoomId)
+        let roomRef = Firestore.firestore().collection("chats").document(self.chatRoomId)
         self.chatRef = roomRef.collection("message")
-        
-        self.roomRef.getDocument { (snap, error) in
+        roomRef.getDocument { (snap, error) in
             if let err = error { print(err) }
-            if let doc = snap, !doc.exists {
-                let place_holder = ["bigPrime" : "1",
-                                    "priPrime" : "1",
-                                    myPet.getId(): "public_key_place_holder",
-                                    friendPet.getId(): "public_key_place_holder"]
-                self.roomRef.setData(place_holder, completion: { (error) in
-                    if let err = error { print(err) }
-                })
+            if let doc = snap, doc.exists {
+                let data = doc.data()!
+                let friendId = friendPet.getId()
+                let friendPublic = BigInt(data[friendId] as! String)!
+                let dh = KeyExchanger(acceptFriendId: friendId, data: data)
+                self.key = dh.getSharedKey(fdPublic: friendPublic)
+                completion()
             }
         }
     }
     
     func startListen(handler: @escaping (([Message]) -> Void)){
         let listenerQuery = chatRef.order(by: "time")
-        
+        let cG = Cryptographer.getInstance()
         listenerQuery.addSnapshotListener { (snap, error) in
-            if let err = error {
-                print(err)
-                return
-            }
+            guard error == nil else { return }
             guard let snap = snap else { return }
             var messages: [Message] = []
             for doc in snap.documents {
-                messages.append(Message(refObject: doc.data()))
+                let data = doc.data();
+                print("Listened: \(data)")
+                let msg = Message(refObject: data)
+                let iv: [UInt8] = cG.convertIV(iv: msg.iv)
+                let plainText = cG.decrypt(key: self.key, iv: iv, cipherText: msg.message)
+                msg.message = plainText
+                messages.append(msg)
             }
             handler(messages)
         }
-
     }
 
     func upload(message: String, completion: @escaping ((Message) -> Void)){
-        let msg = Message(refObject: ["senderId":myId, "time": Timestamp(), "text": message, "iv":"place_holder"])
+        let cG = Cryptographer.getInstance()
+        let iv = cG.generateInitializationVector()
+        let ivString = "\(iv)"
+        let cipher = cG.encrypt(key: self.key, iv: iv, plainText: message)
+        let msg = Message(refObject: ["senderId":myId, "time": Timestamp(), "text": cipher, "iv":ivString])
         chatRef.document().setData(msg.generateDictionary()) { (error) in
             if let err = error {
                 print(err)

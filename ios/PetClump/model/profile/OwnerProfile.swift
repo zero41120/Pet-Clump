@@ -62,10 +62,11 @@ class OwnerProfile: Profile{
         let locManager = CLLocationManager()
         locManager.requestWhenInUseAuthorization()
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse){
-            let coordinate = locManager.location!.coordinate
-            self.lat = coordinate.latitude
-            self.lon = coordinate.longitude
-            print("Will save lat: \(self.lat), lon: \(self.lon)")
+            if let coordinate = locManager.location?.coordinate {
+                self.lat = coordinate.latitude
+                self.lon = coordinate.longitude
+                print("Will save lat: \(self.lat), lon: \(self.lon)")
+            }
         }
         
         let docRef = Firestore.firestore().collection(OwnerProfile.COLLECTION_NAME).document(uid)
