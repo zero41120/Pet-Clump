@@ -24,10 +24,6 @@ class Cryptographer{
         return self.instance
     }
     
-    
-    let ke = KeyExchanger.getInstance()
-
-    
     /**
      * This method generates a secret key.
      * We have to make Diffie-Hellman exchange for the shared key.
@@ -82,10 +78,25 @@ class Cryptographer{
         do {
             let aes = try AES(key: key, blockMode: BlockMode.CBC(iv: iv), padding: .pkcs5)
             let encryptedData = Data(base64Encoded: cipherText)
-            let encrypted = encryptedData!.bytes
-            plainText = try String(data: Data(aes.decrypt(encrypted)), encoding: .utf8)!
+            if let encrypted = encryptedData?.bytes {
+                plainText = (try String(data: Data(aes.decrypt(encrypted)), encoding: .utf8)) ?? "error"
+            }
         } catch { print(error) }
         return plainText
+    }
+    
+    func convertIV(iv: String) -> Array<UInt8> {
+        var output:[UInt8] = []
+        var toParse = iv
+        if iv == "place_holder" { return [] }
+        toParse = toParse.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+        toParse = toParse.replacingOccurrences(of: "[", with: "", options: .literal, range: nil)
+        toParse = toParse.replacingOccurrences(of: "]", with: "", options: .literal, range: nil)
+        let numbers = toParse.split(separator: ",")
+        for number in numbers {
+            output.append(UInt8(number)!)
+        }
+        return output
     }
 }
 

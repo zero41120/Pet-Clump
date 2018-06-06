@@ -40,11 +40,12 @@ class ChatRoomVC: GeneralVC, UITextFieldDelegate, UITableViewDelegate, UITableVi
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         inputField.delegate = self
         
-        messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!)
-        messenger!.startListen { (messages) in
-            self.messages = messages
-            self.tableView.reloadData()
-            self.scrollBottom(animated: true)
+        messenger = Messenger(myPet: myPetProfile!, friendPet: friendPetProfile!) { _ in 
+            self.messenger!.startListen { (messages) in
+                self.messages = messages
+                self.tableView.reloadData()
+                self.scrollBottom(animated: true)
+            }
         }
     }
     

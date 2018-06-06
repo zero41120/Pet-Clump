@@ -250,4 +250,10 @@ class PetProfile: Profile, Deletable{
             }
         }
     }
+    
+    func generateChatRoomId(otherProfile: PetProfile) -> String{
+        let myId = self.getId()
+        let friendId = otherProfile.getId()
+        return myId > friendId ? "\(myId)\(friendId)" : "\(friendId)\(myId)"
+    }
 }

@@ -9,14 +9,17 @@
 import UIKit
 import FirebaseAuth
 import CoreLocation
-
+import UserNotifications
 
 class WelcomeVC: GeneralVC{
     static let locationManager = CLLocationManager()
+    static let center = UNUserNotificationCenter.current()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        // First time user
         OwnerProfile.isFirstTimeUsing(uid: uid) { (isFirstTime) in
             if isFirstTime {
                 print("Force enter profile page for first time user")
@@ -26,14 +29,27 @@ class WelcomeVC: GeneralVC{
             }
         }
         
+        // Set up pet display
+        let addPet = NSLocalizedString("Add a New Pet", comment: "Show in the welcome view when the user has not create a pet")
+        var titles: [String] = [addPet, addPet, addPet]
         for view in self.view.subviews {
             if let image = view as? UIImageView {
                 image.setRounded()
                 let _ = PetProfile.init(uid: uid, sequence: image.tag) { (myPet) in
-                    image.load(url: myPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.startMatching(sender:)))
+                    let tap: UITapGestureRecognizer
+                    if myPet.name == "" {
+                        tap = UITapGestureRecognizer(target: self, action: #selector(self.addNewPet(sender:)))
+                    } else {
+                        titles[image.tag] = myPet.name
+                        image.load(url: myPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+                        tap = UITapGestureRecognizer(target: self, action: #selector(self.startMatching(sender:)))
+                    }
                     image.isUserInteractionEnabled = true
                     image.addGestureRecognizer(tap)
+                    if let label = self.view.viewWithTag(image.tag + 3) as? UILabel {
+                        print("titles: \(titles[image.tag])")
+                        label.text = titles[image.tag]
+                    }
                 }
             }
         }
@@ -44,6 +60,11 @@ class WelcomeVC: GeneralVC{
         guard let uid = Auth.auth().currentUser?.uid else {
             self.dismiss(animated: true, completion: nil)
             return
+        }
+        
+        
+        WelcomeVC.center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if let err = error { print(err) }
         }
 
         OwnerProfile.most_recent_owner = OwnerProfile(id: uid, completion: { (owner) in
@@ -64,6 +85,16 @@ class WelcomeVC: GeneralVC{
             let pdv = storyBoard.instantiateViewController(withIdentifier: "MainTabBar") as! MainTabBar
             self.present(pdv, animated: true, completion: nil)
         })
+    }
+    
+    @objc func addNewPet(sender: UITapGestureRecognizer){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let pdv = storyBoard.instantiateViewController(withIdentifier: "PetSettingVC") as! PetSettingVC
+        pdv.petProfile = PetProfile()
+        pdv.petProfile!.ownerId = uid
+        pdv.petProfile!.sequence = sender.view!.tag
+        self.present(pdv, animated: true, completion: nil)
     }
     
     /**
