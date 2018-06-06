@@ -63,7 +63,7 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 71
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +78,7 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
                 cell.acceptButton.isHidden = true
                 cell.rejectButton.isHidden = true
                 let _ = Messenger(myPet: thisPet, friendPet: thatPet, completion: { (messenger) in
-                    messenger.getLastMessage(completion: { (text, time) in
+                    messenger.listenLastMessage(completion: { (text, time) in
                         cell.animalChat.text = text
                         cell.animalTime.text = time.getHourMinute()
                     })

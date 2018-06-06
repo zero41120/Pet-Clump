@@ -59,9 +59,9 @@ class Messenger {
         }
     }
     
-    func getLastMessage(completion: @escaping (String, Timestamp)->Void){
+    func listenLastMessage(completion: @escaping (String, Timestamp)->Void){
         let listenerQuery = chatRef.order(by: "time", descending: true).limit(to: 1)
-        listenerQuery.getDocuments { (snap, error) in
+        listenerQuery.addSnapshotListener { (snap, error) in
             if let err = error { print(err) }
             if let docs = snap?.documents {
                 if let data = docs.first?.data() {
