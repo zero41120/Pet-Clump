@@ -50,7 +50,7 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
             // View the profile of the friend request sender
             self.tableView.deselectRow(at: indexPath, animated: true)
             let storyBoard: UIStoryboard = UIStoryboard(name: "Message", bundle: nil)
-            let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchingViewVC") as! MatchDetailVC
+            let pdv = storyBoard.instantiateViewController(withIdentifier: "MatchDetailVC") as! MatchDetailVC
             MatchTabBar.thisPet = self.friendHandlers[indexPath.row].myPet
             MatchTabBar.thatPet = self.friendHandlers[indexPath.row].friendPet
             self.present(pdv, animated: true, completion: nil)
@@ -77,6 +77,9 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
             ifTrue: {
                 cell.acceptButton.isHidden = true
                 cell.rejectButton.isHidden = true
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewProfileOfFriend(sender:)))
+                cell.animalImage.isUserInteractionEnabled = true
+                cell.animalImage.addGestureRecognizer(tap)
                 let _ = Messenger(myPet: thisPet, friendPet: thatPet, completion: { (messenger) in
                     messenger.listenLastMessage(completion: { (text, time) in
                         cell.animalChat.text = text
@@ -96,9 +99,6 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
         cell.animalImage.load(url: thatPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
         cell.animalImage.setRounded()
         cell.animalImage.tag = indexPath.row
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewProfileOfFriend(sender:)))
-        cell.animalImage.isUserInteractionEnabled = true
-        cell.animalImage.addGestureRecognizer(tap)
         cell.animalLbl.text = thatPet.name
         return cell
     }
