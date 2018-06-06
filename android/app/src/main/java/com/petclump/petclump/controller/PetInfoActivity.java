@@ -383,11 +383,20 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         boolean infoCheck = s.equalsIgnoreCase(pn) || s.equalsIgnoreCase(pa) || s.equalsIgnoreCase(pb);
         return infoCheck;
     }
-    public boolean noImage(){
+    public boolean noPetImage(){
         if (pet_view_main.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.photo_placeholder).getConstantState()){
             return true;
         }
         return false;
+    }
+
+    public boolean noOwnerImage(){
+        Object o = getResources().getDrawable(R.drawable.photo_placeholder).getConstantState();
+        boolean one = group_view_1.getDrawable().getConstantState()==o;
+        boolean two = group_view_2.getDrawable().getConstantState()==o;
+        boolean three = group_view_3.getDrawable().getConstantState()==o;
+        boolean imageCheck = one || two || three;
+        return imageCheck;
     }
     public void getDialogForText(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -399,17 +408,30 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
                 })
                 .setNegativeButton("Ok", null).show();
     }
-    public void getDialogForImg(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder
-                .setTitle("wait!")
-                .setMessage("Please at least upload the main photo for your pet.")
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton("Ok", (DialogInterface dialog, int which) -> {
-                })
-                .setNegativeButton("Ok", null).show();
+    public void getDialogForImg(boolean isPet){
+        if (isPet){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle("wait!")
+                    .setMessage("Please at least upload the main pet photo.")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("Ok", (DialogInterface dialog, int which) -> {
+                    })
+                    .setNegativeButton("Ok", null).show();
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle("wait!")
+                    .setMessage("Please at least upload one owner photo.")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("Ok", (DialogInterface dialog, int which) -> {
+                    })
+                    .setNegativeButton("Ok", null).show();
+        }
+
 
     }
+
     public void getDialogUnsaved(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder
@@ -452,12 +474,13 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
             case android.R.id.home:
                 if (isSaved==false){
                     getDialogUnsaved();
-                }
-                else{
+                } else{
                     if (noInfo()){
                         getDialogForText();
-                    }else if(noImage()){
-                        getDialogForImg();
+                    }else if(noPetImage()){
+                        getDialogForImg(true);
+                    }else if(noOwnerImage()){
+                        getDialogForImg(false);
                     }else{
                         finish();
                     }
