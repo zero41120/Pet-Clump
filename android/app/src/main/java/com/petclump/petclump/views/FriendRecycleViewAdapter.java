@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,8 @@ import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.FriendProfile;
 
 import java.util.List;
+
+import static android.view.View.GONE;
 
 public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycleViewAdapter.MyViewHolder> {
     private List<FriendProfile> friends;
@@ -63,6 +66,13 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
             intent.putExtra("Name", name);
             mContext.startActivity(intent);
         });
+        holder.accept_button.setOnClickListener(v->{
+            holder.accept_button.setVisibility(GONE);
+            holder.reject_button.setVisibility(GONE);
+            holder.friendview_time.setVisibility(View.VISIBLE);
+            holder.friendview_history.setText("Start messaging!");
+
+        });
     }
 
     @Override
@@ -75,6 +85,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         TextView friendview_name, friendview_time, friendview_history;
         ImageView friendview_image;
         CardView friendview_cardView;
+        Button accept_button, reject_button;
         public MyViewHolder(View itemView) {
             super(itemView);
 
@@ -83,6 +94,8 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
             friendview_history = itemView.findViewById(R.id.friendview_history);
             friendview_image = itemView.findViewById(R.id.friendview_image);
             friendview_cardView = itemView.findViewById(R.id.friendview_cardView);
+            accept_button = itemView.findViewById(R.id.accept_button);
+            reject_button = itemView.findViewById(R.id.reject_button);
         }
     }
 }

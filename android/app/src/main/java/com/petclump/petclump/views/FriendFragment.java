@@ -91,7 +91,7 @@ public class FriendFragment extends Fragment {
                 if(entry.getValue().equals("friending")){
                     //download_list.add(entry.getKey());
                     pet.download(entry.getKey(), ()->{
-                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "what's up", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main));
+                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main));
                         if (!friendProfileList.contains(t)){
                             friendProfileList.add(t);
                             friendRecycleViewAdapter.notifyDataSetChanged();
