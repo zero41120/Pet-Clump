@@ -41,7 +41,7 @@ class Messenger {
     let chatRoomId: String
     let chatRef: CollectionReference
     
-    init(myPet: PetProfile, friendPet: PetProfile, completion: @escaping () -> Void) {
+    init(myPet: PetProfile, friendPet: PetProfile, completion: @escaping (Messenger) -> Void) {
         self.chatRoomId = myPet.generateChatRoomId(otherProfile: friendPet)
         self.myId = myPet.getId()
         let roomRef = Firestore.firestore().collection("chats").document(self.chatRoomId)
@@ -54,29 +54,47 @@ class Messenger {
                 let friendPublic = BigInt(data[friendId] as! String)!
                 let dh = KeyExchanger(acceptFriendId: friendId, data: data)
                 self.key = dh.getSharedKey(fdPublic: friendPublic)
-                completion()
+                completion(self)
+            }
+        }
+    }
+    
+    func getLastMessage(completion: @escaping (String, Timestamp)->Void){
+        let listenerQuery = chatRef.order(by: "time", descending: true).limit(to: 1)
+        listenerQuery.getDocuments { (snap, error) in
+            if let err = error { print(err) }
+            if let docs = snap?.documents {
+                if let data = docs.first?.data() {
+                    let msg = self.decodeData(data: data)
+                    completion(msg.message, msg.time)
+                } else {
+                    completion(NSLocalizedString("Start messaging!", comment: "This is the place holder string when became friend without sending any message"), Timestamp())
+                }
             }
         }
     }
     
     func startListen(handler: @escaping (([Message]) -> Void)){
         let listenerQuery = chatRef.order(by: "time")
-        let cG = Cryptographer.getInstance()
         listenerQuery.addSnapshotListener { (snap, error) in
             guard error == nil else { return }
             guard let snap = snap else { return }
             var messages: [Message] = []
             for doc in snap.documents {
-                let data = doc.data();
-                print("Listened: \(data)")
-                let msg = Message(refObject: data)
-                let iv: [UInt8] = cG.convertIV(iv: msg.iv)
-                let plainText = cG.decrypt(key: self.key, iv: iv, cipherText: msg.message)
-                msg.message = plainText
-                messages.append(msg)
+                messages.append(self.decodeData(data: doc.data()))
             }
             handler(messages)
         }
+    }
+    
+    func decodeData(data: [String : Any])->Message {
+        print("Listened: \(data)")
+        let cG = Cryptographer.getInstance()
+        let msg = Message(refObject: data)
+        let iv: [UInt8] = cG.convertIV(iv: msg.iv)
+        let plainText = cG.decrypt(key: self.key, iv: iv, cipherText: msg.message)
+        msg.message = plainText
+        return msg
     }
 
     func upload(message: String, completion: @escaping ((Message) -> Void)){

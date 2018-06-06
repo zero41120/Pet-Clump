@@ -14,16 +14,16 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
     
     //this is the array for each fof your riend's name
     var friendHandlers: [FriendHandler] = []
-    let messages = ["Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you","Hello", "Hi", "How are you", "Nice to meet you" ]
-    let times = ["12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11", "12:40", "15:35", "08:55", "23:11"]
+    var messages: [String] = []
+    var times: [String] = []
     
     @IBOutlet weak var tableView: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.delegate = self
         tableView.dataSource = self
-        
+        self.friendHandlers = []
         FriendHandler.downloadFriends(myProfile: PetProfile.most_recent_pet!, callerView: self) { (fHandler) in
             fHandler.isFriending(ifTrue: {
                 self.friendHandlers.append(fHandler)
@@ -70,13 +70,19 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! FriendListCell
         let friendHandler = friendHandlers[indexPath.row]
-        let friend = friendHandler.friendPet
+        let thatPet = friendHandler.friendPet
+        let thisPet = friendHandler.myPet
         
         friendHandler.isFriending(
             ifTrue: {
                 cell.acceptButton.isHidden = true
                 cell.rejectButton.isHidden = true
-                // load message
+                let _ = Messenger(myPet: thisPet, friendPet: thatPet, completion: { (messenger) in
+                    messenger.getLastMessage(completion: { (text, time) in
+                        cell.animalChat.text = text
+                        cell.animalTime.text = time.getHourMinute()
+                    })
+                })
             }, ifFalse: {
                 cell.animalChat.text = NSLocalizedString("Added you!", comment: "This is message show to you when another user send you a friend request")
                 cell.animalTime.text = ""
@@ -86,13 +92,13 @@ class FriendListVC: GeneralVC, UITableViewDelegate, UITableViewDataSource {
                 cell.rejectButton.addTarget(self, action: #selector(self.rejectFriend), for: .touchUpInside)
             }
         )
-        cell.animalImage.load(url: friend.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
+        cell.animalImage.load(url: thatPet.getPhotoUrl(key: PetProfile.PetPhotoUrlKey.main))
         cell.animalImage.setRounded()
         cell.animalImage.tag = indexPath.row
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.viewProfileOfFriend(sender:)))
         cell.animalImage.isUserInteractionEnabled = true
         cell.animalImage.addGestureRecognizer(tap)
-        cell.animalLbl.text = friend.name
+        cell.animalLbl.text = thatPet.name
         return cell
     }
     
