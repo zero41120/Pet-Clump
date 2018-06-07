@@ -43,7 +43,7 @@ public class FriendFragment extends Fragment {
         return v;
     }
     private void setRecyclerView(){
-        friendRecycleViewAdapter = new FriendRecycleViewAdapter(this.getContext(), friendProfileList);
+        friendRecycleViewAdapter = new FriendRecycleViewAdapter(getContext(), friendProfileList);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(friendRecycleViewAdapter);
         recyclerView.invalidate();
@@ -81,15 +81,13 @@ public class FriendFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         pet_id = getActivity().getIntent().getStringExtra("petId");
-        // TODO: 有可能会加两遍，需要检测是否在Friend_list里
         pet.listenToFriendList(pet_id,()->{
             Friend_list = (Map<String, String>) pet.getRelation_list().clone();
             Log.d(TAG, "didCompleteDownload: " + Friend_list);
             //download_list = new ArrayList<>();
             for (Map.Entry<String,String> entry : Friend_list.entrySet()){
                 // friend_list
-                if(entry.getValue().equals("friending")){
-                    //download_list.add(entry.getKey());
+                if(!entry.getValue().equals("blocking")){
                     pet.download(entry.getKey(), ()->{
                         FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
                         if (!friendProfileList.contains(t)){
@@ -98,7 +96,7 @@ public class FriendFragment extends Fragment {
                         }
                     });
                 }
-                // unread friend request list
+/*                // unread friend request list
                 if(entry.getValue().equals("receiving")){
                     pet.download(entry.getKey(), ()->{
                         FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
@@ -107,7 +105,7 @@ public class FriendFragment extends Fragment {
                             friendRecycleViewAdapter.notifyDataSetChanged();
                         }
                     });
-                }
+                }*/
             }
             setRecyclerView();
         });// download friend_list

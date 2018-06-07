@@ -17,6 +17,7 @@ import com.petclump.petclump.controller.ChattingActivity;
 import com.petclump.petclump.controller.FriendProfileActivity;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.FriendProfile;
+import com.petclump.petclump.models.PetProfile;
 
 import java.util.List;
 
@@ -25,11 +26,13 @@ import static android.view.View.GONE;
 public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycleViewAdapter.MyViewHolder> {
     private List<FriendProfile> friends;
     private Context mContext;
-
+    private String main_pet_id = "";
+    private PetProfile pet;
 
     public FriendRecycleViewAdapter(Context c, List<FriendProfile> friends){
         this.mContext = c;
         this.friends = friends;
+        this.pet = new PetProfile();
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,14 +76,21 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         }else if (status.equals("receiving")){
             holder.friendview_time.setVisibility(GONE);
             holder.accept_button.setOnClickListener(v->{
-                holder.accept_button.setVisibility(GONE);
-                holder.reject_button.setVisibility(GONE);
-                holder.friendview_time.setVisibility(View.VISIBLE);
-                holder.friendview_history.setText("Start messaging!");
-
+                pet.new_friend_change(friends.get(position).getFriend_id(), friends.get(position).getMy_id(), PetProfile.friend_change_type.ADD_UNREAD_FRIEND, mContext,()->{
+                    holder.accept_button.setVisibility(GONE);
+                    holder.reject_button.setVisibility(GONE);
+                    holder.friendview_time.setVisibility(View.VISIBLE);
+                    holder.friendview_history.setText("Start messaging!");
+                    this.notifyDataSetChanged();
+                });
+            });
+            holder.reject_button.setOnClickListener(v->{
+                pet.friend_delete(friends.get(position).getFriend_id(), friends.get(position).getMy_id(),()->{
+                    friends.remove(position);
+                    this.notifyItemRemoved(position);
+                });
             });
         }
-
     }
 
     @Override

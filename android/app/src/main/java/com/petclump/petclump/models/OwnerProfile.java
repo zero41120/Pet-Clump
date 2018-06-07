@@ -40,7 +40,6 @@ public class OwnerProfile implements Profile {
     private FreeSchedule freeTime = new FreeSchedule("");
 
     private String TAG = "Ownerprofile";
-    private Context theContext;
 
     // singleton
     private static OwnerProfile obj = new OwnerProfile();
