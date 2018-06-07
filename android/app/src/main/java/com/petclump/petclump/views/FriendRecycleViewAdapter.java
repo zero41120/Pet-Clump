@@ -22,8 +22,9 @@ import com.petclump.petclump.models.PetProfile;
 import java.util.List;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
-public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycleViewAdapter.MyViewHolder> {
+public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycleViewAdapter.MyViewHolder>  {
     private List<FriendProfile> friends;
     private Context mContext;
     private String main_pet_id = "";
@@ -59,7 +60,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         if (status.equals("friending")){
             holder.accept_button.setVisibility(GONE);
             holder.reject_button.setVisibility(GONE);
-            holder.friendview_time.setVisibility(View.VISIBLE);
+            holder.friendview_time.setVisibility(VISIBLE);
             holder.friendview_cardView.setOnClickListener(v->{
                 Intent intent = new Intent(mContext, ChattingActivity.class);
                 intent.putExtra("my_id", my_id);
@@ -76,18 +77,18 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         }else if (status.equals("receiving")){
             holder.friendview_time.setVisibility(GONE);
             holder.accept_button.setOnClickListener(v->{
+                friends.get(position).setFriend_status("friending");
+                friends.get(position).setLastMessage("start chatting!");
+                notifyItemChanged(position);
                 pet.new_friend_change(friends.get(position).getFriend_id(), friends.get(position).getMy_id(), PetProfile.friend_change_type.ADD_UNREAD_FRIEND, mContext,()->{
-                    holder.accept_button.setVisibility(GONE);
-                    holder.reject_button.setVisibility(GONE);
-                    holder.friendview_time.setVisibility(View.VISIBLE);
-                    holder.friendview_history.setText("Start messaging!");
-                    this.notifyDataSetChanged();
+
+
                 });
             });
             holder.reject_button.setOnClickListener(v->{
                 pet.friend_delete(friends.get(position).getFriend_id(), friends.get(position).getMy_id(),()->{
-                    friends.remove(position);
-                    this.notifyItemRemoved(position);
+                    removeAt(position);
+                    holder.itemView.setVisibility(View.GONE);
                 });
             });
         }
@@ -98,7 +99,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         return friends.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView friendview_name, friendview_time, friendview_history;
         ImageView friendview_image;
@@ -115,5 +116,13 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
             accept_button = itemView.findViewById(R.id.accept_button);
             reject_button = itemView.findViewById(R.id.reject_button);
         }
+
+
+    }
+    public void removeAt(int position) {
+        friends.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, friends.size());
+
     }
 }

@@ -79,11 +79,7 @@
             android:label="@string/title_activity_matching_tab"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.ChattingActivity" />
-        <activity android:name=".controller.FriendProfileActivity" />
-        <activity
-            android:name=".controller.SplashActivity"
-            android:label="@string/title_activity_splash"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".controller.FriendProfileActivity"/>
     </application>
 
 </manifest>

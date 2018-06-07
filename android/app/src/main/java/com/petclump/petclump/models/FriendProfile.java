@@ -43,6 +43,10 @@ public class FriendProfile {
 
     public String getFriend_status(){ return status; }
 
+    public void setFriend_status(String status){ this.status = status;}
+
+    public void setLastMessage(String last){ this.lastMessage = last;}
+
     @Override
     public boolean equals(Object o) {
 
