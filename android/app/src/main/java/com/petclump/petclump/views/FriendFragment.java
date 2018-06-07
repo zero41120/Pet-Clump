@@ -87,7 +87,7 @@ public class FriendFragment extends Fragment {
             //download_list = new ArrayList<>();
             for (Map.Entry<String,String> entry : Friend_list.entrySet()){
                 // friend_list
-                if(!entry.getValue().equals("blocking")){
+                if(!entry.getValue().equals("blocking") && !entry.getValue().equals("sending")){
                     pet.download(entry.getKey(), ()->{
                         FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
                         if (!friendProfileList.contains(t)){
@@ -96,18 +96,8 @@ public class FriendFragment extends Fragment {
                         }
                     });
                 }
-/*                // unread friend request list
-                if(entry.getValue().equals("receiving")){
-                    pet.download(entry.getKey(), ()->{
-                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
-                        if (!friendProfileList.contains(t)){
-                            friendProfileList.add(t);
-                            friendRecycleViewAdapter.notifyDataSetChanged();
-                        }
-                    });
-                }*/
             }
             setRecyclerView();
-        });// download friend_list
+        });
     }
 }
