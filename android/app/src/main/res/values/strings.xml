@@ -192,5 +192,6 @@
     <string name="pet">pet</string>
     <string name="owner">owner</string>
     <string name="Discovery">Discovery</string>
+    <string name="title_activity_splash">splashActivity</string>
 
 </resources>
