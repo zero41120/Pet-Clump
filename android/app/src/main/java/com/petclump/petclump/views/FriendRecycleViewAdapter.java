@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.petclump.petclump.R;
 import com.petclump.petclump.controller.ChattingActivity;
 import com.petclump.petclump.controller.FriendProfileActivity;
+import com.petclump.petclump.controller.MatchingViewProfileActivity;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.FriendProfile;
 import com.petclump.petclump.models.PetProfile;
@@ -84,11 +85,18 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
 
 
                 });
+
+            });
+            holder.friendview_image.setOnClickListener(v->{
+                Intent intent = new Intent(mContext, MatchingViewProfileActivity.class);
+                intent.putExtra("petId", friend_id);
+                intent.putExtra("MainPetId", my_id);
+                mContext.startActivity(intent);
             });
             holder.reject_button.setOnClickListener(v->{
                 pet.friend_delete(friends.get(position).getFriend_id(), friends.get(position).getMy_id(),()->{
-                    removeAt(position);
-                    holder.itemView.setVisibility(View.GONE);
+                    this.removeAt(position);
+                    //holder.itemView.setVisibility(View.GONE);
                 });
             });
         }
@@ -125,4 +133,5 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
         notifyItemRangeChanged(position, friends.size());
 
     }
+
 }
