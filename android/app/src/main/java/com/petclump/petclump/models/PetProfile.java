@@ -408,7 +408,7 @@ public class PetProfile implements Profile {
             }
         });
     }
-    public void new_message(String my_id, String friend_id, String text, Timestamp time, ProfileUploader c){
+    public void new_message(String my_id, String friend_id, String iv, String cipher, Timestamp time, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
             Log.e(TAG, "user is null.");
             return;
@@ -418,13 +418,7 @@ public class PetProfile implements Profile {
             Log.e(TAG, "new_unread_message:"+" Error, one of the id is empty!");
             return;
         }
-        String combined_id = "";
-        if(my_id.compareTo(friend_id)>0){
-            combined_id = my_id + friend_id;
-        }else{
-            combined_id = friend_id + my_id;
-        }
-
+        String combined_id = getCombinedId(my_id, friend_id);
         // send message
         DocumentReference ref = FirebaseFirestore.getInstance().collection("chats")
                 .document(combined_id)
@@ -433,8 +427,8 @@ public class PetProfile implements Profile {
         HashMap<String, Object> temp = new HashMap<String, Object>(){{
             put("senderId", my_id);
             put("time", time);
-            put("text",text);
-            put("iv", Cryptographer.getInstance().generateInitializationVector().toString());
+            put("text",cipher);
+            put("iv", iv);
         }};
         ref.set(temp).addOnCompleteListener(task -> {
             if(!task.isSuccessful()) {
@@ -444,6 +438,7 @@ public class PetProfile implements Profile {
         });
     }
     public HashMap<String, String> getChat_list(){ return chat_list;}
+
 
     /*** profile methods ***/
     public void upload(String id, ProfileUploader c){

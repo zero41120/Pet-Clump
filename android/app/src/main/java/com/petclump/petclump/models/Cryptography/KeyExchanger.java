@@ -38,8 +38,8 @@ public class KeyExchanger {
 
 		this.bigPrime = bigPrime;
 		this.primitiveRoot = primitiveRoot;
-        loadOrGenerateSecret(friendId);
         this.ctx = ctx;
+        loadOrGenerateSecret(friendId);
 	}
 
     /**

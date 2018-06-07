@@ -65,10 +65,6 @@ public class MessagingDownloader {
                 DocumentSnapshot lastVisible = documentSnapshots.getDocuments()
                         .get(documentSnapshots.size() -1);
                 for (DocumentSnapshot doc: documentSnapshots.getDocuments()) {
-/*                    File path = new File(ctx.getCacheDir()+"/message/"+combined_id+"/",doc.getId()+".txt");
-                    if(path.exists())
-                        continue;*/
-                    /*visited.put(doc.getId(),true);*/
                     Map<String,Object> temp = doc.getData();
                     int sender = 0;
                     // decide sender
