@@ -18,6 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.petclump.petclump.models.Cryptography.Cryptographer;
+import com.petclump.petclump.models.Cryptography.KeyExchanger;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 
 import java.io.File;
@@ -39,19 +41,21 @@ public class MessagingDownloader {
     private String my_id = "";
     private String other_id = "";
     private Context ctx;
+    private byte[] sharedKeys;
     private HashMap<String,Boolean> visited;
 
-    public MessagingDownloader(Activity c, String my_id, String other_id, Integer downloadLimit){
+    public MessagingDownloader(Activity c, String my_id, String other_id, byte[] key, Integer downloadLimit){
         this.ctx = c;
         this.my_id = my_id;
         this.other_id = other_id;
         this.visited = new HashMap<>();
-        if(my_id.compareTo(other_id)>0)
+        if(my_id.compareTo(other_id)>0) {
             combined_id = my_id + other_id;
-        else
+        } else {
             combined_id = other_id + my_id;
+        }
         Log.d(TAG,"combined_id:"+combined_id);
-
+        this.sharedKeys = key;
         this.downloadLimit = downloadLimit;
         messageQuery = db.collection("chats").document(combined_id).collection("message")
                 .orderBy("time", Query.Direction.ASCENDING);
@@ -111,11 +115,16 @@ public class MessagingDownloader {
 //                                        continue;
                         Map<String, Object> temp = ((DocumentChange)x).getDocument().getData();
                         int sender = 0;
-                        if(temp.get("senderId").toString().equals(my_id))
+                        if(temp.get("senderId").toString().equals(my_id)) {
                             sender = 1;
-                        else
+                        } else {
                             sender = 2;
-                        BaseMessage temp_meg = new BaseMessage(sender,temp.get("text").toString(),new Timestamp((Date)temp.get("time")));
+                        }
+                        byte[] iv = Cryptographer.convertIV(temp.get("iv").toString());
+                        Cryptographer cG = Cryptographer.getInstance();
+                        String decoded = cG.decrypt(sharedKeys, iv, temp.get("text").toString());;
+                        Log.d(TAG, "did decode: " + decoded);
+                        BaseMessage temp_meg = new BaseMessage(sender,decoded,new Timestamp((Date)temp.get("time")));
                         if(toAppend.contains(temp_meg))
                             continue;
                         messages.add(temp_meg);

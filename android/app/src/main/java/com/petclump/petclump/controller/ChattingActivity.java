@@ -61,7 +61,6 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
     private BigInteger bigPRIME;
     private BigInteger priPRIME;
     private byte[] myShared;
-    private byte[] friendShared;
 
 
 
@@ -90,13 +89,10 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             Log.d(TAG,"friend_public:"+friend_public);
             Log.d(TAG,"bigPRIME:"+bigPRIME);
             Log.d(TAG,"priPRIME"+priPRIME);
+            Log.d(TAG, "mySharedKey: " + myShared);
             try {
-                KeyExchanger my = new KeyExchanger(my_id,my_public,bigPRIME,priPRIME,this);
-                KeyExchanger friend = new KeyExchanger(friend_id,friend_public,bigPRIME,priPRIME,this);
+                KeyExchanger my = new KeyExchanger(my_id, friend_public, bigPRIME, priPRIME);
                 myShared = my.getSharedKey(friend_public);
-                friendShared = friend.getSharedKey(my_public);
-
-
                 setupUI();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -108,7 +104,7 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         // baseMessageList.add(message7);
         recyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
         // setup photo
-        downloader = new MessagingDownloader(this,my_id, friend_id,2);
+        downloader = new MessagingDownloader(this,my_id, friend_id, myShared, 2);
         Log.d(TAG,"my:"+my_id+" other:"+friend_id);
         ChattingActivity theCTX = this;
         //setRecyclerView();
@@ -132,16 +128,15 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
 
             try {
                 byte[] iv = crypt.generateInitializationVector();
-                String iv_str = new String(iv, "UTF-8");
+                String iv_str = Cryptographer.convertIV(iv);
                 String plaintext = chatview_editText.getText().toString();
-                Log.d(TAG,"iv:"+iv_str);
+                Log.d(TAG,"iv str:"+iv_str);
                 String cipher = crypt.encrypt(myShared, iv, plaintext);
-
-                pet.new_message(my_id,friend_id,cipher, iv_str, Timestamp.now(),()->{});
+                pet.newMessage(my_id, friend_id, iv_str, cipher, Timestamp.now(), ()->{});
                 BaseMessage temp = new BaseMessage(1, plaintext,Timestamp.now());
                 baseMessageList.add(temp);
                 messsageUpdate();
-            } catch (UnsupportedEncodingException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });

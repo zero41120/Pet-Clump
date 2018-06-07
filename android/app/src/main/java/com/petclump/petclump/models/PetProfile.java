@@ -186,7 +186,7 @@ public class PetProfile implements Profile {
 
         if(type == friend_change_type.NEW_FRIEND){
             // thispet key setup
-            KeyExchanger thispet = new KeyExchanger(sender_id, ctx);
+            KeyExchanger thispet = new KeyExchanger(sender_id);
             String bigPrime = thispet.getBigPrime().toString();
             String priPrime = thispet.getPrimitiveRoot().toString();
             String thepetPublic = thispet.getMyPublic().toString();
@@ -202,7 +202,7 @@ public class PetProfile implements Profile {
             });
         }else if(type == friend_change_type.ADD_UNREAD_FRIEND){
             // thispet key setup
-            KeyExchanger friendpet = new KeyExchanger(receiver_id,ctx);
+            KeyExchanger friendpet = new KeyExchanger(receiver_id);
             String friendPublic = friendpet.getMyPublic().toString();
             FirebaseFirestore.getInstance().collection("chats").document(getCombinedId(sender_id, receiver_id)).update(new HashMap<String, Object>(){{
                 put(receiver_id, friendPublic);
@@ -408,7 +408,8 @@ public class PetProfile implements Profile {
             }
         });
     }
-    public void new_message(String my_id, String friend_id, String iv, String cipher, Timestamp time, ProfileUploader c){
+
+    public void newMessage(String my_id, String friend_id, String iv, String cipher, Timestamp time, ProfileUploader c){
         if (Auth_pet.getCurrentUser() == null){
             Log.e(TAG, "user is null.");
             return;
@@ -423,6 +424,7 @@ public class PetProfile implements Profile {
         DocumentReference ref = FirebaseFirestore.getInstance().collection("chats")
                 .document(combined_id)
                 .collection("message").document();
+        Log.d(TAG, "new_message: iv str: " + iv);
         //TODO: encryp text
         HashMap<String, Object> temp = new HashMap<String, Object>(){{
             put("senderId", my_id);
@@ -437,6 +439,7 @@ public class PetProfile implements Profile {
             c.didCompleteUpload();
         });
     }
+
     public HashMap<String, String> getChat_list(){ return chat_list;}
 
 

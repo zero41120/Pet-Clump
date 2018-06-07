@@ -111,12 +111,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }catch(SecurityException e){
             e.printStackTrace();
             Log.d(TAG,"setGPS failed, permission:"+e);
+        } catch (Exception ex) {
+            // GPS probably failed
+            ex.printStackTrace();
         }
     }
 
     private void setupUI(){
         // Init variables
         c = getApplicationContext();
+        ContextProvider.setContext(getApplicationContext());
         uidText = findViewById(R.id.user_UID);
         //Button settingsButton = findViewById(R.id.button_settings);
         Button matchingButton = findViewById(R.id.matching_button);

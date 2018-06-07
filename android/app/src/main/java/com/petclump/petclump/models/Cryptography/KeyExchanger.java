@@ -1,8 +1,12 @@
 package com.petclump.petclump.models.Cryptography;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
+
+import com.petclump.petclump.controller.ContextProvider;
+import com.petclump.petclump.controller.MainActivity;
 
 import java.math.*;
 import java.util.*;
@@ -16,15 +20,13 @@ public class KeyExchanger {
     BigInteger primitiveRoot, bigPrime;
     private BigInteger mySecret;
     byte[] sharedKey = null;
-    private Context ctx;
 
     /**
      * This constructor should generate the values for you and your friends
      * @param friendId generate a secret number for this id
      */
-    public KeyExchanger(String friendId, Context ctx){
+    public KeyExchanger(String friendId){
         generatePublicPrimes();
-        this.ctx = ctx;
         loadOrGenerateSecret(friendId);
     }
 
@@ -34,11 +36,10 @@ public class KeyExchanger {
      * @param primitiveRoot the agreed public primitive root between you and friend
      * @throws Exception Not going to do anything as of now
      */
-	public KeyExchanger(String friendId, BigInteger friendPublic, BigInteger bigPrime, BigInteger primitiveRoot, Context ctx) throws Exception {
+	public KeyExchanger(String friendId, BigInteger friendPublic, BigInteger bigPrime, BigInteger primitiveRoot) throws Exception {
 
 		this.bigPrime = bigPrime;
 		this.primitiveRoot = primitiveRoot;
-        this.ctx = ctx;
         loadOrGenerateSecret(friendId);
 	}
 
@@ -61,7 +62,8 @@ public class KeyExchanger {
     private void loadOrGenerateSecret(String fdId){
 
         if (mySecret == null){
-            File file = new File(ctx.getFilesDir(),fdId+".txt");
+            Context c = ContextProvider.getContext();
+            File file = new File(c.getFilesDir(),fdId+".txt");
 
             if(file.exists()){
 

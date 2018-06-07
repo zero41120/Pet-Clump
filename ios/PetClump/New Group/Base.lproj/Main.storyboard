@@ -28,7 +28,7 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-uG-9Ke" customClass="GIDSignInButton">
-                                <rect key="frame" x="97" y="437.33333333333331" width="209" height="59"/>
+                                <rect key="frame" x="97" y="436" width="209" height="59"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="209" id="r0P-k3-Swj"/>
@@ -36,7 +36,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIE-4I-BrB">
-                                <rect key="frame" x="0.0" y="757" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="758" width="375" height="20"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Copyright © 2018 PetClump">
                                         <attributes>
@@ -62,7 +62,7 @@
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THv-GK-rWf">
-                                <rect key="frame" x="79" y="292.33333333333331" width="296" height="20"/>
+                                <rect key="frame" x="79" y="292.33333333333331" width="296" height="18.666666666666686"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Best social app for pet owners
@@ -88,7 +88,7 @@
                                 <color key="highlightedColor" red="0.079258925432159663" green="0.17800624781682328" blue="0.17968858863342296" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wR-75-6CU">
-                                <rect key="frame" x="15" y="392.33333333333331" width="291" height="18"/>
+                                <rect key="frame" x="15" y="391" width="291" height="18"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="IlO-dN-swx"/>
