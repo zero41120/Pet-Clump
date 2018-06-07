@@ -50,7 +50,7 @@ public class MatchingProfileDownloader {
                 List<DocumentSnapshot> valid_document = new ArrayList<>();
                 for (DocumentSnapshot doc: documentSnapshots.getDocuments()) {
                     // if should block pet
-                    if(user_pets(doc.getId()) || relation_pets(doc.getId(), pet_list)){
+                    if(user_pets(doc.getId()) || pet_list.containsKey(doc.getId())){
                         continue;
                     }
                     valid_document.add(doc);
@@ -104,21 +104,6 @@ public class MatchingProfileDownloader {
     }
     private String get_userId(String pet_id){
         return pet_id.substring(0,pet_id.length()-1);
-    }
-    private boolean relation_pets(String pet_id, Map<String, String> pet_list) {
-
-        if (pet_list.get(pet_id) != null) {
-            switch (pet_list.get(pet_id)) {
-                case "friend":
-                case "2":
-                case "3":
-                case "0":
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        return false;
     }
 }
 

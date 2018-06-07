@@ -1,10 +1,12 @@
 package com.petclump.petclump.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -64,9 +66,9 @@ public class MatchingViewProfileActivity extends AppCompatActivity {
         String the_pet_id = intent.getExtras().getString("petId");
         PetProfile pet = new PetProfile();
         setActionBar(Name);
-
+        Context temp = this;
         matchviewprofile_add_friend.setOnClickListener(v-> {
-            pet.new_friend_change(main_pet_id, the_pet_id, PetProfile.friend_change_type.NEW_FRIEND, () -> {
+            pet.new_friend_change(main_pet_id, the_pet_id, PetProfile.friend_change_type.NEW_FRIEND,temp, () -> {
                 Toast.makeText(this, "send successfully!", Toast.LENGTH_SHORT).show();
                 matchviewprofile_add_friend.setClickable(false);
                 matchviewprofile_add_friend.setText("Already sent");

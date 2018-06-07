@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     // GPS
     private double profile_lat = 0.0, profile_lon = 0.0;
     private OwnerProfile owner = OwnerProfile.getInstance();
-
+    private final int GPS_REQUEST_CODE = 99;
+    private final int FILE_STORAGE_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         checkLoggedIn();
         setupUI();
+        setFilePermission();
         setGPS();
         setupGoogleLogin();
         setupFacebookLogin();
@@ -84,10 +86,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             startActivity(new Intent(this, MatchingActivity.class));
         }
     }
+    private void setFilePermission(){
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                FILE_STORAGE_REQUEST_CODE);
+    }
     private void setGPS(){
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                99);
+                GPS_REQUEST_CODE);
         LocationManager lm = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
         List<String> providers = lm.getProviders(true);
         Location l;
@@ -136,23 +143,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             startActivity(new Intent(c, MatchingActivity.class))
         );
 
-        // Animal text on screen
-//        Thread t = new Thread() {
-//            @Override
-//            public void run() {
-//                try {
-//                    while (!isInterrupted()) {
-//                        for (Specie s: Specie.values()) {
-//                            Thread.sleep(1000);
-//                            runOnUiThread( ()-> animalText.setText(s.getName(c)));
-//                        }
-//                    }
-//                } catch (InterruptedException e) {
-//                    Log.d("Interrupted", "run: " + e.getMessage());
-//                }
-//            }
-//        };
-//        t.start();
     }
 
 
@@ -284,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
-            case 99:
+            case GPS_REQUEST_CODE:
                 // If the permissions aren't set, then return. Otherwise, proceed.
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                         PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
@@ -306,6 +296,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     else{
                         startService(i);
                     }
+                }
+                break;
+            case FILE_STORAGE_REQUEST_CODE:
+                // If the permissions aren't set, then return. Otherwise, proceed.
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                        PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE}
+                                , 11);
+                    }
+                    Log.d(TAG, "returning program");
+                    return;
                 }
                 break;
             default:

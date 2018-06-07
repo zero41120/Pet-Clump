@@ -1,5 +1,6 @@
 package com.petclump.petclump.models;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.Cryptography.Cryptographer;
+import com.petclump.petclump.models.Cryptography.KeyExchanger;
 import com.petclump.petclump.models.datastructures.DefaultMap;
 import com.petclump.petclump.models.protocols.FriendChangeState;
 import com.petclump.petclump.models.protocols.Profile;
@@ -30,7 +32,10 @@ import com.petclump.petclump.models.protocols.ProfileDeletor;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.models.protocols.ProfileUploader;
 
+import java.math.BigInteger;
+import java.net.ConnectException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -54,6 +59,7 @@ public class PetProfile implements Profile {
     private HashMap<String, String> relation_list = new HashMap<>();    // friend_list
     private HashMap<String, String> chat_list = new HashMap<>();        // chat_list
 
+
     public static final int default_image = R.drawable.dog_placeholder;
 
 
@@ -76,7 +82,6 @@ public class PetProfile implements Profile {
     private FirebaseAuth Auth_pet = FirebaseAuth.getInstance();
     private FirebaseStorage Store_pet = FirebaseStorage.getInstance();
 
-    // singleton
     public PetProfile(){}
 
     public PetProfile(Map<String, Object> map){
@@ -128,7 +133,7 @@ public class PetProfile implements Profile {
     }
     // friend manipulation field
     public enum friend_change_type {NEW_FRIEND, ADD_UNREAD_FRIEND, BLOCK_FRIEND};
-    public void new_friend_change(String sender_id, String receiver_id, friend_change_type type, FriendChangeState c){
+    public void new_friend_change(String sender_id, String receiver_id, friend_change_type type, Context ctx, FriendChangeState c){
         if (Auth_pet.getCurrentUser() == null){
             Log.e(TAG, "user is null.");
             return;
@@ -139,37 +144,77 @@ public class PetProfile implements Profile {
             case NEW_FRIEND:
                 code_sender = "sending";
                 code_receiver = "receiving";
+                update_friend_key(sender_id, receiver_id,type,ctx,()->{});
                 break;
             case ADD_UNREAD_FRIEND:
                 code_sender = "friending";
                 code_receiver = "friending";
+                update_friend_key(sender_id, receiver_id,type,ctx,()->{});
                 break;
             case BLOCK_FRIEND:
                 code_sender = "blocking";
                 code_receiver = "blocking";
                 break;
         }
-        // upload sender's list
+
         DocumentReference sender_list = FirebaseFirestore.getInstance().collection("pets")
                 .document(sender_id)
                 .collection("friends").document(receiver_id);
-        sender_list.set(generateFriendRequest(code_sender)).addOnCompleteListener(task -> {
-            if(!task.isSuccessful()) {
-                Log.w(TAG, "changing friend status failed.");
-            }
-        });
-        // upload receiver's list
         DocumentReference receiver_list = FirebaseFirestore.getInstance().collection("pets")
                 .document(receiver_id)
                 .collection("friends").document(sender_id);
-        receiver_list.set(generateFriendRequest(code_receiver)).addOnCompleteListener(task -> {
-            if(task.isSuccessful()) {
-                c.didCompleteChange();
-            }
-            else {
+        String finalCode_receiver = code_receiver;
+        // upload sender's list
+        sender_list.set(generateFriendRequest(code_sender)).addOnCompleteListener(task -> {
+            if(!task.isSuccessful()) {
                 Log.w(TAG, "changing friend status failed.");
+            }else{
+                // upload receiver's list
+                receiver_list.set(generateFriendRequest(finalCode_receiver)).addOnCompleteListener(task2 -> {
+                    if(task2.isSuccessful()) {
+
+                        c.didCompleteChange();
+                    }
+                    else {
+                        Log.w(TAG, "changing friend status failed.");
+                    }
+                });
             }
         });
+    }
+    public void update_friend_key(String sender_id, String receiver_id, friend_change_type type, Context ctx, ProfileUploader c){
+
+        if(type == friend_change_type.NEW_FRIEND){
+            // thispet key setup
+            KeyExchanger thispet = new KeyExchanger(sender_id, ctx);
+            String bigPrime = thispet.getBigPrime().toString();
+            String priPrime = thispet.getPrimitiveRoot().toString();
+            String thepetPublic = thispet.getMyPublic().toString();
+            FirebaseFirestore.getInstance().collection("chats").document(getCombinedId(sender_id, receiver_id)).set(new HashMap<String, Object>(){{
+                put(sender_id, thepetPublic);
+                put(receiver_id, "?");
+                put("bigPrime", bigPrime);
+                put("priPrime", priPrime);
+            }}).addOnCompleteListener(task->{
+                if(task.isSuccessful()){
+                    c.didCompleteUpload();
+                }
+            });
+        }else if(type == friend_change_type.ADD_UNREAD_FRIEND){
+            // thispet key setup
+            KeyExchanger friendpet = new KeyExchanger(receiver_id,ctx);
+            String friendPublic = friendpet.getMyPublic().toString();
+            FirebaseFirestore.getInstance().collection("chats").document(getCombinedId(sender_id, receiver_id)).update(new HashMap<String, Object>(){{
+                put(receiver_id, friendPublic);
+            }}).addOnCompleteListener(task->{
+                if(task.isSuccessful()){
+                    c.didCompleteUpload();
+                }
+            });
+        }else{
+            Log.d(TAG,"update_friend_key: wrong friend_change_type");
+            return;
+        }
     }
     public void friend_delete (String sender_id, String receiver_id, ProfileDeletor c){
         if (Auth_pet.getCurrentUser() == null){
@@ -184,32 +229,40 @@ public class PetProfile implements Profile {
         FirebaseFirestore.getInstance().collection("pets")
                 .document(sender_id)
                 .collection("friends")
-                .document(receiver_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                // if the document exists
-                if(task.getResult().exists()){
-                    task.getResult().getReference().delete();
-                }else{
-                    Log.e(TAG,"friend_delete: receiver_id doesn't exist");
-                }
-            }
-        });
-        // delete sender from receiver
-        FirebaseFirestore.getInstance().collection("pets")
-                .document(receiver_id)
-                .collection("friends")
-                .document(sender_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                // if the document exists
-                if(task.getResult().exists()){
-                    task.getResult().getReference().delete();
-                }else{
-                    Log.e(TAG,"friend_delete: sender_id doesn't exist");
-                }
-            }
-        });
+                .document(receiver_id).get().addOnCompleteListener(task->{
+                    if(task.getResult().exists()){
+                        task.getResult().getReference().delete();
+
+                        // delete sender from receiver
+                        FirebaseFirestore.getInstance().collection("pets")
+                                .document(receiver_id)
+                                .collection("friends")
+                                .document(sender_id).get().addOnCompleteListener(task2->{
+                            if(task2.getResult().exists()){
+                                task2.getResult().getReference().delete();
+
+                                // delete chatRoom
+                                FirebaseFirestore.getInstance().collection("chats")
+                                        .document(getCombinedId(sender_id,receiver_id)).get().addOnCompleteListener(task3->{
+                                    if(task3.getResult().exists()){
+                                        task3.getResult().getReference().delete();
+
+                                        c.didCompleteDelete();
+                                    }else {
+                                        Log.e(TAG, "friend_delete: chat_room doesn't exist");
+                                    }
+                                });
+
+                            }else {
+                                Log.e(TAG, "friend_delete: sender_id doesn't exist");
+                            }
+                        });
+                    }else{
+                        Log.e(TAG,"friend_delete: receiver_id doesn't exist");
+                    }
+            });
+
+
     }
     public void listenToFriendList(String pet_id, ProfileDownloader c){
         if (Auth_pet.getCurrentUser() == null){
@@ -587,5 +640,8 @@ public class PetProfile implements Profile {
                 newstr.append(url.charAt(i));
         }
         return newstr.toString();
+    }
+    public static String getCombinedId(String pet_id1, String pet_id2){
+        return (pet_id1.compareTo(pet_id2)>0 ? (pet_id1+pet_id2):(pet_id2+pet_id1));
     }
 }
