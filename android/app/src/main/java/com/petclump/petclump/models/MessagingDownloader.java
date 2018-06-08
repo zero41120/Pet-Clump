@@ -23,6 +23,7 @@ import com.petclump.petclump.models.Cryptography.KeyExchanger;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -67,7 +68,10 @@ public class MessagingDownloader {
                             Map<String, Object> ref = x.getDocument().getData();
                             String decoded = decodeString(ref.get("iv").toString(),ref.get("text").toString(),sharedKeys);
                             base.setLastMessage(decoded);
-                            base.setTime(ref.get("time").toString());
+                            Object time = ref.get("time");
+                            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                            String current = timeFormat.format(time);
+                            base.setTime(current);
                         }
                     }
                     c.didCompleteDownload();
