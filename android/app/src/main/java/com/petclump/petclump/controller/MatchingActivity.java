@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.petclump.petclump.R;
@@ -43,11 +45,12 @@ public class MatchingActivity extends AppCompatActivity {
     }
     @Override
     protected void onResume() {
+        super.onResume();
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
             finish();
         }
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        super.onResume();
+
         Intent i = new Intent(this, MatchingTab.class);
         match_pet1.setOnClickListener(v->{
             i.putExtra("petId", uid + "0");
@@ -117,6 +120,14 @@ public class MatchingActivity extends AppCompatActivity {
                 Intent i = new Intent(this, UserInfoActivity.class);
                 startActivity(i);
             case R.id.action_logout:
+//                GoogleApiClient gClient = new GoogleApiClient
+//                        .Builder(this)
+//                        .enableAutoManage(this, this)
+//                        .addApi(Auth.GOOGLE_SIGN_IN_API, gos)
+//                        .build();
+//                Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
+//
+//                );
                 FirebaseAuth.getInstance().signOut();
                 finish();
             default:
