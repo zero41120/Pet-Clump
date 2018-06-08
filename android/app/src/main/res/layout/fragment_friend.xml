@@ -9,7 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/friendview_recycle">
-
     </android.support.v7.widget.RecyclerView>
-
+    <TextView
+        android:id="@+id/friend_label"
+        android:layout_gravity="center"
+        style="@style/fontStyle4"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No friends yet :("/>
 </FrameLayout>

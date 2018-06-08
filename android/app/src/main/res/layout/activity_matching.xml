@@ -9,31 +9,96 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/match_pet1"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="@dimen/match_main"
+        android:layout_height="@dimen/match_main"
         android:layout_gravity="center"
-        android:layout_marginEnd="102dp"
-        android:layout_marginLeft="102dp"
-        android:layout_marginRight="102dp"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:src="@drawable/dog_placeholder"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
         app:civ_shadow_color="@color/colorAccent"
         app:civ_shadow_radius="10"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/match_name1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@+id/match_pet3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/match_pet1" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@+id/match_pet2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/match_pet3" />
+
+    <TextView
+        android:id="@+id/match_name1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="90dp"
+        android:text="No pet yet"
+        style="@style/matchfont"
+        android:fontFamily="@font/varela_round"
+        app:layout_constraintStart_toEndOf="@+id/match_pet1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/match_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:text="No pet yet"
+        android:fontFamily="@font/varela_round"
+        style="@style/matchfont"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toStartOf="@+id/match_pet3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/match_name3"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="95dp"
+        android:text="No pet yet"
+        style="@style/matchfont"
+        android:fontFamily="@font/varela_round"
+        app:layout_constraintStart_toEndOf="@+id/match_pet2"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/match_pet2"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginBottom="78dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_width="@dimen/match_main"
+        android:layout_height="@dimen/match_main"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:src="@drawable/pig_placeholder"
         app:civ_border_color="#EEEEEE"
@@ -42,39 +107,40 @@
         app:civ_shadow_color="@color/colorAccent"
         app:civ_shadow_radius="10"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/match_pet3" />
+        app:layout_constraintEnd_toStartOf="@+id/match_name3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/match_pet3"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginBottom="76dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginStart="2dp"
+        android:layout_width="@dimen/match_main"
+        android:layout_height="@dimen/match_main"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/ray"
         app:civ_border_color="#EEEEEE"
         app:civ_border_width="4dp"
         app:civ_shadow="true"
         app:civ_shadow_color="@color/colorAccent"
         app:civ_shadow_radius="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/match_pet2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/match_name2"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <!--<Button-->
-        <!--android:id="@+id/vm_button_settings"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginEnd="173dp"-->
-        <!--android:layout_marginLeft="150dp"-->
-        <!--android:layout_marginRight="173dp"-->
-        <!--android:layout_marginStart="150dp"-->
-        <!--android:layout_marginTop="12dp"-->
-        <!--android:text="@string/settings"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />-->
+    <!--android:id="@+id/vm_button_settings"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginEnd="173dp"-->
+    <!--android:layout_marginLeft="150dp"-->
+    <!--android:layout_marginRight="173dp"-->
+    <!--android:layout_marginStart="150dp"-->
+    <!--android:layout_marginTop="12dp"-->
+    <!--android:text="@string/settings"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="0.0"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />-->
 </android.support.constraint.ConstraintLayout>

@@ -123,7 +123,13 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
                 +String.valueOf(calendar.get(Calendar.DAY_OF_MONTH))+" "
                 +String.valueOf(calendar.get(Calendar.YEAR));
         birthday_label.setText(t);
-        range_label.setText(String.valueOf(profile.getDistancePerference()));
+        Integer gdp = profile.getDistancePerference();
+        if (gdp < 1000){
+            range_label.setText(String.valueOf("Within "+ profile.getDistancePerference())+ " km");
+        } else{
+            range_label.setText("No preference");
+        }
+
     }
     private void initializePrimaryPet(){
         PetProfile thePet = new PetProfile();

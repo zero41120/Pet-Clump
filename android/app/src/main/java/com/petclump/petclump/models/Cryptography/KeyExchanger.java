@@ -1,5 +1,13 @@
 package com.petclump.petclump.models.Cryptography;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+
+import com.petclump.petclump.controller.ContextProvider;
+import com.petclump.petclump.controller.MainActivity;
+
 import java.math.*;
 import java.util.*;
 import java.security.*;
@@ -11,12 +19,15 @@ public class KeyExchanger {
 
     BigInteger primitiveRoot, bigPrime;
     private BigInteger mySecret;
+    String friendId;
     byte[] sharedKey = null;
+
     /**
      * This constructor should generate the values for you and your friends
      * @param friendId generate a secret number for this id
      */
     public KeyExchanger(String friendId){
+        this.friendId = friendId;
         generatePublicPrimes();
         loadOrGenerateSecret(friendId);
     }
@@ -28,11 +39,19 @@ public class KeyExchanger {
      * @throws Exception Not going to do anything as of now
      */
 	public KeyExchanger(String friendId, BigInteger friendPublic, BigInteger bigPrime, BigInteger primitiveRoot) throws Exception {
-
+        this.friendId = friendId;
 		this.bigPrime = bigPrime;
 		this.primitiveRoot = primitiveRoot;
         loadOrGenerateSecret(friendId);
 	}
+
+
+	public KeyExchanger(String acceptFriendId, Map<String, Object> data){
+        this.friendId = acceptFriendId;
+        this.bigPrime = new BigInteger(data.get("bigPrime").toString());
+        this.primitiveRoot = new BigInteger(data.get("priPrime").toString());
+        loadOrGenerateSecret(friendId);
+    }
 
     /**
      * This method computes the shared key with a given friend public number
@@ -51,9 +70,38 @@ public class KeyExchanger {
     }
 
     private void loadOrGenerateSecret(String fdId){
+
         if (mySecret == null){
-            // TODO: Load from file for fdPublic, use a fix seed of fdId for now
-            mySecret = new BigInteger(500, new Random());
+            Context c = ContextProvider.getContext();
+            File file = new File(c.getFilesDir(),fdId+".txt");
+
+            if(file.exists()){
+
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    mySecret = new BigInteger(br.readLine());
+                    Log.d("loadOrGenerateSecret","hit:"+fdId+"\n"+mySecret.toString());
+                    br.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e2){
+                    e2.printStackTrace();
+                }
+            }else{
+                mySecret = new BigInteger(500, new Random());
+                try {
+                    Log.d("loadOrGenerateSecret", "create:"+file.getAbsolutePath());
+                    file.createNewFile();
+
+                    BufferedWriter wr = new BufferedWriter(new FileWriter(file));
+                    wr.write(mySecret.toString());
+                    Log.d("loadOrGenerateSecret:","store:"+fdId+"\n"+mySecret.toString());
+                    wr.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -77,7 +125,7 @@ public class KeyExchanger {
 
 class PrimeUtil{
 
-    private static final int bitLength = 20;
+    private static final int bitLength = 512;
     private static final int certainty = 20;
     private static final SecureRandom rnd = new SecureRandom();
 
@@ -104,7 +152,8 @@ class PrimeUtil{
      * @return a big integer of a primitive root
      */
     public static BigInteger findPrimitiveRoot(BigInteger p) {
-        int start = 2001;
+        Random rn = new Random();
+        int start = rn.nextInt(50000);
         for (int i = start; i < 100000000; i++)
             if (isPrimeRoot(BigInteger.valueOf(i), p)) {
                 return BigInteger.valueOf(i);
