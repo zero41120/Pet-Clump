@@ -95,8 +95,7 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
             });
             holder.reject_button.setOnClickListener(v->{
                 pet.friend_delete(friends.get(position).getFriend_id(), friends.get(position).getMy_id(),()->{
-                    this.removeAt(position);
-                    //holder.itemView.setVisibility(View.GONE);
+
                 });
             });
         }
@@ -127,11 +126,11 @@ public class FriendRecycleViewAdapter extends RecyclerView.Adapter<FriendRecycle
 
 
     }
-    public void removeAt(int position) {
+/*    public void removeAt(int position) {
         friends.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, friends.size());
 
-    }
+    }*/
 
 }

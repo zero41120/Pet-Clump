@@ -84,19 +84,20 @@ public class FriendFragment extends Fragment {
         pet.listenToFriendList(pet_id,()->{
             Friend_list = (Map<String, String>) pet.getRelation_list().clone();
             Log.d(TAG, "didCompleteDownload: " + Friend_list);
-            //download_list = new ArrayList<>();
+            friendProfileList.clear();
             for (Map.Entry<String,String> entry : Friend_list.entrySet()){
                 // friend_list
                 if(!entry.getValue().equals("blocking") && !entry.getValue().equals("sending")){
                     pet.download(entry.getKey(), ()->{
                         FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(), "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
-                        if (!friendProfileList.contains(t)){
+                        //if (!friendProfileList.contains(t)){
                             friendProfileList.add(t);
                             friendRecycleViewAdapter.notifyDataSetChanged();
-                        }
+
                     });
                 }
             }
+            //friendRecycleViewAdapter.notifyDataSetChanged();
             setRecyclerView();
         });
     }

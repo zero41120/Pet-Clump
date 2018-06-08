@@ -47,6 +47,8 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 
+import static com.google.firebase.firestore.DocumentChange.Type.REMOVED;
+
 public class PetProfile implements Profile {
     private String bio = "PET_BIO";
     private String age = "0";
@@ -293,14 +295,21 @@ public class PetProfile implements Profile {
                                 Log.w(TAG, "Listen to Friend_List failed.", e);
                                 return;
                             }
-                            List A = queryDocumentSnapshots.getDocumentChanges();
                             // iterate through data
-                            for(Object x: A){
-                                Map<String, Object> ref_data = x==null? null: ((DocumentChange)x).getDocument().getData();
-                                if(x != null)
-                                    relation_list.put(((DocumentChange)x).getDocument().getId(), ref_data.get("pending").toString());
+                            for(DocumentChange x: queryDocumentSnapshots.getDocumentChanges()){
+
+                                if(x != null){
+                                    Map<String, Object> ref_data = x.getDocument().getData();
+                                    Log.d("friend-list",x.getDocument().getId()+" "+ref_data.get("pending").toString() + " type "+x.getType());
+                                    if(x.getType() == REMOVED){
+                                        if(relation_list.containsKey(x.getDocument().getId()))
+                                            relation_list.remove(x.getDocument().getId());
+                                    }else{
+                                        relation_list.put(x.getDocument().getId(), ref_data.get("pending").toString());
+                                    }
+                                }
                             }
-                            //Log.d(TAG,"FriendList:" +Thread.currentThread().toString());
+                            //Log.d("friend-list",relation_list.toString());
                             c.didCompleteDownload();
                         }
                     });
