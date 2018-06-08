@@ -87,4 +87,27 @@ public class MessageEncryptUnitTest {
 
     }
 
+    @Test
+    public void testIV(){
+
+        // Original
+        byte[] originalBytes = {1,2,3,4,5};
+        for(byte b : originalBytes){ System.out.print(b); }
+        System.out.println();
+
+        // Converted to string
+        String ivs = Cryptographer.convertIV(originalBytes);
+        System.out.println(ivs);
+
+        assertEquals(ivs, "[1, 2, 3, 4, 5]");
+
+        // Converted bytes
+        byte[] converted = Cryptographer.convertIV(ivs);
+        for(byte b : converted){ System.out.print(b); }
+        System.out.println();
+
+        assertArrayEquals(originalBytes, converted);
+
+    }
+
 }

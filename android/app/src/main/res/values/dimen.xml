@@ -7,4 +7,5 @@
     <dimen name="schedule_size">40dp</dimen>
     <dimen name="match_size">350dp</dimen>
     <dimen name="match_margin">130dp</dimen>
+    <dimen name="match_main">160dp</dimen>
 </resources>

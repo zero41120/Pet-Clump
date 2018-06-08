@@ -54,10 +54,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         holder.matchview_cardView.setOnClickListener(v->{
             Intent intent = new Intent(mContext, MatchingViewProfileActivity.class);
-            intent.putExtra("Name", pets.get(position).getName());
-            intent.putExtra("Age", pets.get(position).getAge());
-            intent.putExtra("Bio", pets.get(position).getBio());
-            intent.putExtra("Spe", pets.get(position).getSpe());
             intent.putExtra("petId", pets.get(position).getPetId());
             intent.putExtra("MainPetId", MainPet_id);
             //intent.putExtra("main_url", pets.get(position).getPhotoUrl());

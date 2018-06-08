@@ -24,14 +24,18 @@ import com.petclump.petclump.models.PetProfile;
 public class MatchingActivity extends AppCompatActivity {
     private Button vm_button_settings;
     private CircularImageView match_pet1, match_pet2, match_pet3;
+    private TextView match_name1, match_name2, match_name3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matching);
         //vm_button_settings = findViewById(R.id.vm_button_settings);
         match_pet1 = findViewById(R.id.match_pet1);
-        match_pet2 = findViewById(R.id.match_pet2);
-        match_pet3 = findViewById(R.id.match_pet3);
+        match_pet2 = findViewById(R.id.match_pet3);
+        match_pet3 = findViewById(R.id.match_pet2);
+        match_name1 = findViewById(R.id.match_name1);
+        match_name2 = findViewById(R.id.match_name2);
+        match_name3 = findViewById(R.id.match_name3);
 //        vm_button_settings.setOnClickListener(v -> {
 //            startActivity(new Intent(this, UserInfoActivity.class));
 //        });
@@ -66,19 +70,25 @@ public class MatchingActivity extends AppCompatActivity {
         //profile_pet1
         thePet.download(user.getUid()+0,()->{
             String url = thePet.getUrl("main_profile_url");
+            String name = thePet.getName();
             new DownloadImageTask(match_pet1, this).execute(url);
+            match_name1.setText(name);
             //Toast.makeText(this, "1 set up", Toast.LENGTH_SHORT).show();
         });
         //profile_pet2
         thePet.download(user.getUid()+1,()->{
             String url = thePet.getUrl("main_profile_url");
             new DownloadImageTask(match_pet2, this).execute(url);
+            String name = thePet.getName();
+            match_name2.setText(name);
             //Toast.makeText(this, "2 set up", Toast.LENGTH_SHORT).show();
         });
         //profile_pet3
         thePet.download(user.getUid()+2,()->{
             String url = thePet.getUrl("main_profile_url");
+            String name = thePet.getName();
             new DownloadImageTask(match_pet3, this).execute(url);
+            match_name3.setText(name);
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
         });
     }
