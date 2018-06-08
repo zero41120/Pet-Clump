@@ -89,12 +89,19 @@ public class FriendFragment extends Fragment {
                                 FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(),
                                         "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
                                 // setup last messaging.
-                                if(!friendProfileList.contains(t)){
+                                //if(!friendProfileList.contains(t)){
                                     MessagingDownloader.setlastMessage(pet_id,friend_id,myShared,t,()->{
-                                        friendProfileList.add(t);
-                                        friendRecycleViewAdapter.notifyDataSetChanged();
+                                        if(friendProfileList.contains(t)) {
+                                            int index = friendProfileList.indexOf(t);
+                                            friendProfileList.remove(index);
+                                            friendProfileList.add(index,t);
+                                            friendRecycleViewAdapter.notifyDataSetChanged();
+                                        }else{
+                                            friendProfileList.add(t);
+                                            friendRecycleViewAdapter.notifyDataSetChanged();
+                                        }
                                     });
-                                }
+                                //}
                             });
                         } catch (Exception e) {
                             e.printStackTrace();
