@@ -1,9 +1,11 @@
 package com.petclump.petclump.controller;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +18,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.petclump.petclump.R;
 import com.petclump.petclump.models.DownloadImageTask;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.protocols.ProfileDownloader;
 import com.petclump.petclump.views.ImagePager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -39,6 +43,8 @@ public class MatchingViewProfileActivity extends AppCompatActivity implements Pr
     private static final int ITEM2 = Menu.FIRST + 1;
 
     private static final int ITEM3 = Menu.FIRST + 2;
+    private String main_pet_id = "";
+    private String the_pet_id = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +57,17 @@ public class MatchingViewProfileActivity extends AppCompatActivity implements Pr
         matchviewprofile_add_friend = findViewById(R.id.button_add_friend);
         report_btn = findViewById(R.id.button_report);
         report_btn.setOnClickListener(v->{
+            report_manul();
             report_btn.setBackgroundResource(R.drawable.cancel_button_background);
             report_btn.setText("Reported");
         });
         registerForContextMenu(report_btn);
-        String main_pet_id = intent.getExtras().getString("MainPetId");
-        String the_pet_id = intent.getExtras().getString("petId");
+        main_pet_id = intent.getExtras().getString("MainPetId");
+        the_pet_id = intent.getExtras().getString("petId");
         matchviewprofile_viewPager = findViewById(R.id.matchviewprofile_viewPager);
         petProfile = new PetProfile();
         petProfile.download(the_pet_id, ()->{
-           matchviewprofile_bio.setText(petProfile.getBio());
+            matchviewprofile_bio.setText(petProfile.getBio());
             matchviewprofile_specie.setText(petProfile.getSpe());
             matchviewprofile_name.setText(petProfile.getName());
             matchviewprofile_age.setText(petProfile.getAge());
@@ -90,6 +97,23 @@ public class MatchingViewProfileActivity extends AppCompatActivity implements Pr
                 matchviewprofile_add_friend.setBackgroundResource(R.drawable.cancel_button_background);
             });
         });
+    }
+    private void report_manul(){
+        CharSequence opts[] = new CharSequence[] {"Non-pet Related active","Offensive Language","Inappropriate image"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+            .setTitle("REPORT")
+            .setItems(opts, (dialog, which)->{
+                FirebaseFirestore.getInstance().collection("reports").document(main_pet_id+the_pet_id).set(new HashMap<String, Object>(){{
+                    put("from",main_pet_id);
+                    put("reason",opts[which]);
+                    put("to",the_pet_id);
+                }}).addOnCompleteListener(task->{
+                    if(task.isSuccessful()){
+                        Toast.makeText(this, "Successfully report!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }).show();
     }
     public void setActionBar(String heading) {
         // TODO Auto-generated method stub

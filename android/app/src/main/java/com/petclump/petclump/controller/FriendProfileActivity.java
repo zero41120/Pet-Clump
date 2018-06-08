@@ -34,8 +34,6 @@ public class FriendProfileActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new PetProfileFriendFragment(), getResources().getString(R.string.pet));
         viewPagerAdapter.addFragment(new OwnerProfileFriendFragment(), getResources().getString(R.string.owner));
 
-
-
         ViewPager_inTab_profile.setAdapter(viewPagerAdapter);
         tabLayout2.setupWithViewPager(ViewPager_inTab_profile);
         setActionBar("");
