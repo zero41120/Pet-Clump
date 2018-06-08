@@ -19,6 +19,7 @@ public class KeyExchanger {
 
     BigInteger primitiveRoot, bigPrime;
     private BigInteger mySecret;
+    String friendId;
     byte[] sharedKey = null;
 
     /**
@@ -26,6 +27,7 @@ public class KeyExchanger {
      * @param friendId generate a secret number for this id
      */
     public KeyExchanger(String friendId){
+        this.friendId = friendId;
         generatePublicPrimes();
         loadOrGenerateSecret(friendId);
     }
@@ -37,11 +39,19 @@ public class KeyExchanger {
      * @throws Exception Not going to do anything as of now
      */
 	public KeyExchanger(String friendId, BigInteger friendPublic, BigInteger bigPrime, BigInteger primitiveRoot) throws Exception {
-
+        this.friendId = friendId;
 		this.bigPrime = bigPrime;
 		this.primitiveRoot = primitiveRoot;
         loadOrGenerateSecret(friendId);
 	}
+
+
+	public KeyExchanger(String acceptFriendId, Map<String, Object> data){
+        this.friendId = acceptFriendId;
+        this.bigPrime = new BigInteger(data.get("bigPrime").toString());
+        this.primitiveRoot = new BigInteger(data.get("priPrime").toString());
+        loadOrGenerateSecret(friendId);
+    }
 
     /**
      * This method computes the shared key with a given friend public number

@@ -89,10 +89,12 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
             Log.d(TAG,"friend_public:"+friend_public);
             Log.d(TAG,"bigPRIME:"+bigPRIME);
             Log.d(TAG,"priPRIME"+priPRIME);
-            Log.d(TAG, "mySharedKey: " + myShared);
             try {
                 KeyExchanger my = new KeyExchanger(my_id, friend_public, bigPRIME, priPRIME);
                 myShared = my.getSharedKey(friend_public);
+                String sharedString = "";
+                for(byte b : myShared){  sharedString += b; }
+                Log.d(TAG, "mySharedKey: " + sharedString);
                 setupUI();
             } catch (Exception e) {
                 e.printStackTrace();

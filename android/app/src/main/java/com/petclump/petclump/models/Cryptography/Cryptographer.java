@@ -1,6 +1,9 @@
 package com.petclump.petclump.models.Cryptography;
 
 import android.util.Base64;
+
+import com.google.common.primitives.UnsignedBytes;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
@@ -45,10 +48,7 @@ public class Cryptographer {
         }
         return null;
     }
-/*    @Override
-    public String toString(){
-       return new String(generateSecretKey());
-    }*/
+
     /**
      * This method generates a initialization vector.
      * We will store this value for each message we send.
@@ -114,8 +114,10 @@ public class Cryptographer {
         // Conform ios style
         String temp = "";
         for (byte i: iv) {
-            temp += " " + i + ",";
+            int unsignedByte = i & 0xFF;
+            temp += " " + unsignedByte + ",";
         }
+        // Removes leading ' ' and tailing ','
         String out = "[" + temp.substring(1, temp.length() -1) + "]";
         return out;
     }
@@ -126,7 +128,7 @@ public class Cryptographer {
         String[] segments = parse.split(",");
         byte[] bytes = new byte[segments.length];
         for (int i = 0; i < segments.length; i++) {
-            bytes[i] = Byte.parseByte(segments[i]);
+            bytes[i] = (byte) Integer.parseInt(segments[i]);
         }
         return bytes;
     }

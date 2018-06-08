@@ -41,6 +41,56 @@ class PetClumpUITests: XCTestCase {
         editButton.tap()
         
         let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 2).children(matching: .other).element
+        let textField = element.children(matching: .textField).element(boundBy: 0)
+        textField.tap()
+        textField.tap()
+        
+        let editMeNavigationBar = app.navigationBars["Edit me"]
+        let saveButton = editMeNavigationBar.buttons["Save"]
+        saveButton.tap()
+        editButton.tap()
+        textField.tap()
+        saveButton.tap()
+        editButton.tap()
+        
+        let textField2 = element.children(matching: .textField).element(boundBy: 1)
+        textField2.tap()
+        
+        let pickerWheel = app/*@START_MENU_TOKEN@*/.pickerWheels["-"]/*[[".pickers.pickerWheels[\"-\"]",".pickerWheels[\"-\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        pickerWheel.tap()
+        saveButton.tap()
+        editButton.tap()
+        textField2.tap()
+        pickerWheel.tap()
+        saveButton.tap()
+        editButton.tap()
+        element.children(matching: .textField).element(boundBy: 2).tap()
+        app.datePickers.pickerWheels["January"].tap()
+        saveButton.tap()
+        app.staticTexts["1994/12/07"].tap()
+        editButton.tap()
+        
+        let slider = app.sliders["33%"]
+        slider/*@START_MENU_TOKEN@*/.press(forDuration: 1.1);/*[[".tap()",".press(forDuration: 1.1);"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        slider.swipeLeft()
+        slider.tap()
+        editMeNavigationBar.buttons["Cancel"].tap()
+        
+        let leaveButton = app.alerts["Exit"].buttons["Leave"]
+        leaveButton.tap()
+
+        
+                
+        
+        /**
+        let app = XCUIApplication()
+        app.navigationBars["Start Matching"].buttons["Setting"].tap()
+        
+        let aboutUsNavigationBar = app.navigationBars["About us"]
+        let editButton = aboutUsNavigationBar.buttons["Edit"]
+        editButton.tap()
+        
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 2).children(matching: .other).element
         element.children(matching: .textField).element(boundBy: 0).tap()
         
         let editMeNavigationBar = app.navigationBars["Edit me"]
@@ -70,7 +120,7 @@ class PetClumpUITests: XCTestCase {
         editButton.tap()
         cancelButton.tap()
         aboutUsNavigationBar.buttons["Exit"].tap()
-        
+        **/
         
         /**
         
