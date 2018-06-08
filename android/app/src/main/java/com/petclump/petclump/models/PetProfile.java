@@ -182,17 +182,17 @@ public class PetProfile implements Profile {
             }
         });
     }
-    public void update_friend_key(String sender_id, String receiver_id, friend_change_type type, Context ctx, ProfileUploader c){
+    public void update_friend_key(String myPetId, String friendPetId, friend_change_type type, Context ctx, ProfileUploader c){
 
         if(type == friend_change_type.NEW_FRIEND){
             // thispet key setup
-            KeyExchanger thispet = new KeyExchanger(sender_id);
+            KeyExchanger thispet = new KeyExchanger(myPetId);
             String bigPrime = thispet.getBigPrime().toString();
             String priPrime = thispet.getPrimitiveRoot().toString();
             String thepetPublic = thispet.getMyPublic().toString();
-            FirebaseFirestore.getInstance().collection("chats").document(getCombinedId(sender_id, receiver_id)).set(new HashMap<String, Object>(){{
-                put(sender_id, thepetPublic);
-                put(receiver_id, "?");
+            FirebaseFirestore.getInstance().collection("chats").document(getCombinedId(myPetId, friendPetId)).set(new HashMap<String, Object>(){{
+                put(myPetId, thepetPublic);
+                put(friendPetId, "?");
                 put("bigPrime", bigPrime);
                 put("priPrime", priPrime);
             }}).addOnCompleteListener(task->{
@@ -202,13 +202,23 @@ public class PetProfile implements Profile {
             });
         }else if(type == friend_change_type.ADD_UNREAD_FRIEND){
             // thispet key setup
-            KeyExchanger friendpet = new KeyExchanger(receiver_id);
-            String friendPublic = friendpet.getMyPublic().toString();
-            FirebaseFirestore.getInstance().collection("chats").document(getCombinedId(sender_id, receiver_id)).update(new HashMap<String, Object>(){{
-                put(receiver_id, friendPublic);
-            }}).addOnCompleteListener(task->{
-                if(task.isSuccessful()){
-                    c.didCompleteUpload();
+            DocumentReference charRef = FirebaseFirestore.getInstance().collection("chats").document(getCombinedId(myPetId, friendPetId));
+            charRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot snap = task.getResult();
+                    if (!snap.exists()){
+                        Log.d(TAG, "update_friend_key: not exists");
+                    }
+                    try {
+                        Map<String, Object> data = snap.getData();
+                        Log.d(TAG, "update_friend_key: " + data);
+                        KeyExchanger kE = new KeyExchanger(friendPetId, data);
+                        data.put(friendPetId, kE.getMyPublic().toString());
+                        Log.d(TAG, "update_friend_key in add unread fried: " + data);
+                        charRef.set(data);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }else{
