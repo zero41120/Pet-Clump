@@ -384,18 +384,18 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         return infoCheck;
     }
     public boolean noPetImage(){
-        if (pet_view_main.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.photo_placeholder).getConstantState()){
+        if (pet_view_main.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.pet_main_img).getConstantState()){
             return true;
         }
         return false;
     }
 
     public boolean noOwnerImage(){
-        Object o = getResources().getDrawable(R.drawable.photo_placeholder).getConstantState();
+        Object o = getResources().getDrawable(R.drawable.po_img).getConstantState();
         boolean one = group_view_1.getDrawable().getConstantState()==o;
         boolean two = group_view_2.getDrawable().getConstantState()==o;
         boolean three = group_view_3.getDrawable().getConstantState()==o;
-        boolean imageCheck = one || two || three;
+        boolean imageCheck = one && two && three;
         return imageCheck;
     }
     public void getDialogForText(){
