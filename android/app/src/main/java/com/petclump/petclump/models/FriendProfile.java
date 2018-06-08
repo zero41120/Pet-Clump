@@ -47,6 +47,8 @@ public class FriendProfile {
 
     public void setLastMessage(String last){ this.lastMessage = last;}
 
+    public void setTime(String time){this.time = time;}
+
     @Override
     public boolean equals(Object o) {
 
