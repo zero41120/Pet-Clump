@@ -106,7 +106,7 @@ public class ChattingActivity extends AppCompatActivity implements ProfileDownlo
         // baseMessageList.add(message7);
         recyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
         // setup photo
-        downloader = new MessagingDownloader(this,my_id, friend_id, myShared, 2);
+        downloader = new MessagingDownloader(my_id, friend_id, myShared);
         Log.d(TAG,"my:"+my_id+" other:"+friend_id);
         ChattingActivity theCTX = this;
         //setRecyclerView();
