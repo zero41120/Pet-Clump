@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     // Facebook Sign-ins
     private CallbackManager fbManager;
     // UI
+    private TextView uidText;
     private Context c;
     private static final String TAG = "Entry Point";
     // GPS
@@ -120,21 +121,34 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // Init variables
         c = getApplicationContext();
         ContextProvider.setContext(getApplicationContext());
+        uidText = findViewById(R.id.user_UID);
+        //Button settingsButton = findViewById(R.id.button_settings);
+        Button matchingButton = findViewById(R.id.matching_button);
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
 
         // Show user UID if logged in
         if (cUser != null) {
+            uidText.setText(cUser.getUid());
             saveGPS();
         }
 
         // Sign out button
-/*        Button mGoogleSignOutBtn = findViewById(R.id.mGoogleSignOut);
+        Button mGoogleSignOutBtn = findViewById(R.id.mGoogleSignOut);
         mGoogleSignOutBtn.setOnClickListener(v ->{
             Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
-                    FirebaseAuth.getInstance().signOut()
+                uidText.setText(R.string.app_name)
             );
-        });*/
+            FirebaseAuth.getInstance().signOut();
+        });
+
+
+        // Matching activity
+        matchingButton.setOnClickListener(v->
+            startActivity(new Intent(c, MatchingActivity.class))
+        );
+
     }
+
 
     private void setupGoogleLogin(){
         GoogleSignInOptions gos = new GoogleSignInOptions
@@ -248,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 return;
             }
 
+            this.uidText.setText(mAuth.getCurrentUser().getUid());
             saveGPS();
             checkLoggedIn();
             Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());

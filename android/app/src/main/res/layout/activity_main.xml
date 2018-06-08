@@ -37,6 +37,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
+    <Button
+        android:id="@+id/mGoogleSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="20dp"
+        android:text="Google Sign Out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_UID" />
+
+    <Button
+        android:id="@+id/matching_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Go Matching"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/welcome_text"
         style="@style/entryfont"
@@ -134,5 +158,20 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facebook_button_real" />
+
+    <TextView
+        android:id="@+id/user_UID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="168dp"
+        android:layout_marginLeft="169dp"
+        android:layout_marginRight="168dp"
+        android:layout_marginStart="169dp"
+        android:layout_marginTop="17dp"
+        android:text="dfjiafije"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googleBtn" />
 
 </android.support.constraint.ConstraintLayout>
