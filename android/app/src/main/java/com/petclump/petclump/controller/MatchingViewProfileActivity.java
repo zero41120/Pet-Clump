@@ -65,6 +65,7 @@ public class MatchingViewProfileActivity extends AppCompatActivity implements Pr
             matchviewprofile_name.setText(petProfile.getName());
             matchviewprofile_age.setText(petProfile.getAge());
             Name = petProfile.getName();
+            setActionBar(Name);
         });
         String[] MatchImage= new String[]{
                 "main_profile_url",
@@ -80,7 +81,7 @@ public class MatchingViewProfileActivity extends AppCompatActivity implements Pr
         indicator.setViewPager(matchviewprofile_viewPager);
         //new DownloadImageTask(matchviewprofile_viewPager).execute(intent.getExtras().getString("main_url"));
         PetProfile pet = new PetProfile();
-        setActionBar(Name);
+
         Context temp = this;
         matchviewprofile_add_friend.setOnClickListener(v-> {
             pet.new_friend_change(main_pet_id, the_pet_id, PetProfile.friend_change_type.NEW_FRIEND,temp, () -> {

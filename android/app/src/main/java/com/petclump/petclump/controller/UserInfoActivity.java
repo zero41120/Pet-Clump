@@ -137,20 +137,36 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
         //profile_pet1
         thePet.download(user.getUid()+0,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet1, this).execute(url);
+            if (!url.equals("")){
+                new DownloadImageTask(profile_pet1, this).execute(url);
+            }else{
+                profile_pet1.setImageResource(R.drawable.img_btn_1);
+            }
+
             //Toast.makeText(this, "1 set up"+url, Toast.LENGTH_SHORT).show();
+            Log.d(TAG, url);
         });
         //profile_pet2
         thePet.download(user.getUid()+1,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet2, this).execute(url);
+            if (!url.equals("")){
+                new DownloadImageTask(profile_pet2, this).execute(url);
+            }else{
+                profile_pet2.setImageResource(R.drawable.img_btn_1);
+            }
             //Toast.makeText(this, "2 set up", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, url);
         });
         //profile_pet3
         thePet.download(user.getUid()+2,()->{
             String url = thePet.getUrl("main_profile_url");
-            new DownloadImageTask(profile_pet3, this).execute(url);
+            if (!url.equals("")){
+                new DownloadImageTask(profile_pet3, this).execute(url);
+            }else{
+                profile_pet3.setImageResource(R.drawable.img_btn_1);
+            }
             //Toast.makeText(this, "3 set up", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, url);
         });
     }
     @Override

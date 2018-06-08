@@ -23,8 +23,7 @@
             android:layout_marginStart="24dp"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-
-            android:src="@drawable/photo_placeholder"
+            android:src="@drawable/pet_main_img"
             android:tag="main_profile_url"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/pet_profile_1"
@@ -45,7 +44,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pet_main_profile"
             app:layout_constraintTop_toTopOf="@id/pet_main_profile"
-            android:src="@drawable/photo_placeholder"/>
+            android:src="@drawable/pet_img"/>
 
         <ImageView
             android:id="@+id/pet_profile_2"
@@ -59,7 +58,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/pet_main_profile"
             app:layout_constraintTop_toBottomOf="@+id/pet_profile_1"
-            android:src="@drawable/photo_placeholder" />
+            android:src="@drawable/pet_img" />
 
         <ImageView
             android:id="@+id/pet_profile_3"
@@ -68,7 +67,7 @@
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:background="@color/white"
-            android:src="@drawable/photo_placeholder"
+            android:src="@drawable/pet_img"
             android:tag="pet_profile_url_3"
             app:layout_constraintStart_toEndOf="@+id/pet_profile_4"
             app:layout_constraintTop_toBottomOf="@+id/pet_profile_2" />
@@ -84,7 +83,7 @@
             app:layout_constraintEnd_toStartOf="@+id/pet_profile_3"
             app:layout_constraintStart_toEndOf="@+id/pet_profile_5"
             app:layout_constraintTop_toBottomOf="@+id/pet_main_profile"
-            android:src="@drawable/photo_placeholder" />
+            android:src="@drawable/pet_img" />
 
         <ImageView
             android:id="@+id/pet_profile_5"
@@ -96,7 +95,7 @@
             android:layout_marginStart="24dp"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            android:src="@drawable/photo_placeholder"
+            android:src="@drawable/pet_img"
             android:tag="pet_profile_url_5"
             app:layout_constraintBottom_toTopOf="@+id/Txt_my_pet_and_I"
             app:layout_constraintEnd_toStartOf="@+id/pet_profile_4"
@@ -115,7 +114,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/varela_round"
             android:gravity="left"
-            android:text="DUGGYY"
+            android:text="(Pet Name)"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -132,7 +131,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/varela_round"
             android:gravity="left"
-            android:text="DUGGYY and I "
+            android:text="(Pet Name) and I "
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pet_profile_4" />
@@ -158,7 +157,7 @@
                 android:layout_margin="10dp"
                 android:adjustViewBounds="true"
                 android:background="@color/lightYellow"
-                android:src="@drawable/photo_placeholder2" />
+                android:src="@drawable/po_img" />
 
             <ImageView
                 android:id="@+id/PO_profile_2"
@@ -170,7 +169,7 @@
                 android:adjustViewBounds="true"
                 android:layout_margin="10dp"
                 android:background="@color/lightYellow"
-                android:src="@drawable/photo_placeholder2" />
+                android:src="@drawable/po_img" />
 
             <ImageView
                 android:id="@+id/PO_profile_3"
@@ -182,7 +181,7 @@
                 android:adjustViewBounds="true"
                 android:layout_margin="10dp"
                 android:background="@color/lightYellow"
-                android:src="@drawable/photo_placeholder2" />
+                android:src= "@drawable/po_img"/>
         </LinearLayout>
 
         <LinearLayout
