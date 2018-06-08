@@ -1,6 +1,8 @@
 package com.petclump.petclump.models.Cryptography;
 
-import org.apache.commons.codec.binary.Base64;
+import android.util.Base64;
+
+import com.google.common.primitives.UnsignedBytes;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -46,10 +48,7 @@ public class Cryptographer {
         }
         return null;
     }
-/*    @Override
-    public String toString(){
-       return new String(generateSecretKey());
-    }*/
+
     /**
      * This method generates a initialization vector.
      * We will store this value for each message we send.
@@ -79,7 +78,7 @@ public class Cryptographer {
 
             byte[] encrypted = cipher.doFinal(plainText.getBytes());
 
-            return Base64.encodeBase64String(encrypted);
+            return Base64.encodeToString(encrypted, Base64.DEFAULT);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -101,7 +100,7 @@ public class Cryptographer {
             Cipher cipher = Cipher.getInstance(CIPHER_ALGRO);
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
 
-            byte[] original = cipher.doFinal(Base64.decodeBase64(cipherText));
+            byte[] original = cipher.doFinal(Base64.decode(cipherText, Base64.DEFAULT));
 
             return new String(original);
         } catch (BadPaddingException ex) {
@@ -109,5 +108,28 @@ public class Cryptographer {
         } catch (Exception e) {
             return "Error";
         }
+    }
+
+    public static final String convertIV(byte[]iv) {
+        // Conform ios style
+        String temp = "";
+        for (byte i: iv) {
+            int unsignedByte = i & 0xFF;
+            temp += " " + unsignedByte + ",";
+        }
+        // Removes leading ' ' and tailing ','
+        String out = "[" + temp.substring(1, temp.length() -1) + "]";
+        return out;
+    }
+
+    public static final byte[] convertIV(String iv){
+        String parse = iv.substring(1,iv.length()-1);
+        parse = parse.replace(" ", "");
+        String[] segments = parse.split(",");
+        byte[] bytes = new byte[segments.length];
+        for (int i = 0; i < segments.length; i++) {
+            bytes[i] = (byte) Integer.parseInt(segments[i]);
+        }
+        return bytes;
     }
 }

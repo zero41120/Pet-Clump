@@ -375,13 +375,75 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
         // open gallery
 
     }
-    public void keyboardOff(){
-        InputMethodManager inputMethodManager =
-                (InputMethodManager)getSystemService(
-                        INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(
-                getCurrentFocus().getWindowToken(), 0);
+    public boolean noInfo(){
+        String s = "";
+        String pn = String.valueOf(pet_name.getText());
+        String pa = String.valueOf(pet_age.getText());
+        String pb = String.valueOf(pet_bio.getText());
+        boolean infoCheck = s.equalsIgnoreCase(pn) || s.equalsIgnoreCase(pa) || s.equalsIgnoreCase(pb);
+        return infoCheck;
     }
+    public boolean noPetImage(){
+        if (pet_view_main.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.photo_placeholder).getConstantState()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean noOwnerImage(){
+        Object o = getResources().getDrawable(R.drawable.photo_placeholder).getConstantState();
+        boolean one = group_view_1.getDrawable().getConstantState()==o;
+        boolean two = group_view_2.getDrawable().getConstantState()==o;
+        boolean three = group_view_3.getDrawable().getConstantState()==o;
+        boolean imageCheck = one || two || three;
+        return imageCheck;
+    }
+    public void getDialogForText(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("wait!")
+                .setMessage("Please fill in the required info.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Ok", (DialogInterface dialog, int which) -> {
+                })
+                .setNegativeButton("Ok", null).show();
+    }
+    public void getDialogForImg(boolean isPet){
+        if (isPet){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle("wait!")
+                    .setMessage("Please at least upload the main pet photo.")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("Ok", (DialogInterface dialog, int which) -> {
+                    })
+                    .setNegativeButton("Ok", null).show();
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle("wait!")
+                    .setMessage("Please at least upload one owner photo.")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton("Ok", (DialogInterface dialog, int which) -> {
+                    })
+                    .setNegativeButton("Ok", null).show();
+        }
+
+
+    }
+
+    public void getDialogUnsaved(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder
+                .setTitle("wait!")
+                .setMessage("Are you sure you want to exit? You haven't saved yet!")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes", (DialogInterface dialog, int which) -> {
+                    finish();
+                })
+                .setNegativeButton("No", null).show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -410,19 +472,18 @@ public class PetInfoActivity extends AppCompatActivity implements ImageView.OnCl
                 saveInfo();
                 break;
             case android.R.id.home:
-                if (isSaved==true){
-                    finish();
-                }
-                else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder
-                            .setTitle("Are you sure you want to exit?")
-                            .setMessage("You haven't saved yet!")
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setPositiveButton("Yes", (DialogInterface dialog, int which) -> {
-                                finish();
-                            })
-                            .setNegativeButton("No", null).show();
+                if (isSaved==false){
+                    getDialogUnsaved();
+                } else{
+                    if (noInfo()){
+                        getDialogForText();
+                    }else if(noPetImage()){
+                        getDialogForImg(true);
+                    }else if(noOwnerImage()){
+                        getDialogForImg(false);
+                    }else{
+                        finish();
+                    }
                 }
                 break;
             default:

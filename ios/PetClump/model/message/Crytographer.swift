@@ -77,7 +77,7 @@ class Cryptographer{
         var plainText = "error"
         do {
             let aes = try AES(key: key, blockMode: BlockMode.CBC(iv: iv), padding: .pkcs5)
-            let encryptedData = Data(base64Encoded: cipherText)
+            let encryptedData = Data(base64Encoded: cipherText, options: .ignoreUnknownCharacters)
             if let encrypted = encryptedData?.bytes {
                 plainText = (try String(data: Data(aes.decrypt(encrypted)), encoding: .utf8)) ?? "error"
             }
