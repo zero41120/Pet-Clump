@@ -10,6 +10,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/friendview_recycle">
     </android.support.v7.widget.RecyclerView>
+    <ImageView
+        android:id="@+id/no_friend"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:src="@drawable/no_friend"/>
     <TextView
         android:id="@+id/friend_label"
         android:layout_gravity="center"
