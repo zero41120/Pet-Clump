@@ -116,9 +116,6 @@ public class MatchingActivity extends AppCompatActivity {
                  */
                 Intent i = new Intent(this, UserInfoActivity.class);
                 startActivity(i);
-            case R.id.action_logout:
-                FirebaseAuth.getInstance().signOut();
-                finish();
             default:
                 super.onOptionsItemSelected(item);
         }
