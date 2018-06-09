@@ -90,7 +90,6 @@ public class OwnerProfile implements Profile {
             //Log.d("Profile", "upload: " + message);
             c.didCompleteUpload();
         });
-
     }
     @Override
     public void download(String id, ProfileDownloader c){

@@ -114,7 +114,6 @@ public class FriendFragment extends Fragment {
                         friendProfileList.add(t);
                         friendRecycleViewAdapter.notifyDataSetChanged();
                     });
-
                 }
             }
             //friendRecycleViewAdapter.notifyDataSetChanged();

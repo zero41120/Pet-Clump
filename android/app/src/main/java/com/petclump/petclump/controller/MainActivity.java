@@ -46,6 +46,7 @@ import com.petclump.petclump.models.MessagingDownloader;
 import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
+import com.petclump.petclump.models.protocols.ProfileUploader;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         // Show user UID if logged in
         if (cUser != null) {
-            saveGPS();
+            saveGPS(()->{});
         }
 
         // Sign out button
@@ -248,9 +249,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 return;
             }
 
-            saveGPS();
-            checkLoggedIn();
-            Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
+            saveGPS(()->{
+                checkLoggedIn();
+                Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
+            });
         });
     }
 
@@ -305,14 +307,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 break;
         }
     }
-    private void saveGPS(){
+    private void saveGPS(ProfileUploader c){
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
         owner.download(cUser.getUid(),()->{
             owner.setLat(profile_lat);
             owner.setLon(profile_lon);
             owner.upload(cUser.getUid(),()->{
-                Toast.makeText(c, "GPS change has uploaded.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "GPS change has uploaded.", Toast.LENGTH_SHORT).show();
+                c.didCompleteUpload();
             });
         });
     }
+
 }
