@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,6 +42,7 @@ public class MatchingActivity extends AppCompatActivity {
 //        vm_button_settings.setOnClickListener(v -> {
 //            startActivity(new Intent(this, UserInfoActivity.class));
 //        });
+        Log.d("matching","checkLoggedIn:"+FirebaseAuth.getInstance().getCurrentUser().getUid());
         setActionBar(String.valueOf(getText(R.string.View_Match_As)));
     }
     @Override
@@ -119,6 +121,7 @@ public class MatchingActivity extends AppCompatActivity {
                  */
                 Intent i = new Intent(this, UserInfoActivity.class);
                 startActivity(i);
+                break;
             case R.id.action_logout:
 //                GoogleApiClient gClient = new GoogleApiClient
 //                        .Builder(this)
@@ -130,6 +133,7 @@ public class MatchingActivity extends AppCompatActivity {
 //                );
                 FirebaseAuth.getInstance().signOut();
                 finish();
+                break;
             default:
                 super.onOptionsItemSelected(item);
         }

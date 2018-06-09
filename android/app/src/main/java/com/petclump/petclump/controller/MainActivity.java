@@ -73,15 +73,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setGPS();
         checkLoggedIn();
         setupUI();
         setFilePermission();
-        setGPS();
         setupGoogleLogin();
         setupFacebookLogin();
     }
     private void checkLoggedIn(){
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
+            Log.d(TAG,"checkLoggedIn:"+FirebaseAuth.getInstance().getCurrentUser().getUid());
             startActivity(new Intent(this, MatchingActivity.class));
         }
     }
@@ -240,8 +241,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.w(TAG, "signInWithCredential:failure", task.getException());
                 return;
             }
-            // setup new GPS
-            setGPS();
+
             FirebaseUser user = mAuth.getCurrentUser();
             if (user == null) {
                 Log.d(TAG, "handleFBSignInResult: No current user");

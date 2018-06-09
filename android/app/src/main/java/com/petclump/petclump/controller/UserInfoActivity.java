@@ -60,6 +60,7 @@ public class UserInfoActivity extends AppCompatActivity implements ProfileDownlo
             Log.d(TAG, "onCreate: User not logged in");
             finish();
         }
+        Log.d("UserInfo","checkLoggedIn:"+FirebaseAuth.getInstance().getCurrentUser().getUid());
         setupUI();
         setActionBar(String.valueOf(getText(R.string.About_me)));
     }
