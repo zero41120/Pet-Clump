@@ -75,10 +75,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_main);
 
         setGPS();
-
         setupUI();
-
-
         setFilePermission();
         setupGoogleLogin();
         setupFacebookLogin();
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             .enableAutoManage(this, this)
             .addApi(Auth.GOOGLE_SIGN_IN_API, gos)
             .build();
-        
+
         SignInButton mGoogleSignInBtn = findViewById(R.id.googleBtn);
         Button google_button = findViewById(R.id.google_button);
         TextView sign_out = findViewById(R.id.main_sign_out);

@@ -59,7 +59,6 @@ public class PetProfile implements Profile {
     private Integer sequence = -1;
     private String TAG = "PetProfile";
     private HashMap<String, String> relation_list = new HashMap<>();    // friend_list
-    private HashMap<String, String> chat_list = new HashMap<>();        // chat_list
 
 
     public static final int default_image = R.drawable.dog_placeholder;
@@ -217,7 +216,11 @@ public class PetProfile implements Profile {
                         KeyExchanger kE = new KeyExchanger(friendPetId, data);
                         data.put(friendPetId, kE.getMyPublic().toString());
                         Log.d(TAG, "update_friend_key in add unread fried: " + data);
-                        charRef.set(data);
+                        charRef.set(data).addOnCompleteListener(task2->{
+                            if(task.isSuccessful()){
+                                c.didCompleteUpload();
+                            }
+                        });
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -235,8 +238,6 @@ public class PetProfile implements Profile {
         }
         if(relation_list.containsKey(sender_id))
             relation_list.remove(sender_id);
-        if(relation_list.containsKey(receiver_id))
-            relation_list.remove(receiver_id);
         // delete receiver from sender
         FirebaseFirestore.getInstance().collection("pets")
                 .document(sender_id)
@@ -283,9 +284,7 @@ public class PetProfile implements Profile {
         }
         DocumentReference ref = FirebaseFirestore.getInstance().collection("pets").document(pet_id);
         ref.collection("friends")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                .get().addOnCompleteListener(task->{
 
                 if(task.getResult().size()>0){
                     ref.collection("friends").addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -316,116 +315,11 @@ public class PetProfile implements Profile {
                 }else{
                     Log.d(TAG,pet_id + " doesn't contain friends collection");
                     c.didCompleteDownload();
-                }
             }
         });
     }
     public HashMap<String, String> getRelation_list() {
         return relation_list;
-    }
-
-    // message manipulation field
-    public void listenToChatList(String pet_id, ProfileDownloader c){
-        if (Auth_pet.getCurrentUser() == null){
-            Log.d(TAG, "listenToChatList:"+" current user is none");
-            return;
-        }
-        DocumentReference ref = FirebaseFirestore.getInstance().collection("pets").document(pet_id);
-        ref.collection("unread")
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.getResult().size()>0){
-                    ref.collection("unread").addSnapshotListener(new EventListener<QuerySnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                            if (e != null) {
-                                Log.w(TAG, "Listen to Chat_List failed.", e);
-                                return;
-                            }
-                            List A = queryDocumentSnapshots.getDocumentChanges();
-                            // iterate through data
-                            for(Object x: A){
-                                Map<String, Object> ref_data = x==null? null: ((DocumentChange)x).getDocument().getData();
-                                if(x != null)
-                                    chat_list.put(((DocumentChange)x).getDocument().getId(), ref_data.get("pending").toString());
-                            }
-                            //Log.d(TAG,"FriendList:" +Thread.currentThread().toString());
-                            c.didCompleteDownload();
-                        }
-                    });
-                }else{
-                    Log.d(TAG,pet_id + " No unread chats");
-                    c.didCompleteDownload();
-                }
-            }
-        });
-    }
-    public void new_unread_message(String sender_id, String receiver_id, ProfileUploader c){
-        if (Auth_pet.getCurrentUser() == null){
-            Log.e(TAG, "user is null.");
-            return;
-        }
-        if(sender_id.equals("") || receiver_id.equals("")){
-            Log.e(TAG, "new_unread_message:"+" Error, one of the id is empty!");
-            return;
-        }
-        String combined_id = "";
-        if(sender_id.compareTo(receiver_id)>0){
-            combined_id = sender_id + receiver_id;
-        }else{
-            combined_id = receiver_id + sender_id;
-        }
-
-        // upload change
-        DocumentReference ref = FirebaseFirestore.getInstance().collection("pets")
-                .document(receiver_id)
-                .collection("unread").document(combined_id);
-
-        HashMap<String, Object> temp = new HashMap<String, Object>(){{put("pending", "UNREAD");}};
-        ref.set(temp).addOnCompleteListener(task -> {
-            if(!task.isSuccessful()) {
-                Log.w(TAG, "new_unread_message changes failed");
-            }
-            c.didCompleteUpload();
-        });
-    }
-    public void unread_delete(String unhandled_id, String the_other_id, ProfileDeletor c){
-        // notice we will only delete the document from unhandled_id
-        if (Auth_pet.getCurrentUser() == null){
-            Log.e(TAG, "user is null.");
-            return;
-        }
-        if(unhandled_id.equals("") || the_other_id.equals("")){
-            Log.e(TAG, "unread_delete:"+" Error, one of the id is empty!");
-            return;
-        }
-        String combined_id = "";
-        if(unhandled_id.compareTo(the_other_id)>0){
-            combined_id = unhandled_id + the_other_id;
-        }else{
-            combined_id = the_other_id + unhandled_id;
-        }
-        if(chat_list.containsKey(combined_id)){
-            chat_list.remove(combined_id);
-        }
-        // delete receiver from sender
-        FirebaseFirestore.getInstance().collection("pets")
-                .document(unhandled_id)
-                .collection("unread")
-                .document(combined_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                // if the document exists
-                if(task.getResult().exists()){
-                    task.getResult().getReference().delete();
-                }else{
-                    Log.e(TAG,"unread_delete: document_id doesn't exist");
-                }
-
-                c.didCompleteDelete();
-            }
-        });
     }
 
     public void newMessage(String my_id, String friend_id, String iv, String cipher, Timestamp time, ProfileUploader c){
@@ -458,9 +352,6 @@ public class PetProfile implements Profile {
             c.didCompleteUpload();
         });
     }
-
-    public HashMap<String, String> getChat_list(){ return chat_list;}
-
 
     /*** profile methods ***/
     public void upload(String id, ProfileUploader c){
@@ -536,13 +427,7 @@ public class PetProfile implements Profile {
                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
                         c.didCompleteDelete();
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error deleting document", e);
-                    }
-                });;
+                });
     }
 
     public void deletePhoto(String t, ProfileDeletor c){
@@ -601,7 +486,6 @@ public class PetProfile implements Profile {
             return matcher.group(1);
 
         }
-
         return "";
     }
 
