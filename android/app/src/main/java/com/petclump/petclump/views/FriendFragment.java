@@ -65,7 +65,7 @@ public class FriendFragment extends Fragment {
 
             for (Map.Entry<String,String> entry : Friend_list.entrySet()){
 
-                if(!entry.getValue().equals("blocking") && !entry.getValue().equals("sending")){
+                if(entry.getValue().equals("friending")){
                     // setup last message listener
                     FirebaseFirestore.getInstance().collection("chats").document(PetProfile.getCombinedId(pet_id, entry.getKey())).get().addOnCompleteListener(task->{
                         String friend_id = entry.getKey();
@@ -74,7 +74,7 @@ public class FriendFragment extends Fragment {
                         BigInteger friend_public = new BigInteger(ref.get(friend_id).toString());
                         BigInteger bigPRIME = new BigInteger(ref.get("bigPrime").toString());
                         BigInteger priPRIME = new BigInteger(ref.get("priPrime").toString());
-/*                        Log.d(TAG,"my_public:"+my_public);
+/*                      Log.d(TAG,"my_public:"+my_public);
                         Log.d(TAG,"friend_public:"+friend_public);
                         Log.d(TAG,"bigPRIME:"+bigPRIME);
                         Log.d(TAG,"priPRIME"+priPRIME);*/
@@ -87,7 +87,7 @@ public class FriendFragment extends Fragment {
 
                             pet.download(entry.getKey(), ()->{
                                 FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(),
-                                        "Added you", "13:00", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
+                                        "Added you", "", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
                                 // setup last messaging.
                                 //if(!friendProfileList.contains(t)){
                                     MessagingDownloader.setlastMessage(pet_id,friend_id,myShared,t,()->{
@@ -101,11 +101,18 @@ public class FriendFragment extends Fragment {
                                             friendRecycleViewAdapter.notifyDataSetChanged();
                                         }
                                     });
-                                //}
                             });
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                    });
+
+                }else if(entry.getValue().equals("receiving")){
+                    pet.download(entry.getKey(), ()->{
+                        FriendProfile t = new FriendProfile(pet_id, entry.getKey(), pet.getName(),
+                                "Added you", "", pet.getPhotoUrl(PetProfile.UrlKey.main), entry.getValue());
+                        friendProfileList.add(t);
+                        friendRecycleViewAdapter.notifyDataSetChanged();
                     });
 
                 }
