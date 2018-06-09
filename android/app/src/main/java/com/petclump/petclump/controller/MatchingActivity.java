@@ -122,13 +122,9 @@ public class MatchingActivity extends AppCompatActivity {
                 Intent i = new Intent(this, UserInfoActivity.class);
                 startActivity(i);
                 break;
-            case R.id.action_logout:
-
-
+            case android.R.id.home:
                 finish();
-                break;
-            default:
-                super.onOptionsItemSelected(item);
+
         }
         return true;
     }
@@ -139,6 +135,7 @@ public class MatchingActivity extends AppCompatActivity {
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.actionbar_layout);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         TextView myText = findViewById(R.id.mytext);
         myText.setText(heading);
     }

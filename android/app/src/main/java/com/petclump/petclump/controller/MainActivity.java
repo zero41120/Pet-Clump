@@ -128,11 +128,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         c = getApplicationContext();
         ContextProvider.setContext(getApplicationContext());
 
-/*        if(FirebaseAuth.getInstance().getCurrentUser() != null){
-            Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
-                    FirebaseAuth.getInstance().signOut()
-            );
-        }*/
     }
 
     private void setupGoogleLogin(){
@@ -148,11 +143,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             .enableAutoManage(this, this)
             .addApi(Auth.GOOGLE_SIGN_IN_API, gos)
             .build();
-
-
+        
         SignInButton mGoogleSignInBtn = findViewById(R.id.googleBtn);
         Button google_button = findViewById(R.id.google_button);
-        Button sign_out = findViewById(R.id.main_sign_out);
+        TextView sign_out = findViewById(R.id.main_sign_out);
         Intent doSignIn = Auth.GoogleSignInApi.getSignInIntent(gClient);
         google_button.setOnClickListener(v->{
             mGoogleSignInBtn.performClick();
@@ -161,8 +155,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             startActivityForResult(doSignIn, RC_SIGN_IN);
         });
         sign_out.setOnClickListener(v->{
-            Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
-                    FirebaseAuth.getInstance().signOut()
+            Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->{
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(this, "Logged out successfully!", Toast.LENGTH_SHORT).show();
+                    }
             );
         });
 
