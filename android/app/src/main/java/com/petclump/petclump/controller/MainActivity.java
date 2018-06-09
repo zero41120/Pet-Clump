@@ -75,16 +75,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_main);
 
         setGPS();
-        checkLoggedIn();
+
         setupUI();
+
+
         setFilePermission();
         setupGoogleLogin();
         setupFacebookLogin();
+        checkLoggedIn();
     }
+
     private void checkLoggedIn(){
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
             Log.d(TAG,"checkLoggedIn:"+FirebaseAuth.getInstance().getCurrentUser().getUid());
-            startActivity(new Intent(this, MatchingActivity.class));
+            saveGPS(()->{startActivity(new Intent(this, MatchingActivity.class));});
+
         }
     }
     private void setFilePermission(){
@@ -122,23 +127,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // Init variables
         c = getApplicationContext();
         ContextProvider.setContext(getApplicationContext());
-        FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        // Show user UID if logged in
-        if (cUser != null) {
-            saveGPS(()->{});
-        }
-
-        // Sign out button
-/*        Button mGoogleSignOutBtn = findViewById(R.id.mGoogleSignOut);
-        mGoogleSignOutBtn.setOnClickListener(v ->{
+/*        if(FirebaseAuth.getInstance().getCurrentUser() != null){
             Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
                     FirebaseAuth.getInstance().signOut()
             );
-        });*/
+        }*/
     }
 
     private void setupGoogleLogin(){
+
         GoogleSignInOptions gos = new GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
@@ -151,14 +149,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             .addApi(Auth.GOOGLE_SIGN_IN_API, gos)
             .build();
 
+
         SignInButton mGoogleSignInBtn = findViewById(R.id.googleBtn);
         Button google_button = findViewById(R.id.google_button);
+        Button sign_out = findViewById(R.id.main_sign_out);
+        Intent doSignIn = Auth.GoogleSignInApi.getSignInIntent(gClient);
         google_button.setOnClickListener(v->{
             mGoogleSignInBtn.performClick();
         });
         mGoogleSignInBtn.setOnClickListener(v -> {
-            Intent doSignIn = Auth.GoogleSignInApi.getSignInIntent(gClient);
             startActivityForResult(doSignIn, RC_SIGN_IN);
+        });
+        sign_out.setOnClickListener(v->{
+            Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
+                    FirebaseAuth.getInstance().signOut()
+            );
         });
 
         OptionalPendingResult<GoogleSignInResult> oResult = Auth.GoogleSignInApi.silentSignIn(gClient);

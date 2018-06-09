@@ -469,8 +469,7 @@ public class PetProfile implements Profile {
             return;
         }
         // upload documents
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("pets").document(id);
-        docRef.set(generateDictionary()).addOnCompleteListener(task -> {
+        FirebaseFirestore.getInstance().collection("pets").document(id).set(generateDictionary()).addOnCompleteListener(task -> {
             String message = "";
             if(task.isSuccessful()) {
                 message += "Upload successful for pet: " + this.name;
@@ -487,16 +486,12 @@ public class PetProfile implements Profile {
             Log.d(TAG, "download:"+" Current user is none");
             return;
         }
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("pets").document(id);
-
-        mDocRef.addSnapshotListener((snap, error) -> {
-            if (error != null) {
-                Log.d(TAG, "Download failed: " + error.toString());
+        FirebaseFirestore.getInstance().collection("pets").document(id).get().addOnCompleteListener(task->{
+            if (!task.isSuccessful()) {
+                Log.d(TAG, "Download failed");
                 return;
             }
-            if (snap == null)   { return; }
-            if (!snap.exists()) { return; }
-            DefaultMap<String, Object> ref = new DefaultMap<String, Object>(snap.getData());
+            DefaultMap<String, Object> ref = new DefaultMap<String, Object>(task.getResult().getData());
             this.bio = ref.getDefault("bio");
             this.age = ref.getDefault("age");
             this.spe = ref.getDefault("spe");
@@ -516,6 +511,7 @@ public class PetProfile implements Profile {
             //Log.d(TAG, "url_map\n"+url_map.toString());
             c.didCompleteDownload();
         });
+
     }
 
     public void delete(String id, ProfileDeletor c){

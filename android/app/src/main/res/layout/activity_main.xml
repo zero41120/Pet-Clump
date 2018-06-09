@@ -135,4 +135,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/facebook_button_real" />
 
+    <Button
+        android:id="@+id/main_sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="497dp" />
+
 </android.support.constraint.ConstraintLayout>

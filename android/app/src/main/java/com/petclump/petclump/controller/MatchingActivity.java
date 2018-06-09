@@ -123,15 +123,8 @@ public class MatchingActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.action_logout:
-//                GoogleApiClient gClient = new GoogleApiClient
-//                        .Builder(this)
-//                        .enableAutoManage(this, this)
-//                        .addApi(Auth.GOOGLE_SIGN_IN_API, gos)
-//                        .build();
-//                Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
-//
-//                );
-                FirebaseAuth.getInstance().signOut();
+
+
                 finish();
                 break;
             default:
