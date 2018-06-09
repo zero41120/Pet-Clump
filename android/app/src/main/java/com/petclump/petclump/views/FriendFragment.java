@@ -68,7 +68,6 @@ public class FriendFragment extends Fragment {
             Friend_list = (Map<String, String>) pet.getRelation_list().clone();
             Log.d(TAG, "didCompleteDownload: " + Friend_list);
             friendProfileList.clear();
-            if (Friend_list.entrySet().size()!=0){
                 for (Map.Entry<String,String> entry : Friend_list.entrySet()){
 
                     if(!entry.getValue().equals("blocking") && !entry.getValue().equals("sending")){
@@ -118,10 +117,6 @@ public class FriendFragment extends Fragment {
 
 
                 }
-            }else{
-                no_friend_txt.setVisibility(View.VISIBLE);
-                no_friend_img.setVisibility(View.VISIBLE);
-            }
             //friendRecycleViewAdapter.notifyDataSetChanged();
 
         });
