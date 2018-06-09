@@ -46,6 +46,7 @@ import com.petclump.petclump.models.MessagingDownloader;
 import com.petclump.petclump.models.OwnerProfile;
 import com.petclump.petclump.models.PetProfile;
 import com.petclump.petclump.models.Specie;
+import com.petclump.petclump.models.protocols.ProfileUploader;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -74,16 +75,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        checkLoggedIn();
+        setGPS();
         setupUI();
         setFilePermission();
-        setGPS();
         setupGoogleLogin();
         setupFacebookLogin();
+        checkLoggedIn();
     }
+
     private void checkLoggedIn(){
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
-            startActivity(new Intent(this, MatchingActivity.class));
+            Log.d(TAG,"checkLoggedIn:"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+            saveGPS(()->{startActivity(new Intent(this, MatchingActivity.class));});
+
         }
     }
     private void setFilePermission(){
@@ -121,36 +125,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // Init variables
         c = getApplicationContext();
         ContextProvider.setContext(getApplicationContext());
-        uidText = findViewById(R.id.user_UID);
-        //Button settingsButton = findViewById(R.id.button_settings);
-        Button matchingButton = findViewById(R.id.matching_button);
-        FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        // Show user UID if logged in
-        if (cUser != null) {
-            uidText.setText(cUser.getUid());
-            saveGPS();
-        }
-
-        // Sign out button
-        Button mGoogleSignOutBtn = findViewById(R.id.mGoogleSignOut);
-        mGoogleSignOutBtn.setOnClickListener(v ->{
-            Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->
-                uidText.setText(R.string.app_name)
-            );
-            FirebaseAuth.getInstance().signOut();
-        });
-
-
-        // Matching activity
-        matchingButton.setOnClickListener(v->
-            startActivity(new Intent(c, MatchingActivity.class))
-        );
 
     }
 
 
     private void setupGoogleLogin(){
+
         GoogleSignInOptions gos = new GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
@@ -165,12 +145,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         SignInButton mGoogleSignInBtn = findViewById(R.id.googleBtn);
         Button google_button = findViewById(R.id.google_button);
+        TextView sign_out = findViewById(R.id.main_sign_out);
+        Intent doSignIn = Auth.GoogleSignInApi.getSignInIntent(gClient);
         google_button.setOnClickListener(v->{
             mGoogleSignInBtn.performClick();
         });
         mGoogleSignInBtn.setOnClickListener(v -> {
-            Intent doSignIn = Auth.GoogleSignInApi.getSignInIntent(gClient);
             startActivityForResult(doSignIn, RC_SIGN_IN);
+        });
+        sign_out.setOnClickListener(v->{
+            Auth.GoogleSignInApi.signOut(gClient).setResultCallback(status ->{
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(this, "Logged out successfully!", Toast.LENGTH_SHORT).show();
+                    }
+            );
         });
 
         OptionalPendingResult<GoogleSignInResult> oResult = Auth.GoogleSignInApi.silentSignIn(gClient);
@@ -254,18 +242,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.w(TAG, "signInWithCredential:failure", task.getException());
                 return;
             }
-            // setup new GPS
-            setGPS();
+
             FirebaseUser user = mAuth.getCurrentUser();
             if (user == null) {
                 Log.d(TAG, "handleFBSignInResult: No current user");
                 return;
             }
 
-            this.uidText.setText(mAuth.getCurrentUser().getUid());
-            saveGPS();
-            checkLoggedIn();
-            Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
+            saveGPS(()->{
+                checkLoggedIn();
+                Log.d(TAG, "handleFBSignInResult: current user id: " + mAuth.getCurrentUser().getUid());
+            });
         });
     }
 
@@ -320,14 +307,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 break;
         }
     }
-    private void saveGPS(){
+    private void saveGPS(ProfileUploader c){
         FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
         owner.download(cUser.getUid(),()->{
             owner.setLat(profile_lat);
             owner.setLon(profile_lon);
             owner.upload(cUser.getUid(),()->{
-                Toast.makeText(c, "GPS change has uploaded.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "GPS change has uploaded.", Toast.LENGTH_SHORT).show();
+                c.didCompleteUpload();
             });
         });
     }
+
 }

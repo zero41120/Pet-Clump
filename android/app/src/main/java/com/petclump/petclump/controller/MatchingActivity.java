@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,6 +40,7 @@ public class MatchingActivity extends AppCompatActivity {
 //        vm_button_settings.setOnClickListener(v -> {
 //            startActivity(new Intent(this, UserInfoActivity.class));
 //        });
+        Log.d("matching","checkLoggedIn:"+FirebaseAuth.getInstance().getCurrentUser().getUid());
         setActionBar(String.valueOf(getText(R.string.View_Match_As)));
     }
     @Override
@@ -116,8 +118,10 @@ public class MatchingActivity extends AppCompatActivity {
                  */
                 Intent i = new Intent(this, UserInfoActivity.class);
                 startActivity(i);
-            default:
-                super.onOptionsItemSelected(item);
+                break;
+            case android.R.id.home:
+                finish();
+
         }
         return true;
     }
@@ -128,6 +132,7 @@ public class MatchingActivity extends AppCompatActivity {
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(R.layout.actionbar_layout);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         TextView myText = findViewById(R.id.mytext);
         myText.setText(heading);
     }

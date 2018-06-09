@@ -85,29 +85,23 @@ public class OwnerProfile implements Profile {
         if (FirebaseAuth.getInstance().getCurrentUser() == null){
             Log.d(TAG, "upload_failed due to null user! ");
         }
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(id);
-        docRef.set(generateDictionary()).addOnCompleteListener(task -> {
+        FirebaseFirestore.getInstance().collection("users").document(id).set(generateDictionary()).addOnCompleteListener(task -> {
             //Log.d("Profile", "upload: " + message);
             c.didCompleteUpload();
         });
-
     }
     @Override
     public void download(String id, ProfileDownloader c){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String TAG = "OwnerProfile_"+name;
         if (user == null){ Log.w(TAG,"empty user");  return; }
-        DocumentReference mDocRef = FirebaseFirestore.getInstance().collection("users").document(id);
-
-        mDocRef.addSnapshotListener((snap, error) -> {
-            if (error != null) {
-                Log.d(TAG, "Download failed: " + error.toString());
+        FirebaseFirestore.getInstance().collection("users").document(id).get().addOnCompleteListener(task->{
+            if (!task.isSuccessful()) {
+                Log.d(TAG, "Download failed: " + user.getUid());
                 return;
             }
 
-            if (snap == null)   { return; }
-            if (!snap.exists()) { return; }
-            Map<String, Object> ref = snap.getData();
+            Map<String, Object> ref = task.getResult().getData();
             this.name = (String) ref.get("name");
             Log.d(TAG, "Download successfully" + name);
             this.gender = (String) ref.get("gender");
@@ -121,6 +115,7 @@ public class OwnerProfile implements Profile {
 
             c.didCompleteDownload();
         });
+
 
     }
 
